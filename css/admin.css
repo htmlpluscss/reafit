@@ -1,0 +1,61 @@
+header, main, footer {
+	max-width:95%;
+}
+.col-hide .checkbox{
+	margin-right: 12px;
+	padding-left: 20px;
+}
+.table100 th{
+	line-height: 16px;
+}
+.table100 td{
+	font-size: 13px;
+	line-height: 15px;
+}
+b {
+	font-weight: 700
+}
+.one-event {
+	text-align: center;
+}
+.one-event a{
+	display: inline-block;
+	margin: 4px;
+	font-size: 18px;
+}
+.one-event--line a{
+	margin: 4px 0;
+}
+
+.list-tags,
+.add-one-form {
+	width: 500px;
+	margin: auto;
+}
+.add-one-form .input{
+	display: block;
+	width: 100%;
+}
+.list-tags h3,
+.add-one-form h3{
+	margin-top: 20px;
+}
+.add-one-form label,
+.list-tags label{
+	display: block;
+}
+.tags small {
+	display: inline-block;
+	vertical-align: top;
+	font-size: 11px;
+	border: 1px solid #aaa;
+	border-radius: 3px;
+	white-space: nowrap;
+	padding: 0 3px;
+	margin: 1px 0;
+}
+
+.sort-remove__placeholder {
+	height: 22px;
+	background: #ccc
+}

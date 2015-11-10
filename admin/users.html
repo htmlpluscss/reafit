@@ -1,0 +1,72 @@
+<!--#include file="_head.shtml"-->
+
+	<title>Список пользователей</title>
+
+<!--#include file="_header.shtml"-->
+
+		<form class="pull-right">
+			<input class="input">
+			<a class="btn align-middle">Найти</a>
+<!-- 			появляется если input value!=""
+			<a class="btn align-middle">Очистить</a>
+-->
+		</form>
+
+		<div class="col-hide clear-both">
+			<p>Скрыть колонки:</p>
+			<label class="checkbox"><input type="checkbox" value="1">ID</label>
+			<label class="checkbox"><input type="checkbox" value="2">Дата регистрации</label>
+			<label class="checkbox"><input type="checkbox" value="3">Дата последнего входа</label>
+			<label class="checkbox"><input type="checkbox" value="4">Количество входов</label>
+			<label class="checkbox"><input type="checkbox" value="5">Количество программ</label>
+			<label class="checkbox"><input type="checkbox" value="6">Количество упражнений</label>
+			<label class="checkbox"><input type="checkbox" value="7">E-mail</label>
+			<label class="checkbox"><input type="checkbox" value="8">Телефон</label>
+			<label class="checkbox"><input type="checkbox" value="9">Регион</label>
+			<label class="checkbox"><input type="checkbox" value="10">Статус</label>
+		</div>
+
+<!--#include virtual="/_pagin.shtml"-->
+
+		<table class="table100 align-middle">
+			<thead>
+				<tr>
+					<th class="col-hide-1">ID</th>
+					<th>ФИО</th>
+					<th class="col-hide-2">Дата регистрации</th>
+					<th class="col-hide-3">Дата последнего входа</th>
+					<th class="col-hide-4">Количество входов</th>
+					<th class="col-hide-5">Количество программ</th>
+					<th class="col-hide-6">Количество упражнений</th>
+					<th class="col-hide-7">E-mail</th>
+					<th class="col-hide-8">Телефон</th>
+					<th class="col-hide-9">Регион</th>
+					<th class="col-hide-10">Статус</th>
+					<th>Действие</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td class="align-center">1</td>
+					<td><b>Ковригин Юрий</b></td>
+					<td class="align-center">14.02.1982</td>
+					<td class="align-center">14.02.1982</td>
+					<td class="align-center">15</td>
+					<td class="align-center"></td>
+					<td class="align-center"></td>
+					<td><a href="mailto:79198889134@ya.ru">79198889134@ya.ru</a></td>
+					<td><a href="tel:+79198889134">79198889134</a></td>
+					<td>Ростов-на-Дону</td>
+					<td>Пациент</td>
+					<td class="one-event one-event--line">
+						<a class="icon-folder-open-empty" href="page-user.html" target="_blank"></a>
+						<a class="icon-trash-empty one-event__delete"></a>
+						<a class="icon-info"></a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+
+<!--#include virtual="/_pagin.shtml"-->
+
+<!--#include file="_footer.shtml"-->

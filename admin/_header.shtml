@@ -1,0 +1,18 @@
+</head>
+
+<body>
+
+	<header>
+
+		<a href="/admin" class="logo"><img src="/images/logo.png" alt=""></a>
+
+		<ul class="menu_top">
+			<li><a href="list-one.html">Упражнения</a></li>
+			<li><a href="list-set.html">Программы</a></li>
+			<li><a href="tags.html">Теги</a></li>
+			<li><a href="users.html">Пользователи</a></li>
+		</ul>
+
+	</header>
+
+	<main class="clr">

@@ -1,0 +1,47 @@
+	<link rel="apple-touch-icon-precomposed" href="/favicon.png">
+
+</head>
+
+<body>
+
+	<header>
+
+		<a href="/" class="logo"><img src="/images/logo.png" alt=""></a>
+
+		<nav>
+
+<!--#if expr="$DOCUMENT_URI = '/app.html'" -->
+			<ul class="menu_app">
+<!--#else-->
+			<ul class="menu_top">
+<!--#endif-->
+<!--#if expr="$DOCUMENT_URI = '/app.html'" -->
+				<li><a class="icon-folder-empty btn-new data-tab-link" data-tab="create" title="Создать"></a></li>
+				<li><a class="icon-folder-open-empty data-tab-link" data-tab="open" title="Открыть"></a></li>
+				<li><a class="icon-floppy data-tab-link" data-tab="save" title="Сохранить"></a></li>
+				<li><a class="icon-docs data-tab-link" data-tab="save-as" title="Сохранить как"></a></li>
+				<li><a class="icon-print" title="Печать" target="_blank" href="print.html"></a></li>
+				<li><a class="icon-link" title="Ссылка" target="_blank" href="link.html"></a></li>
+				<li><a class="icon-mail data-tab-link" data-tab="send-email" title="Отправить на e-mail"></a></li>
+				<li><a class="icon-resize-full-alt app-fullscreen" title="Во весь экран"></a></li>
+				<li><a class="icon-plus-outline app-add-tab" title="Добавить вкладку"></a></li>
+				<li><a class="icon-trash-empty app-delete-tab" title="Удалить вкладку"></a></li>
+<!--#else-->
+<!--#if expr="$DOCUMENT_URI = /\/admin/" -->
+				<li><a href="list-one.html">Упражнения</a></li>
+				<li><a href="list-set.html">Программы</a></li>
+				<li><a href="tags.html">Теги</a></li>
+				<li><a href="users.html">Пользователи</a></li>
+<!--#else-->
+				<li><a href="/login.html">Авторизация</a></li>
+				<li><a href="/reg.html">Регистрация</a></li>
+<!--#endif-->
+				<li><a href="/feedback.html">Обратная связь</a></li>
+<!--#endif-->
+			</ul>
+
+		</nav>
+
+	</header>
+
+	<main class="clr">
