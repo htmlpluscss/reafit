@@ -1,0 +1,193 @@
+		<form class="app-left pull-left tabs">
+
+			<div class="tabs__nav clr">
+					<ul>
+						<li><span class="tabs__dt tabs__dt--active" data-tab="1">Название</span></li>
+						<li><span class="tabs__dt tabs__dt" data-tab="2">Медиа</span></li>
+						<li><span class="tabs__dt tabs__dt" data-tab="3">Описание</span></li>
+						<li><span class="tabs__dt tabs__dt" data-tab="4">Упражнения</span></li>
+					</ul>
+			</div>
+
+			<div class="tabs__dd tabs__dd--1 tabs__dd--active">
+				<div class="l-h form-tabs form-tabs--input100p">
+					<h2>Hазвание программы:</h2>
+					<p class="clr">
+						<label><input class="input" value="Программа 1"> <a class="icon-help" title="Обязательно для заполнения"></a></label>
+					</p>
+				</div>
+			</div>
+			<div class="tabs__dd tabs__dd--2">
+				<div class="l-h form-tabs form-tabs--file">
+					<h2>Изображение</h2>
+					<p class="clr">
+						<label>
+							<input type="file">
+							<img src="/img/media_1000623100-2.png" height="100" alt="">
+						</label>
+					</p>
+				</div>
+			</div>
+			<div class="tabs__dd tabs__dd--3">
+				<div class="l-h form-tabs">
+					<h2>Описание</h2>
+					<p>текстовый редактор, режет все атрибуты, разрешено только теги</p>
+				</div>
+			</div>
+			<div class="tabs__dd tabs__dd--4">
+				<ul class="l-h exercises-my">
+
+					<li id="one-1" class="exercises-my__item popup-box clr" data-filter="107;201;301;407;501;502">
+						<span class="exercises-list__name">Шаговое движение лежа на спине <span class="hide">с элементами сопротивления/облегчения сгибания/разгибания, попеременно каждой ногой</span></span>
+						<span class="exercises-list__img">
+							<img src="/img/media_1000623100.png" alt="">
+							<img src="/img/media_1000623100_.png" alt="">
+						</span>
+						<div class="hide">
+							<div class="popup-content--play">
+								окно с видео
+							</div>
+							<div class="popup-content--add">
+								<div class="exercises-list__item-desc">
+									<div class="exercises-list__item-detal-btn">
+										<div class="popup__add-to-left hide">
+											<a class="btn">Добавить</a>
+										</div>
+										<div class="">
+											<a class="btn exercises-my__save">Сохранить</a>
+											<a class="btn exercises-my__save exercises-my__prev">Предыдущий</a>
+											<a class="btn exercises-my__save exercises-my__next">Следующий</a>
+										</div>
+										<a class="btn popup__close">Закрыть</a>
+									</div>
+									<div class="exercises-list__item-detal clr">
+										<img src="/img/media_1000623100-2.png" alt="">
+										<img src="/img/media_1000623100.png" alt="">
+										<table>
+											<tbody><tr>
+												<th>кол-во <br> раз</th>
+												<th>кол-во <br> подходов</th>
+												<th>вес</th>
+											</tr>
+											<tr>
+												<td><input class="input"></td>
+												<td><input class="input"></td>
+												<td><input class="input"></td>
+											</tr>
+											<tr>
+												<th colspan="3">Комментарий</th>
+											</tr>
+											<tr>
+												<td colspan="3"><textarea class="input"></textarea></td>
+											</tr>
+										</tbody></table>
+									</div>
+									<h3>Фокус упражнения / Функции</h3>
+									<ul>
+										<li>1 Вариант: Мышцы сгибатели /разгибатели бедра и голени, нижняя часть пресса и спины</li>
+										<li>2 Вариант: наиболее  активные мышцы- двуглавая мышца бедра, большая ягодичная, четырехглавая мышца бедра</li>
+									</ul>
+									<p><em>Дополнительное оборудование:</em> бедренная манжета, петля для стопы.</p>
+									<p><em>Исходное положение:</em> лежа на спине, одна нога согнута в  тазобедренном и коленном суставах, другая -  лежит на кушетке в положении разгибания. Точки подвешивания размещены  над тазобедренным и голеностопным суставом. Натяжение голеностопного амортизатора - вертикально.  Натяжение бедренного амортизатора– смещается в краниальном направлении по оси ноги. Сила натяжения зависит от  того, какой эффект необходимо получить- сопротивление или облегчение.</p>
+									<p><em>Движение:</em> попеременное сгибание и разгибание в коленном и тазобедренном суставах.</p>
+									<p><em>Рекомендации:</em> Необходимо добиться максимальной амплитуды движения. По достижению максимальной амплитуды, пациент должен научиться  останавливать движение в положении  полного сгибания или разгибания.</p>
+								</div>
+							</div>
+							<div class="popup-content--progress">
+								список упражнений "прогресс"
+							</div>
+							<div class="popup-content--related">
+								список похожих упражнений
+							</div>
+						</div>
+						<div class="exercises-list-btn-block exercises-list-btn-block--one hide not-drop">
+							<a class="icon-pencil popup__btn" data-popup="add"></a>
+							<a class="icon-play popup__btn" data-popup="play"></a>
+							<a class="icon-plus popup__btn" data-popup="add"></a>
+							<a class="icon-left-bold exercises-list__add-to-left"></a>
+							<a class="icon-chart-line popup__btn" data-popup="progress"></a>
+							<a class="icon-trash ico-delete-item"></a>
+							<a class="icon-share popup__btn" data-popup="related"></a>
+							<a class="icon-star icon-toggle-favorite"></a>
+							<a class="icon-down-bold ico-move-item"></a>
+							<a class="icon-up-bold ico-move-item"></a>
+						</div>
+					</li>
+					<li id="one-4" class="exercises-my__item popup-box clr" data-filter="107;201;302;407;501">
+						<span class="exercises-list__name">Разведение ног</span>
+						<span class="exercises-list__img">
+							<img src="/img/media_1000623103.png" alt="">
+							<img src="/img/media_1000623103_.png" alt="">
+						</span>
+						<div class="hide">
+							<div class="popup-content--play">
+								окно с видео
+							</div>
+							<div class="popup-content--add">
+								<div class="exercises-list__item-desc">
+									<div class="exercises-list__item-detal-btn">
+										<div class="popup__add-to-left hide">
+											<a class="btn">Добавить</a>
+										</div>
+										<div class="">
+											<a class="btn exercises-my__save">Сохранить</a>
+											<a class="btn exercises-my__save exercises-my__prev">Предыдущий</a>
+											<a class="btn exercises-my__save exercises-my__next">Следующий</a>
+										</div>
+										<a class="btn popup__close">Закрыть</a>
+									</div>
+									<div class="exercises-list__item-detal clr">
+										<img src="/img/media_1000623103-2.png" alt="">
+										<img src="/img/media_1000623103.png" alt="">
+										<table>
+											<tbody><tr>
+												<th>кол-во <br> раз</th>
+												<th>кол-во <br> подходов</th>
+												<th>вес</th>
+											</tr>
+											<tr>
+												<td><input class="input"></td>
+												<td><input class="input"></td>
+												<td><input class="input"></td>
+											</tr>
+											<tr>
+												<th colspan="3">Комментарий</th>
+											</tr>
+											<tr>
+												<td colspan="3"><textarea class="input"></textarea></td>
+											</tr>
+										</tbody></table>
+									</div>
+									<h3>Фокус / Функции</h3>
+									<p><em>Абдукторы бедра</em></p>
+									<p><em>Дополнительное оборудование:</em> петля для стопы 2шт, голеностопный сустав.</p>
+									<p><em>Исходное положение:</em> ноги разогнуты в тазобедренном и коленном суставе, слегка разгружены и приподняты над плоскостью кушетки.</p>
+									<p><em>Движение:</em> пассивно-активное разведение ног с помощью ассистента, с дистальным сопротивлением при помощи изменения  угла натяжения и длинны эластичного амортизатора.</p>
+									<p><em>Рекомендации:</em> Для увеличения интенсивности  упражнения, можно создать  мануальное сопротивление или использовать дополнительный эластичный трос, направление троса идет параллельно главной оси движения.</p>
+								</div>
+							</div>
+							<div class="popup-content--progress">
+								список упражнений "прогресс"
+							</div>
+							<div class="popup-content--related">
+								список похожих упражнений
+							</div>
+						</div>
+						<div class="exercises-list-btn-block exercises-list-btn-block--one hide not-drop">
+							<a class="icon-pencil popup__btn" data-popup="add"></a>
+							<a class="icon-play popup__btn" data-popup="play"></a>
+							<a class="icon-plus popup__btn" data-popup="add"></a>
+							<a class="icon-left-bold exercises-list__add-to-left"></a>
+							<a class="icon-chart-line popup__btn" data-popup="progress"></a>
+							<a class="icon-trash ico-delete-item"></a>
+							<a class="icon-share popup__btn" data-popup="related"></a>
+							<a class="icon-star icon-toggle-favorite"></a>
+							<a class="icon-down-bold ico-move-item"></a>
+							<a class="icon-up-bold ico-move-item"></a>
+						</div>
+					</li>
+
+				</ul>
+			</div>
+
+		</form>

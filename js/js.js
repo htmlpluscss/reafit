@@ -48,6 +48,13 @@ $window.ready(function(){
 // tabs
 	$('.tabs').tabs();
 
+	$('.play-video').on('click',function(){
+		var id = $(this).attr('data-video');
+		if(id==undefined)
+			id = $(this).closest('.popup-box').attr('data-video');
+		var video =	'<iframe src="http://www.youtube.com/embed/'+id+'?autoplay=1" width="616" height="400" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
+		popupShow('content',video);
+	});
 
 });
 
@@ -150,6 +157,55 @@ function getScrollBarWidth(){
 	return w;
 }
 
+// popup
+	(function(){
+		var popup = $('.popup');
+		popup.on('click',function(event){
+			var t = $(event.target);
+			if(t.is(popup) || t.is('.popup__close')) {
+				popup.removeClass('show');
+				$('.popup-box--active').removeClass('popup-box--active');
+			}
+		});
+	})();
+
+	function popupShow(mod,b,s){
+		var popup = $('.popup--'+mod);
+		var box = popup.children('.popup__box');
+		var body = box.children('.popup__body');
+		if(mod=='content' && b != undefined && s==undefined){
+			body.html(b);
+			var h = body.height();
+		}
+		else if(mod=='content'){
+			var content = b.find('.popup-content--'+s).clone(true);
+			body.html(content);
+			var h = content.height();
+		}
+		else {
+			var h = body.height();
+		}
+		if(h > windowHeight - 40)
+			h = windowHeight - 40;
+		box.height(h);
+		popup.addClass('show');
+
+		var	top = windowHeight > h ? (windowHeight - h) / 2 : 0;
+		box.css('top',top + windowScrollTop);
+	}
+
+// one-event of table100--list
+	$('.one-event__delete').on('click',function(){
+		var tr = $(this).closest('tr');
+		if(confirm('Удалить упражнение?'))
+			tr.fadeOut(function(){
+				tr.remove();
+				alert('! упражнение не удаляется из бд. оно более не отображается в этом списке и в приложении')
+			});
+	});
+	$('.one-event__detal').on('click',function(){
+		popupShow('content',$(this).closest('td'),'add');
+	});
 
 /*
  * Copyright 2012 Andrey тA.I.т Sitnik <andrey@sitnik.ru>,

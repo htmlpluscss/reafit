@@ -223,3 +223,196 @@ body > .title_up {
 	background: #ccc;
 	color: #000;
 }
+
+/* popup
+-----------------------------------------------------------------------------*/
+.popup{
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 0;
+	z-index: 10;
+	background: rgba(255,255,255,.9);
+	transition: opacity .5s;
+	overflow: hidden;
+
+	-webkit-perspective: 1300px;
+	-moz-perspective: 1300px;
+	perspective: 1300px;
+}
+.popup.show{
+	height: 100%;
+}
+.popup__box {
+	top: 0;
+	left: 0;
+	right: 0;
+	position: absolute;
+	width: 640px;
+	margin: auto;
+	border: 1px solid #aaa;
+	border-radius: 4px;
+	background: #fff;
+	padding: 12px;
+	overflow: auto;
+
+	-webkit-transform-style: preserve-3d;
+	-moz-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+	-webkit-transform: translateZ(-3000px) rotateY(90deg);
+	-moz-transform: translateZ(-3000px) rotateY(90deg);
+	-ms-transform: translateZ(-3000px) rotateY(90deg);
+	transform: translateZ(-3000px) rotateY(90deg);
+	opacity: 0
+}
+
+.popup.show .popup__box {
+	-webkit-animation: slit .7s forwards ease-out;
+	-moz-animation: slit .7s forwards ease-out;
+	animation: slit .7s forwards ease-out;
+}
+
+@-webkit-keyframes slit {
+	50% {
+		-webkit-transform: translateZ(-250px) rotateY(89deg);
+		opacity: .5;
+		-webkit-animation-timing-function: ease-out;
+	}
+	100% {
+		-webkit-transform: translateZ(0) rotateY(0deg);
+		opacity: 1;
+	}
+}
+@keyframes slit {
+	50% {
+		transform: translateZ(-250px) rotateY(89deg);
+		opacity: 1;
+		animation-timing-function: ease-in;
+	}
+	100% {
+		transform: translateZ(0) rotateY(0deg);
+		opacity: 1;
+	}
+}
+
+.popup__body + .popup__close {
+	position: absolute;
+	top: 0;
+	right: 0;
+	font-size: 20px;
+	line-height: 28px;
+	background: #fff;
+	border-radius: 50%
+}
+.popup__body iframe{
+	margin: auto;
+}
+
+/* app begin 200
+-----------------------------------------------------------------------------*/
+.exercises-list__item-desc h3{
+	font-weight: 700;
+}
+.exercises-list__item-desc ul{
+	margin: 8px 12px;
+}
+.exercises-list__item-desc p{
+	margin: 8px 0;
+}
+.exercises-list__item-desc p em{
+	padding-right: 5px;
+	font-size: 16px
+}
+.exercises-list__item-desc .ahtung b{
+	padding-right: 5px;
+	font-size: 16px;
+	font-weight: 700
+}
+.exercises-list__item-detal img{
+	float: left;
+	height: 140px;
+}
+.exercises-list__item-detal table{
+	margin: 0 0 0 20px;
+	float: left;
+	table-layout: fixed;
+}
+.exercises-list__item-detal th{
+	line-height: 12px;
+	font-size: 13px
+}
+.exercises-list__item-detal .input{
+	width: 50px;
+	margin: 5px;
+	padding: 2px;
+	font-size: 13px;
+	text-align: center;
+}
+.exercises-list__item-detal th[colspan]{
+	text-align: left;
+	padding-left: 8px;
+}
+.exercises-list__item-detal textarea.input{
+	width: 100%;
+	height: 58px;
+	padding: 2px 5px;
+	text-align: left;
+}
+.exercises-list__item-detal-btn {
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 12px 12px 0 0;
+	width: 114px;
+	z-index: 1;
+	background: #fff
+}
+.exercises-list__item-detal-btn .btn{
+	display: block;
+	margin-bottom: 8px;
+}
+/* app end 200
+-----------------------------------------------------------------------------*/
+
+/* table list
+-----------------------------------------------------------------------------*/
+.table100--list th{
+	line-height: 16px;
+}
+.table100--list td{
+	font-size: 13px;
+	line-height: 15px;
+	vertical-align: middle;
+}
+.table100--list b {
+	font-weight: 700
+}
+.one-event {
+	text-align: center;
+}
+.one-event a{
+	display: inline-block;
+	margin: 4px;
+	font-size: 18px;
+}
+.one-event--line a{
+	margin: 4px 0;
+}
+.tags small {
+	display: inline-block;
+	vertical-align: top;
+	font-size: 11px;
+	border: 1px solid #aaa;
+	border-radius: 3px;
+	white-space: nowrap;
+	padding: 0 3px;
+	margin: 1px 0;
+}
+
+
+/* users
+-----------------------------------------------------------------------------*/
+.users-stat h2 {
+	padding-top: 22px;
+}

@@ -8,7 +8,9 @@
 
 		<ul class="menu_top">
 			<li><a href="list-one.html">Упражнения</a></li>
+			<li><a href="list-one-users.html">Упражнения пользователей</a></li>
 			<li><a href="list-set.html">Программы</a></li>
+			<li><a href="list-set-users.html">Программы пользователей</a></li>
 			<li><a href="tags.html">Теги</a></li>
 			<li><a href="users.html">Пользователи</a></li>
 		</ul>

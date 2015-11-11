@@ -36,29 +36,6 @@ http://htmlpluscss.ru
 	});
 
 
-// one
-	$('.add-related').on('click',function(){
-		alert('список всех упражнений с чекбоксом');
-	});
-	$('.add-progress').on('click',function(){
-		alert('список всех упражнений с чекбоксом');
-	});
-	$('.one-event__delete').on('click',function(){
-		var tr = $(this).closest('tr');
-		if(confirm('Удалить упражнение?'))
-			tr.fadeOut(function(){
-				tr.remove();
-				alert('удалено. отправка на сервер.')
-			});
-	});
-	$('.one-event__video').on('click',function(){
-		var video = $(this).attr('data-video');
-		alert('воспроизвести '+video);
-	});
-	$('.one-event__detal').on('click',function(){
-		alert('as +');
-	});
-
 // list-tags
 	$('.sort-remove').on('click','a',function(){
 		var li = $(this).parent();

@@ -1,4 +1,4 @@
-		<div class="app-right disabled pull-right">
+		<div class="app-right pull-right">
 
 			<div class="search-exercises">
 
@@ -9,8 +9,10 @@
 						<a class="icon-cancel search-exercises__clear-input"></a>
 					</div>
 
+<!--#if expr="$DOCUMENT_URI = '/app/index.html'" -->
 					<a class="icon-th-large pull-left tab-exercises-list" title="Программы"></a>
 					<a class="icon-th pull-left tab-exercises-list" title="Упражнения"></a>
+<!--#endif-->
 
 					<a class="btn pull-right filter-show">Фильтр</a>
 
@@ -19,7 +21,7 @@
 
 			<div class="exercises-list-btn-block exercises-list-btn-block--one hide not-drop">
 				<a class="icon-pencil popup__btn" data-popup="add"></a>
-				<a class="icon-play popup__btn" data-popup="play"></a>
+				<a class="icon-play play-video"></a>
 				<a class="icon-plus popup__btn" data-popup="add"></a>
 				<a class="icon-left-bold exercises-list__add-to-left"></a>
 				<a class="icon-chart-line popup__btn" data-popup="progress"></a>
@@ -39,7 +41,9 @@
 
 <!--#include file="_exercises-list-one.shtml"-->
 
+<!--#if expr="$DOCUMENT_URI = '/app/index.html'" -->
 <!--#include file="_exercises-list-set.shtml"-->
+<!--#endif-->
 
 			</ul>
 

@@ -281,8 +281,7 @@ td {
 .align-center {
 	text-align: center;
 }
-.align-middle,
-.align-middle td{
+.align-middle {
 	vertical-align: middle;
 }
 

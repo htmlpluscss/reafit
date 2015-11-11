@@ -1,0 +1,48 @@
+	<link rel="apple-touch-icon-precomposed" href="/favicon.png">
+
+</head>
+
+<body>
+
+	<header>
+
+		<a href="/" class="logo"><img src="/images/logo.png" alt=""></a>
+
+		<nav>
+
+			<ul class="menu_app">
+<!--#if expr="$DOCUMENT_URI = '/app/index.html'" -->
+				<li><a class="icon-folder-empty btn-new data-tab-link" data-tab="create" title="Создать"></a></li>
+				<li><a class="icon-folder-open-empty data-tab-link" data-tab="open" title="Открыть"></a></li>
+				<li><a class="icon-floppy data-tab-link" data-tab="save" title="Сохранить"></a></li>
+				<li><a class="icon-docs data-tab-link" data-tab="save-as" title="Сохранить как"></a></li>
+				<li><a class="icon-print" title="Печать" target="_blank" href="print.html"></a></li>
+				<li><a class="icon-link" title="Ссылка" target="_blank" href="link.html"></a></li>
+				<li><a class="icon-mail data-tab-link" data-tab="send-email" title="Отправить на e-mail"></a></li>
+				<li><a class="icon-resize-full-alt app-fullscreen" title="Во весь экран"></a></li>
+				<li><a class="icon-plus-outline app-add-tab" title="Добавить вкладку"></a></li>
+				<li><a class="icon-trash-empty app-delete-tab" title="Удалить вкладку"></a></li>
+<!--#else-->
+				<li><a class="icon-floppy btn-save" title="Сохранить"></a></li>
+				<li><a class="icon-logout" href="/admin/list-one.html" title="Вернуться к списку упражнений"></a></li>
+				<li><a class="icon-resize-full-alt app-fullscreen" title="Во весь экран"></a></li>
+<!--#endif-->
+			</ul>
+
+<!--#if expr="$DOCUMENT_URI = '/app/add-app.html'" -->
+			<p class="name-programme">Создание упражнения</p>
+<!--#elif expr="$DOCUMENT_URI = '/app/edit-app.html'" -->
+			<p class="name-programme">Шаговое движение лежа на спине</p>
+<!--#elif expr="$DOCUMENT_URI = '/app/add-app-set.html'" -->
+			<p class="name-programme">Создание программы</p>
+<!--#elif expr="$DOCUMENT_URI = '/app/edit-app-set.html'" -->
+			<p class="name-programme">Программа1</p>
+<!--#else-->
+			<p class="name-programme"></p>
+<!--#endif-->
+
+		</nav>
+
+	</header>
+
+	<main class="clr">

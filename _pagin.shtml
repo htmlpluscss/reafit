@@ -1,4 +1,4 @@
-			<div class="pagin clr">
+			<div class="pagin clr clear-both">
 				<div class="pull-right">
 					<select>
 						<option value="30">30</option>

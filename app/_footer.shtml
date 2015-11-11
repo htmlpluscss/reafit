@@ -1,0 +1,77 @@
+	</main>
+
+	<footer>
+
+		<p class="copyright">© 2015 «Training Programme»</p>
+
+	</footer>
+
+	<div class="popup popup--content">
+		<div class="popup__box">
+			<div class="popup__body"></div>
+			<a class="icon-cancel-outline popup__close"></a>
+		</div>
+	</div>
+
+	<div class="popup popup--filter">
+		<div class="popup__box">
+			<div class="popup__body clr">
+				<form>
+
+<!--#include file="_filter.shtml"-->
+
+					<a class="btn app-filter-search pull-right">Применить</a>
+					<a class="btn popup__close pull-right">Отменить</a>
+					<label class="btn pull-right"><input type="reset" class="hide">Очистить</label>
+					<span class="fast-result-search">Найдено: <b>17</b></span>
+				</form>
+			</div>
+			<a class="icon-cancel-outline popup__close"></a>
+		</div>
+	</div>
+
+	<div class="popup popup--save">
+		<div class="popup__box">
+			<div class="popup__body">Сохранено.</div>
+			<a class="icon-cancel-outline popup__close"></a>
+		</div>
+	</div>
+
+	<div class="popup popup--create">
+		<div class="popup__box">
+			<div class="popup__body">
+				Программа <b class="name-programme"></b> создана. <br> Создайте вкладку и приступите к составлению программы <a class="btn popup__close app-add-tab app-add-tab--create">Создать вкладку</a>
+			</div>
+		</div>
+	</div>
+
+	<div class="popup popup--start">
+		<div class="popup__box">
+			<div class="popup__body">
+				Для составлении программы все готово.
+			</div>
+			<a class="icon-cancel-outline popup__close"></a>
+		</div>
+	</div>
+
+
+	<div class="popup popup--close">
+		<div class="popup__box">
+			<div class="popup__body">
+				<p>Текущая программа не сохранена.</p>
+				<a class="btn">Не сохранять</a>
+				<a class="btn">Сохранить изменения</a>
+				<p>Это окно появляется в случаях когда Программа может бытбь закрыта без сохранения (создать, открыть) <br>после ответа происхождит действие: новое\открытие</p>
+			</div>
+			<a class="icon-cancel-outline popup__close"></a>
+		</div>
+	</div>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script>window.jQuery || document.write('<script src="/js/jquery.min.js"><\/script>')</script>
+	<script src="/js/js.js"></script>
+	<script src="/js/jquery-ui.min.js"></script>
+	<script src="/js/app.js"></script>
+
+</body>
+</html>

@@ -205,7 +205,7 @@ http://htmlpluscss.ru
 	});
 
 	// popup__btn
-	$('.app-left').on('click','.popup__btn',function(){
+	$('.app-left, .app-right').on('click','.popup__btn',function(){
 		var box = $(this).closest('.popup-box').addClass('popup-box--active');
 		$('.popup-box').not(box).removeClass('popup-box--active');
 		popupShow('content',box,$(this).attr('data-popup'));
@@ -233,7 +233,9 @@ http://htmlpluscss.ru
 		else {
 			var detal = $(this).closest('.exercises-list__item-detal-btn').siblings('.exercises-list__item-detal');
 			detal.find('.input').each(function(){
-				$(this).attr('value',$(this).val());
+				$(this).is('textarea') ?
+					$(this).text($(this).val()):
+					$(this).attr('value',$(this).val());
 			});
 			$('.popup-box--active .exercises-list__add-to-left').trigger('click',detal.html());
 		}
@@ -353,7 +355,9 @@ http://htmlpluscss.ru
 		li.find('.exercises-my__save').on('click',function(){
 			var detal = $(this).closest('.exercises-list__item-detal-btn').siblings('.exercises-list__item-detal');
 			detal.find('.input').each(function(){
-				$(this).attr('value',$(this).val());
+				$(this).is('textarea') ?
+					$(this).text($(this).val()):
+					$(this).attr('value',$(this).val());
 			});
 			$('.popup-box--active .exercises-list__item-detal').html(detal.html());
 			if($(this).hasClass('exercises-my__prev')){
@@ -373,42 +377,6 @@ http://htmlpluscss.ru
 		li.removeAttr('style').attr('class','exercises-my__item popup-box clr');
 	}
 
-
-// popup
-	(function(){
-		var popup = $('.popup');
-		popup.on('click',function(event){
-			var t = $(event.target);
-			if(t.is(popup) || t.is('.popup__close')) {
-				popup.removeClass('show');
-				$('.popup-box--active').removeClass('popup-box--active');
-			}
-		});
-	})();
-
-	$('.popup__btn').on('click',function(){
-		var box = $(this).closest('.popup-box').addClass('popup-box--active');
-		$('.popup-box').not(box).removeClass('popup-box--active');
-		popupShow('content',box,$(this).attr('data-popup'));
-	});
-
-	function popupShow(mod,b,s){
-		var popup = $('.popup--'+mod);
-		var box = popup.children('.popup__box');
-		var body = box.children('.popup__body');
-		if(mod=='content'){
-			var content = b.find('.popup-content--'+s).clone(true);
-			body.html(content);
-			var h = content.height();
-		}
-		else {
-			var h = body.height();
-		}
-		if(h > windowHeight - 40)
-			h = windowHeight - 40;
-		box.height(h);
-		popup.addClass('show');
-	}
 
 // листание помещений
 	$.fn.sliderTab = function(){
@@ -484,5 +452,7 @@ http://htmlpluscss.ru
 	};
 
 	$('.tabs__slider').sliderTab();
+
+
 
 })(jQuery);

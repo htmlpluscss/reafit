@@ -1,7 +1,7 @@
-				<li class="exercises-list__item exercises-list__item--set hide popup-box">
+				<li id="set-1" class="exercises-list__item exercises-list__item--set hide popup-box">
 					<span class="exercises-list__name">Программа 1</span>
 					<span class="exercises-list__img">
-						<img src="img/media_10006231013.png" alt="">
+						<img src="/img/media_10006231013.png" alt="">
 					</span>
 					<div class="hide">
 						<div class="popup-content--add">
@@ -22,10 +22,10 @@
 						</div>
 					</div>
 				</li>
-				<li class="exercises-list__item exercises-list__item--set hide popup-box">
+				<li id="set-2" class="exercises-list__item exercises-list__item--set hide popup-box">
 					<span class="exercises-list__name">Программа 2</span>
 					<span class="exercises-list__img">
-						<img src="img/media_10006231014.png" alt="">
+						<img src="/img/media_10006231014.png" alt="">
 					</span>
 					<div class="hide">
 						<div class="popup-content--add">
@@ -46,10 +46,10 @@
 						</div>
 					</div>
 				</li>
-				<li class="exercises-list__item exercises-list__item--set hide popup-box">
+				<li id="set-3" class="exercises-list__item exercises-list__item--set hide popup-box">
 					<span class="exercises-list__name">Программа 3</span>
 					<span class="exercises-list__img">
-						<img src="img/media_10006231015.png" alt="">
+						<img src="/img/media_10006231015.png" alt="">
 					</span>
 					<div class="hide">
 						<div class="popup-content--add">
@@ -70,10 +70,10 @@
 						</div>
 					</div>
 				</li>
-				<li class="exercises-list__item exercises-list__item--set hide popup-box">
+				<li id="set-4" class="exercises-list__item exercises-list__item--set hide popup-box">
 					<span class="exercises-list__name">Программа 4</span>
 					<span class="exercises-list__img">
-						<img src="img/media_10006231016.png" alt="">
+						<img src="/img/media_10006231016.png" alt="">
 					</span>
 					<div class="hide">
 						<div class="popup-content--add">
