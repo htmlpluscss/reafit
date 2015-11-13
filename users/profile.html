@@ -4,8 +4,40 @@
 
 <!--#include virtual="/_header.shtml"-->
 
+	<article class="page-login">
+
 		<h1>Личные данные</h1>
 
-		<p>Все параметры которые в форме <a href="/reg.html">регистрации</a></p>
+		<form>
+			<label>E-mail *</label>
+			<input class="input" type="email" value="mail@ya.ru">
+			<label>Пароль *</label>
+			<input class="input" type="password" value="123456">
+			<label>Фамилия</label>
+			<input class="input" value="Иванов">
+			<label>Имя</label>
+			<input class="input" value="Николай">
+			<label>Отчество</label>
+			<input class="input">
+			<label>Регион</label>
+			<select>
+				<option value="Москва и Московская область">Москва и Московская область</option>
+				<option value="Санкт-Петербург">Санкт-Петербург</option>
+			</select>
+			<label>Телефон</label>
+			<input class="input" type="tel" value="79198889134">
+			<label>Статус</label>
+			<select>
+				<option value="Инструктор">Инструктор</option>
+				<option value="Пациент">Пациент</option>
+			</select>
+
+			<p class="clr"><button class="btn pull-right" type="submit">Сохранить</button></p>
+
+			<p>На Ваш ящик будет отправлено письмо для подтверждения изменения данных.</p>
+
+		</form>
+
+	</article>
 
 <!--#include virtual="/_footer.shtml"-->

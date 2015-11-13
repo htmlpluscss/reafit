@@ -37,24 +37,6 @@
 		</div>
 	</div>
 
-	<div class="popup popup--create">
-		<div class="popup__box">
-			<div class="popup__body">
-				Программа <b class="name-programme"></b> создана. <br> Создайте вкладку и приступите к составлению программы <a class="btn popup__close app-add-tab app-add-tab--create">Создать вкладку</a>
-			</div>
-		</div>
-	</div>
-
-	<div class="popup popup--start">
-		<div class="popup__box">
-			<div class="popup__body">
-				Для составлении программы все готово.
-			</div>
-			<a class="icon-cancel-outline popup__close"></a>
-		</div>
-	</div>
-
-
 	<div class="popup popup--close">
 		<div class="popup__box">
 			<div class="popup__body">
@@ -62,6 +44,32 @@
 				<a class="btn">Не сохранять</a>
 				<a class="btn">Сохранить изменения</a>
 				<p>Это окно появляется в случаях когда Программа может бытбь закрыта без сохранения (создать, открыть) <br>после ответа происхождит действие: новое\открытие</p>
+			</div>
+			<a class="icon-cancel-outline popup__close"></a>
+		</div>
+	</div>
+
+<!--#if expr="$DOCUMENT_URI = '/app/index.html'" -->
+	<div class="popup popup--create popup--lock show">
+<!--#else-->
+	<div class="popup popup--create">
+<!--#endif-->
+		<div class="popup__box">
+			<div class="popup__body">
+					<h3>Создание новой программы</h3>
+					<p class="clr">
+						<label><span>Hазвание:<sup>*</sup></span> <input class="input popup--create__name" maxlength="40"></label>
+						<a class="icon-help" title="Обязательно для заполнения"></a>
+					</p>
+					<p class="clr">
+						<label><span>Е-mail:</span> <input class="input popup--create__email" type="email"></label>
+						<a class="icon-help" title="Для отправки программы"></a>
+					</p>
+					<p class="clr">
+						<label><span>Описание:</span> <textarea class="input popup--create__textarea"></textarea></label>
+						<a class="icon-help" title="Служебная запись"></a>
+					</p>
+					<p><a class="btn popup--create__btn">Создать</a></p>
 			</div>
 			<a class="icon-cancel-outline popup__close"></a>
 		</div>

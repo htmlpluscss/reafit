@@ -54,7 +54,7 @@ header {
 	font-size: 12px;
 	border-radius: 4px;
 	border:1px solid #333;
-	z-index: 9;
+	z-index: 11;
 	display: none;
 }
 body > .title_up {
@@ -338,6 +338,9 @@ body > .title_up {
 	float: left;
 	table-layout: fixed;
 }
+.app-left--view .exercises-list__item-detal table{
+	margin-top: 20px;
+}
 .exercises-list__item-detal th{
 	line-height: 12px;
 	font-size: 13px
@@ -367,6 +370,12 @@ body > .title_up {
 	width: 114px;
 	z-index: 1;
 	background: #fff
+}
+.exercises-list__item-detal-btn--admin {
+	float: right;
+	top: -12px;
+	right: -12px;
+	position: relative;
 }
 .exercises-list__item-detal-btn .btn{
 	display: block;

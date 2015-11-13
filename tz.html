@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>ТЗ</title>
+	<style>
+		body {
+			font: 16px/24px "PT Sans",sans-serif;
+		}
+		article {
+			margin:30px auto;
+			width: 680px
+		}
+		a{
+			text-decoration: underline;
+		}
+		p, h3 {
+			padding: 0;
+			margin: 0;
+		}
+		h3 {
+			padding-top: 30px;
+		}
+		ul {
+			list-style: none;
+		}
+	</style>
+
+</head>
+
+<body>
+
+<article>
+
+	<p>Вся работа по нятяжке ведется через верстальщика, все вопросы, изменения и предложения ему, <a href="skype:htmlpluscss.ru?chat">кликните чтобы начать чат в skype</a>.</p>
+	<p>Это Бета-версия сайта, без дизайна. Все страницы сверстаны и максимально написан UI</p>
+
+	<h3>Страницы сайта</h3>
+	<ul>
+		<li><a target="_blank" href="http://reafit.ru/">Главная страница</a>
+			<ul>
+				<li><a target="_blank" href="http://reafit.ru/reg.html">Регистрация</a></li>
+				<li><a target="_blank" href="http://reafit.ru/login.html">Авторизация</a></li>
+				<li><a target="_blank" href="http://reafit.ru/recovery.html">Восстановление пароля</a></li>
+				<li><a target="_blank" href="http://reafit.ru/feedback.html">Обратныя связь</a></li>
+			</ul>
+		</li>
+		<li><a target="_blank" href="http://reafit.ru/app/">Приложение</a>
+			<ul>
+				<li><a target="_blank" href="http://reafit.ru/app/add-app.html">Добавить упражнение</a></li>
+				<li><a target="_blank" href="http://reafit.ru/app/edit-app.html">Редактировать упражнение</a></li>
+				<li><a target="_blank" href="http://reafit.ru/app/add-app-set.html">Добавить программу</a></li>
+				<li><a target="_blank" href="http://reafit.ru/app/edit-app-set.html">Редактировать программу</a></li>
+				<li><a target="_blank" href="http://reafit.ru/app/view-1.html">Публичная ссылка на программу</a></li>
+				<li><a target="_blank" href="http://reafit.ru/app/print-1.html">Печать программы</a></li>
+			</ul>
+		</li>
+		<li><a target="_blank" href="http://reafit.ru/admin/">Админка</a>
+			<ul>
+				<li><a target="_blank" href="http://reafit.ru/admin/list-one.html">Список упражнений</a></li>
+				<li><a target="_blank" href="http://reafit.ru/admin/list-set.html">Список программ</a></li>
+				<li><a target="_blank" href="http://reafit.ru/admin/list-one-users.html">Список упражнений пользователей</a></li>
+				<li><a target="_blank" href="http://reafit.ru/admin/list-set-users.html">Список программ пользователей</a></li>
+				<li><a target="_blank" href="http://reafit.ru/admin/tags.html">Поисковые теги</a></li>
+				<li><a target="_blank" href="http://reafit.ru/admin/users.html">Список пользователей</a></li>
+			</ul>
+		</li>
+		<li><a target="_blank" href="http://reafit.ru/index2.html">Пользователь</a>
+			<ul>
+				<li><a target="_blank" href="http://reafit.ru/users/">Cтатистика</a></li>
+				<li><a target="_blank" href="http://reafit.ru/users/profile.html">Профиль</a></li>
+				<li><a target="_blank" href="http://reafit.ru/users/list-set.html">Список программ</a></li>
+				<li><a target="_blank" href="http://reafit.ru/users/list-one.html">Список упражнений</a></li>
+			</ul>
+		</li>
+	</ul>
+
+	<p>Исходник верстки в SSI <a href="http://reafit.ru/ssi.zip">http://reafit.ru/ssi.zip</a> <small>(если не знаете что такое ssi, откройте index.html и все станет понятно в первую секунду).</small></p>
+	<p>Видео ТЗ <a href="http://reafit.ru/tz.zip">http://reafit.ru/tz.zip</a></p>
+
+	<h3>Термины</h3>
+	<p><em>Упражнение </em>&ndash; элемент имеющий определенные характиристики: (название, изображения, видео, описание, поисковые теги, другие параметры).</p>
+	<p><em>Программа </em>&ndash; набор <em>упражнений</em> имеющий определенные характеристики (название, описание, автор, другие параметры).</p>
+	<p><em>Приложение</em> &ndash; страница сайта, на которой в правой части расположены все <em>упражнения</em>, в левой части расположена <em>программа</em>.&nbsp; <em>Упражнения</em> могут добавляться в <em>программу</em>, удаляться из <em>программы</em>, изменять параметры в <em>программе</em>.</p>
+	<p><em>Пользователи</em> &ndash;авторизитрованные пользователи, которые могут составлять <em>программы</em> в <em>приложении</em>, управлять своими <em>программами</em>, создавать новые <em>упражнения</em>.</p>
+	<p><em>Админ</em> &ndash; Один <em>пользователь</em> с расширеными правами, его <em>программы</em>/<em>упражнения</em>, являются общедоступными.</p>
+
+	<h3>Функциональные моменты сайта</h3>
+	<p><em>Упражнения</em> и <em>программы</em> делятся на две группы:</p>
+	<p>- общедоступные, созданные <em>админом;</em></p>
+	<p>- <em>пользовательские</em>, доступные только <em>пользователю</em>.</p>
+	<p>Управление <em>упраженениями</em>\<em>программами пользователями</em> и <em>админом</em> осуществляется через<em> приложение.</em></p>
+	<p><em>Программы </em>имеют публичную ссылку.</p>
+	<p><em>Админу</em> доступны страницы <em>пользователей</em></p>
+
+	<h3>Задачи програмисту</h3>
+	<ol>
+		<li>
+			Написать CMS (самописную или на фреймфорке)</li>
+		<li>
+			Предложить организацию выгрузки данных в приложение, с учетом:
+			<ol style="list-style-type:lower-alpha;">
+				<li>
+					Количество <em>упражнений</em> будет более 1000</li>
+				<li>
+					<em>Упражнения</em>\<em>программы</em> у <em>пользователей</em> разные</li>
+			</ol>
+		</li>
+	</ol>
+
+	<h3>Вопросы от верстальщика</h3>
+	<p style="display:none">если base64 плохо жмется, то спрайт</p>
+	<p style="display:none">angularJS</p>
+	<p>Хостинг</p>
+	<p>Передача данных json gzip или ...</p>
+	<p>Избражения в base64 + .png</p>
+
+</article>
+
+</body>
+</html>

@@ -46,14 +46,11 @@ http://htmlpluscss.ru
 	// создать
 	$('.btn-new').on('click',function(){
 		popupShow('close');
-		// delete tab
-		$('.tabs__slider .tabs__dt').each(function(){
-			$(this).add($('.tabs__dd--'+$(this).attr('data-tab'))).remove();
-		});
 	});
-	// сохранить
-	$('.btn-save').on('click',function(){
-		popupShow('save');
+
+	// сохранить при выходе?
+	$('.popup--close .btn').on('click',function(){
+		popupShow('create');
 	});
 
 	// tab вне tabs
@@ -62,7 +59,7 @@ http://htmlpluscss.ru
 		$('.tabs__dt').filter('[data-tab="'+tab+'"]').trigger('click');
 		if(tab == 'save-as'){
 			setTimeout(function(){
-				$('.tabs__dd--save-as .input').first().focus();
+				$('.tabs__dd--save-as .input').val('').first().focus();
 			});
 		}
 	});
@@ -71,26 +68,17 @@ http://htmlpluscss.ru
 	$('.form-name-proggram').each(function(){
 		var f = $(this);
 		var i = f.find('.input').first();
+		var e = f.find('.input[type="email"]');
+		var t = f.find('textarea');
 		var b = f.find('.btn');
-		var title = $('title');
-		var text = title.text();
-		i.on('keyup',function(){
-			i.val()=="" ?
-				title.text(text):
-				title.text($(this).val());
-		});
 		b.on('click',function(){
 			if(i.val()=="")
 				i.focus();
 			else{
-				if(f.hasClass('form-name-proggram--create')){
-					$('.name-programme').text(i.val());
-					popupShow('create');
-				}
-				else {
-					popupShow('save');
-					f.trigger('submit');
-				}
+				$('title').text(i.val());
+				$('.name-programme').text(i.val());
+				saveDesc(i.val(),e.val(),t.val());
+				popupShow('save');
 			}
 		});
 	});
@@ -104,7 +92,6 @@ http://htmlpluscss.ru
 		$('.tabs__slider .placeholder').remove();
 	});
 	$('.app-add-tab').on('click',function(){
-		var create = $(this).hasClass('app-add-tab--create');
 		var dt = $('.tabs__slider .placeholder').removeClass('placeholder').children();
 		if(dt.length==0) return;
 		var dd = $('.tabs__dd--start').clone(true);
@@ -119,19 +106,23 @@ http://htmlpluscss.ru
 		dd.find('.input').on('keyup',function(){
 			dt.text($(this).val());
 		});
-		dd.find('.btn').on('click',function(){
-			if(dd.find('.input').val()=="")
-				dd.find('.input').focus();
-			else{
-				dd.children().addClass('exercises-my').children().remove();
-				if(listMy.hasClass('ui-sortable'))
-					listMy.sortable('destroy');
-				list.children().draggable('destroy').droppable('destroy');
-				draggable_droppable_sortable();
-				$window.trigger('resize');
-				create ? popupShow('start') : $('.tabs__slider').sliderTab();
-			}
-		});
+	});
+	// форма вкладки
+	$('.add-tab-form__btn').on('click',function(){
+		var f = $(this).closest('.add-tab-form');
+		var i = f.find('.add-tab-form__name');
+		if(i.val()=="")
+			i.focus();
+		else {
+			f.parent().addClass('exercises-my');
+			f.remove();
+			if(listMy.hasClass('ui-sortable'))
+				listMy.sortable('destroy');
+			list.children().draggable('destroy').droppable('destroy');
+			draggable_droppable_sortable();
+			$window.trigger('resize');
+			$('.tabs__slider').sliderTab();
+		}
 	});
 
 	// delete tab
@@ -453,6 +444,37 @@ http://htmlpluscss.ru
 
 	$('.tabs__slider').sliderTab();
 
+// create App
+	// название программы
+	$('.popup--create__btn').on('click',function(){
+		var i = $('.popup--create__name');
+		var e = $('.popup--create__email');
+		var t = $('.popup--create__textarea');
+		var v = i.val();
+		if(v=="")
+			i.focus();
+		else{
+			$('.tabs__slider .tabs__dt').each(function(){
+				$(this).add($('.tabs__dd--'+$(this).attr('data-tab'))).remove();
+			});
+			$('.name-programme').text(v);
+			$('.popup--create').removeClass('popup--lock').trigger('click');
 
+			$('.tabs__slider ul').append('<li class="placeholder"><span class="tabs__dt"></span></li>');
+			$('.app-add-tab').trigger('click');
+
+			saveDesc(v,e.val(),t.val());
+			i.add(e).add(t).val('');
+		}
+	});
+	$('.popup--create__name').on('keyup',function(){
+		$('title').text($(this).val());
+	});
+
+	function saveDesc(n,e,t){
+		$('.name-programme--input').val(n);
+		$('.name-programme--email').val(e);
+		$('.name-programme--textarea').val(t);
+	}
 
 })(jQuery);

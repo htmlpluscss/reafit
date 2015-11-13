@@ -19,6 +19,7 @@
 		<div class="col-hide clear-both">
 			<p>Скрыть колонки:</p>
 			<label class="checkbox"><input type="checkbox" value="1">ID</label>
+			<label class="checkbox"><input type="checkbox" value="11">Порядок</label>
 			<label class="checkbox"><input type="checkbox" value="2">Исходное положение</label>
 			<label class="checkbox"><input type="checkbox" value="3">Конечное положение</label>
 			<label class="checkbox"><input type="checkbox" value="4">Работающие мышцы</label>
@@ -29,10 +30,12 @@
 
 <!--#include virtual="/_pagin.shtml"-->
 
+
 		<table class="table100 table100--list">
 			<thead>
 				<tr>
 					<th class="col-hide-1">ID</th>
+					<th>Порядок</th>
 					<th>Название</th>
 					<th class="col-hide-2">Исходное положение</th>
 					<th class="col-hide-3">Конечное положение</th>
@@ -43,9 +46,11 @@
 					<th>Действие</th>
 				</tr>
 			</thead>
+<!-- сортировка таблицы по значению Порядок -->
 			<tbody>
 				<tr>
 					<td class="align-center">1</td>
+					<td><input value="1" class="input table100--list__item"></td>
 					<td><b>Шаговое движение лежа на спине</b> с элементами сопротивления/облегчения сгибания/разгибания, попеременно каждой ногой</td>
 					<td><img src="/img/media_1000623100-2.png" height="100" alt=""></td>
 					<td><img src="/img/media_1000623100.png" height="100" alt=""></td>
@@ -72,12 +77,13 @@
 							<li><a class="icon-info one-event__detal"></a></li>
 						</ul>
 
-<!--#include virtual="/app/_popup-content-detal.shtml"-->
+<!--#include file="_popup-content-detal.shtml"-->
 
 					</td>
 				</tr>
 				<tr>
 					<td class="align-center">2</td>
+					<td><input value="2" class="input table100--list__item"></td>
 					<td><b>Толчок и подтягивание двумя ногами </b> с элементами сопротивления/облегчения</td>
 					<td><img src="/img/media_1000623101-2.png" height="100" alt=""></td>
 					<td><img src="/img/media_1000623101.png" height="100" alt=""></td>
@@ -103,12 +109,13 @@
 							<li><a class="icon-info one-event__detal"></a></li>
 						</ul>
 
-<!--#include virtual="/app/_popup-content-detal.shtml"-->
+<!--#include file="_popup-content-detal.shtml"-->
 
 					</td>
 				</tr>
 				<tr>
 					<td class="align-center">3</td>
+					<td><input value="3" class="input table100--list__item"></td>
 					<td><b>Отведение прямой ноги </b></td>
 					<td><img src="/img/media_1000623102-2.png" height="100" alt=""></td>
 					<td><img src="/img/media_1000623102.png" height="100" alt=""></td>
@@ -130,7 +137,7 @@
 							<li><a class="icon-info one-event__detal"></a></li>
 						</ul>
 
-<!--#include virtual="/app/_popup-content-detal.shtml"-->
+<!--#include file="_popup-content-detal.shtml"-->
 
 					</td>
 				</tr>

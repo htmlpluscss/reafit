@@ -66,3 +66,10 @@ http://htmlpluscss.ru
 		cancel: 'a',
 		placeholder: 'sort-remove__placeholder'
 	});
+
+	// table100--list__item
+	$('.table100--list__item').on('change',function(){
+		var v = $(this).val();
+		alert('новая позиция '+v+'. send server.');
+		location.reload();
+	});

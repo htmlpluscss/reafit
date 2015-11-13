@@ -15,6 +15,13 @@
 					<p class="clr">
 						<label><input class="input" value="Программа 1"> <a class="icon-help" title="Обязательно для заполнения"></a></label>
 					</p>
+					<p class="clr">
+						<label>
+							<span>Порядок в списке:</span>
+							<input class="input w50" value="2">
+							<a class="icon-help" title="Если поле пустое, то упражнение добавится в конец списка"></a>
+						</label>
+					</p>
 				</div>
 			</div>
 			<div class="tabs__dd tabs__dd--2">

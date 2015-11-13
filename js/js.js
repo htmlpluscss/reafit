@@ -41,6 +41,12 @@ $window.ready(function(){
 
 // checkbox
 	$('.checkbox').append('<i></i>');
+	$('.checkbox-star input').on('change',function(){
+		var id = $(this).closest('tr').children().first().text();
+		var status = $(this).prop('checked') ? 'favorite' : 'personal';
+		console.log('send server: ' + id + ' ' + status);
+		alert('программа отображается/не отображается в списке справа (там где иконка программы)')
+	});
 
 // title
 	$('[title]').Title();
@@ -162,7 +168,7 @@ function getScrollBarWidth(){
 		var popup = $('.popup');
 		popup.on('click',function(event){
 			var t = $(event.target);
-			if(t.is(popup) || t.is('.popup__close')) {
+			if((t.is(popup) || t.is('.popup__close')) && !popup.is('.popup--lock')) {
 				popup.removeClass('show');
 				$('.popup-box--active').removeClass('popup-box--active');
 			}
@@ -188,7 +194,7 @@ function getScrollBarWidth(){
 		if(h > windowHeight - 40)
 			h = windowHeight - 40;
 		box.height(h);
-		popup.addClass('show');
+		popup.addClass('show').siblings('.show').removeClass('show');
 
 		var	top = windowHeight > h ? (windowHeight - h) / 2 : 0;
 		box.css('top',top + windowScrollTop);

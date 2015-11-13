@@ -28,3 +28,8 @@ header, main, footer {
 	height: 22px;
 	background: #ccc
 }
+
+.table100--list__item {
+	text-align: center;
+	width: 50px;
+}

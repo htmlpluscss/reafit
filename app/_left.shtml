@@ -16,27 +16,9 @@
 				<span class="tabs__dt tabs__dt--not-delete" data-tab="save"></span>
 				<span class="tabs__dt tabs__dt--not-delete" data-tab="save-as"></span>
 				<span class="tabs__dt tabs__dt--not-delete" data-tab="open"></span>
-				<span class="tabs__dt tabs__dt--not-delete" data-tab="create"></span>
+				<span class="tabs__dt tabs__dt--not-delete" data-tab="start"></span>
 			</div>
 
-			<div class="tabs__dd tabs__dd--create tabs__dd--active">
-				<form class="l-h form-tabs form-name-proggram form-name-proggram--create">
-					<h2>Создание новой программы</h2>
-					<p class="clr">
-						<label><span>Hазвание:<sup>*</sup></span> <input class="input" maxlength="40"></label>
-						<a class="icon-help" title="Обязательно для заполнения"></a>
-					</p>
-					<p class="clr">
-						<label><span>Е-mail:</span> <input class="input" type="email"></label>
-						<a class="icon-help" title="Для отправки программы"></a>
-					</p>
-					<p class="clr">
-						<label><span>Описание:</span> <textarea class="input"></textarea></label>
-						<a class="icon-help" title="Служебная запись"></a>
-					</p>
-					<p><a class="btn">Создать</a></p>
-				</form>
-			</div>
 			<div class="tabs__dd tabs__dd--send-email">
 				<form class="l-h">
 					<h2>Отправить программу на емайл</h2>
@@ -50,35 +32,17 @@
 					<p>в письме также будет ссылка на программу</p>
 				</form>
 			</div>
-			<div class="tabs__dd tabs__dd--new">
-				<form class="l-h form-tabs form-name-proggram form-name-proggram--create">
-					<h2>Создание новой программы</h2>
-					<p class="clr">
-						<label><span>Hазвание:<sup>*</sup></span> <input class="input" maxlength="40"></label>
-						<a class="icon-help" title="Обязательно для заполнения"></a>
-					</p>
-					<p class="clr">
-						<label><span>Е-mail:</span> <input class="input" type="email"></label>
-						<a class="icon-help" title="Для отправки программы"></a>
-					</p>
-					<p class="clr">
-						<label><span>Описание:</span> <textarea class="input"></textarea></label>
-						<a class="icon-help" title="Служебная запись"></a>
-					</p>
-					<p><a class="btn">Создать</a></p>
-				</form>
-			</div>
 			<div class="tabs__dd tabs__dd--save">
 				<form class="l-h form-tabs form-name-proggram">
 					<h2>Сохранить программу</h2>
 					<p class="clr">
-						<label><span>Hазвание:<sup>*</sup></span> <input class="input" value="Иванов Сергей" maxlength="40"></label>
+						<label><span>Hазвание:<sup>*</sup></span> <input class="input name-programme--input" maxlength="40"></label>
 					</p>
 					<p class="clr">
-						<label><span>Е-mail:</span> <input class="input" type="email" value="mail@mail.ru"></label>
+						<label><span>Е-mail:</span> <input class="input name-programme--email" type="email"></label>
 					</p>
 					<p class="clr">
-						<label><span>Описание:</span> <textarea class="input"></textarea></label>
+						<label><span>Описание:</span> <textarea class="input name-programme--textarea"></textarea></label>
 					</p>
 					<p><a class="btn">Сохранить</a></p>
 				</form>
@@ -98,12 +62,14 @@
 					<p><a class="btn">Сохранить</a></p>
 				</form>
 			</div>
-			<div class="tabs__dd tabs__dd--start">
-				<form class="l-h form-tabs">
-					<h2>Добавить вкладку</h2>
-					<p class="clr"><label><span>Название вкладки:</span> <input class="input" maxlength="40"></label></p>
-					<p><a class="btn">Сохранить</a></p>
-				</form>
+			<div class="tabs__dd tabs__dd--active tabs__dd--start">
+				<div class="l-h">
+					<form class="form-tabs add-tab-form">
+						<h2>Добавить вкладку</h2>
+						<p class="clr"><label><span>Название вкладки:</span> <input class="input add-tab-form__name" maxlength="40"></label></p>
+						<p><a class="btn add-tab-form__btn">Сохранить</a></p>
+					</form>
+				</div>
 			</div>
 			<div class="tabs__dd tabs__dd--open">
 				<div class="l-h">
@@ -121,23 +87,21 @@
 						</thead>
 						<tbody>
 							<tr>
-								<td><a>Иванов Сергей</a></td>
+								<td><a onclick="alert('открываем приложенние с параметрами прлограммы')">Иванов Сергей</a></td>
 								<td class="align-middle">12.02.2014</td>
 								<td class="align-middle">22.02.2014</td>
 								<td class="align-center align-middle nowrap">
-									<a class="icon-link" target="_blank"></a>
-									<a class="icon-folder-open-empty"></a>
-									<a class="icon-trash-empty"></a>
+									<a class="icon-link" target="_blank" href="/app/view-1.html"></a>
+									<a class="icon-folder-open-empty" onclick="alert('открываем приложенние с параметрами прлограммы')"></a>
 								</td>
 							</tr>
 							<tr>
-								<td><a>Петров Евгений (Нижний-Новгород)</a></td>
+								<td><a onclick="alert('открываем приложенние с параметрами прлограммы')">Петров Евгений (Нижний-Новгород)</a></td>
 								<td class="align-middle">12.02.2014</td>
 								<td class="align-middle"></td>
 								<td class="align-center align-middle nowrap">
-									<a class="icon-link" target="_blank"></a>
-									<a class="icon-folder-open-empty"></a>
-									<a class="icon-trash-empty"></a>
+									<a class="icon-link" target="_blank" href="/app/view-1.html"></a>
+									<a class="icon-folder-open-empty" onclick="alert('открываем приложенние с параметрами прлограммы')"></a>
 								</td>
 							</tr>
 						</tbody>

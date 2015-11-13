@@ -20,6 +20,13 @@
 					<p class="clr">
 						<label>Поснение упражнения: <input class="input" value="с элементами сопротивления/облегчения сгибания/разгибания, попеременно каждой ногой"><a class="icon-help" title="Отображается в программе после названия"></a></label>
 					</p>
+					<p class="clr">
+						<label>
+							<span>Порядок в списке:</span>
+							<input class="input w50" value="2">
+							<a class="icon-help" title="Если поле пустое, то упражнение добавится в конец списка"></a>
+						</label>
+					</p>
 				</div>
 			</div>
 			<div class="tabs__dd tabs__dd--2">

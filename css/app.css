@@ -77,10 +77,39 @@ header .name-programme {
 	text-align: center;
 }
 
+.popup--create .popup__box {
+	text-align: left;
+}
+.popup--create label span {
+	width: 111px;
+	padding: 10px;
+	display: inline-block;
+}
+.popup--create .input {
+	width: 224px;
+}
+.popup--create textarea.input {
+	display: inline-block;
+	height: 85px;
+	margin-top: 10px;
+	vertical-align: top;
+}
+.popup--lock .popup__box {
+	bottom: 0;
+	height: 280px;
+	animation-delay: 1s !important;
+}
+.popup--lock .popup__close {
+	display: none;
+}
+
 /* Left
 -----------------------------------------------------------------------------*/
 .app-left {
 	width: 470px;
+}
+.app-left--view {
+	width: 100%;
 }
 .app-left h2{
 	padding: 8px;
@@ -203,6 +232,9 @@ header .name-programme {
 
 .form-tabs--input100p .input {
 	width: 410px;
+}
+.form-tabs--input100p .input.w50 {
+	width: 50px;
 }
 .form-tabs--180 label span {
 	width: 180px;

@@ -55,10 +55,6 @@ header, main, footer {
 	margin: auto;
 }
 
-.clear-both {
-	clear: both;
-}
-
 .input {
 	vertical-align: middle;
 	padding:4px 8px;
@@ -294,7 +290,8 @@ td {
 	display: inline-block;
 	vertical-align: middle;
 }
-.checkbox input {
+.checkbox input,
+.checkbox-star input{
 	opacity: 0;
 	z-index: -1;
 	position: absolute;
@@ -331,6 +328,13 @@ td {
 	opacity: 1
 }
 
+.checkbox-star .icon-star,
+.checkbox-star input:checked ~ .icon-star-empty{
+	display: none;
+}
+.checkbox-star input:checked ~ .icon-star {
+	display: inline-block;
+}
 
 h1, h2, h3, h4, b {
 	font-weight: 400
@@ -361,14 +365,17 @@ hr {
 .clear-both {
 	clear: both;
 }
-.w50p {
-	width: 50%;
+.w100p {
+	width: 100%;
 }
 .w50p {
 	width: 50%;
 }
-.w50p {
-	width: 50%;
+.w50 {
+	width: 50px;
+}
+.w100 {
+	width: 100px;
 }
 
 
