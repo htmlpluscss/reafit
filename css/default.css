@@ -118,6 +118,13 @@ button::-moz-focus-inner {
 	box-shadow: 0 0 3px #ccc
 }
 
+.error {
+	color: red;
+	display: block;
+	font-size: 12px;
+	line-height: 14px;
+	padding-bottom: 5px;
+}
 
 .btn {
 	display:inline-block;
@@ -378,6 +385,9 @@ hr {
 	width: 100px;
 }
 
+.mb10 {
+	margin-bottom: 10px;
+}
 
 .copyright {
 	text-align: center;
@@ -419,4 +429,7 @@ hr {
 	background: #fff;
 	cursor: pointer;
 	font-weight: 700
+}
+.ui-helper-hidden-accessible {
+	display: none;
 }

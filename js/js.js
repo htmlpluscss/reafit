@@ -45,7 +45,6 @@ $window.ready(function(){
 		var id = $(this).closest('tr').children().first().text();
 		var status = $(this).prop('checked') ? 'favorite' : 'personal';
 		console.log('send server: ' + id + ' ' + status);
-		alert('программа отображается/не отображается в списке справа (там где иконка программы)')
 	});
 
 // title
@@ -61,6 +60,17 @@ $window.ready(function(){
 		var video =	'<iframe src="http://www.youtube.com/embed/'+id+'?autoplay=1" width="616" height="400" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
 		popupShow('content',video);
 	});
+
+// email
+	$('.input').filter('[type="email"]')
+		.on('change blur',function(){
+			var f = $(this).closest('form');
+			errorEmail($(this)) ? f.removeClass('not-valid-form') : f.addClass('not-valid-form');
+		})
+		.on('keyup',function(){
+			if(testEmail($(this).val()))
+				$(this).next('.error').addClass('hide');
+		});
 
 });
 
@@ -153,6 +163,22 @@ $window.ready(function(){
 
 })(jQuery);
 
+// test e-mail
+function testEmail(v){
+	var filterEmail = /^([a-z0-9_'&\.\-\+=])+\@(([a-z0-9\-])+\.)+([a-z0-9]{2,10})+$/i;
+	return filterEmail.test(v);
+}
+function errorEmail(t){
+	var e = t.next('.error');
+	var test = testEmail(t.val());
+	if(e.length==0){
+		e = $('<i class="error">');
+		e.text(t.attr('data-error'));
+		t.after(e);
+	}
+	test || t.val().length==0 ? e.addClass('hide') : e.removeClass('hide');
+	return test;
+}
 
 function getScrollBarWidth(){
 	var div = $('<div class="scroolbarwidth">');
@@ -171,6 +197,8 @@ function getScrollBarWidth(){
 			if((t.is(popup) || t.is('.popup__close')) && !popup.is('.popup--lock')) {
 				popup.removeClass('show');
 				$('.popup-box--active').removeClass('popup-box--active');
+				if(popup.is('.popup--content'))
+					popup.find('.popup__body').children().remove();
 			}
 		});
 	})();
@@ -179,7 +207,11 @@ function getScrollBarWidth(){
 		var popup = $('.popup--'+mod);
 		var box = popup.children('.popup__box');
 		var body = box.children('.popup__body');
-		if(mod=='content' && b != undefined && s==undefined){
+		if(mod=='content' && s == 'related_progress'){
+			body.html(b);
+			var h = body.height();
+		}
+		else if(mod=='content' && b != undefined && s==undefined){
 			body.html(b);
 			var h = body.height();
 		}

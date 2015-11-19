@@ -52,8 +52,12 @@ header .name-programme {
 }
 .fast-result-search {
 	position: absolute;
-	left: 10px;
+	left: 0;
 	bottom: 10px;
+}
+.popup--filter .popup__body {
+	position: relative;
+	padding-bottom: 12px;
 }
 
 .popup--save .popup__box {
@@ -79,6 +83,7 @@ header .name-programme {
 
 .popup--create .popup__box {
 	text-align: left;
+	height: 290px !important;
 }
 .popup--create label span {
 	width: 111px;
@@ -88,6 +93,10 @@ header .name-programme {
 .popup--create .input {
 	width: 224px;
 }
+.popup--create .error {
+	float: left;
+	clear: left;
+}
 .popup--create textarea.input {
 	display: inline-block;
 	height: 85px;
@@ -96,11 +105,30 @@ header .name-programme {
 }
 .popup--lock .popup__box {
 	bottom: 0;
-	height: 280px;
 	animation-delay: 1s !important;
 }
 .popup--lock .popup__close {
 	display: none;
+}
+
+.related_progress {
+	overflow: hidden;
+}
+.related_progress .popup-box--active {
+	border: 1px dashed #ccc;
+}
+.related_progress .exercises-list__item {
+	margin: 14px 14px 0 0;
+	cursor: pointer;
+}
+.related_progress .exercises-list__item:nth-child(4n) {
+	margin-right: 0;
+}
+.related_progress .exercises-list__item:nth-child(1),
+.related_progress .exercises-list__item:nth-child(2),
+.related_progress .exercises-list__item:nth-child(3),
+.related_progress .exercises-list__item:nth-child(4) {
+	margin-top: 0;
 }
 
 /* Left
@@ -179,6 +207,7 @@ header .name-programme {
 }
 .exercises-my__item .exercises-list-btn-block .icon-left-bold,
 .exercises-my__item .exercises-list-btn-block .icon-plus,
+.exercises-my__item .exercises-list-btn-block .icon-info,
 .exercises-my__item .exercises-list-btn-block .icon-star {
 	display: none;
 }
@@ -330,51 +359,63 @@ header .name-programme {
 
 /* app --> style 200
 -----------------------------------------------------------------------------*/
+.related_progress .exercises-list-btn-block--one a,
 .exercises-list .exercises-list-btn-block a {
 	font-size: 24px;
 	display: none;
 	position: absolute;
 	opacity: .8
 }
+.related_progress .exercises-list-btn-block--one a:hover,
 .exercises-list-btn-block a:hover{
 	opacity: 1;
 }
+.related_progress .exercises-list-btn-block--one a:active,
 .exercises-list-btn-block a:active,
 .icon-toggle-favorite.active{
 	color: #ff9e20
 }
+.related_progress .exercises-list-btn-block--one .icon-play,
 .exercises-list .exercises-list-btn-block .icon-play {
 	left: 10px;
 	bottom: 10px;
 	display: block;
 }
+.related_progress .exercises-list-btn-block--one .icon-chart-line,
 .exercises-list .exercises-list-btn-block .icon-chart-line {
 	left: 50%;
 	top: 10px;
 	margin-left: -14px;
 	display: block;
 }
+.related_progress .exercises-list-btn-block--one .icon-star,
 .exercises-list .exercises-list-btn-block .icon-star {
 	right: 10px;
 	top: 10px;
 	display: block;
 }
+.related_progress .exercises-list-btn-block--one .icon-share,
 .exercises-list .exercises-list-btn-block .icon-share {
 	left: 10px;
 	top: 10px;
 	display: block;
 }
+.related_progress .exercises-list-btn-block--one .icon-left-bold,
 .exercises-list .exercises-list-btn-block .icon-left-bold {
 	right: 10px;
 	bottom: 10px;
 	display: block;
 }
+.related_progress .exercises-list-btn-block--one .icon-info,
+.exercises-list .exercises-list-btn-block .icon-info,
+.related_progress .exercises-list-btn-block--one .icon-plus,
 .exercises-list .exercises-list-btn-block .icon-plus {
 	left: 50%;
 	top: 50%;
 	margin: -14px 0 0 -14px;
 	display: block;
 }
+.related_progress .exercises-list-btn-block--one,
 .exercises-list .exercises-list-btn-block {
 	background: rgba(255,255,255,.5);
 	bottom: 0;
@@ -386,6 +427,7 @@ header .name-programme {
 	top: 0;
 	z-index: -1;
 }
+.related_progress li:hover .exercises-list-btn-block--one,
 .exercises-list li:hover .exercises-list-btn-block {
 	z-index: 2;
 	opacity: 1;

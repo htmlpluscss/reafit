@@ -198,8 +198,29 @@ http://htmlpluscss.ru
 	// popup__btn
 	$('.app-left, .app-right').on('click','.popup__btn',function(){
 		var box = $(this).closest('.popup-box').addClass('popup-box--active');
+		var p = $(this).attr('data-popup');
 		$('.popup-box').not(box).removeClass('popup-box--active');
-		popupShow('content',box,$(this).attr('data-popup'));
+		// related & progress
+		if(p == 'related' || p == 'progress'){
+			var item = box.attr('data-'+p).split(',');
+			var id = box.attr('id');
+			box = $('<ul class="related_progress">');
+			for(var i=0; i<item.length; i++){
+				var selector = '#one-'+item[i];
+				var li = $(selector).clone();
+				li.removeAttr('id').attr('data-id',selector);
+				if(id==selector)
+					li.addClass('related_progress__current');
+				li.on('click',function(event){
+					var id = $(this).attr('data-id');
+					var selector = $(event.target).attr('class').split(' ');
+					$(id).find('.'+selector[0]).trigger('click');
+				});
+				box.append(li);
+			}
+			p = 'related_progress';
+		}
+		popupShow('content',box,p);
 	});
 
 	// добавить
@@ -365,7 +386,7 @@ http://htmlpluscss.ru
 				$('.popup').trigger('click');
 		});
 		li.find('.popup__add-to-left').addClass('hide').siblings('.hide').removeClass('hide');
-		li.removeAttr('style').attr('class','exercises-my__item popup-box clr');
+		li.removeAttr('style id').attr('class','exercises-my__item popup-box clr');
 	}
 
 
@@ -447,6 +468,8 @@ http://htmlpluscss.ru
 // create App
 	// название программы
 	$('.popup--create__btn').on('click',function(){
+		var f = $(this).closest('form');
+		if(f.hasClass('not-valid-form')) return;
 		var i = $('.popup--create__name');
 		var e = $('.popup--create__email');
 		var t = $('.popup--create__textarea');
@@ -457,7 +480,6 @@ http://htmlpluscss.ru
 			$('.tabs__slider .tabs__dt').each(function(){
 				$(this).add($('.tabs__dd--'+$(this).attr('data-tab'))).remove();
 			});
-			$('.name-programme').text(v);
 			$('.popup--create').removeClass('popup--lock').trigger('click');
 
 			$('.tabs__slider ul').append('<li class="placeholder"><span class="tabs__dt"></span></li>');
@@ -471,10 +493,37 @@ http://htmlpluscss.ru
 		$('title').text($(this).val());
 	});
 
+	// save proggramm
 	function saveDesc(n,e,t){
+		$('.name-programme').text(n);
+		$('.name-programme--text').text(e);
 		$('.name-programme--input').val(n);
 		$('.name-programme--email').val(e);
 		$('.name-programme--textarea').val(t);
+		e ?
+			$('.name-programme--email-true').removeClass('hide').siblings('.name-programme--email-false').addClass('hide'):
+			$('.name-programme--email-true').addClass('hide').siblings('.name-programme--email-false').removeClass('hide');
 	}
+
+	// send email
+	$('.send-email-form__btn').on('click',function(){
+		var f = $(this).closest('.send-email-form');
+		if(f.hasClass('not-valid-form')) return;
+		var s = f.find('.send-email-form__subject').val();
+		var e = f.find('.send-email-form__email').val();
+		var e2 = f.find('.name-programme--email-true, .name-programme--email-false').not('.hide').find('.send-email-form__email-2').val();
+		if (e.length==0 && e2.length>0) {
+			alert('отправить '+s+' на '+e2);
+		}
+		else if (e.length==0 && e2.length==0){
+			f.find('.name-programme--email-true, .name-programme--email-false').not('.hide').find('.send-email-form__email-2').focus();
+		}
+		else if (e2.length==0) {
+			alert('отправить '+s+' на '+e);
+		}
+		else {
+			alert('отправить '+s+' на '+e+', '+e2);
+		}
+	});
 
 })(jQuery);

@@ -20,16 +20,20 @@
 			</div>
 
 			<div class="tabs__dd tabs__dd--send-email">
-				<form class="l-h">
+				<form class="l-h send-email-form">
 					<h2>Отправить программу на емайл</h2>
-					если емайл который указан на вкладке сохранить <br><br>
-					программа будет отправлена на mail@mail.ru<br>
-					<label>Дополнительный e-mail: <input class="input" type="email"></label><br><br><br>
-					а если ничего в делаях нет
-					<p><label>Е-mail: <input class="input" type="email"></label></p>
-					<a class="btn">Отправить</a>
-
-					<p>в письме также будет ссылка на программу</p>
+					<div class="name-programme--email-true">
+						<p class="mb10">Программа <strong class="name-programme"></strong> будет отправлена на <a class="name-programme--text"></a></p>
+						<p class="mb10"><label>Дополнительный e-mail: <input class="input send-email-form__email-2" type="email" placeholder="Введите e-mail"  data-error="Введите корректный email"></label></p>
+					</div>
+					<div class="name-programme--email-false">
+						<p class="mb10">Программа <span class="name-programme"></span> будет отправлена на Е-mail:</p>
+						<p class="mb10"><input class="input send-email-form__email-2" type="email" placeholder="Введите e-mail" data-error="Введите корректный email"></p>
+					</div>
+					<input type="hidden" class="send-email-form__subject name-programme--input">
+					<input type="hidden" class="send-email-form__email name-programme--email">
+					<a class="btn send-email-form__btn">Отправить</a>
+					<p>в письме будет ссылка на программу и печатный вариант</p>
 				</form>
 			</div>
 			<div class="tabs__dd tabs__dd--save">
@@ -39,7 +43,7 @@
 						<label><span>Hазвание:<sup>*</sup></span> <input class="input name-programme--input" maxlength="40"></label>
 					</p>
 					<p class="clr">
-						<label><span>Е-mail:</span> <input class="input name-programme--email" type="email"></label>
+						<label><span>Е-mail:</span> <input class="input name-programme--email" type="email" data-error="Введите корректный email"></label>
 					</p>
 					<p class="clr">
 						<label><span>Описание:</span> <textarea class="input name-programme--textarea"></textarea></label>
@@ -54,7 +58,7 @@
 						<label><span>Hазвание:<sup>*</sup></span> <input class="input" maxlength="40"></label>
 					</p>
 					<p class="clr">
-						<label><span>Е-mail:</span> <input class="input" type="email"></label>
+						<label><span>Е-mail:</span> <input class="input" type="email" data-error="Введите корректный email"></label>
 					</p>
 					<p class="clr">
 						<label><span>Описание:</span> <textarea class="input"></textarea></label>

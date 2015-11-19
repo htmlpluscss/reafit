@@ -22,7 +22,7 @@
 			<div class="exercises-list-btn-block exercises-list-btn-block--one hide not-drop">
 				<a class="icon-pencil popup__btn" data-popup="add"></a>
 				<a class="icon-play play-video"></a>
-				<a class="icon-plus popup__btn" data-popup="add"></a>
+				<a class="icon-info popup__btn" data-popup="add"></a>
 				<a class="icon-left-bold exercises-list__add-to-left"></a>
 				<a class="icon-chart-line popup__btn" data-popup="progress"></a>
 				<a class="icon-trash ico-delete-item"></a>
@@ -32,7 +32,7 @@
 				<a class="icon-up-bold ico-move-item"></a>
 			</div>
 			<div class="exercises-list-btn-block exercises-list-btn-block--set hide not-drop">
-				<a class="icon-plus popup__btn" data-popup="add"></a>
+				<a class="icon-info popup__btn" data-popup="add"></a>
 				<a class="icon-left-bold exercises-list__add-to-left exercises-list__add-to-left--set"></a>
 				<a class="icon-star icon-toggle-favorite"></a>
 			</div>

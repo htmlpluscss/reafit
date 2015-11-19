@@ -56,20 +56,22 @@
 <!--#endif-->
 		<div class="popup__box">
 			<div class="popup__body">
+				<form>
 					<h3>Создание новой программы</h3>
 					<p class="clr">
 						<label><span>Hазвание:<sup>*</sup></span> <input class="input popup--create__name" maxlength="40"></label>
 						<a class="icon-help" title="Обязательно для заполнения"></a>
 					</p>
 					<p class="clr">
-						<label><span>Е-mail:</span> <input class="input popup--create__email" type="email"></label>
-						<a class="icon-help" title="Для отправки программы"></a>
+						<label><span>Е-mail:</span> <input class="input popup--create__email" type="email" data-error="Введите корректный email"></label>
+						<a class="icon-help" title="На него будет отправлена программа"></a>
 					</p>
 					<p class="clr">
 						<label><span>Описание:</span> <textarea class="input popup--create__textarea"></textarea></label>
-						<a class="icon-help" title="Служебная запись"></a>
+						<a class="icon-help" title="Описание программы"></a>
 					</p>
 					<p><a class="btn popup--create__btn">Создать</a></p>
+				</form>
 			</div>
 			<a class="icon-cancel-outline popup__close"></a>
 		</div>
@@ -77,6 +79,7 @@
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 	<script>window.jQuery || document.write('<script src="/js/jquery.min.js"><\/script>')</script>
+	<script src="/js/jquery.ui.touch-punch.min.js"></script>
 	<script src="/js/js.js"></script>
 	<script src="/js/jquery-ui.min.js"></script>
 	<script src="/js/app.js"></script>

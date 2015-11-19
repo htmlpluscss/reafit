@@ -49,6 +49,10 @@
 			<p class="name-programme">Создание программы</p>
 <!--#elif expr="$DOCUMENT_URI = '/app/edit-app-set.html'" -->
 			<p class="name-programme">Программа1</p>
+<!--#elif expr="$DOCUMENT_URI = '/app/print-1.html'" -->
+			<p class="name-programme">Имя программы</p>
+<!--#elif expr="$DOCUMENT_URI = '/app/view-1.html'" -->
+			<p class="name-programme">Имя программы</p>
 <!--#else-->
 			<p class="name-programme"></p>
 <!--#endif-->

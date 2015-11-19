@@ -1,0 +1,41 @@
+[
+	{
+		id: 1,
+		sort: 1,
+		name: 'Программа 1',
+		desc: 'Укрепления спины',
+		img: '/img/media_1000623100.png',
+		tabs: [
+			{
+				name: 'Вкладка 1',
+				listOne: [
+					{
+						id: 12,
+						desc: {value: 12, count: 3, weigth: '100 гр', comment: 'на все про все 20 минут'}
+					},
+					{
+						id: 13,
+						desc: {count: 12}
+					},
+					{
+						id: 14,
+						desc: {}
+					}
+				]
+			},
+			{
+				name: 'Вкладка 2',
+				listOne: [
+					{
+						id: 15,
+						desc: {}
+					},
+					{
+						id: 16,
+						desc: {}
+					}
+				]
+			},
+		]
+	}
+]

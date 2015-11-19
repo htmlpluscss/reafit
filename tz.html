@@ -14,6 +14,10 @@
 		a{
 			text-decoration: underline;
 		}
+		.hover{
+			color: #000;
+			text-decoration: none;
+		}
 		p, h3 {
 			padding: 0;
 			margin: 0;
@@ -23,6 +27,53 @@
 		}
 		ul {
 			list-style: none;
+		}
+		.help {
+			font-weight: 700;
+			cursor: pointer;
+			margin-left: 5px;
+			border-radius: 50%;
+			border: 1px solid;
+			text-align: center;
+			width:14px;
+			font-size: 11px;
+			height: 14px;
+			display: inline-block;
+			line-height: 14px;
+			color: #000;
+			text-decoration: none;
+		}
+		.list-help {
+			position: absolute;
+			top: 0;
+			left: 0;
+			z-index: 2;
+		}
+		.list-help li{
+			position: absolute;
+			top: -999px;
+			left: 0;
+			border: 1px solid;
+			border-radius: 3px;
+			background: #fff;
+			padding: 5px 10px;
+			width: 256px;
+			margin-left: 100px;
+		}
+		.list-help li:after,
+		.list-help li:before{
+			position: absolute;
+			top: 10px;
+			left: -30px;
+			content: '';
+			border-color:#000 transparent transparent transparent;
+			border-width: 20px 0 0 30px;
+			border-style: solid;   
+		}
+		.list-help li:after{
+			top: 11px;
+			left: -27px;
+			border-color:#fff transparent transparent transparent;
 		}
 	</style>
 
@@ -35,55 +86,85 @@
 	<p>Вся работа по нятяжке ведется через верстальщика, все вопросы, изменения и предложения ему, <a href="skype:htmlpluscss.ru?chat">кликните чтобы начать чат в skype</a>.</p>
 	<p>Это Бета-версия сайта, без дизайна. Все страницы сверстаны и максимально написан UI</p>
 
-	<h3>Страницы сайта</h3>
-	<ul>
-		<li><a target="_blank" href="http://reafit.ru/">Главная страница</a>
-			<ul>
-				<li><a target="_blank" href="http://reafit.ru/reg.html">Регистрация</a></li>
-				<li><a target="_blank" href="http://reafit.ru/login.html">Авторизация</a></li>
-				<li><a target="_blank" href="http://reafit.ru/recovery.html">Восстановление пароля</a></li>
-				<li><a target="_blank" href="http://reafit.ru/feedback.html">Обратныя связь</a></li>
-			</ul>
-		</li>
-		<li><a target="_blank" href="http://reafit.ru/app/">Приложение</a>
-			<ul>
-				<li><a target="_blank" href="http://reafit.ru/app/add-app.html">Добавить упражнение</a></li>
-				<li><a target="_blank" href="http://reafit.ru/app/edit-app.html">Редактировать упражнение</a></li>
-				<li><a target="_blank" href="http://reafit.ru/app/add-app-set.html">Добавить программу</a></li>
-				<li><a target="_blank" href="http://reafit.ru/app/edit-app-set.html">Редактировать программу</a></li>
-				<li><a target="_blank" href="http://reafit.ru/app/view-1.html">Публичная ссылка на программу</a></li>
-				<li><a target="_blank" href="http://reafit.ru/app/print-1.html">Печать программы</a></li>
-			</ul>
-		</li>
-		<li><a target="_blank" href="http://reafit.ru/admin/">Админка</a>
-			<ul>
-				<li><a target="_blank" href="http://reafit.ru/admin/list-one.html">Список упражнений</a></li>
-				<li><a target="_blank" href="http://reafit.ru/admin/list-set.html">Список программ</a></li>
-				<li><a target="_blank" href="http://reafit.ru/admin/list-one-users.html">Список упражнений пользователей</a></li>
-				<li><a target="_blank" href="http://reafit.ru/admin/list-set-users.html">Список программ пользователей</a></li>
-				<li><a target="_blank" href="http://reafit.ru/admin/tags.html">Поисковые теги</a></li>
-				<li><a target="_blank" href="http://reafit.ru/admin/users.html">Список пользователей</a></li>
-			</ul>
-		</li>
-		<li><a target="_blank" href="http://reafit.ru/index2.html">Пользователь</a>
-			<ul>
-				<li><a target="_blank" href="http://reafit.ru/users/">Cтатистика</a></li>
-				<li><a target="_blank" href="http://reafit.ru/users/profile.html">Профиль</a></li>
-				<li><a target="_blank" href="http://reafit.ru/users/list-set.html">Список программ</a></li>
-				<li><a target="_blank" href="http://reafit.ru/users/list-one.html">Список упражнений</a></li>
-			</ul>
-		</li>
-	</ul>
-
-	<p>Исходник верстки в SSI <a href="http://reafit.ru/ssi.zip">http://reafit.ru/ssi.zip</a> <small>(если не знаете что такое ssi, откройте index.html и все станет понятно в первую секунду).</small></p>
-	<p>Видео ТЗ <a href="http://reafit.ru/tz.zip">http://reafit.ru/tz.zip</a></p>
-
 	<h3>Термины</h3>
 	<p><em>Упражнение </em>&ndash; элемент имеющий определенные характиристики: (название, изображения, видео, описание, поисковые теги, другие параметры).</p>
 	<p><em>Программа </em>&ndash; набор <em>упражнений</em> имеющий определенные характеристики (название, описание, автор, другие параметры).</p>
 	<p><em>Приложение</em> &ndash; страница сайта, на которой в правой части расположены все <em>упражнения</em>, в левой части расположена <em>программа</em>.&nbsp; <em>Упражнения</em> могут добавляться в <em>программу</em>, удаляться из <em>программы</em>, изменять параметры в <em>программе</em>.</p>
 	<p><em>Пользователи</em> &ndash;авторизитрованные пользователи, которые могут составлять <em>программы</em> в <em>приложении</em>, управлять своими <em>программами</em>, создавать новые <em>упражнения</em>.</p>
 	<p><em>Админ</em> &ndash; Один <em>пользователь</em> с расширеными правами, его <em>программы</em>/<em>упражнения</em>, являются общедоступными.</p>
+
+	<h3>Страницы сайта</h3>
+
+	<ul>
+		<li><a target="_blank" href="/">Главная страница</a>
+			<ul>
+				<li><a target="_blank" href="/reg.html">Регистрация</a></li>
+				<li><a target="_blank" href="/login.html">Авторизация</a></li>
+				<li><a target="_blank" href="/recovery.html">Восстановление пароля</a></li>
+				<li><a target="_blank" href="/feedback.html">Обратныя связь</a></li>
+			</ul>
+		</li>
+		<li>
+			<a target="_blank" href="/app/">Приложение</a>
+				<a class="help"href="/img/tz-2.png" target="_blank">!</a>
+				<a class="help"href="/img/tz-3.png" target="_blank">!</a>
+				<a class="help"href="/img/tz-4.png" target="_blank">!</a>
+			<ul>
+				<li>
+					<a target="_blank" href="/app/add-app.html">Добавить упражнение</a>
+					<span class="help" data-id="1">?</span>
+					<span class="help" data-id="16">?</span>
+				</li>
+				<li><a target="_blank" href="/app/edit-app.html">Редактировать упражнение</a> <span class="help" data-id="2">?</span></li>
+				<li><a target="_blank" href="/app/add-app-set.html">Добавить программу</a> <span class="help" data-id="3">?</span></li>
+				<li><a target="_blank" href="/app/edit-app-set.html">Редактировать программу</a> <span class="help" data-id="4">?</span></li>
+				<li><a target="_blank" href="/app/view-1.html">Публичная ссылка на программу</a> <span class="help" data-id="5">?</span></li>
+				<li><a target="_blank" href="/app/print-1.html">Печать программы</a> <span class="help" data-id="6">?</span></li>
+			</ul>
+		</li>
+		<li><a target="_blank" href="/admin/">Админка</a>
+			<ul>
+				<li>
+					<a target="_blank" href="/admin/list-one.html">Список упражнений</a>
+					<span class="help" data-id="7">?</span>
+					<span class="help" data-id="8">?</span>
+				</li>
+				<li>
+					<a target="_blank" href="/admin/list-set.html">Список программ</a>
+					<span class="help" data-id="9">?</span>
+				</li>
+				<li>
+					<a target="_blank" href="/admin/list-one-users.html">Список упражнений пользователей</a>
+					<span class="help" data-id="10">?</span>
+				</li>
+				<li>
+					<a target="_blank" href="/admin/list-set-users.html">Список программ пользователей</a>
+					<span class="help" data-id="11">?</span>
+				</li>
+				<li>
+					<a target="_blank" href="/admin/tags.html">Поисковые теги</a>
+					<span class="help" data-id="12">?</span>
+				</li>
+				<li>
+					<a target="_blank" href="/admin/users.html">Список пользователей</a>
+					<span class="help" data-id="13">?</span>
+				</li>
+			</ul>
+		</li>
+		<li>
+			<a target="_blank" href="/index2.html">Пользователь</a>
+			<span class="help" data-id="15">?</span>
+			<ul>
+				<li><a target="_blank" href="/users/">Cтатистика</a></li>
+				<li><a target="_blank" href="/users/profile.html">Профиль</a></li>
+				<li>
+					<a target="_blank" href="/users/list-set.html">Список программ</a>
+					<span class="help" data-id="14">?</span>
+				</li>
+				<li><a target="_blank" href="/users/list-one.html">Список упражнений</a></li>
+			</ul>
+		</li>
+	</ul>
 
 	<h3>Функциональные моменты сайта</h3>
 	<p><em>Упражнения</em> и <em>программы</em> делятся на две группы:</p>
@@ -108,14 +189,55 @@
 		</li>
 	</ol>
 
+	<p><a href="/ssi.zip">Исходник верстки в SSI</a> <small>(если не знаете что такое ssi, откройте index.html и все станет понятно в первую секунду).</small></p>
+	<p style="display:none">Видео ТЗ <a href="/tz.zip">/tz.zip</a></p>
+
 	<h3>Вопросы от верстальщика</h3>
 	<p style="display:none">если base64 плохо жмется, то спрайт</p>
 	<p style="display:none">angularJS</p>
 	<p>Хостинг</p>
-	<p>Передача данных json gzip или ...</p>
+	<p>Передача данных json||xml gzip или ...</p>
 	<p>Избражения в base64 + .png</p>
 
 </article>
+
+<ul class="list-help">
+	<li class="help-1">на эту страницу попадаем из Админки <a target="_blank" href="/admin/list-one.html">Список упражнений</a>, кнопка <b>добавить</b></li>
+	<li class="help-2">на эту страницу попадаем из Админки <a target="_blank" href="/admin/list-one.html">Список упражнений</a>, иконка в столбике <b>Действие</b></li>
+	<li class="help-3">на эту страницу попадаем из Админки <a target="_blank" href="/admin/list-set.html">Список программ</a>, кнопка <b>добавить</b></li>
+	<li class="help-4">на эту страницу попадаем из Админки <a target="_blank" href="/admin/list-set.html">Список программ</a>, иконка в столбике <b>Действие</b></li>
+	<li class="help-5">публичная ссылка, гененрируется при создании программы по типу <b>Сf36tsT4-view13</b>, гду 13 - id программы</li>
+	<li class="help-6">публичная ссылка, гененрируется при создании программы по типу <b>Сf36tsT4-print13</b>, гду 13 - id программы</li>
+	<li class="help-7">при удалении Упражнения (иконка корзины в столбце <b>Действие</b>), упражнение НЕ удаляется из БД (после "удаления" оно не отображается в админке, в списке упражнений, похожие и проегресс)</li>
+	<li class="help-8">если видео нет у Упражнения то иконка плей в столбце <b>Действие</b> не отображается</li>
+	<li class="help-9">Вывод списка программ (как и упражнений) согласно столбцу <b>Порядок</b>, по этому порядку они выводятся и в Приложении</li>
+	<li class="help-10">Вывод списк упражнений, которые создали Пользователи</li>
+	<li class="help-11">Вывод списк программ, которые создали Пользователи</li>
+	<li class="help-12">Управление поисковыми тегами (добавить\удалить\сортировать)</li>
+	<li class="help-13">Список Пользователей, если кликнуть открыть в столбце <b>Действие</b>, то попадаем на страницу Пользователя с его правами (т.е. все доступно как будто это не Админ а Пользователь у себяв ЛК - это все ссылки ниже)</li>
+	<li class="help-14">иконка столбце <b>Избранное</b> вкл/выкл отображение программы в списке программ в Приложении</li>
+	<li class="help-15">ЛК пользователя дублирует функционал Админки с небольшими отличиями в сторону уменьшения</li>
+	<li class="help-16">На одной из вкладок есть визуальный редактор</li>
+</ul>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script>
+	$('.help').on('click',function () {
+		var t = $(this);
+		var id = t.attr('data-id');
+		setTimeout(function(){
+			$('.help-'+id).css({'top':t.offset().top,'left':t.offset().left});
+		},100);
+	});
+	$('body').on('click',function () {
+		$('.list-help li').removeAttr('style');
+	});
+	$('a').hover(function () {
+		$('a[href="'+$(this).attr('href')+'"]').addClass('hover');
+	},function(){
+		$('a').removeClass('hover');
+	});
+</script>
 
 </body>
 </html>

@@ -1,4 +1,4 @@
-				<li id="one-1" class="exercises-list__item popup-box" data-filter="107;201;301;407;501;502" data-video="cOOK_uX9eNI">
+				<li id="one-1" class="exercises-list__item popup-box" data-filter="107,201,301,407,501,502" data-video="cOOK_uX9eNI" data-related="6,2,4" data-progress="1,6,8,9,10">
 					<span class="exercises-list__name">Шаговое движение лежа на спине <span class="hide">с элементами сопротивления/облегчения сгибания/разгибания, попеременно каждой ногой</span></span>
 					<span class="exercises-list__img">
 						<img src="/img/media_1000623100.png" alt="">
@@ -8,7 +8,7 @@
 <!--#include file="_popup-content-detal.shtml"-->
 
 				</li>
-				<li id="one-2" class="exercises-list__item popup-box" data-filter="107;201;302;407;501;502" data-video="cOOK_uX9eNI">
+				<li id="one-2" class="exercises-list__item popup-box" data-filter="107,201,302,407,501,502" data-video="cOOK_uX9eNI" data-related="1,2,4" data-progress="1,6,2,8,9,10">
 					<span class="exercises-list__name">Толчок и подтягивание двумя ногами <span class="hide">с элементами сопротивления/облегчения</span></span>
 					<span class="exercises-list__img">
 						<img src="/img/media_1000623101.png" alt="">
@@ -18,7 +18,7 @@
 <!--#include file="_popup-content-detal.shtml"-->
 
 				</li>
-				<li id="one-3" class="exercises-list__item popup-box" data-filter="107;201;301;407;501;502" data-video="cOOK_uX9eNI">
+				<li id="one-3" class="exercises-list__item popup-box" data-filter="107,201,301,407,501,502" data-video="cOOK_uX9eNI" data-related="1,2" data-progress="1,3,2">
 					<span class="exercises-list__name">Отведение прямой ноги</span>
 					<span class="exercises-list__img">
 						<img src="/img/media_1000623102.png" alt="">
@@ -28,7 +28,7 @@
 <!--#include file="_popup-content-detal.shtml"-->
 
 				</li>
-				<li id="one-4" class="exercises-list__item popup-box" data-filter="107;201;302;407;501" data-video="cOOK_uX9eNI">
+				<li id="one-4" class="exercises-list__item popup-box" data-filter="107,201,302,407,501" data-video="cOOK_uX9eNI" data-related="1,2" data-progress="1,3,2">
 					<span class="exercises-list__name">Разведение ног</span>
 					<span class="exercises-list__img">
 						<img src="/img/media_1000623103.png" alt="">
@@ -38,7 +38,7 @@
 <!--#include file="_popup-content-detal.shtml"-->
 
 				</li>
-				<li id="one-5" class="exercises-list__item popup-box" data-filter="107;201;302;407;501;502" data-video="cOOK_uX9eNI">
+				<li id="one-5" class="exercises-list__item popup-box" data-filter="107,201,302,407,501,502" data-video="cOOK_uX9eNI" data-related="1,2" data-progress="1,3,2">
 					<span class="exercises-list__name">Приведение ноги</span>
 					<span class="exercises-list__img">
 						<img src="/img/media_1000623102-2.png" alt="">
@@ -48,7 +48,7 @@
 <!--#include file="_popup-content-detal.shtml"-->
 
 				</li>
-				<li id="one-6" class="exercises-list__item popup-box" data-filter="107;201;301;407;501" data-video="cOOK_uX9eNI">
+				<li id="one-6" class="exercises-list__item popup-box" data-filter="107,201,301,407,501" data-video="cOOK_uX9eNI" data-related="1,2" data-progress="1,3,2">
 					<span class="exercises-list__name">Раскачивание ног в стороны «Моноласта» <span class="hide">синергические движения</span></span>
 					<span class="exercises-list__img">
 						<img src="/img/media_1000623105.png" alt="">
@@ -58,7 +58,7 @@
 <!--#include file="_popup-content-detal.shtml"-->
 
 				</li>
-				<li id="one-7" class="exercises-list__item popup-box" data-filter="107;201;302;407;405;501" data-video="cOOK_uX9eNI">
+				<li id="one-7" class="exercises-list__item popup-box" data-filter="107,201,302,407,405,501" data-video="cOOK_uX9eNI" data-related="1,2" data-progress="1,3,2">
 					<span class="exercises-list__name">Подъем таза вверх «Мостик»</span>
 					<span class="exercises-list__img">
 						<img src="/img/media_1000623106.png" alt="">
@@ -68,7 +68,7 @@
 <!--#include file="_popup-content-detal.shtml"-->
 
 				</li>
-				<li id="one-8" class="exercises-list__item popup-box" data-filter="107;201;302;407;501;502" data-video="cOOK_uX9eNI">
+				<li id="one-8" class="exercises-list__item popup-box" data-filter="107,201,302,407,501,502" data-video="cOOK_uX9eNI" data-related="1,2" data-progress="1,3,2">
 					<span class="exercises-list__name">Шаговое движение лежа на боку</span>
 					<span class="exercises-list__img">
 						<img src="/img/media_1000623107.png" alt="">
@@ -78,7 +78,7 @@
 <!--#include file="_popup-content-detal.shtml"-->
 
 				</li>
-				<li id="one-9" class="exercises-list__item popup-box" data-filter="107;201;302;407;501;502" data-video="cOOK_uX9eNI">
+				<li id="one-9" class="exercises-list__item popup-box" data-filter="107,201,302,407,501,502" data-video="cOOK_uX9eNI" data-related="1,2" data-progress="1,3,2">
 					<span class="exercises-list__name">Сгибание/разгибание двух ног</span>
 					<span class="exercises-list__img">
 						<img src="/img/media_1000623108.png" alt="">
@@ -88,7 +88,7 @@
 <!--#include file="_popup-content-detal.shtml"-->
 
 				</li>
-				<li id="one-10" class="exercises-list__item popup-box" data-filter="107;201;302;407;501;502" data-video="cOOK_uX9eNI">
+				<li id="one-10" class="exercises-list__item popup-box" data-filter="107,201,302,407,501,502" data-video="cOOK_uX9eNI" data-related="1,2" data-progress="1,3,2">
 					<span class="exercises-list__name">Сгибание с отягощением</span>
 					<span class="exercises-list__img">
 						<img src="/img/media_1000623109.png" alt="">
@@ -98,7 +98,7 @@
 <!--#include file="_popup-content-detal.shtml"-->
 
 				</li>
-				<li id="one-11" class="exercises-list__item popup-box" data-filter="" data-video="cOOK_uX9eNI">
+				<li id="one-11" class="exercises-list__item popup-box" data-filter="" data-video="cOOK_uX9eNI" data-related="1,2" data-progress="1,3,2">
 					<span class="exercises-list__name">Сгибание колена</span>
 					<span class="exercises-list__img">
 						<img src="/img/media_10006231010.png" alt="">
@@ -108,7 +108,7 @@
 <!--#include file="_popup-content-detal.shtml"-->
 
 				</li>
-				<li id="one-12" class="exercises-list__item popup-box" data-filter="107;201;302;407;501;502" data-video="cOOK_uX9eNI">
+				<li id="one-12" class="exercises-list__item popup-box" data-filter="107,201,302,407,501,502" data-video="cOOK_uX9eNI" data-related="1,2" data-progress="1,3,2">
 					<span class="exercises-list__name">Разгибание в коленном суставе</span>
 					<span class="exercises-list__img">
 						<img src="/img/media_10006231011.png" alt="">
@@ -119,7 +119,7 @@
 
 
 				</li>
-				<li id="one-13" class="exercises-list__item popup-box" data-filter="107;201;302;407;501" data-video="cOOK_uX9eNI">
+				<li id="one-13" class="exercises-list__item popup-box" data-filter="107,201,302,407,501" data-video="cOOK_uX9eNI" data-related="1,2" data-progress="1,3,2">
 					<span class="exercises-list__name">Перемещения в коленно-кистевой стойке</span>
 					<span class="exercises-list__img">
 						<img src="/img/media_10006231012.png" alt="">
@@ -129,7 +129,7 @@
 <!--#include file="_popup-content-detal.shtml"-->
 
 				</li>
-				<li id="one-14" class="exercises-list__item popup-box" data-filter="107;201;302;407;501;502" data-video="cOOK_uX9eNI">
+				<li id="one-14" class="exercises-list__item popup-box" data-filter="107,201,302,407,501,502" data-video="cOOK_uX9eNI" data-related="1,2" data-progress="1,3,2">
 					<span class="exercises-list__name">Разгибание тазобедренного и коленного суставов</span>
 					<span class="exercises-list__img">
 						<img src="/img/media_10006231013.png" alt="">
@@ -139,7 +139,7 @@
 <!--#include file="_popup-content-detal.shtml"-->
 
 				</li>
-				<li id="one-15" class="exercises-list__item popup-box" data-filter="107;201;302; 407;501" data-video="cOOK_uX9eNI">
+				<li id="one-15" class="exercises-list__item popup-box" data-filter="107,201,302, 407,501" data-video="cOOK_uX9eNI" data-related="1,2" data-progress="1,3,2">
 					<span class="exercises-list__name">Отведение согнутой ноги</span>
 					<span class="exercises-list__img">
 						<img src="/img/media_10006231014.png" alt="">
@@ -149,7 +149,7 @@
 <!--#include file="_popup-content-detal.shtml"-->
 
 				</li>
-				<li id="one-16" class="exercises-list__item popup-box" data-filter="107;201;302;407;501" data-video="cOOK_uX9eNI">
+				<li id="one-16" class="exercises-list__item popup-box" data-filter="107,201,302,407,501" data-video="cOOK_uX9eNI" data-related="1,2" data-progress="1,3,2">
 					<span class="exercises-list__name">Подтягивание колена по диагонали.</span>
 					<span class="exercises-list__img">
 						<img src="/img/media_10006231015.png" alt="">
@@ -159,7 +159,7 @@
 <!--#include file="_popup-content-detal.shtml"-->
 
 				</li>
-				<li id="one-17" class="exercises-list__item popup-box" data-filter="" data-video="cOOK_uX9eNI">
+				<li id="one-17" class="exercises-list__item popup-box" data-filter="" data-video="cOOK_uX9eNI" data-related="1,2" data-progress="1,3,2">
 					<span class="exercises-list__name">Выпрямление двух ног лежа на боку</span>
 					<span class="exercises-list__img">
 						<img src="/img/media_10006231016.png" alt="">

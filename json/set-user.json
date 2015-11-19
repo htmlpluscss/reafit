@@ -1,0 +1,24 @@
+[
+	{
+		id: 1,
+		autor: 1,
+		name: 'Программа 1',
+		desc: 'Укрепления спины',
+		dateCreate: '12.02.2015',
+		dateChange: '13.02.2015',
+		favorite: 1;
+		link: 'fSr5pU',
+		img: '/img/media_1000623100.png',
+		tabs: [
+			{
+				name: 'Вкладка 1',
+				listOne: [
+					{
+						id: 12,
+						desc: {value: 12, count: 3, weigth: '100 гр', comment: 'на все про все 20 минут'}
+					}
+				]
+			}
+		]
+	}
+]

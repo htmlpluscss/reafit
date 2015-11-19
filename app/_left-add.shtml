@@ -65,7 +65,15 @@
 				<ul class="l-h exercises-my"></ul>
 			</div>
 			<div class="tabs__dd tabs__dd--6">
-				<ul class="l-h exercises-my"></ul>
+				<ul class="l-h exercises-my">
+					<li class="exercises-my__item exercises-my__item--current-progress popup-box clr" style="height:100px">
+						<span class="exercises-list__name">Назбавние текущего упражнения</span>
+						<div class="exercises-list-btn-block exercises-list-btn-block--one hide not-drop">
+							<a class="icon-down-bold ico-move-item"></a>
+							<a class="icon-up-bold ico-move-item"></a>
+						</div>
+					</li>
+				</ul>
 			</div>
 
 		</form>
