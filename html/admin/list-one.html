@@ -1,0 +1,149 @@
+<!--#include file="_head.shtml"-->
+
+	<title>Список упражнений</title>
+
+<!--#include file="_header.shtml"-->
+
+		<div class="pull-left">
+			<a class="btn" href="/app/add-app.html">Добавить</a>
+		</div>
+
+		<form class="pull-right">
+			<input class="input">
+			<a class="btn align-middle">Найти</a>
+<!-- 			появляется если input value!=""
+			<a class="btn align-middle">Очистить</a>
+-->
+		</form>
+
+		<div class="col-hide clear-both">
+			<p>Скрыть колонки:</p>
+			<label class="checkbox"><input type="checkbox" value="1">ID</label>
+			<label class="checkbox"><input type="checkbox" value="11">Порядок</label>
+			<label class="checkbox"><input type="checkbox" value="2">Исходное положение</label>
+			<label class="checkbox"><input type="checkbox" value="3">Конечное положение</label>
+			<label class="checkbox"><input type="checkbox" value="4">Работающие мышцы</label>
+			<label class="checkbox"><input type="checkbox" value="8">Теги</label>
+			<label class="checkbox"><input type="checkbox" value="9">Похожие</label>
+			<label class="checkbox"><input type="checkbox" value="10">Прогресс</label>
+		</div>
+
+<!--#include virtual="/_pagin.shtml"-->
+
+
+		<table class="table100 table100--list">
+			<thead>
+				<tr>
+					<th class="col-hide-1">ID</th>
+					<th>Порядок</th>
+					<th>Название</th>
+					<th class="col-hide-2">Исходное положение</th>
+					<th class="col-hide-3">Конечное положение</th>
+					<th class="col-hide-4">Работающие мышцы</th>
+					<th class="col-hide-8">Теги</th>
+					<th class="col-hide-9">Похожие</th>
+					<th class="col-hide-10">Прогресс</th>
+					<th>Действие</th>
+				</tr>
+			</thead>
+<!-- сортировка таблицы по значению Порядок -->
+			<tbody>
+				<tr>
+					<td class="align-center">1</td>
+					<td><input value="1" class="input table100--list__item"></td>
+					<td><b>Шаговое движение лежа на спине</b> с элементами сопротивления/облегчения сгибания/разгибания, попеременно каждой ногой</td>
+					<td><img src="/img/media_1000623100-2.png" height="100" alt=""></td>
+					<td><img src="/img/media_1000623100.png" height="100" alt=""></td>
+					<td><img src="/img/media_1000623100_.png" height="100" alt=""></td>
+					<td class="tags">
+						<small>Лежа</small>
+						<small>плечи</small>
+						<small>Разгрузочный модуль</small>
+					</td>
+					<td class="tags">
+						<small>Приведение ноги</small>
+						<small>Разведение ног</small>
+						<small>Отведение прямой ноги</small>
+					</td>
+					<td class="tags">
+						<small>Сгибание/разгибание двух ног</small>
+						<small>Сгибание с отягощением</small>
+					</td>
+					<td>
+						<ul class="one-event">
+							<li><a class="icon-edit" href="/app/edit-app.html"></a></li>
+							<li><a class="icon-trash-empty one-event__delete"></a></li>
+							<li><a class="icon-play play-video" data-video="ZoBF14ZL27g"></a></li>
+							<li><a class="icon-info one-event__detal"></a></li>
+						</ul>
+
+<!--#include file="_popup-content-detal.shtml"-->
+
+					</td>
+				</tr>
+				<tr>
+					<td class="align-center">2</td>
+					<td><input value="2" class="input table100--list__item"></td>
+					<td><b>Толчок и подтягивание двумя ногами </b> с элементами сопротивления/облегчения</td>
+					<td><img src="/img/media_1000623101-2.png" height="100" alt=""></td>
+					<td><img src="/img/media_1000623101.png" height="100" alt=""></td>
+					<td><img src="/img/media_1000623104_.png" height="100" alt=""></td>
+					<td class="tags">
+						<small>Лежа</small>
+						<small>плечи</small>
+					</td>
+					<td class="tags">
+						<small>Сгибание/разгибание двух ног</small>
+						<small>Сгибание с отягощением</small>
+					</td>
+					<td class="tags">
+						<small>Приведение ноги</small>
+						<small>Разведение ног</small>
+						<small>Отведение прямой ноги</small>
+					</td>
+					<td>
+						<ul class="one-event">
+							<li><a class="icon-edit" href="/app/edit-app.html"></a></li>
+							<li><a class="icon-trash-empty one-event__delete"></a></li>
+							<li><a class="icon-play play-video" data-video="ZoBF14ZL27g"></a></li>
+							<li><a class="icon-info one-event__detal"></a></li>
+						</ul>
+
+<!--#include file="_popup-content-detal.shtml"-->
+
+					</td>
+				</tr>
+				<tr>
+					<td class="align-center">3</td>
+					<td><input value="3" class="input table100--list__item"></td>
+					<td><b>Отведение прямой ноги </b></td>
+					<td><img src="/img/media_1000623102-2.png" height="100" alt=""></td>
+					<td><img src="/img/media_1000623102.png" height="100" alt=""></td>
+					<td><img src="/img/media_1000623103_.png" height="100" alt=""></td>
+					<td class="tags">
+						<small>плечи</small>
+					</td>
+					<td class="tags">
+						<small>Сгибание с отягощением</small>
+					</td>
+					<td class="tags">
+						<small>Отведение прямой ноги</small>
+					</td>
+					<td>
+						<ul class="one-event">
+							<li><a class="icon-edit" href="/app/edit-app.html"></a></li>
+							<li><a class="icon-trash-empty one-event__delete"></a></li>
+							<li><a class="icon-play play-video" data-video="ZoBF14ZL27g"></a></li>
+							<li><a class="icon-info one-event__detal"></a></li>
+						</ul>
+
+<!--#include file="_popup-content-detal.shtml"-->
+
+					</td>
+				</tr>
+			</tbody>
+		</table>
+
+<!--#include virtual="/_pagin.shtml"-->
+
+<!--#include file="_footer.shtml"-->

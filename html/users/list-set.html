@@ -1,0 +1,78 @@
+<!--#include virtual="/_head.shtml"-->
+
+	<title>Список программ</title>
+
+<!--#include virtual="/_header.shtml"-->
+
+		<div class="pull-left">
+			<a class="btn" href="/app">Создать новую программу</a>
+		</div>
+
+		<form class="pull-right">
+			<input class="input">
+			<a class="btn align-middle">Найти</a>
+<!-- 			появляется если input value!=""
+			<a class="btn align-middle">Очистить</a>
+-->
+		</form>
+
+<!--#include virtual="/_pagin.shtml"-->
+
+		<table class="table100 align-middle">
+			<thead>
+				<tr>
+					<th class="hide">ID</th>
+					<th>Название</th>
+					<th>Описание</th>
+					<th>Создано</th>
+					<th>Изменено</th>
+					<th>Избранное</th>
+					<th>Действие</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td class="hide">1</td>
+					<td><a onclick="alert('открываем приложенние с параметрами прлограммы')">Для шейников</a></td>
+					<td>восстанавливаем ходьбу</td>
+					<td class="align-middle">12.02.2014</td>
+					<td class="align-middle">22.02.2014</td>
+					<td class="align-middle align-center"><label class="checkbox-star"><input type="checkbox" checked="checked"><a class="icon-star"></a><a class="icon-star-empty"></a></label></td>
+					<td class="align-center align-middle nowrap">
+						<a class="icon-link" target="_blank" href="/app/view-1.html"></a>
+						<a class="icon-folder-open-empty" onclick="alert('открываем приложенние с параметрами прлограммы')"></a>
+						<a class="icon-trash-empty one-event__delete"></a>
+					</td>
+				</tr>
+				<tr>
+					<td class="hide">2</td>
+					<td><a onclick="alert('открываем приложенние с параметрами прлограммы')">Иванов Сергей</a></td>
+					<td>восстанавливаем ходьбу</td>
+					<td class="align-middle">12.02.2014</td>
+					<td class="align-middle">22.02.2014</td>
+					<td class="align-middle align-center"><label class="checkbox-star"><input type="checkbox"><a class="icon-star"></a><a class="icon-star-empty"></a></label></td>
+					<td class="align-center align-middle nowrap">
+						<a class="icon-link" target="_blank" href="/app/view-1.html"></a>
+						<a class="icon-folder-open-empty" onclick="alert('открываем приложенние с параметрами прлограммы')"></a>
+						<a class="icon-trash-empty one-event__delete"></a>
+					</td>
+				</tr>
+				<tr>
+					<td class="hide">3</td>
+					<td><a onclick="alert('открываем приложенние с параметрами прлограммы')">Петров Евгений (Нижний-Новгород)</a></td>
+					<td>Укрепления спины</td>
+					<td class="align-middle">12.02.2014</td>
+					<td class="align-middle"></td>
+					<td class="align-middle align-center"><label class="checkbox-star"><input type="checkbox"><a class="icon-star"></a><a class="icon-star-empty"></a></label></td>
+					<td class="align-center align-middle nowrap">
+						<a class="icon-link" target="_blank" href="/app/view-1.html"></a>
+						<a class="icon-folder-open-empty" onclick="alert('открываем приложенние с параметрами прлограммы')"></a>
+						<a class="icon-trash-empty one-event__delete"></a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+
+<!--#include virtual="/_pagin.shtml"-->
+
+<!--#include virtual="/_footer.shtml"-->

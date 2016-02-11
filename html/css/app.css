@@ -1,0 +1,441 @@
+body {
+	opacity: 0;
+	overflow-y: hidden;
+}
+.fullscreen header,
+.fullscreen footer {
+	display: none;
+}
+.fullscreen main {
+	padding-top: 5px;
+}
+.fullscreen .icon-fullscreen {
+	position: fixed;
+	top: 4px;
+	right: 4px;
+	display: block;
+	font-size: 20px
+}
+.icon-fullscreen li{
+	opacity: .5;
+	margin: 4px;
+}
+.icon-fullscreen li:hover{
+	opacity: 1
+}
+.transition {
+	transition: 1s;
+}
+
+header .name-programme {
+	position: absolute;
+	top: 12px;
+	left: 94px;
+	font-size: 20px
+}
+
+/* popup
+-----------------------------------------------------------------------------*/
+.popup--filter h3 {
+	font-weight: 700
+}
+.popup--filter h3 ~ h3{
+	padding-top: 12px;
+}
+.popup--filter .checkbox {
+	display: block;
+	font-size: 14px;
+	line-height: 16px
+}
+.popup--filter .btn {
+	margin: 10px 0 0 10px
+}
+.fast-result-search {
+	position: absolute;
+	left: 0;
+	bottom: 10px;
+}
+.popup--filter .popup__body {
+	position: relative;
+	padding-bottom: 12px;
+}
+
+.popup--save .popup__box {
+	width: 200px;
+	font-size: 20px;
+	text-align: center;
+}
+.popup--create .popup__box {
+	width: 480px;
+	font-size: 16px;
+	text-align: center;
+}
+.popup--create .popup__box .btn {
+	display: block;
+	margin: 12px auto;
+	width: 122px;
+}
+.popup--start .popup__box {
+	width: 330px;
+	font-size: 14px;
+	text-align: center;
+}
+
+.popup--create .popup__box {
+	text-align: left;
+	height: 290px !important;
+}
+.popup--create label span {
+	width: 111px;
+	padding: 10px;
+	display: inline-block;
+}
+.popup--create .input {
+	width: 224px;
+}
+.popup--create .error {
+	float: left;
+	clear: left;
+}
+.popup--create textarea.input {
+	display: inline-block;
+	height: 85px;
+	margin-top: 10px;
+	vertical-align: top;
+}
+.popup--lock .popup__box {
+	bottom: 0;
+	animation-delay: 1s !important;
+}
+.popup--lock .popup__close {
+	display: none;
+}
+
+.related_progress {
+	overflow: hidden;
+}
+.related_progress .popup-box--active {
+	border: 1px dashed #ccc;
+}
+.related_progress .exercises-list__item {
+	margin: 14px 14px 0 0;
+	cursor: pointer;
+}
+.related_progress .exercises-list__item:nth-child(4n) {
+	margin-right: 0;
+}
+.related_progress .exercises-list__item:nth-child(1),
+.related_progress .exercises-list__item:nth-child(2),
+.related_progress .exercises-list__item:nth-child(3),
+.related_progress .exercises-list__item:nth-child(4) {
+	margin-top: 0;
+}
+
+/* Left
+-----------------------------------------------------------------------------*/
+.app-left {
+	width: 470px;
+}
+.app-left--view {
+	width: 100%;
+}
+.app-left h2{
+	padding: 8px;
+}
+.search-exercises__input  {
+	position: relative;
+}
+#autocomplete-exercises {
+	width: 298px;
+}
+.search-exercises__clear-input {
+	position: absolute;
+	top: 3px;
+	right: 3px;
+	opacity: 0;
+}
+.l-h {
+	border: 1px solid #aaa;
+	border-radius: 0 4px 4px 4px;
+	min-height: 300px;
+	overflow-y: auto;
+	overflow-x: hidden;
+	padding: 8px;
+	position: static;
+}
+.exercises-my .exercises-my__plus {
+	border: 1px dashed #ccc;
+	min-height: 93px;
+	border-radius: 3px;
+	margin-bottom: 10px;
+}
+.exercises-my__item {
+	cursor: grab;
+	border: 1px solid #aaa;
+	border-radius: 3px;
+	margin-bottom: 10px;
+	padding: 10px 30px 10px 10px;
+}
+.exercises-my__item img {
+	width: 100px;
+}
+.exercises-my .exercises-list__item {
+	position: absolute;
+}
+
+.exercises-my__item .exercises-list-btn-block {
+	position: absolute;
+	bottom: 8px;
+	right: 3px;
+	display: block;
+	z-index: 2;
+}
+.exercises-my__item .exercises-list-btn-block a {
+	display: block;
+	margin:0 3px;
+	font-size: 18px;
+	float: left;
+}
+.exercises-my__item .exercises-list__img {
+	float: left;
+	position: relative;
+	top: 10px;
+}
+.exercises-my__item .exercises-list__img img{
+	float: left;
+	display: block;
+}
+.exercises-my__item .exercises-list-btn-block .icon-left-bold,
+.exercises-my__item .exercises-list-btn-block .icon-plus,
+.exercises-my__item .exercises-list-btn-block .icon-info,
+.exercises-my__item .exercises-list-btn-block .icon-star {
+	display: none;
+}
+
+.exercises-my__item .exercises-list__name {
+	right: 10px;
+}
+.exercises-my__item .exercises-list__name .hide {
+	background: rgba(255,255,255,.5);
+	display: inline;
+	font-weight: 400
+}
+.exercises-my__item .exercises-list-btn-block .icon-up-bold {
+	position: absolute;
+	bottom: 28px;
+	right: 0;
+}
+
+.form-tabs p{
+	margin: 8px;
+}
+.form-tabs [class^="icon-"]{
+	float: left;
+	margin-top: 4px;
+}
+.form-tabs .btn{
+	margin-left: 128px;
+}
+.form-tabs label,
+.form-tabs .input{
+	float: left;
+}
+.form-tabs sup{
+	color: red;
+	font-size: 16px;
+	vertical-align: baseline;
+	position: relative;
+	top: -3px;
+	left: 3px;
+}
+.form-tabs label span {
+	float: left;
+	width: 128px;
+}
+.form-tabs textarea.input{
+	width: 280px;
+}
+.form-tabs iframe{
+	margin-top: 10px;
+}
+
+.form-tabs--input100p .input {
+	width: 410px;
+}
+.form-tabs--input100p .input.w50 {
+	width: 50px;
+}
+.form-tabs--180 label span {
+	width: 180px;
+}
+.form-tabs--filter h3{
+	font-size: 14px;
+	line-height: 15px;
+	font-weight: 700
+}
+.form-tabs--filter h3 ~ h3{
+	padding-top: 10px;
+}
+.form-tabs--filter .checkbox{
+	font-size: 14px;
+	line-height: 15px;
+	display: block;
+	float: none;
+	padding-left: 22px;
+}
+.form-tabs--file img{
+	display: block;
+}
+/* Right
+-----------------------------------------------------------------------------*/
+.app-right {
+	width: 472px;
+}
+.search-exercises {
+	padding-bottom: 8px;
+}
+.app-search-block .select {
+	margin-top: 8px;
+	margin-right: 8px;
+}
+
+.exercises-list {
+	min-height: 300px;
+	overflow-y: auto;
+	overflow-x: hidden;
+	width: 486px;
+	margin-left: -14px;
+}
+.exercises-list__item {
+	cursor: grab;
+	float: left;
+	width: 142px;
+	height: 142px;
+	border-radius: 3px;
+	border: 1px solid #aaa;
+	text-align: center;
+	margin: 0 0 14px 14px;
+	padding: 40px 10px 0;
+	background: #fff
+}
+.exercises-list__item.exercises-list__item--set:after,
+.exercises-list__item.exercises-list__item--set:before {
+	position: absolute;
+	top: 2px;
+	left: 2px;
+	width: 140px;
+	height: 140px;
+	content: '';
+	border-radius: 3px;
+	border: 1px solid #aaa;
+	z-index: -1;
+	background: #fff
+}
+.exercises-list__item.exercises-list__item--set:before {
+	top: 5px;
+	left: 5px;
+}
+.exercises-list__item img{
+	max-height: 100px;
+	margin: auto;
+}
+.exercises-list__name {
+	font-size: 12px;
+	line-height: 14px;
+	font-weight: 700;
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	right: 10px;
+	z-index: 1;
+}
+.exercises-list__img img{
+	display: none;
+}
+.exercises-list__img img:first-child {
+	position: relative;
+	display: block;
+}
+
+/* app --> style 200
+-----------------------------------------------------------------------------*/
+.related_progress .exercises-list-btn-block--one a,
+.exercises-list .exercises-list-btn-block a {
+	font-size: 24px;
+	display: none;
+	position: absolute;
+	opacity: .8
+}
+.related_progress .exercises-list-btn-block--one a:hover,
+.exercises-list-btn-block a:hover{
+	opacity: 1;
+}
+.related_progress .exercises-list-btn-block--one a:active,
+.exercises-list-btn-block a:active,
+.icon-toggle-favorite.active{
+	color: #ff9e20
+}
+.related_progress .exercises-list-btn-block--one .icon-play,
+.exercises-list .exercises-list-btn-block .icon-play {
+	left: 10px;
+	bottom: 10px;
+	display: block;
+}
+.related_progress .exercises-list-btn-block--one .icon-chart-line,
+.exercises-list .exercises-list-btn-block .icon-chart-line {
+	left: 50%;
+	top: 10px;
+	margin-left: -14px;
+	display: block;
+}
+.related_progress .exercises-list-btn-block--one .icon-star,
+.exercises-list .exercises-list-btn-block .icon-star {
+	right: 10px;
+	top: 10px;
+	display: block;
+}
+.related_progress .exercises-list-btn-block--one .icon-share,
+.exercises-list .exercises-list-btn-block .icon-share {
+	left: 10px;
+	top: 10px;
+	display: block;
+}
+.related_progress .exercises-list-btn-block--one .icon-left-bold,
+.exercises-list .exercises-list-btn-block .icon-left-bold {
+	right: 10px;
+	bottom: 10px;
+	display: block;
+}
+.related_progress .exercises-list-btn-block--one .icon-info,
+.exercises-list .exercises-list-btn-block .icon-info,
+.related_progress .exercises-list-btn-block--one .icon-plus,
+.exercises-list .exercises-list-btn-block .icon-plus {
+	left: 50%;
+	top: 50%;
+	margin: -14px 0 0 -14px;
+	display: block;
+}
+.related_progress .exercises-list-btn-block--one,
+.exercises-list .exercises-list-btn-block {
+	background: rgba(255,255,255,.5);
+	bottom: 0;
+	display: block;
+	left: 0;
+	opacity: 0;
+	position: absolute;
+	right: 0;
+	top: 0;
+	z-index: -1;
+}
+.related_progress li:hover .exercises-list-btn-block--one,
+.exercises-list li:hover .exercises-list-btn-block {
+	z-index: 2;
+	opacity: 1;
+	transition:.5s;
+}
+.exercises-list__item.ui-draggable-dragging .exercises-list-btn-block {
+	display: none;
+}
+.tab-exercises-list {
+	margin: 4px -20px 0 24px;
+}

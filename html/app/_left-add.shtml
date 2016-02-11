@@ -1,0 +1,79 @@
+		<form class="app-left pull-left tabs">
+
+			<div class="tabs__nav clr">
+					<ul>
+						<li><span class="tabs__dt tabs__dt--active" data-tab="1">Название</span></li>
+						<li><span class="tabs__dt tabs__dt" data-tab="2">Медиа</span></li>
+						<li><span class="tabs__dt tabs__dt" data-tab="3">Описание</span></li>
+						<li><span class="tabs__dt tabs__dt" data-tab="4">Фильтр</span></li>
+						<li><span class="tabs__dt tabs__dt" data-tab="5">Похожие</span></li>
+						<li><span class="tabs__dt tabs__dt" data-tab="6">Прогресс</span></li>
+					</ul>
+			</div>
+
+			<div class="tabs__dd tabs__dd--1 tabs__dd--active">
+				<div class="l-h form-tabs form-tabs--input100p">
+					<h2>Hазвание упражнения:</h2>
+					<p class="clr">
+						<label><input class="input"> <a class="icon-help" title="Обязательно для заполнения"></a></label>
+					</p>
+					<p class="clr">
+						<label>Поснение упражнения: <input class="input"><a class="icon-help" title="Отображается в программе после названия"></a></label>
+					</p>
+					<p class="clr">
+						<label>
+							<span>Порядок в списке:</span>
+							<input class="input w50">
+							<a class="icon-help" title="Если поле пустое, то упражнение добавится в конец списка"></a>
+						</label>
+					</p>
+				</div>
+			</div>
+			<div class="tabs__dd tabs__dd--2">
+				<div class="l-h form-tabs form-tabs--180">
+					<h2>Изображения</h2>
+					<p class="clr">
+						<label><span>Исходное положение:</span> <input type="file"></label>
+					</p>
+					<p class="clr">
+						<label><span>Конечное положение:</span> <input type="file"></label>
+					</p>
+					<p class="clr">
+						<label><span>Работающие положение:</span> <input type="file"></label>
+					</p>
+					<h2>Видео</h2>
+					<p class="clr">
+						<label><span>ID видео:</span> <input class="input"></label>
+						<a class="icon-help" title="цифры и буквы после знака ="></a>
+					</p>
+				</div>
+			</div>
+			<div class="tabs__dd tabs__dd--3">
+				<div class="l-h form-tabs">
+					<h2>Описание</h2>
+					<p>текстовый редактор, режет все атрибуты, разрешено только теги</p>
+				</div>
+			</div>
+			<div class="tabs__dd tabs__dd--4">
+				<div class="l-h form-tabs form-tabs--filter">
+
+<!--#include file="_filter.shtml"-->
+
+				</div>
+			</div>
+			<div class="tabs__dd tabs__dd--5">
+				<ul class="l-h exercises-my"></ul>
+			</div>
+			<div class="tabs__dd tabs__dd--6">
+				<ul class="l-h exercises-my">
+					<li class="exercises-my__item exercises-my__item--current-progress popup-box clr" style="height:100px">
+						<span class="exercises-list__name">Назбавние текущего упражнения</span>
+						<div class="exercises-list-btn-block exercises-list-btn-block--one hide not-drop">
+							<a class="icon-down-bold ico-move-item"></a>
+							<a class="icon-up-bold ico-move-item"></a>
+						</div>
+					</li>
+				</ul>
+			</div>
+
+		</form>

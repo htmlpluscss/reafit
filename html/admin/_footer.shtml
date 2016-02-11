@@ -1,0 +1,23 @@
+	</main>
+
+	<footer>
+
+		<p class="copyright">© 2015 «Training Programme»</p>
+
+	</footer>
+
+	<div class="popup popup--content">
+		<div class="popup__box">
+			<div class="popup__body"></div>
+			<a class="icon-cancel-outline popup__close"></a>
+		</div>
+	</div>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script src="/js/jquery-ui.min.js"></script>
+	<script src="/js/jquery.cookie.js"></script>
+	<script src="/js/js.js"></script>
+	<script src="/js/admin.js"></script>
+
+</body>
+</html>
