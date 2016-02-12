@@ -1,0 +1,27 @@
+body {
+	overflow: auto;
+	opacity: 1
+}
+.exercises-list__item-detal {
+	margin-top: 20px;
+}
+.popup-content--add {
+	margin-top: 10px;
+}
+.tabs__dt--active {
+	font-weight: 700;
+	font-size: 18px;
+}
+.tabs__dd--active {
+	margin-bottom: 30px;
+}
+
+@media print {
+	body {
+		min-width: inherit;
+	}
+	footer,
+	.menu_app {
+		display: none;
+	}
+}

@@ -1,0 +1,58 @@
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
+<body>
+	<header>
+		<a href="<?php echo base_url();?>" class="logo">
+			<img src="<?php echo base_url('assets/images/logo.png');?>" alt="<?php echo $this->settings->site_name;?>">
+		</a>
+		<?php if(isset($_nav) && !empty($_nav)):?>
+			<?php echo $_nav;?>
+		<?php else:?>
+		<nav>
+			<ul class="menu_top">
+				<?php if(!empty($this->user)):?>
+				<li><a href="<?php echo site_url('programs');?>"><?php echo lang('programs');?></a></li>
+				<li><a href="<?php echo site_url('exercises');?>"><?php echo lang('my_exercises');?></a></li>
+				<li><a href="<?php echo site_url('profile');?>"><?php echo lang('profile');?></a></li>
+				<?php else:?>
+				<li><a href="<?php echo site_url('login');?>"><?php echo lang('login');?></a></li>
+				<li><a href="<?php echo site_url('registration');?>"><?php echo lang('registration');?></a></li>
+				<?php endif;?>
+				<?php if(!empty($this->settings->forum_url)):?>
+				<li><a href="<?php echo $this->settings->forum_url;?>" target="_blank"><?php echo lang('forum');?></a></li>
+				<?php endif;?>
+				<li><a href="<?php echo site_url('feedback');?>"><?php echo lang('feedback');?></a></li>
+				<?php if(!empty($this->user)):?>
+				<li><a href="<?php echo site_url('logout');?>"><?php echo lang('logout');?></a></li>
+				<?php endif;?>
+			</ul>
+		</nav>
+		<?php endif;?>
+	</header>
+	<main class="clr">
+		<?php if(isset($info)):?>
+		<div class="info-message info-message--warning">
+			<p><?php echo $info;?></p>
+			<a class="info-message__close"></a>
+		</div>
+		<?php endif;?>
+
+		<?php if(isset($success)):?>
+		<div class="info-message info-message--success">
+			<p><?php echo $success;?></p>
+			<a class="info-message__close"></a>
+		</div>
+		<?php endif;?>
+
+		<?php if(isset($error)):?>
+		<div class="info-message info-message--error">
+			<p><?php echo $error;?></p>
+			<a class="info-message__close"></a>
+		</div>
+		<?php endif;?>
+
+		<?php if(function_exists('validation_errors') && validation_errors()):?>
+		<div class="info-message info-message--error">
+			<p><?php echo validation_errors();?></p>
+			<a class="info-message__close"></a>
+		</div>
+		<?php endif;?>
