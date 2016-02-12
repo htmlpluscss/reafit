@@ -116,7 +116,8 @@ body > .title_up {
 	height: 30px;
 	border-radius: 4px 4px 0 0;
 	position: relative;
-	background: #eee
+	background: #eee;
+	white-space: nowrap;
 }
 .tabs__dt--active {
 	background: #fff;

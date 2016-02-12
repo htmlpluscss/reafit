@@ -35,32 +35,6 @@ $window.ready(function(){
 
 	$window.trigger('resize').trigger('scroll');
 
-	// избранное
-	$('.icon-star:not(.icon-toggle-favorite), .icon-star-empty').on('click',function(e){
-		e.preventDefault();
-		var url = $(this).attr('href');
-		var type = parseInt($(this).data('type'));
-		$.ajax({
-			type:     'POST',
-			dataType: 'json',
-			cache:    false,
-			url:      url,
-			data: {
-				type : type
-			},
-			success: $.proxy(function(data){
-				if(data['success'].length != 0) {
-					if(type == 0) {
-						$(this).attr('class', 'icon-star-empty');
-						$(this).attr('data-type', 1);
-					} else {
-						$(this).attr('class', 'icon-star');
-						$(this).attr('data-type', 0);
-					}
-				}
-			}, this)
-		});
-	});
 
 // select
 	$('select').mySelect();
@@ -91,21 +65,11 @@ $window.ready(function(){
 	$('.input').filter('[type="email"]')
 		.on('change blur',function(){
 			var f = $(this).closest('form');
-			errorEmail($(this)) ? f.removeClass('not-valid-form') : f.addClass('not-valid-form');
+			errorEmail($(this)) || $(this).val() == '' ? f.removeClass('not-valid-form') : f.addClass('not-valid-form');
 		})
 		.on('keyup',function(){
-			var val = $(this).val();
-			if($(this).hasClass('not-required')) {
-				if(val.length != 0) {
-					if(testEmail(val)) {
-						$(this).next('.error').addClass('hide');
-					}
-				}
-			} else {
-				if(testEmail(val)) {
-					$(this).next('.error').addClass('hide');
-				}
-			}
+			if(testEmail($(this).val()))
+				$(this).next('.error').addClass('hide');
 		});
 
 // info-message
@@ -239,7 +203,7 @@ function getScrollBarWidth(){
 				popup.removeClass('show');
 				$('.popup-box--active').removeClass('popup-box--active');
 				if(t.closest(popup).is('.popup--content'))
-					t.find('.popup__body').children().remove();
+					t.closest(popup).find('.popup__body').children().remove();
 			}
 		});
 	})();
@@ -274,16 +238,13 @@ function getScrollBarWidth(){
 	}
 
 // one-event of table100--list
-	$('.one-event__delete').on('click',function(e){
+	$('.one-event__delete').on('click',function(){
 		var tr = $(this).closest('tr');
-		var text = $(this).data('text');
-		if(confirm(text) == true) {
+		if(confirm('Удалить упражнение?'))
 			tr.fadeOut(function(){
 				tr.remove();
+				alert('! упражнение не удаляется из бд. оно более не отображается в этом списке и в приложении')
 			});
-		} else {
-			e.preventDefault();
-		}
 	});
 	$('.one-event__detal').on('click',function(){
 		popupShow('content',$(this).closest('td'),'add');
