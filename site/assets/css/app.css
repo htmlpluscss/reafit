@@ -207,7 +207,7 @@ header .name-programme {
 }
 .exercises-my__item .exercises-list-btn-block .icon-left-bold,
 .exercises-my__item .exercises-list-btn-block .icon-plus,
-.exercises-my__item .exercises-list-btn-block .icon-info,
+.exercises-my__item .exercises-list-btn-block .icon-info:not(.exercise),
 .exercises-my__item .exercises-list-btn-block .icon-star {
 	display: none;
 }
@@ -438,4 +438,16 @@ header .name-programme {
 }
 .tab-exercises-list {
 	margin: 4px -20px 0 24px;
+}
+
+
+/* -------------------------  ------------------------- */
+.exercises-list__item-desc .hide-not-in-list,
+.exercises-list__item-desc.in-exercises-list .hide-in-list {
+	display: none;
+}
+
+.exercises-list__item-desc .hide-in-list,
+.exercises-list__item-desc.in-exercises-list .hide-not-in-list {
+	display: block;
 }
