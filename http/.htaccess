@@ -1,0 +1,26 @@
+AddDefaultCharset UTF-8
+
+RewriteEngine on
+RewriteBase /
+
+RewriteRule ^reg.html$ /registration [R=301,L] 
+RewriteRule ^login.html$ /login [R=301,L] 
+RewriteRule ^recovery.html$ /recovery [R=301,L] 
+RewriteRule ^feedback.html$ /feedback [R=301,L] 
+#RewriteRule ^/?page\.html$ - [R=404]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php?/$1 [L]
+
+<IfModule deflate_module>
+# Enable compression for the following file types.
+AddOutputFilterByType \
+DEFLATE \
+application/javascript \
+text/css \
+text/html \
+text/javascript \
+text/plain \
+text/xml
+</IfModule>
