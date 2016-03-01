@@ -2,6 +2,16 @@
 		<div class="pull-left">
 			<a class="btn" href="<?php echo site_url('exercises/add');?>"><?php echo lang('create_exercise');?></a>
 		</div>
+		<form class="pull-right" action="<?php echo $action;?>" method="GET">
+			<input class="input" name="search" value="<?php echo (!empty($search)) ? $search : '';?>">
+			<?php if(!empty($per_page) && isset($per_page_list[0]) && !empty($per_page_list[0])):?>
+			<input type="hidden" name="items" value="<?php echo $per_page;?>" />
+			<?php endif;?>
+			<button type="submit" class="btn align-middle"><?php echo lang('find');?></button>
+			<?php if(!empty($search)):?>
+			<button type="reset" class="btn align-middle btn-search"><?php echo lang('clear');?></button>
+			<?php endif;?>
+		</form>
 		<?php echo $this->load->view('frontend/_pagination', array('pagination'=>$pagination, 'action' => $action), TRUE);?>
 		<table class="table100 table100--list">
 			<thead>

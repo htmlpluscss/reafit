@@ -40,6 +40,8 @@ class MY_Pagination extends CI_Pagination {
 		$suffix = array();
 		$search = $this->CI->input->get('search');
 		$items = $this->CI->input->get('items');
+		$order = $this->CI->input->get('order');
+		$sort = $this->CI->input->get('sort');
 
 		if(!empty($search)) {
 			$suffix[] = 'search='.$search;
@@ -47,6 +49,14 @@ class MY_Pagination extends CI_Pagination {
 
 		if(!empty($items)) {
 			$suffix[] = 'items='.$items;
+		}
+
+		if(!empty($order)) {
+			$suffix[] = 'order='.$order;
+		}
+
+		if(!empty($sort)) {
+			$suffix[] = 'sort='.$sort;
 		}
 
 		if(!empty($suffix)) {

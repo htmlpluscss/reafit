@@ -606,11 +606,27 @@ class Exercises_model extends CI_Model {
         }
     }
 
-    public function getExercisesListTotal($user_id, $deleted = false) {
+    public function getExercisesListTotal($user_id, $deleted = false, $params = array()) {
         if($user_id) {
             $this->db->where('user_id', $user_id);
             if(!$deleted) {
                 $this->db->where('deleted', 0);
+            }
+            if(!empty($params)) {
+                $first = true;
+                $keys = array('name', 'name_desc', 'description');
+                $this->db->group_start();
+                foreach ($params as $key => $param) {
+                    if(in_array($key, $keys)) {
+                        if($first) {
+                            $this->db->like($key, mb_strtolower($param));
+                            $first = false;
+                        } else {
+                            $this->db->or_like($key, mb_strtolower($param));
+                        }
+                    }
+                }
+                $this->db->group_end();
             }
             $this->db->from($this->table);
             return $this->db->count_all_results();
@@ -632,7 +648,7 @@ class Exercises_model extends CI_Model {
         }
     }
 
-    public function getExercisesList($user, $per_page = null, $page = 0, $deleted = false) {
+    public function getExercisesList($user, $per_page = null, $page = 0, $deleted = false, $params = array(), $order = false) {
         if($user->id) {
             $this->db->select('*');
             $this->db->select('id AS tags');
@@ -645,7 +661,26 @@ class Exercises_model extends CI_Model {
                 $this->db->where('deleted', 0);
             }
 
-            $this->db->order_by('order', 'ASC');
+            if(empty($order)) {
+                $this->db->order_by('order', 'ASC');
+            }
+
+            if(!empty($params)) {
+                $first = true;
+                $keys = array('name', 'name_desc', 'description');
+                $this->db->group_start();
+                foreach ($params as $key => $param) {
+                    if(in_array($key, $keys)) {
+                        if($first) {
+                            $this->db->like($key, mb_strtolower($param));
+                            $first = false;
+                        } else {
+                            $this->db->or_like($key, mb_strtolower($param));
+                        }
+                    }
+                }
+                $this->db->group_end();
+            }
 
             if($per_page) {
                 $query = $this->db->get($this->table, $per_page, $page);

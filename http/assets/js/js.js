@@ -12,6 +12,7 @@ var windowWidth,
 	windowHeight,
 	windowScrollTop,
 	resizeTimeoutId,
+	scrollTimeoutId,
 	ScrollBarWidth,
 	$window = $(window);
 
@@ -147,6 +148,7 @@ $window.ready(function(){
 			select.on('change',function(){
 				var o = select.children(':selected');
 				visible.text(o.text());
+				$(this).addClass('changed');
 			}).trigger('change');
 
 		}
@@ -282,19 +284,75 @@ function getScrollBarWidth(){
 
 // one-event of table100--list
 	$('.one-event__delete').on('click',function(e){
-		var tr = $(this).closest('tr');
+		//var tr = $(this).closest('tr');
 		var text = $(this).data('text');
-		if(confirm(text) == true) {
+		$('.popup--msg p').html(text);
+		$('.popup--msg a.btn-cancel-popup').removeClass('hide');
+		if(!$('.popup--msg a.btn-no-popup').hasClass('has')) {
+			$('.popup--msg a.btn-no-popup').addClass('hide');
+		}
+		$('.popup--msg a.btn-yes-popup').attr('href', $(this).attr('href'));
+		$('.popup--msg a.btn-yes-popup').removeClass('hide');
+		popupShow('msg');
+		e.preventDefault();
+		/*if(confirm(text) == true) {
 			tr.fadeOut(function(){
 				tr.remove();
 			});
 		} else {
 			e.preventDefault();
-		}
+		}*/
 	});
+
 	$('.one-event__detal').on('click',function(){
 		popupShow('content',$(this).closest('td'),'add');
 	});
+
+	$('form button.btn-search').on('click', function(e){
+		var form = $(this).closest('form');
+		form.find('input[name="search"]').val('');
+		form.submit();
+	});
+
+	if($('a.sort-btn').length != 0) {
+		$('a.sort-btn').on('click', function(e){
+			e.preventDefault();
+			var sort = $(this).data('sort');
+			var order = $(this).data('order');
+			$(document).find('input[name="sort"]').val(sort);
+			$(document).find('input[name="order"]').val(order);
+			$('form.search-form').submit();
+		});
+	}
+
+	if($('.pagination-items').length != 0) {
+		$('.pagination-items').change(function() {
+			if($(this).hasClass('changed')) {
+				$(this).closest('form').submit();
+			}
+
+		});
+	}
+
+	/*$('.btn-to-list, .icon-link, .icon-docs, .icon-print, .icon-mail, .btn-new, .icon-mail, .open-program-link').on('click', function(e){
+		var saved = parseInt($('.btn-save').data('change'));
+		var url = $(this).attr('href');
+		var target = $(this).attr('target');
+		if(saved !=  undefined && saved == 1) {
+			e.preventDefault();
+			if(url == undefined) {
+				url = '#';
+			}
+			if(target != undefined) {
+				$('.popup--close a.btn:not(.btn-save-popup)').attr('target', target);
+			} else {
+				$('.popup--close a.btn:not(.btn-save-popup)').attr('target', '');
+			}
+			$('.popup--close a.btn:not(.btn-save-popup)').attr('href', url);
+			popupShow('close');
+		}
+	});*/
+
 
 /*
  * Copyright 2012 Andrey тA.I.т Sitnik <andrey@sitnik.ru>,

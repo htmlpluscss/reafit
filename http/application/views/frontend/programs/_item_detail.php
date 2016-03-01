@@ -16,7 +16,10 @@
 										<img src="<?php echo site_url('images/'.$exercise->image_1);?>" alt="<?php echo $exercise->name;?>">
 										<?php endif;?>
 										<?php if($exercise->image_2):?>
-										<img src="<?php echo site_url('images/'.$exercise->image_2);?>" alt="<?php echo $exercise->name;?>">
+										<img src="<?php echo site_url('images/'.$exercise->image_2);?>" alt="<?php echo $exercise->name;?>" class="hide-in-list show-in-detail">
+										<?php endif;?>
+										<?php if($exercise->image_3):?>
+										<img src="<?php echo site_url('images/'.$exercise->image_3);?>" alt="<?php echo $exercise->name;?>" class="hide-not-in-list hide-in-detail">
 										<?php endif;?>
 										<table>
 											<tr>

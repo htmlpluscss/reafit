@@ -64,6 +64,8 @@ class User extends MY_Controller {
     public function logout() {
     	$this->load->helper('cookie');
 
+    	$this->user_model->unsetAutoLogin($this->user->email);
+
         $this->session->unset_userdata('logged');
         $this->session->sess_destroy();
 
@@ -75,11 +77,13 @@ class User extends MY_Controller {
     public function registration() {
     	$this->load->helper('string');
     	$this->load->library('email');
+    	$this->load->library('logging');
+	    $logger = $this->logging->get_logger('registration');
 
 	    $this->load->helper('form');
 	    $this->load->library('form_validation');
 
-	    $settings = $this->settings_model->getValues(array('site_name', 'bot_mail', 'register_text', 'regions', 'status'));
+	    $settings = $this->settings_model->getValues(array('site_name', 'bot_mail', 'register_text', 'regions', 'status', 'admin_register_text'));
 
 	    $data['title'] = lang('register_title');
 
@@ -121,7 +125,7 @@ class User extends MY_Controller {
 	    			'type'        => $type,
 	    			'registration' => date ('Y-m-d H:i:s'),
 	    			'confirm'     => md5($this->input->post('mail') . ' '.date ('Y-m-d H:i:s') . ' ' . rand(5, 10)),
-	    			'url'         => md5($mail.'-'.date ('Y-m-d H:i:s') . ' ' . rand(25, 50))
+	    			'url'         => md5($mail.'-'.date ('Y-m-d H:i:s') . ' ' . rand(25, 50)),
 	    		);
 
 	    	if($this->user_model->addUser($user)) {
@@ -135,7 +139,8 @@ class User extends MY_Controller {
 		    					'{STATUS}',
 		    					'{EMAIL}',
 		    					'{LINK}',
-		    					'{PASSWORD}'
+		    					'{PASSWORD}',
+		    					'{IP}'
 	    					),
 	    					array(
 	    						$surname,
@@ -146,7 +151,8 @@ class User extends MY_Controller {
 	    						$type,
 	    						$mail,
 	    						$this->config->item('host_url').'registration/'.$user['confirm'],
-	    						$pass
+	    						$pass,
+	    						$this->input->ip_address(),
 	    					),
 	    					$settings->register_text
 	    				);
@@ -157,9 +163,84 @@ class User extends MY_Controller {
 				$this->email->message($text);
 				$this->email->send();
 
+				$admin_users = $this->user_model->getAdmins();
+
+				if(!empty($admin_users)) {
+					$emails = array();
+					foreach ($admin_users as $key => $admin) {
+						$emails[] = $admin->email;
+					}
+
+		    		$text = str_replace(
+		    					array(
+		    						'{SURNAME}',
+		    						'{NAME}',
+			    					'{MIDDLE_NAME}',
+			    					'{REGION}',
+			    					'{PHONE}',
+			    					'{STATUS}',
+			    					'{EMAIL}',
+			    					'{LINK}',
+			    					'{PASSWORD}',
+			    					'{IP}'
+		    					),
+		    					array(
+		    						$surname,
+		    						$name,
+		    						$middle_name,
+		    						$region,
+		    						$phone,
+		    						$type,
+		    						$mail,
+		    						$this->config->item('host_url').'registration/'.$user['confirm'],
+		    						$pass,
+		    						$this->input->ip_address(),
+		    					),
+		    					$settings->admin_register_text
+		    				);
+
+					$this->email->from($settings->bot_mail, $settings->site_name);
+					$this->email->to($emails);
+					$this->email->subject(lang('new_user_registration'));
+					$this->email->message($text);
+					$this->email->send();
+				}
+
+				$text = str_replace(
+		    					array(
+		    						'{SURNAME}',
+		    						'{NAME}',
+			    					'{MIDDLE_NAME}',
+			    					'{REGION}',
+			    					'{PHONE}',
+			    					'{STATUS}',
+			    					'{EMAIL}',
+			    					'{LINK}',
+			    					'{PASSWORD}',
+			    					'{IP}'
+		    					),
+		    					array(
+		    						$surname,
+		    						$name,
+		    						$middle_name,
+		    						$region,
+		    						$phone,
+		    						$type,
+		    						$mail,
+		    						$this->config->item('host_url').'registration/'.$user['confirm'],
+		    						'',
+		    						$this->input->ip_address(),
+		    					),
+		    					$settings->admin_register_text
+		    				);
+
 				$this->session->set_flashdata('success', lang('confirm_register'));
+
+				$logger->info(lang('registration')."\n".$text);
 	    	} else {
 	    		$this->session->set_flashdata('error', lang('error_execution'));
+
+	    		$logger->info(lang('registration')."\n".$text);
 	    	}
 	    	redirect(base_url());
 	    }
@@ -192,6 +273,8 @@ class User extends MY_Controller {
     public function recovery() {
     	$this->load->helper('string');
     	$this->load->library('email');
+    	$this->load->library('logging');
+	    $logger = $this->logging->get_logger('recovery');
 
 	    $this->load->helper('form');
 	    $this->load->library('form_validation');
@@ -242,8 +325,38 @@ class User extends MY_Controller {
 				$this->email->send();
 
 				$this->session->set_flashdata('success', lang('recovery_send'));
+
+				$text = str_replace(
+	    					array(
+	    						'{SURNAME}',
+	    						'{NAME}',
+		    					'{MIDDLE_NAME}',
+		    					'{REGION}',
+		    					'{PHONE}',
+		    					'{STATUS}',
+		    					'{DATE}',
+		    					'{PASSWORD}',
+		    					'{EMAIL}'
+	    					),
+	    					array(
+	    						$user->surname,
+	    						$user->name,
+	    						$user->middle_name,
+	    						$user->region,
+	    						$user->phone,
+	    						$user->type,
+	    						date('Y-m-d H:i:s', strtotime($user->registration)),
+	    						'',
+	    						$mail
+	    					),
+	    					$settings->recovery_text
+	    				);
+
+				$logger->info(lang('recovery')."\n".$text);
 	    	} else {
 	    		$this->session->set_flashdata('error', lang('error_execution'));
+
+	    		$logger->info(lang('recovery')."\n".$text);
 	    	}
 	    	redirect(base_url());
 	    }

@@ -1200,3 +1200,22 @@ jQuery.trumbowyg = {
         }
     };
 })(navigator, window, document, jQuery);
+
+
+    $(document).ready(function() {
+        if($('body .editor').length != 0) {
+            $('body .editor').trumbowyg({
+                fullscreenable: false,
+                lang: 'ru',
+                btns: [
+                    'btnGrp-design',
+                    '|', 'btnGrp-justify',
+                    '|', 'btnGrp-lists'
+                ],
+                removeformatPasted: true,
+                semantic: true
+            }).on('tbwchange', function(){
+                $('body .btn-save').attr('data-change', 1);
+            });
+        }
+    });

@@ -23,7 +23,31 @@ class Programs extends MY_Controller {
 
 		$data['title'] = lang('program_list_title');
 
-		$total = $this->programs_model->getProgramsListTotal($this->user->id);
+        $search = $this->input->get('search');
+        $search = trim($search);
+
+        $data['search'] = $search;
+
+        if(!empty($search)) {
+            $search_array = array(
+                    'name'        => $search,
+                    'description' => $search
+                );
+        } else {
+            $search_array = array();
+        }
+
+        $sort_array = $this->getSort();
+
+        if(!empty($sort_array)) {
+            $sort = $this->input->get('sort');
+            $data['sort'] = trim($sort);
+
+            $order = $this->input->get('order');
+            $data['order'] = trim($order);
+        }
+
+		$total = $this->programs_model->getProgramsListTotal($this->user->id, false, $search_array);
 		$per_page = $this->input->get('items');
 
 		$data['per_page_list'] = $this->per_page;
@@ -41,7 +65,7 @@ class Programs extends MY_Controller {
 
 		$data['pagination'] = $this->pagination->render($total, $per_page, base_url('programs'), 2);
 
-		$data['items']  = $this->programs_model->getProgramsList($this->user, $per_page, $page);
+		$data['items']  = $this->programs_model->getProgramsList($this->user, $per_page, $page, false, $search_array, $sort_array);
 		$data['action'] = base_url('programs');
 
 		$this->template($data);
@@ -49,6 +73,7 @@ class Programs extends MY_Controller {
 
     public function add() {
         $data =  array();
+        $this->onlyLoged();
         if($this->user->is_admin) {
             redirect(base_url('admin/programs/add'));
         }
@@ -72,7 +97,7 @@ class Programs extends MY_Controller {
             $change_order = false;
             $hash = md5($this->user->id . ' ' . date ('Y-m-d H:i:s') . ' ' . rand(7, 15));
 
-            if(isset($_FILES['image']) && !empty($_FILES['image']['name'])) {
+            /*if(isset($_FILES['image']) && !empty($_FILES['image']['name'])) {
                 $image = $this->upload('image');
                 if($image) {
                     $image = $image['file_name'];
@@ -81,7 +106,7 @@ class Programs extends MY_Controller {
                 }
             } else {
                 $image = null;
-            }
+            }*/
 
             $total = $this->programs_model->getProgramsListTotal($this->user->id);
 
@@ -151,7 +176,7 @@ class Programs extends MY_Controller {
 
     public function edit($hash) {
         $data =  array();
-
+        $this->onlyLoged();
         if($this->user->is_admin) {
             redirect(base_url('admin/programs/'.$hash));
         }
@@ -159,6 +184,11 @@ class Programs extends MY_Controller {
         $old_data = $this->programs_model->getPrograms($hash);
         if(!$old_data) {
             show_404();
+        }
+
+        if($old_data->user_id != $this->user->id) {
+            $this->session->set_flashdata('error', lang('error_not_have_right_p'));
+            redirect(base_url('programs'));
         }
 
         $this->load->helper('form');
@@ -183,7 +213,7 @@ class Programs extends MY_Controller {
             $description   = $this->input->post('description');
             $hash = $old_data->hash;
 
-            if(isset($_FILES['image']) && !empty($_FILES['image']['name'])) {
+            /*if(isset($_FILES['image']) && !empty($_FILES['image']['name'])) {
                 $file_1 = $this->upload('image');
                 if($file_1) {
                     $file_1 = $file_1['file_name'];
@@ -192,7 +222,7 @@ class Programs extends MY_Controller {
                 }
             } else {
                 $file_1 = null;
-            }
+            }*/
 
             $insert = array(
                     'edited'      => date ('Y-m-d H:i:s'),
@@ -373,60 +403,6 @@ class Programs extends MY_Controller {
         $this->template($data, 'frontend', null, array('_nav', '_popups'));
     }
 
-    /*public function saveProgramData($hash) {
-        if(!$hash && !isset($this->user->id)) {
-            $this->ajaxResponse(array(), lang('error_execution'));
-            return false;
-        }
-
-        $tab        = $this->input->post('tab');
-        $exercise   = $this->input->post('exercise');
-        $ralation   = (int) $this->input->post('ralation');
-        $quantity   = (int) $this->input->post('quantity');
-        $approaches = (int) $this->input->post('approaches');
-        $weight     = $this->input->post('weight');
-        $weight     = (!empty($weight)) ? (float) $weight : '';
-        $comment    = $this->input->post('comment');
-
-        $program = $this->programs_model->getProgramByHash($hash, true);
-
-        if(!$program) {
-            $this->ajaxResponse(array(), lang('error_execution'));
-            return false;
-        }
-
-        $tab      = $this->programs_model->getTabByHash($tab, false);
-        $exercise = $this->exercises_model->getExerciseByHash($exercise, false);
-
-        $data = array(
-                'quantity'   => $quantity,
-                'approaches' => $approaches,
-                'weight'     => $weight,
-                'comment'    => $comment
-            );
-
-        $where = array(
-                'id'          => (int) $ralation,
-                'tab_id'      => (int) $tab,
-                'exercise_id' => (int) $exercise,
-                'program_id'  => (int) $program->id
-            );
-
-        if($this->user->id != $program->user_id) {
-            $this->ajaxResponse(array(), lang('error_not_have_right'));
-            return false;
-        } else {
-            $result = $this->programs_model->setExerciseData($where, $data);
-            if($result) {
-                $this->ajaxResponse(lang('exercise_data_saved'));
-                return true;
-            } else {
-                $this->ajaxResponse(array(), lang('error_execution'));
-                return false;
-            }
-        }
-    }*/
-
     public function delete($hash) {
     	if(!$hash) {
     		$this->session->set_flashdata('error', lang('error_execution'));
@@ -562,4 +538,27 @@ class Programs extends MY_Controller {
         }
     }
 
+    private function getSort() {
+        $sort = $this->input->get('sort');
+        $sort = trim($sort);
+
+        $order = $this->input->get('order');
+        $order = trim($order);
+
+        $sorts  = array('asc', 'desc');
+        $orders = array('name', 'created', 'edited');
+
+        $result = array();
+        if(!empty($order) && !empty($sort)) {
+            if(in_array($order, $orders) && in_array($sort, $sorts)) {
+                $result[$order] = mb_strtoupper($sort);
+                return $result;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+
+    }
 }

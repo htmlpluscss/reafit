@@ -199,6 +199,7 @@ $lang['changes_saved']          = 'Изменения сохранены.';
 $lang['no_changes']             = 'Нет изменений для сохранения';
 $lang['error_login']            = 'Неверный e-mail или пароль';
 $lang['error_not_have_right']   = 'У Вас нет прав на просмотр/редактирование упражнения';
+$lang['error_not_have_right_p'] = 'У Вас нет прав на редактирование программы';
 $lang['error_admin_required']   = 'Этот раздел доступен только для администраторов!';
 
 
@@ -206,3 +207,14 @@ $lang['total_users_exercises']  = 'Всего Ваших упражнений';
 $lang['total_users_programs']   = 'Всего Ваших программ';
 $lang['last_10_programs']       = '10 последних программ';
 $lang['last_10_exercises']      = '10 последних упражнений';
+
+$lang['home']                   = 'Главная';
+$lang['404_title']              = 'Ошибка 404';
+$lang['404_text']               = 'Страница не существует';
+$lang['hide_description']       = 'Скрыть описание';
+$lang['find']                   = 'Найти';
+$lang['clear']                  = 'Очистить';
+
+$lang['new_user_registration']  = 'Регистрация нового пользователя';
+$lang['delete_program']         = 'Удалить программу?';
+$lang['yes']                    = 'Да';

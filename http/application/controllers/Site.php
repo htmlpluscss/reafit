@@ -47,6 +47,8 @@ class Site extends MY_Controller {
     	$this->load->model('user_model');
 	    $this->load->helper('form');
 	    $this->load->library('form_validation');
+	    $this->load->library('logging');
+	    $logger = $this->logging->get_logger('feedback');
 
 	    $data['title'] = lang('feedback_title');
 
@@ -94,8 +96,13 @@ class Site extends MY_Controller {
 				    $subject  = '';
 				    $message  = '';
 					$this->session->set_flashdata('success', lang('feedback_sccess'));
+
+					$logger->info(lang('feedback')."\n".$text);
+
 		    	} else {
 		    		$this->session->set_flashdata('error', lang('mail_send_error'));
+
+		    		$logger->info(lang('feedback')."\n".$text);
 		    	}
 		    	redirect(base_url('feedback'));
 	    }
@@ -117,7 +124,16 @@ class Site extends MY_Controller {
 	    $data['message'] = $message;
 
 	    $this->template($data);
-
     }
 
+	public function error()
+	{
+
+		$settings = $this->settings_model->getValues(array('home_title', 'home_header', 'home_video', 'home_text', 'home_end_text'));
+
+		$data['header']   = lang('404_title');
+		$data['text']     = lang('404_text');
+
+		$this->template_error($data);
+	}
 }

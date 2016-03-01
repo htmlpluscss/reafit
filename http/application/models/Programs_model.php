@@ -645,11 +645,27 @@ class Programs_model extends CI_Model {
         }
     }
 
-    public function getProgramsListTotal($user_id, $deleted = false) {
+    public function getProgramsListTotal($user_id, $deleted = false, $params = array()) {
         if($user_id) {
             $this->db->where('user_id', $user_id);
             if(!$deleted) {
                 $this->db->where('deleted', 0);
+            }
+            if(!empty($params)) {
+                $first = true;
+                $keys = array('name', 'description');
+                $this->db->group_start();
+                foreach ($params as $key => $param) {
+                    if(in_array($key, $keys)) {
+                        if($first) {
+                            $this->db->like($key, mb_strtolower($param));
+                            $first = false;
+                        } else {
+                            $this->db->or_like($key, mb_strtolower($param));
+                        }
+                    }
+                }
+                $this->db->group_end();
             }
             $this->db->from($this->table);
             return $this->db->count_all_results();
@@ -671,7 +687,7 @@ class Programs_model extends CI_Model {
         }
     }
 
-    public function getProgramsList($user, $per_page = null, $page = 0, $deleted = false) {
+    public function getProgramsList($user, $per_page = null, $page = 0, $deleted = false, $params = array(), $order = false) {
         if($user->id) {
             $this->db->select('a.*');
             $this->db->select('f.id AS favorite');
@@ -686,8 +702,31 @@ class Programs_model extends CI_Model {
             $this->db->join($this->favorite_table.' AS f', 'f.program_id = a.id', 'left');
             $this->db->join($this->users_table.' AS u', 'u.id = a.user_id', 'left');
 
-            $this->db->order_by('favorite', 'DESC');
-            $this->db->order_by('a.order', 'ASC');
+            if(empty($order)) {
+                $this->db->order_by('favorite', 'DESC');
+                $this->db->order_by('a.order', 'ASC');
+            } else {
+                foreach ($order as $key => $value) {
+                    $this->db->order_by($key, $value);
+                }
+            }
+
+            if(!empty($params)) {
+                $first = true;
+                $keys = array('name', 'description');
+                $this->db->group_start();
+                foreach ($params as $key => $param) {
+                    if(in_array($key, $keys)) {
+                        if($first) {
+                            $this->db->like('a.' . $key, mb_strtolower($param));
+                            $first = false;
+                        } else {
+                            $this->db->or_like('a.' . $key, mb_strtolower($param));
+                        }
+                    }
+                }
+                $this->db->group_end();
+            }
 
             if($per_page) {
                 $query = $this->db->get($this->table.' AS a', $per_page, $page);
@@ -707,7 +746,7 @@ class Programs_model extends CI_Model {
         }
     }
 
-    public function getProgramsListAdmin($user = false, $per_page = null, $page = 0, $params = array(), $count = false, $author = false, $deleted = false) {
+    public function getProgramsListAdmin($user = false, $per_page = null, $page = 0, $params = array(), $count = false, $author = false, $deleted = false, $order = false) {
         $this->db->select('e.*');
         $this->db->select('u.is_admin AS is_admin');
         if(!$deleted) {
@@ -730,7 +769,15 @@ class Programs_model extends CI_Model {
             $this->db->select('u.email AS user_mail');
             $this->db->select('u.url AS user_url');
         }
-        $this->db->order_by('e.user_id', 'DESC');
+
+        if(empty($order)) {
+            $this->db->order_by('e.user_id', 'DESC');
+        } else {
+            foreach ($order as $key => $value) {
+                $this->db->order_by('e.'.$key, $value);
+            }
+        }
+
         if(!empty($params)) {
             $first = true;
             $user_search = array('surname', 'name', 'middle_name', 'email');

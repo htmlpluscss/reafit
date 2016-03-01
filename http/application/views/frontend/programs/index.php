@@ -2,15 +2,32 @@
 		<div class="pull-left">
 			<a class="btn" href="<?php echo site_url('programs/add');?>"><?php echo lang('create_program');?></a>
 		</div>
+		<form class="pull-right search-form" action="<?php echo $action;?>" method="GET">
+			<input class="input" name="search" value="<?php echo (!empty($search)) ? $search : '';?>">
+			<?php if(!empty($per_page) && isset($per_page_list[0]) && !empty($per_page_list[0])):?>
+			<input type="hidden" name="items" value="<?php echo $per_page;?>" />
+			<?php endif;?>
+			<button type="submit" class="btn align-middle"><?php echo lang('find');?></button>
+			<?php if(!empty($search)):?>
+			<button type="reset" class="btn align-middle btn-search"><?php echo lang('clear');?></button>
+			<?php endif;?>
+			<?php if(isset($sort) && isset($order) && !empty($sort) && !empty($order)):?>
+			<input type="hidden" name="order" value="<?php echo $order;?>" />
+			<input type="hidden" name="sort" value="<?php echo $sort;?>" />
+			<?php else:?>
+			<input type="hidden" name="order" value="" />
+			<input type="hidden" name="sort" value="" />
+			<?php endif;?>
+		</form>
 		<?php echo $this->load->view('frontend/_pagination', array('pagination'=>$pagination, 'action' => $action), TRUE);?>
 		<table class="table100 table100--list">
 			<thead>
 				<tr>
 					<th class="hide"><?php echo lang('id');?></th>
-					<th><?php echo lang('name');?></th>
+					<th><?php echo lang('name');?> <a href="#" class="sort-btn<?php echo (isset($sort) && isset($order) && $sort == 'asc' && $order == 'name') ? ' active' : '';?>" data-order="name" data-sort="asc">&#8595;</a><a href="#" class="sort-btn<?php echo (isset($sort) && isset($order) && $sort == 'desc' && $order == 'name') ? ' active' : '';?>" data-order="name" data-sort="desc">&#8593;</a></th>
 					<th class="col-hide-2"><?php echo lang('description');?></th>
-					<th class="col-hide-3"><?php echo lang('created');?></th>
-					<th class="col-hide-4"><?php echo lang('edited');?></th>
+					<th class="col-hide-3"><?php echo lang('created');?> <a href="#" class="sort-btn<?php echo (isset($sort) && isset($order) && $sort == 'asc' && $order == 'created') ? ' active' : '';?>" data-order="created" data-sort="asc">&#8595;</a><a href="#" class="sort-btn<?php echo (isset($sort) && isset($order) && $sort == 'desc' && $order == 'created') ? ' active' : '';?>" data-order="created" data-sort="desc">&#8593;</a></th>
+					<th class="col-hide-4"><?php echo lang('edited');?> <a href="#" class="sort-btn<?php echo (isset($sort) && isset($order) && $sort == 'asc' && $order == 'edited') ? ' active' : '';?>" data-order="edited" data-sort="asc">&#8595;</a><a href="#" class="sort-btn<?php echo (isset($sort) && isset($order) && $sort == 'desc' && $order == 'edited') ? ' active' : '';?>" data-order="edited" data-sort="desc">&#8593;</a></th>
 					<th class="col-hide-8"><?php echo lang('favorite');?></th>
 					<th><?php echo lang('actions');?></th>
 				</tr>

@@ -32,9 +32,9 @@
 									<th><?php echo lang('weight');?></th>
 								</tr>
 								<tr>
-									<td><input class="input" value="<?php echo $exercise->quantity;?>"></td>
-									<td><input class="input" value="<?php echo $exercise->approaches;?>"></td>
-									<td><input class="input" value="<?php echo $exercise->weight;?>"></td>
+									<td><span><?php echo $exercise->quantity;?></span></td>
+									<td><span><?php echo $exercise->approaches;?></span></td>
+									<td><span><?php echo $exercise->weight;?></span></td>
 								</tr>
 							</table>
 							<table>
@@ -42,7 +42,7 @@
 									<th><?php echo lang('coment');?></th>
 								</tr>
 								<tr>
-									<td><textarea class="input"><?php echo $exercise->comment;?></textarea></td>
+									<td><span><?php echo $exercise->comment;?></span></td>
 								</tr>
 							</table>
 						</div>

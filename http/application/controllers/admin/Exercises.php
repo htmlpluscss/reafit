@@ -458,37 +458,56 @@ class Exercises extends MY_Controller {
     }
 
     private function upload($file) {
-    	if($file) {
-	        $config['upload_path']             = './images/';
-	        $config['allowed_types']           = 'gif|jpg|png';
-	        $config['max_size']                = 1000;
-	        $config['max_filename_increment']  = 100;
-	        $config['encrypt_name']            = true;
-	        $config['file_ext_tolower']        = true;
+        if($file) {
+            $config['upload_path']             = './images/';
+            $config['allowed_types']           = 'gif|jpg|png';
+            $config['max_size']                = 1000;
+            $config['max_filename_increment']  = 100;
+            $config['encrypt_name']            = true;
+            $config['file_ext_tolower']        = true;
 
-	        $this->load->library('upload', $config);
-	        if ( !$this->upload->do_upload($file)) {
-	            $error = $this->session->set_flashdata('error', $this->upload->display_errors());
-	            return false;
-	        } else {
-	        	$data = $this->upload->data();
+            $this->load->library('upload', $config);
+            if ( !$this->upload->do_upload($file)) {
+                $error = $this->session->set_flashdata('error', $this->upload->display_errors());
+                return false;
+            } else {
+                $data = $this->upload->data();
+                $setting_height = (int) $this->settings->image_height;
+                $setting_width = (int) $this->settings->image_width;
 
-	        	$imge_config['image_library']  = 'gd2';
-		        $imge_config['source_image']   = $data['full_path'];
-		        $imge_config['maintain_ratio'] = TRUE;
-		        $imge_config['width']          = (int) $this->settings->image_width;
-		        $imge_config['height']         = (int) $this->settings->image_height;
-		        $this->load->library('image_lib', $imge_config);
+                if($data['image_width'] > $setting_width && $data['image_height'] > $setting_height && $data['is_image']) {
+                    $imge_config['image_library']  = 'gd2';
+                    $imge_config['source_image']   = $data['full_path'];
+                    $imge_config['maintain_ratio'] = TRUE;
+                    $imge_config['width']          = (int) $this->settings->image_width;
+                    $imge_config['height']         = (int) $this->settings->image_height;
+                    $this->load->library('image_lib', $imge_config);
 
-		        if (!$this->image_lib->resize()) {
-		        	$error = $this->session->set_flashdata('error', $this->image_lib->display_errors());
-				}
-				$this->image_lib->clear();
-	        	return $data;
-	        }
-	    } else {
-	    	return false;
-	    }
+                    if (!$this->image_lib->resize()) {
+                        $error = $this->session->set_flashdata('error', $this->image_lib->display_errors());
+                    }
+                    $this->image_lib->clear();
+                }
+
+                if(!empty($this->settings->tinypng_key)) {
+                    $this->load->library('tinypng');
+                    $this->tinypng->initialize($this->settings->tinypng_key);
+                    $this->tinypng->shrink($data['full_path']);
+                    $result =  $this->tinypng->getResultJson();
+
+                    if(isset($result->output->url)) {
+                        $compressed = file_get_contents($result->output->url);
+                        if($compressed) {
+                            file_put_contents($data['full_path'], $compressed);
+                        }
+                    }
+                }
+
+                return $data;
+            }
+        } else {
+            return false;
+        }
     }
 
     public function changeOrder($hash) {

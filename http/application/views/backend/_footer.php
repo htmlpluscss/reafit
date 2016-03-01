@@ -14,6 +14,18 @@
 		</div>
 	</div>
 
+	<div class="popup popup--msg">
+		<div class="popup__box">
+			<div class="popup__body">
+				<p></p>
+				<a class="btn popup__close btn-cancel-popup hide" href="#"><?php echo lang('cancel');?></a>
+				<a class="btn popup__close btn-no-popup hide" href="#"><?php echo lang('close');?></a>
+				<a class="btn btn-yes-popup hide"><?php echo lang('yes');?></a>
+			</div>
+			<a class="icon-cancel-outline popup__close"></a>
+		</div>
+	</div>
+
 	<?php if(isset($_popups) && !empty($_popups)):?>
 	<?php echo $_popups;?>
 	<?php endif;?>
@@ -30,38 +42,6 @@
 	<script src="<?php echo $script;?>"></script>
 	<?php endforeach;?>
 	<?php endif;?>
-	<?php if($this->router->method == 'edit' || $this->router->method == 'add'):?>
-	<script>
-	$(document).ready(function() {
-		if($('body .editor').length != 0) {
-			$('body .editor').trumbowyg({
-				fullscreenable: false,
-				lang: 'ru',
-				btns: [
-					'btnGrp-design',
-					'|', 'btnGrp-justify',
-					'|', 'btnGrp-lists'
-				],
-				removeformatPasted: true,
-				semantic: true
-			}).on('tbwchange', function(){
-				$('body .btn-save').attr('data-change', 1);
-			});
-		}
-	});
-	</script>
-	<?php else:?>
-	<script>
-	$(document).ready(function() {
-		if($('.pagination-items').length != 0) {
-			$('.pagination-items').change(function() {
-				$(this).closest('form').submit();
-			});
-		}
-	});
-	</script>
-	<?php endif;?>
-
 	<script>
 		(function (d, w, c) {
 			(w[c] = w[c] || []).push(function() {

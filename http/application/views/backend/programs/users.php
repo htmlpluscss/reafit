@@ -1,7 +1,7 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
 		<form class="pull-right" action="<?php echo $action;?>" method="GET">
 			<input class="input" name="search" value="<?php echo (!empty($search)) ? $search : '';?>">
-			<?php if(!empty($per_page) && isset($per_page_list[0]) && $per_page_list[0] != $per_page):?>
+			<?php if(!empty($per_page) && isset($per_page_list[0]) && !empty($per_page_list[0])):?>
 			<input type="hidden" name="items" value="<?php echo $per_page;?>" />
 			<?php endif;?>
 			<button type="submit" class="btn align-middle"><?php echo lang('find');?></button>

@@ -34,6 +34,27 @@ http://htmlpluscss.ru
 
 	$('body').addClass('show');
 
+/* load img ---------- */
+/*
+	list.on('scroll',function(){
+		clearTimeout(scrollTimeoutId);
+		scrollTimeoutId = setTimeout(function(){
+			var scrollList = list.scrollTop();
+			var listVisible = listOne.hasClass('hide') ? listSet : listOne;
+			listVisible.not('.load-img').each(function(){
+				var t = $(this);
+				if(t.position().top > windowHeight + 300)
+					return false;
+				var img = $('<img>');
+				img.addClass('load-img').on('load',function()}{
+					t.html(img);
+				});
+				img.attr('src',$(this).attr('data-img-1'));
+			});
+		}, 100);
+	}).trigger('scroll');
+*/
+
 /* Иконки в шапке ---------- */
 
 	// fullscreen
@@ -248,6 +269,7 @@ http://htmlpluscss.ru
 			listOne.removeClass('hide');
 			listSet.addClass('hide');
 		}
+		list.scrollTop(0);
 		setTimeout(function(){
 			$window.trigger('resize');
 		});
@@ -641,7 +663,7 @@ http://htmlpluscss.ru
 				}
 			}
 	}
-/* 
+/*
 	$('.exercises-my__prev').click(function(e) {
 		var box = $('.popup-box--active').removeClass('popup-box--active').prev();
 		if(box!=undefined && box.length>0){
@@ -797,7 +819,15 @@ http://htmlpluscss.ru
 			data:     data,
 			success: $.proxy(function(data){
 				if(data['success'].length != 0) {
-					alert('Программа отправлена');
+					$('.popup--msg p').html('Программа отправлена');
+					$('.popup--msg a.btn-no-popup').removeClass('hide');
+					if(!$('.popup--msg a.btn-cancel-popup').hasClass('hide')) {
+						$('.popup--msg a.btn-cancel-popup').addClass('hide');
+					}
+					if(!$('.popup--msg a.btn-yes-popup').hasClass('hide')) {
+						$('.popup--msg a.btn-yes-popup').addClass('hide');
+					}
+					popupShow('msg');
 				}
 			}, this)
 		});

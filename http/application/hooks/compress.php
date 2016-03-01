@@ -72,7 +72,9 @@ if (!defined('BASEPATH'))
                         ' >'  => '>',
                         '< '  => '<',
                         '</ ' => '</',
-                        ' />' => '/>'
+                        ' />' => '/>',
+                        '> '  => '>',
+                        ' <' => '<'
                     );
             $html = str_replace(array_keys($replace), array_values($replace), $html);
 
@@ -83,10 +85,10 @@ if (!defined('BASEPATH'))
             //$this->html .= "\n" . $this->bottomComment($html, $this->html);
         }
         protected function removeWhiteSpace($str) {
+            $str = str_replace(array("\r\n", "\r"), "\n", $str);
             $str = str_replace("\t", ' ', $str);
             $str = str_replace("\n",  '', $str);
             $str = str_replace("\r",  '', $str);
-            $str = preg_replace("/\s/", " ", $str);
             $str = preg_replace("/\s{2,}/", " ", $str);
 
             return $str;

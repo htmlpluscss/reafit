@@ -454,3 +454,15 @@ header .name-programme {
 .exercises-list__item-desc.in-exercises-list .hide-not-in-list {
 	display: block;
 }
+
+.popup--content.show .hide-in-detail {
+	display: none !important;
+}
+
+.popup--content.show .show-in-detail {
+	display: block !important;
+}
+
+.exercises-my__item .exercises-list__img img.hide-in-list {
+	display: none;
+}

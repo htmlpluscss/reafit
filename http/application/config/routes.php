@@ -110,5 +110,5 @@ $route['admin/seo/add']                           = 'admin/seo/add';
 $route['admin/seo/([0-9a-f]{32})']                = 'admin/seo/edit/$1';
 $route['admin/seo/delete/([0-9a-f]{32})']         = 'admin/seo/delete/$1';
 
-$route['404_override']                      = '';
+$route['404_override']                      = 'site/error';
 $route['translate_uri_dashes']              = FALSE;

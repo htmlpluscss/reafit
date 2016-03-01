@@ -89,9 +89,3 @@ http://htmlpluscss.ru
 			}, this)
 		});
 	});
-
-	$('form button.btn-search').on('click', function(e){
-		var form = $(this).closest('form');
-		form.find('input[name="search"]').val('');
-		form.submit();
-	});

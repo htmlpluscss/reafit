@@ -12,6 +12,13 @@
 						<?php endif;?>
 						<?php endforeach;?>
 					</select>
+					<?php if(!empty($search)):?>
+					<input type="hidden" name="search" value="<?php echo $search;?>" />
+					<?php endif;?>
+					<?php if(isset($sort) && isset($order) && !empty($sort) && !empty($order)):?>
+					<input type="hidden" name="order" value="<?php echo $order;?>" />
+					<input type="hidden" name="sort" value="<?php echo $sort;?>" />
+					<?php endif;?>
 					</form>
 					<?php endif;?>
 				</div>

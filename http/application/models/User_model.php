@@ -73,6 +73,23 @@ class User_model extends CI_Model {
         }
     }
 
+    public function unsetAutoLogin($mail) {
+        if($mail) {
+            $data = array(
+                        'autologin' => null,
+                    );
+            $this->db->where('email', $mail);
+            $this->db->where('status', 1);
+            if($this->db->update($this->table, $data)) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
     public function loginTime($user = null) {
         if($user) {
             $data = array(
@@ -278,6 +295,18 @@ class User_model extends CI_Model {
                $_result[] = $user->id;
             }
             return $_result;
+        } else {
+            return false;
+        }
+    }
+
+    public function getAdmins() {
+        $this->db->select('email');
+        $this->db->where('is_admin', 1);
+        $query = $this->db->get($this->table);
+        $result = $query->result();
+        if($result) {
+            return $result;
         } else {
             return false;
         }

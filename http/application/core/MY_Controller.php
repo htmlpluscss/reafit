@@ -31,7 +31,7 @@ class MY_Controller extends CI_Controller
         $this->messages = $this->session->flashdata();
         $this->popup = null;
 
-        $this->settings = $this->settings_model->getValues(array('site_name', 'forum_url', 'image_width', 'image_height', 'per_page'));
+        $this->settings = $this->settings_model->getValues(array('site_name', 'forum_url', 'image_width', 'image_height', 'per_page', 'tinypng_key'));
 
         $this->autoLogin();
 
@@ -105,6 +105,73 @@ class MY_Controller extends CI_Controller
             }
         }
 
+    }
+
+    public function template_error($data = array(), $layout = 'frontend', $inc_views = null, $inc_views_private = null ) {
+        $this->layout = $layout;
+
+        $this->views = array('_head', '_header', 'site/error', '_footer');
+
+        array_unique($this->scripts);
+        array_filter($this->scripts);
+
+        if(!empty($this->scripts)) {
+            $data['scripts'] = $this->scripts;
+        }
+
+        array_unique($this->styles);
+        array_filter($this->styles);
+
+        if(!empty($this->styles)) {
+            $data['styles'] = $this->styles;
+        }
+
+        if(!empty($this->messages)) {
+            foreach ($this->messages as $key => $value) {
+                $data[$key] = $value;
+            }
+        }
+
+        $meta = $this->getMeta();
+        if($meta) {
+            $data['title'] = (!empty($meta->title)) ? $meta->title : '';
+            $data['description'] = $meta->description;
+            $data['keywords'] = $meta->keywords;
+        } else {
+            $data['title'] = (isset($data['title'])) ? $data['title'] : $this->settings->site_name;
+            $data['description'] = '';
+            $data['keywords'] = '';
+        }
+
+        if(!empty($inc_views)) {
+            if(is_array($inc_views)) {
+                foreach ($inc_views as $key => $value) {
+                    $data[$value] = $this->load->view($this->layout.'/'.$value, $data, TRUE);
+                }
+            } else {
+                $data[$inc_views] = $this->load->view($this->layout.'/'.$inc_views, $data, TRUE);
+            }
+        }
+
+        if(!empty($inc_views_private)) {
+            if(is_array($inc_views_private)) {
+                foreach ($inc_views_private as $key => $value) {
+                    $data[$value] = $this->load->view($this->layout.'/site/'.$value, $data, TRUE);
+                }
+            } else {
+                $data[$inc_views_private] = $this->load->view($this->layout.'/site/'.$inc_views_private, $data, TRUE);
+            }
+        }
+
+        if(!empty($this->views)) {
+            foreach ($this->views as $key => $view) {
+                if(!empty($this->layout)) {
+                    $this->load->view($this->layout.'/'.$view, $data);
+                } else {
+                    $this->load->view($view, $data);
+                }
+            }
+        }
     }
 
     public function ajaxResponse($data = array(), $error = false, $layout = 'frontend') {

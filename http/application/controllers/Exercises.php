@@ -23,7 +23,22 @@ class Exercises extends MY_Controller {
 
 		$data['title'] = lang('exercise_list_title');
 
-		$total = $this->exercises_model->getExercisesListTotal($this->user->id);
+        $search = $this->input->get('search');
+        $search = trim($search);
+
+        $data['search'] = $search;
+
+        if(!empty($search)) {
+            $search_array = array(
+                    'name'        => $search,
+                    'name_desc'   => $search,
+                    'description' => $search
+                );
+        } else {
+            $search_array = array();
+        }
+
+		$total = $this->exercises_model->getExercisesListTotal($this->user->id, false, $search_array);
 		$per_page = $this->input->get('items');
 
 		$data['per_page_list'] = $this->per_page;
@@ -41,7 +56,7 @@ class Exercises extends MY_Controller {
 
 		$data['pagination'] = $this->pagination->render($total, $per_page, base_url('exercises'), 2);
 
-		$data['items']  = $this->exercises_model->getExercisesList($this->user, $per_page, $page);
+		$data['items']  = $this->exercises_model->getExercisesList($this->user, $per_page, $page, false, $search_array);
 		$data['action'] = base_url('exercises');
 
 		$this->template($data);
@@ -429,18 +444,37 @@ class Exercises extends MY_Controller {
 	            return false;
 	        } else {
 	        	$data = $this->upload->data();
+                $setting_height = (int) $this->settings->image_height;
+                $setting_width = (int) $this->settings->image_width;
 
-	        	$imge_config['image_library']  = 'gd2';
-		        $imge_config['source_image']   = $data['full_path'];
-		        $imge_config['maintain_ratio'] = TRUE;
-		        $imge_config['width']          = (int) $this->settings->image_width;
-		        $imge_config['height']         = (int) $this->settings->image_height;
-		        $this->load->library('image_lib', $imge_config);
+                if($data['image_width'] > $setting_width && $data['image_height'] > $setting_height && $data['is_image']) {
+                    $imge_config['image_library']  = 'gd2';
+                    $imge_config['source_image']   = $data['full_path'];
+                    $imge_config['maintain_ratio'] = TRUE;
+                    $imge_config['width']          = (int) $this->settings->image_width;
+                    $imge_config['height']         = (int) $this->settings->image_height;
+                    $this->load->library('image_lib', $imge_config);
 
-		        if (!$this->image_lib->resize()) {
-		        	$error = $this->session->set_flashdata('error', $this->image_lib->display_errors());
-				}
-				$this->image_lib->clear();
+                    if (!$this->image_lib->resize()) {
+                        $error = $this->session->set_flashdata('error', $this->image_lib->display_errors());
+                    }
+                    $this->image_lib->clear();
+                }
+
+                if(!empty($this->settings->tinypng_key)) {
+                    $this->load->library('tinypng');
+                    $this->tinypng->initialize($this->settings->tinypng_key);
+                    $this->tinypng->shrink($data['full_path']);
+                    $result =  $this->tinypng->getResultJson();
+
+                    if(isset($result->output->url)) {
+                        $compressed = file_get_contents($result->output->url);
+                        if($compressed) {
+                            file_put_contents($data['full_path'], $compressed);
+                        }
+                    }
+                }
+
 	        	return $data;
 	        }
 	    } else {

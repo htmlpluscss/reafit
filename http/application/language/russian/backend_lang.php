@@ -213,6 +213,7 @@ $lang['bot_mail']               = 'E-mail для отправки писем с 
 $lang['recovery_text']          = 'Текст письма востановления пароля';
 $lang['regions']                = 'Регионы';
 $lang['register_text']          = 'Текст письма регистрации';
+$lang['admin_register_text']    = 'Текст письма регистрации для администратора';
 $lang['home_header']            = 'Заглавие на Главной';
 $lang['home_text']              = 'Текст на Главной';
 $lang['home_video']             = 'Видео на главной';
@@ -229,6 +230,7 @@ $lang['image_height']           = 'Высота изображения (px)';
 $lang['program_mail_text']      = 'Текст письма отправки программы';
 $lang['program_mail_subject']   = 'Тема письма отправки программы';
 $lang['status']                 = 'Статусы пользователей';
+$lang['tinypng_key']            = 'TinyPNG API-ключ';
 $lang['settings_saved']         = 'Настройки сохранены';
 $lang['settings_save_error']    = 'Ошибка сохранения настроек';
 
@@ -268,3 +270,5 @@ $lang['times']                  = 'раз';
 $lang['approaches']             = 'подходов';
 $lang['coment']                 = 'Комментарий';
 $lang['exercise_data_saved']    = 'Данные упражнения сохранены';
+
+$lang['yes']                    = 'Да';
