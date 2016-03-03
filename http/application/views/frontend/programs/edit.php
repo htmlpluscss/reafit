@@ -127,7 +127,7 @@
 					<input type="hidden" name="exercises[<?php echo $tab->hash;?>][name]" value="<?php echo $tab->name;?>" />
 					<ul class="l-h exercises-my" data-type="exercises[<?php echo $tab->hash;?>][data]">
 					<?php if(!empty($tab->exercises)):?>
-						<?php echo $this->load->view('frontend/'.$this->router->class.'/_item', array('program' => $hash, 'exercises'=>$tab->exercises, 'key'=>$key, 'tab'=>$tab, 'type' => 'exercises['.$tab->hash.'][data]'), TRUE);?>
+						<?php echo $this->load->view('frontend/'.$this->router->class.'/_item', array('program' => $hash, 'hide_id'=>true, 'exercises'=>$tab->exercises, 'key'=>$key, 'tab'=>$tab, 'type' => 'exercises['.$tab->hash.'][data]'), TRUE);?>
 					<?php endif;?>
 					</ul>
 				</div>
@@ -157,7 +157,7 @@
 			</div>
 			<ul class="exercises-list clr">
 				<?php if($exercises):?>
-				<?php echo $this->load->view('frontend/'.$this->router->class.'/_item', array('exercises'=>$exercises, 'class'=>'exercises-list__item popup-box','type'=>false), TRUE);?>
+				<?php echo $this->load->view('frontend/'.$this->router->class.'/_item', array('exercises'=>$exercises, 'hide_id'=>false, 'class'=>'exercises-list__item popup-box','type'=>false), TRUE);?>
 				<?php endif;?>
 				<?php if($programs):?>
 				<?php echo $this->load->view('frontend/'.$this->router->class.'/_item_program', array('programs'=>$programs), TRUE);?>

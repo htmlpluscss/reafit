@@ -14,11 +14,11 @@
 				<p><button class="btn" type="submit"><?php echo lang('_send');?></button></p>
 			<?php echo form_close(); ?>
 
-			<p id="mailto">Связь по электронной почте: </p>
+			<p id="mailto">Связь по электронной почте:</p>
 			<script>
 			(function () {
 				var add = '&#105;nf&#111;' + '&#64;' + 'r&#101;&#97;f&#105;t' + '&#46;' + 'r&#117;';
-				mailto.innerHTML += '<a ' + 'hr' + 'ef' + '=' + '\'' + '&#109;a' + 'i&#108;' + '&#116;o' + ':' + add + '\'>' + add + '<\/a>';
+				mailto.innerHTML += '&nbsp;<a ' + 'hr' + 'ef' + '=' + '\'' + '&#109;a' + 'i&#108;' + '&#116;o' + ':' + add + '\'>' + add + '<\/a>';
 			})();
  			</script>
 

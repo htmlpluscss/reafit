@@ -251,10 +251,18 @@ http://htmlpluscss.ru
 		if(del.hasClass('tabs__dt--not-delete')) return;
 		var li = del.parent().siblings();
 		del.add('.tabs__dd--active').fadeOut(1000,function(){
-			del.parent().add('.tabs__dd--active').remove();
-			setTimeout(function(){
-				li.last().children().trigger('click');
-			});
+			if($(this).hasClass('tabs__dd--active')){
+				del.parent().add('.tabs__dd--active').remove();
+				setTimeout(function(){
+					if(li.length>0){
+						li.last().children().trigger('click');
+					}
+					else {
+						$('.tabs__slider ul').append('<li class="placeholder"><span class="tabs__dt"></span></li>');
+						$('.app-add-tab').trigger('click');
+					}
+				});
+			}
 		});
 		$('body .btn-save').attr('data-change', 1);
 	});

@@ -17,7 +17,7 @@
 					<?php if(!empty($tab->exercises)):?>
 					<?php foreach ($tab->exercises as $exercise_key => $exercise) :?>
 					<li id="one-<?php echo $key.'-'.$exercise_key;?>" class="exercises-my__item popup-box clr" data-video="<?php echo $exercise->video;?>">
-						<span class="exercises-list__name"><?php echo $exercise->name;?> <span class="hide"><?php echo $exercise->name_desc;?></span></span>
+						<span class="exercises-list__name"><?php echo $exercise->name;?>&nbsp;<span class="hide"><?php echo $exercise->name_desc;?></span></span>
 						<span class="exercises-list__img">
 							<?php if($exercise->image_1):?>
 							<img src="<?php echo site_url('images/'.$exercise->image_1);?>" alt="<?php echo $exercise->name;?>">

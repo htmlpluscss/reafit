@@ -24,7 +24,7 @@
 				<form class="l-h send-email-form">
 					<h2><?php echo lang('send_program_mail');?></h2>
 					<div class="name-programme--email-false">
-						<p class="mb10"><?php echo lang('program');?> <span class="name-programme"><?php echo $name;?></span> <?php echo lang('will_be_sent_to');?> <?php echo lang('email');?>:</p>
+						<p class="mb10"><?php echo lang('program');?>&nbsp;<span class="name-programme"><?php echo $name;?></span>&nbsp;<?php echo lang('will_be_sent_to');?> <?php echo lang('email');?>:</p>
 						<p class="mb10"><input class="input send-email-form__email-2"  name="mail[]" type="email" placeholder="<?php echo lang('enter_mail');?>" data-error="<?php echo lang('mail_not_correct');?>" value="<?php echo $mail;?>"></p>
 					</div>
 					<input type="hidden" class="send-email-form__subject name-programme--input">

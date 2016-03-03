@@ -22,7 +22,7 @@
 					}
 				?>
 				<li id="one-<?php echo $exercise->hash;?>" class="exercises-my__item popup-box clr" data-filter="<?php echo (!empty($exercise->tags)) ? implode(',', $exercise->tags) : '';?>" data-video="<?php echo $exercise->video;?>" data-related="<?php echo $_related;?>" data-progress="<?php echo $_progress;?>" data-id="<?php echo $exercise->id;?>">
-					<span class="exercises-list__name"><?php echo $exercise->name;?> <span class="hide"><?php echo $exercise->name_desc;?></span></span>
+					<span class="exercises-list__name"><?php echo $exercise->name;?>&nbsp;<span class="hide"><?php echo $exercise->name_desc;?></span></span>
 					<span class="exercises-list__img">>
 						<?php if($exercise->image_1):?>
 						<img src="<?php echo site_url('images/'.$exercise->image_1);?>" alt="<?php echo $exercise->name;?>">
