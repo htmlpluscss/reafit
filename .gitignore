@@ -5,3 +5,15 @@
 /img/отрисовка 01-16-3-1.psd
 /img/отрисовка 01-16-41-1.psd
 /img/отрисовка2.psd
+/http/system
+/http/application/cache
+/http/application/config
+/http/application/controllers
+/http/application/core
+/http/application/helpers
+/http/application/hooks
+/http/application/language
+/http/application/libraries
+/http/application/logs
+/http/application/models
+/http/application/third_party
