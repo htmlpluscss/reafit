@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<title><?php echo $title;?></title>
-	<meta name="viewport" content="width=970">
+	<meta name="viewport" content="width=1000">
 	<?php if(isset($description)):?>
 	<meta name="description" content="<?php echo ($description) ? $description : '';?>">
 	<?php endif;?>
@@ -19,7 +19,7 @@
 	<link href="<?php echo $style;?>" rel="stylesheet">
 	<?php endforeach;?>
 	<?php endif;?>
-	<link href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700&amp;subset=latin,cyrillic" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&amp;subset=latin,cyrillic" rel="stylesheet">
 	<link rel="shortcut icon" href="<?php echo base_url('assets/favicon.ico');?>" type="image/x-icon">
 	<link rel="apple-touch-icon-precomposed" href="<?php echo base_url('assets/favicon.png');?>">
 </head>

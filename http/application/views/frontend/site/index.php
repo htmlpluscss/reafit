@@ -1,6 +1,6 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
 	<?php if(!$this->user):?>
-		<article>
+		<article class="page">
 			<?php if(!empty($header)):?>
 			<h1><?php echo $header;?></h1>
 			<?php endif;?>
@@ -18,7 +18,7 @@
 			<?php endif;?>
 		</article>
 	<?php else:?>
-		<article class="users-stat">
+		<article class="page users-stat">
 			<?php if(!empty($header)):?>
 			<h1><?php echo $header;?></h1>
 			<?php endif;?>
@@ -50,25 +50,36 @@
 			</ul>
 			<?php endif;?>
 
-			<h2><a href="<?php echo site_url('programs/add');?>"><?php echo lang('main_add_prog');?> <span class="icon-right-big"></span></a></h2>
-			<?php if($add_prog):?>
-			<?php echo $add_prog;?>
-			<?php endif;?>
-
-			<h2><a href="<?php echo site_url('programs');?>"><?php echo lang('main_open_prog');?> <span class="icon-right-big"></span></a></h2>
-			<?php if($open_prog):?>
-			<?php echo $open_prog;?>
-			<?php endif;?>
-
-			<h2><a href="<?php echo site_url('exercises/add');?>"><?php echo lang('main_add_app');?> <span class="icon-right-big"></span></a></h2>
-			<?php if($add_app):?>
-			<?php echo $add_app;?>
-			<?php endif;?>
-
-			<h2><a href="<?php echo site_url('exercises');?>"><?php echo lang('main_open_app');?> <span class="icon-right-big"></span></a></h2>
-			<?php if($open_app):?>
-			<?php echo $open_app;?>
-			<?php endif;?>
+			<table>
+				<tr>
+					<td>
+						<h2><a href="<?php echo site_url('programs/add');?>"><?php echo lang('main_add_prog');?> <span class="icon-right-big"></span></a></h2>
+						<?php if($add_prog):?>
+						<?php echo $add_prog;?>
+						<?php endif;?>
+					</td>
+					<td>
+						<h2><a href="<?php echo site_url('programs');?>"><?php echo lang('main_open_prog');?> <span class="icon-right-big"></span></a></h2>
+						<?php if($open_prog):?>
+						<?php echo $open_prog;?>
+						<?php endif;?>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<h2><a href="<?php echo site_url('exercises/add');?>"><?php echo lang('main_add_app');?> <span class="icon-right-big"></span></a></h2>
+						<?php if($add_app):?>
+						<?php echo $add_app;?>
+						<?php endif;?>
+					</td>
+					<td>
+						<h2><a href="<?php echo site_url('exercises');?>"><?php echo lang('main_open_app');?> <span class="icon-right-big"></span></a></h2>
+						<?php if($open_app):?>
+						<?php echo $open_app;?>
+						<?php endif;?>
+					</td>
+				</tr>
+			</table>
 
 		</article>
 	<?php endif;?>

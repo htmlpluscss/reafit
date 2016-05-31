@@ -1,12 +1,12 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
-		<form class="pull-right" action="<?php echo $action;?>" method="GET">
-			<input class="input" name="search" value="<?php echo (!empty($search)) ? $search : '';?>">
+		<form class="pull-right input-block" action="<?php echo $action;?>" method="GET">
+			<input class="input pull-left input-block__first" name="search" value="<?php echo (!empty($search)) ? $search : '';?>">
 			<?php if(!empty($per_page) && isset($per_page_list[0]) && !empty($per_page_list[0])):?>
 			<input type="hidden" name="items" value="<?php echo $per_page;?>" />
 			<?php endif;?>
-			<button type="submit" class="btn align-middle"><?php echo lang('find');?></button>
+			<label class="btn pull-left input-block__last"><?php echo lang('find');?><input type="submit" class="hide"></label>
 			<?php if(!empty($search)):?>
-			<button type="reset" class="btn align-middle btn-search"><?php echo lang('clear');?></button>
+			<a class="btn pull-left ml-10 btn--gray btn--reset"><?php echo lang('clear');?></a>
 			<?php endif;?>
 		</form>
 
@@ -18,6 +18,7 @@
 
 		<?php echo $this->load->view('backend/_pagination', array('pagination'=>$pagination, 'action' => $action, 'per_page' => $per_page, 'search'=>$search), TRUE);?>
 		<table class="table100 table100--list">
+			<?php if($items):?>
 			<thead>
 				<tr>
 					<th class="col-hide-1"><?php echo lang('id');?></th>
@@ -28,7 +29,6 @@
 				</tr>
 			</thead>
 			<tbody>
-			<?php if($items):?>
 			<?php foreach ($items as $key => $item) :?>
 				<tr>
 					<td class="align-center"><?php echo $item->id;?></td>
@@ -60,12 +60,14 @@
 					</td>
 				</tr>
 			<?php endforeach;?>
-			<?php else:?>
-				<tr>
-					<td colspan="5"><?php echo lang('no_programs');?></td>
-				</tr>
-			<?php endif;?>
 			</tbody>
+			<?php else:?>
+			<tbody>
+				<tr>
+					<td><?php echo lang('no_programs');?></td>
+				</tr>
+			</tbody>
+			<?php endif;?>
 		</table>
 
 		<?php echo $this->load->view('backend/_pagination', array('pagination'=>$pagination, 'action' => $action, 'per_page_list' => $per_page_list, 'per_page' => $per_page, 'search'=>$search), TRUE);?>
