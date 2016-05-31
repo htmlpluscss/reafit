@@ -96,10 +96,8 @@ http://htmlpluscss.ru
 		if(tab_id != undefined && $('form.save-form input[name="params[tab]"]').length > 0) {
 			$('form.save-form input[name="params[tab]"]').val(tab_id);
 		}
-		var category = $('.form-name-proggram').find('select').val();
-		if(category != undefined && $('form.save-form').find('.name-programme--category').val().length == 0) {
-			$('form.save-form').find('.name-programme--category').val(category);
-		}
+		changesProgramSave();
+
 		$('form.save-form').append('<input type="hidden" name="send" value="1" />');
 		$('form.save-form').submit();
 	});
@@ -117,14 +115,40 @@ http://htmlpluscss.ru
 		}
 	});
 
+	function changesProgramSave() {
+		var name = $('form.form-name-proggram').find('.name-programme--input').val();
+		if(name != undefined && name.length != 0) {
+			$('form.save-form').find('input[type=hidden].name-programme--input').val(name);
+			$('.name-programme').text(name);
+		}
+
+		var mail = $('form.form-name-proggram').find('.name-programme--email').val();
+		if(mail != undefined && mail.length != 0) {
+			$('form.save-form').find('input[type=hidden].name-programme--email').val(mail);
+		}
+
+		var desc = $('form.form-name-proggram').find('.name-programme--textarea').val();
+		if(desc != undefined && desc.length != 0) {
+			$('form.save-form').find('input[type=hidden].name-programme--textarea').val(desc);
+		}
+
+		var category = $('form.form-name-proggram').find('select').val();
+		if(category != undefined && category.length != 0) {
+			$('form.save-form').find('input[type=hidden].name-programme--category').val(category);
+		}
+	}
+
 	$('.btn-to-list, .icon-link, .icon-docs, .icon-print, .icon-mail, .btn-new, .icon-mail, .open-program-link').on('click', function(e){
 		var saved = parseInt($('.btn-save').data('change'));
 		var action = $(this).data('action');
-		//console.log(action);
+		var changed_desc = parseInt($('.btn-save').data('change-desc'));
 		var url = $(this).attr('href');
 		var target = $(this).attr('target');
 		if(saved !=  undefined && saved == 1) {
 			e.preventDefault();
+			if(changed_desc !=  undefined && changed_desc == 1) {
+				changesProgramSave();
+			}
 			if(url == undefined) {
 				url = '#';
 			}
@@ -290,6 +314,7 @@ http://htmlpluscss.ru
 			$('.tabs .tabs__dd--active').removeClass('tabs__dd--active');
 			$('form.save-form').prepend('<div class="tabs__dd tabs__dd--' + count + ' tabs__dd--active note"><div class="l-h"><h2>Заметка</h2><textarea class="editor" name="note"></textarea></div></div>');
 			$('body .btn-save').attr('data-change', 1);
+			$('form.form-name-proggram .app-add-note').text('Изменить заметку');
 		}
 	});
 	loadCSS = function(href) {
@@ -327,6 +352,7 @@ http://htmlpluscss.ru
 			list.children().draggable('destroy').droppable('destroy');
 			draggable_droppable_sortable();
 			$window.trigger('resize');
+			$('.tabs__slider').sliderTab();
 			$('body .btn-save').attr('data-change', 1);
 		}
 	});
@@ -628,6 +654,11 @@ http://htmlpluscss.ru
 		$('body .btn-save').attr('data-change', 1);
 	});
 
+	$('form.form-name-proggram').on('change', function() {
+		$('body .btn-save').attr('data-change', 1);
+		$('body .btn-save').attr('data-change-desc', 1);
+	});
+
 /* Список справа ---------- */
 	//listOne.append($('.exercises-list-btn-block--one').clone(true));
 	//listSet.append($('.exercises-list-btn-block--set').clone(true));
@@ -814,6 +845,80 @@ http://htmlpluscss.ru
 	});
 
 */
+// листание помещений
+	$.fn.sliderTab = function(){
+
+		var s = $(this);
+		var b = s.children('.box');
+		var ul = b.children();
+		var li = ul.children();
+
+		var xStart,
+			abscissa = 0;
+		var b_w = b.width();
+		var ul_w = ul.width();
+		var nextprev = $('.tabs__slider-nav-left, .tabs__slider-nav-right');
+
+		ul_w > b_w ? nextprev.show() : nextprev.hide();
+
+		nextprev.off().on('click',function(){
+			var t = $(this);
+			var a = li.filter('.active');
+			if(a.length==0) a = li.first();
+			var n = t.hasClass('tabs__slider-nav-right') ? a.next() : a.prev();
+			if(n.length == 0 || t.hasClass('tabs__slider-nav-left--stop')) {
+				t.addClass('tabs__slider-nav-left--stop');
+				return;
+			}
+			else
+				t.siblings().removeClass('tabs__slider-nav-left--stop');
+
+			var l = n.position().left;
+			b_w = b.width();
+			ul_w = ul.width();
+			if (l + b_w > ul_w) {
+				t.addClass('tabs__slider-nav-left--stop');
+			}
+			n.addClass('active');
+			a.removeClass('active');
+			abscissa = -l;
+			transformTranslate();
+		});
+
+		b.off().on('touchstart touchmove touchend',function(event){
+			if (event.type == 'touchstart') {
+				var touch = event.originalEvent.touches[0];
+				xStart = abscissa - parseInt(touch.clientX);
+				b.addClass('touch');
+			}
+			if (event.type == 'touchmove') {
+				var touch = event.originalEvent.touches[0];
+				abscissa = xStart + parseInt(touch.clientX);
+				transformTranslate();
+			}
+			if (event.type == 'touchend') {
+				b.removeClass('touch');
+				if(abscissa>0)
+					abscissa = 0;
+				if (-abscissa + b_w > ul_w)
+					abscissa = b_w - ul_w;
+				transformTranslate();
+			}
+		});
+
+		function transformTranslate() {
+			ul.css({
+				'-o-transform':'translate('+ abscissa +'px, 0px)',
+				'-webkit-transform':'translate('+ abscissa +'px, 0)',
+				'-webkit-transform':'translate3d('+ abscissa +'px, 0, 0)',
+				'transform':'translate('+ abscissa +'px, 0)',
+				'transform':'translate3d('+ abscissa +'px, 0, 0)'
+			});
+		}
+
+	};
+
+	$('.tabs__slider').sliderTab();
 
 // create App
 	// название программы
@@ -861,10 +966,10 @@ http://htmlpluscss.ru
 		$('.name-programme--text').text(e);
 		$('.name-programme--input').val(n);
 		$('.name-programme--email').val(e);
+		$('.name-programme--textarea').val(t);
 		$('.name-programme--category').val(c);
 		$('.name-programme--category select').val(c);
 		$('.name-programme--category select').trigger('change');
-		$('.name-programme--textarea').val(t);
 		e ?
 			$('.name-programme--email-true').removeClass('hide').siblings('.name-programme--email-false').addClass('hide'):
 			$('.name-programme--email-true').addClass('hide').siblings('.name-programme--email-false').removeClass('hide');

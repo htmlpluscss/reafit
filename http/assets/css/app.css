@@ -2,15 +2,6 @@ body {
 	opacity: 0;
 	overflow-y: hidden;
 }
-main {
-	display: block;
-	padding-bottom: 0;
-}
-footer {
-	height: 0;
-	overflow: hidden;
-}
-
 .fullscreen header,
 .fullscreen footer {
 	display: none;
@@ -43,62 +34,30 @@ header .name-programme {
 	font-size: 20px
 }
 
-
 /* popup
 -----------------------------------------------------------------------------*/
-.popup--filter .popup__box {
-	width: 980px;
-	overflow: hidden;
-}
 .popup--filter h3 {
-	font-size: 16px;
-	text-align: left;
-	text-transform: none;
-	color: #4a4a4a;
-	line-height: 28px;
-	padding-bottom: 20px;
-}
-.popup--filter .popup__box:before {
-	position: absolute;
-	left: 0;
-	right: 0;
-	bottom: 106px;
-	content: '';
-	height: 1px;
-	opacity: .1;
-	background: #979797;
+	font-weight: 700
 }
 .popup--filter h3 ~ h3{
 	padding-top: 12px;
 }
 .popup--filter .checkbox {
 	display: block;
-	font-size: 13px;
-	line-height: 15px;
-	margin-bottom: 4px;
-	min-height: 28px;
-	padding-top: 7px;
+	font-size: 14px;
+	line-height: 16px
 }
 .popup--filter .btn {
-	margin: 50px 0 0 10px
-}
-.popup--filter td:nth-child(1) {
-	width: 275px;
-}
-.popup--filter td:nth-child(2),
-.popup--filter td:nth-child(3) {
-	width: 240px;
+	margin: 10px 0 0 10px
 }
 .fast-result-search {
 	position: absolute;
-	left: 30px;
-	bottom: 40px;
-	color: #4a4a4a;
-	font-weight: 300;
+	left: 0;
+	bottom: 10px;
 }
-.fast-result-search b {
-	color: #4a90e2;
-	padding-left: 8px;
+.popup--filter .popup__body {
+	position: relative;
+	padding-bottom: 12px;
 }
 
 .popup--save .popup__box {
@@ -106,112 +65,69 @@ header .name-programme {
 	font-size: 20px;
 	text-align: center;
 }
+.popup--create .popup__box {
+	width: 480px;
+	font-size: 16px;
+	text-align: center;
+}
+.popup--create .popup__box .btn {
+	display: block;
+	margin: 12px auto;
+	width: 121px;
+}
 .popup--start .popup__box {
 	width: 330px;
 	font-size: 14px;
 	text-align: center;
 }
 
-
-.popup--content .popup__box {
-	padding: 20px 12px 20px 20px
-}
-.popup--content .popup-content__images {
-	float: left;
-	width: 216px;
-	padding: 24px 8px 28px;
-	border-radius: 4px;
-	background: #f8f8f8;
-}
-.popup--content .popup-content__images img{
-	float: left;
-	height: 100px;
-}
-.popup--content .popup-content__table  {
-	float: left;
-	position: absolute;
-	top: 20px;
-	right: 20px;
-}
-.popup--content .popup-content__table .btn {
-	display: block;
-	margin-top: 10px;
-	height: 44px;
-	line-height: 44px;
-}
-.popup--content .popup-content__table .input{
-	width: 120px;
-	height: 44px;
-	display: block;
-	margin: 0 10px 10px;
-	font-size: 12px;
-	padding: 10px;
-	font-weight: 300;
-	line-height: 24px;
-}
-.popup--content .popup-content__table textarea.input{
-	width: 224px;
-	height: 98px;
-	margin: 0;
-	padding: 5px 10px;
-}
-.popup-content__title {
-	font-weight: 700;
-	font-size: 14px;
-	padding-top: 20px;
-	line-height: 24px;
-}
-
-
-.popup--content .exercises-list__item-detal-btn {
-	right: 0;
-	top: 0;
-	width: 114px;
-}
-
-
-/* popup create
---------------------------------*/
 .popup--create .popup__box {
-	width: 590px;
-	overflow: visible;
-	height: 322px !important;
+	text-align: left;
+	height: 320px !important;
 }
-.popup--create .popup__box .btn {
-	display: block;
+.popup--create label span {
+	width: 111px;
+	padding: 10px;
+	display: inline-block;
 }
-.popup--create textarea.input {
-	height: 160px;
-	padding-top: 16px;
+.p-sel-input {
+	width: 111px;
+	padding-right: 10px;
+	display: inline-block;
 }
-
-/* popup close
---------------------------------*/
-.popup--close .popup__box {
-	height: 204px;
-	overflow: visible;
-	text-align: center;
+.new-program-form .select-block {
+	display: inline-block;
+    vertical-align: middle;
 }
-.popup--close p{
-	font-weight: 700;
-	color: #4a4a4a;
-	padding: 32px 0 24px;
+.popup--create .input,
+.popup--create .select-block {
+	width: 224px;
 }
-.popup--close .btn{
-	margin: 2px;
-	font-size: 12px;
-	font-weight: 400;
-	margin: 0 6px 22px;
-	height: 44px;
-	line-height: 44px;
-	padding: 0 22px;
-}
-
 .popup--create .error {
 	float: left;
 	clear: left;
 }
-
+.popup--create textarea.input {
+	display: inline-block;
+	height: 85px;
+	margin-top: 10px;
+	vertical-align: top;
+}
+.popup--create .select {
+	width: 224px;
+	padding: 0;
+}
+.popup--create .select .value {
+	border-radius: 4px;
+	color: #333;
+	font: 15px/20px Arial;
+	width: 224px;
+}
+.popup--create .select .value span {
+	padding: 0;
+	width: auto;
+	display: block;
+}
 
 .popup--lock .popup__box {
 	bottom: 0;
@@ -238,73 +154,16 @@ header .name-programme {
 	margin-top: 0;
 }
 
-/* head
------------------------------------------------------------------------------*/
-.programme-head {
-	height: 60px;
-	border-radius: 4px 4px 0 0;
-	background: #4a4a4a;
-	position: relative;
-	padding: 18px 22px;
-	font-size: 16px;
-	color: #fff;
-	line-height: 22px;
-	text-transform: none;
-}
-.programme-head .name-programme {
-	float: left;
-	max-width: 700px;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-}
-.programme-body {
-	background: url(1.png) -350px -261px;
-	background: #fff;
-//	background: url(2.png) -18px -13px;
-	padding: 10px 20px 0;
-}
-
 /* Left
 -----------------------------------------------------------------------------*/
-.menu_app {
-	position: relative;
-	margin-left: -17px;
-	padding-top: 10px;
-	height: 60px;
-}
-.menu_app li{
-	float: left;
-	margin-left: 17px;
-}
-.menu_app a{
-	width: 30px;
-	height: 30px;
-	position: relative;
-	display: block;
-}
-.form-tabs__btn .btn{
-	margin-right: 10px;
-	font-size: 12px;
-	font-weight: 400;
-	height: 40px;
-	line-height: 40px;
-	padding: 0 30px;
-}
-
-
-
 .app-left {
-	width: 460px;
+	width: 470px;
 }
 .app-left--view {
 	width: 100%;
 }
 .app-left h2{
-	color: #4a4a4a;
-	font-size: 16px;
-	line-height: 24px;
-	padding: 12px 0 14px;
+	padding: 8px;
 }
 .search-exercises__input  {
 	position: relative;
@@ -319,15 +178,13 @@ header .name-programme {
 	opacity: 0;
 }
 .l-h {
+	border: 1px solid #aaa;
 	border-radius: 0 4px 4px 4px;
 	min-height: 300px;
 	overflow-y: auto;
 	overflow-x: hidden;
-	padding: 20px 18px;
+	padding: 8px;
 	position: static;
-
-	border: solid 1px #dddce1;
-	background: #fcfcfd;
 }
 .exercises-my .exercises-my__plus {
 	border: 1px dashed #ccc;
@@ -337,195 +194,10 @@ header .name-programme {
 }
 .exercises-my__item {
 	cursor: grab;
-	border: 1px solid #dddce1;
-	border-radius: 4px;
-	margin-bottom: 20px;
-	height: 113px;
-	padding: 0 232px 0 210px;
-	background: #fff;
-}
-.exercises-list__desc {
-	position: absolute;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	width: 232px;
-	padding: 10px;
-	border-left: 1px solid #dddce1;
-	font-size: 11px;
-	line-height: 15px;
-	color: #4a4a4a;
-}
-.exercises-list__desc-text {
-	height: 75px;
-	padding-left: 4px;
-	overflow: hidden;
-}
-.exercises-list__desc .exercises-list__name {
-	display: block;
-	color: #4a90e2;
-	font-size: 14px;
-}
-.exercises-list__desc .exercises-list-btn-block {
-	bottom: 0;
-	display: block;
-	height: 30px;
-	left: 6px;
-	position: absolute;
-	right: 6px;
-}
-.exercises-list__desc .ico--info {
-	left: auto;
-	right: 0;
-}
-.exercises-list__img-second {
-	display: none !important;
-}
-
-.programme-body--print__detal table,
-.exercises-list__item-detal table {
-	width: 100%;
-}
-.programme-body--print__detal th,
-.programme-body--print__detal td,
-.exercises-list__item-detal th,
-.exercises-list__item-detal td {
-	text-align: left;
-	line-height: 16px;
-	font-size: 12px;
-	color: #16130d;
-	vertical-align: middle;
-	padding: 10px 10px 10px 16px;
-	border-top: 1px solid #dddce1;
-}
-.programme-body--print__detal th,
-.exercises-list__item-detal th {
-	font-weight: 500;
-	padding-right: 0;
-}
-.programme-body--print__detal th:nth-child(1),
-.exercises-list__item-detal th:nth-child(1) {
-	width: 120px;
-}
-.programme-body--print__detal td:nth-child(2),
-.exercises-list__item-detal td:nth-child(2) {
-	width: 60px;
-	border-right: 1px solid #dddce1;
-}
-.programme-body--print__detal [rowspan],
-.exercises-list__item-detal [rowspan]{
-	padding: 10px 0 0;
-	vertical-align: top;
-}
-.programme-body--print__detal [rowspan] b,
-.exercises-list__item-detal [rowspan] b{
-	padding-left: 10px;
-	font-weight: 700;
-}
-.exercises-list__item-detal-coment {
-	overflow: hidden;
-	height: 78px;
-	line-height: 15px;
-	font-weight: 400;
-}
-.exercises-list__item-detal-coment__bg {
-	padding: 2px 10px 8px;
-	background: #fff;
-	position: relative;
-	z-index: 2;
-}
-.exercises-my__item:hover .exercises-list__item-detal-coment {
-	overflow: visible;
-}
-.exercises-my__item:hover .exercises-list__item-detal-coment__bg:before {
-	position: absolute;
-	top: 0;
-	left: -1px;
-	right: -1px;
-	bottom: 0;
-	content: '';
-	border: 1px solid #dddce1;
-	border-top: 0;
-}
-.programme-body--print__detal tr:first-child th,
-.programme-body--print__detal tr:first-child td,
-.exercises-list__item-detal tr:first-child td,
-.exercises-list__item-detal tr:first-child th {
-	border-top-color: #fff;
-}
-.programme-body--print__detal tr:nth-child(2n),
-.exercises-list__item-detal tr:nth-child(2n) {
-	background: #f9f9f9
-}
-
-.programme-body--print {
-
-}
-.programme-body__h2 {
-	font-weight: 700;
-	font-size: 15px;
-	line-height: 20px;
-	color: #16130d;
-	padding: 12px 10px;
-	border-radius: 4px 4px 0 0;
-	background: #f3f3f3;
-	border: solid 1px #dddce1;
-}
-.programme-body--print__item {
-	border-left: solid 1px #dddce1;
-	border-right: solid 1px #dddce1;
-	background: #fcfcfd;
-	padding: 25px 10px 10px;
-}
-.programme-body--print__description {
-	overflow: hidden;
-	clear: both;
-	padding: 20px 20px 0;
-	border-top: 1px solid #dddce1;
-}
-.programme-body--print__description p {
-	font-size: 14px;
-	margin-bottom: 20px;
-	line-height: 20px;
-}
-.programme-body--print__description b {
-	font-weight: 700;
-}
-.programme-body--print__description h3 {
-	font-weight: 700;
-	font-size: 15px;
-	margin-top: 30px;
-	line-height: 20px;
-}
-.programme-body .ico--visible,
-.programme-body--description-hide .ico--hidden,
-.programme-body--description-hide .programme-body--print__description {
-	display: none;
-}
-.programme-body--description-hide .ico--visible {
-	display: block;
-}
-
-.programme-body--print__item--last{
-	border-radius: 0 0 4px 4px;
-	margin-bottom: 30px;
-	border-bottom: solid 1px #dddce1;
-}
-.programme-body--print__name {
-	font-size: 15px;
-	line-height: 20px;
-	color: #4a90e2;
-	padding-bottom: 20px;
-}
-.programme-body--print__name span {
-	font-weight: 700;
-	padding-right: 4px;
-}
-.programme-body--print__box {
-	border: 1px solid #dddce1;
-	border-radius: 4px;
-	background: #fff;
-	position: relative;
+	border: 1px solid #aaa;
+	border-radius: 3px;
+	margin-bottom: 10px;
+	padding: 10px 30px 10px 10px;
 }
 .app-left--view .exercises-my__item {
 	cursor: auto;
@@ -536,32 +208,28 @@ header .name-programme {
 .exercises-my .exercises-list__item {
 	position: absolute;
 }
-.programme-body--print__detal {
-	width: 590px;
-	float: left;
-}
-.programme-body--print__img,
-.exercises-my__item .exercises-list__img {
-	border-right: 1px solid #dddce1;
+
+.exercises-my__item .exercises-list-btn-block {
 	position: absolute;
-	top: 0;
-	left: 0;
-	bottom: 0;
-	width: 210px;
-	padding-top: 6px;
-}
-.programme-body--print__img {
-	position: relative;
-	height: 111px;
-	width: 318px;
-	float: left;
-}
-.exercises-my__item .exercises-list__img img,
-.programme-body--print__img img {
-	float: left;
-	margin-left: 4px;
+	bottom: 8px;
+	right: 3px;
 	display: block;
-	width: 100px;
+	z-index: 2;
+}
+.exercises-my__item .exercises-list-btn-block a {
+	display: block;
+	margin:0 3px;
+	font-size: 18px;
+	float: left;
+}
+.exercises-my__item .exercises-list__img {
+	float: left;
+	position: relative;
+	top: 10px;
+}
+.exercises-my__item .exercises-list__img img{
+	float: left;
+	display: block;
 }
 .exercises-my__item .exercises-list-btn-block .icon-left-bold,
 .exercises-my__item .exercises-list-btn-block .icon-plus,
@@ -570,7 +238,9 @@ header .name-programme {
 	display: none;
 }
 
-
+.exercises-my__item .exercises-list__name {
+	right: 10px;
+}
 .exercises-my__item .exercises-list__name .hide {
 	background: rgba(255,255,255,.5);
 	display: inline;
@@ -582,8 +252,32 @@ header .name-programme {
 	right: 0;
 }
 
-
-
+.form-tabs p{
+	margin: 8px;
+}
+.form-tabs [class^="icon-"]{
+	float: left;
+	margin-top: 4px;
+}
+.form-tabs .btn{
+	margin-left: 128px;
+}
+.form-tabs label,
+.form-tabs .input{
+	float: left;
+}
+.form-tabs sup{
+	color: red;
+	font-size: 16px;
+	vertical-align: baseline;
+	position: relative;
+	top: -3px;
+	left: 3px;
+}
+.form-tabs label span {
+	float: left;
+	width: 128px;
+}
 .form-tabs textarea.input{
 	width: 280px;
 }
@@ -621,7 +315,7 @@ header .name-programme {
 /* Right
 -----------------------------------------------------------------------------*/
 .app-right {
-	width: 460px;
+	width: 472px;
 }
 .search-exercises {
 	padding-bottom: 8px;
@@ -636,18 +330,19 @@ header .name-programme {
 	overflow-y: auto;
 	overflow-x: hidden;
 	width: 486px;
-	margin-left: -20px;
+	margin-left: -14px;
 }
 .exercises-list__item {
 	cursor: grab;
 	float: left;
-	width: 132px;
-	height: 132px;
-	border-radius: 4px;
+	width: 142px;
+	height: 142px;
+	border-radius: 3px;
+	border: 1px solid #aaa;
 	text-align: center;
-	margin: 0 0 20px 20px;
+	margin: 0 0 14px 14px;
 	padding: 40px 10px 0;
-	background: #f7f7f7
+	background: #fff
 }
 .exercises-list__item.exercises-list__item--set:after,
 .exercises-list__item.exercises-list__item--set:before {
@@ -669,6 +364,16 @@ header .name-programme {
 .exercises-list__item img{
 	max-height: 100px;
 	margin: auto;
+}
+.exercises-list__name {
+	font-size: 12px;
+	line-height: 14px;
+	font-weight: 700;
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	right: 10px;
+	z-index: 1;
 }
 .exercises-list__img img{
 	display: none;

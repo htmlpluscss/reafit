@@ -18,23 +18,19 @@ var windowWidth,
 
 $window.on({
 	resize: function(){
-		clearTimeout(resizeTimeoutId);
-		resizeTimeoutId = setTimeout(function(){
-			pageResize();
-		}, 100);
+		setTimeout(function(){
+			windowWidth = $window.width();
+			windowHeight = $window.height();
+			ScrollBarWidth = getScrollBarWidth();
+
+			$('main').css('min-height',windowHeight-$('header').outerHeight()-$('footer').outerHeight());
+
+		},1);
 	},
 	scroll: function(){
 		windowScrollTop = $window.scrollTop();
 	}
 });
-
-	function pageResize(){
-		windowWidth = $window.width();
-		windowHeight = $window.height();
-		ScrollBarWidth = getScrollBarWidth();
-		$('main').css('min-height',windowHeight-$('header').outerHeight()-$('footer').outerHeight());
-	}
-	pageResize();
 
 $window.ready(function(){
 
@@ -71,7 +67,7 @@ $window.ready(function(){
 	$('select').mySelect();
 
 // checkbox
-	$('.checkbox').addClass('notsel').append('<i></i>');
+	$('.checkbox').append('<i></i>');
 	$('.checkbox-star input').on('change',function(){
 		var id = $(this).closest('tr').children().first().text();
 		var status = $(this).prop('checked') ? 'favorite' : 'personal';
@@ -120,14 +116,6 @@ $window.ready(function(){
 		});
 	});
 
-// input-placeholder
-	$('.input-placeholder').children('.input').on('keyup blur',function(){
-		var t = $(this);
-		setTimeout(function(){
-			t.parent().toggleClass('input-placeholder--active',Boolean(t.val()));
-		});
-	}).trigger('blur');
-
 });
 
 ;(function($){
@@ -138,7 +126,7 @@ $window.ready(function(){
 			var select = $(this);
 			select.wrap('<span class="select notsel"></span>');
 			var select_box = select.parent();
-			var c = '<span class="value"><span></span></span><span class="box"><ul>';
+			var c = '<span class="value"><span></span></span><a class="icon-angle-down"></a><a class="icon-angle-up"></a><span class="box"><ul>';
 			select.children('option').each(function() {
 				if($(this).val()!='none')
 					c += '<li data-value="' + $(this).val() + '">' + $(this).text() + '</li>';
@@ -146,12 +134,8 @@ $window.ready(function(){
 			c += '</ul></span>';
 			select.before(c);
 
-			var clss = select.attr('data-class');
 			var box_ul = select.siblings('.box');
 			var visible = select.siblings('.value').children();
-
-			if(clss !== undefined)
-				select_box.addClass(clss);
 
 			select_box.on('click', function() {
 				select_box.hasClass('focus') ? box_ul.hide() : box_ul.show();
@@ -166,13 +150,6 @@ $window.ready(function(){
 				visible.text(o.text());
 				$(this).addClass('changed');
 			}).trigger('change');
-
-			select.on('focus blur',function(){
-				select_box.trigger('click');
-			});
-
-			if(select.attr('data-required-sup') !== undefined)
-				visible.append('<sup>*</sup>');
 
 		}
 
@@ -190,7 +167,6 @@ $window.ready(function(){
 			var t = $(this);
 			var titleUp = $('<p class="title_up">');
 			titleUp.text(t.attr('title'));
-			titleUp.append('<i></i>');
 			t.removeAttr('title');
 			titleUp.appendTo(t);
 			titleUp.css({
@@ -336,7 +312,7 @@ function getScrollBarWidth(){
 		popupShow('content',$(this).closest('td'),'add');
 	});
 
-	$('form button.btn-search, .btn--reset').on('click', function(){
+	$('form button.btn-search').on('click', function(e){
 		var form = $(this).closest('form');
 		form.find('input[name="search"]').val('');
 		form.submit();

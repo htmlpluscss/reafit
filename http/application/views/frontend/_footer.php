@@ -10,7 +10,7 @@
 	<div class="popup popup--content">
 		<div class="popup__box">
 			<div class="popup__body"></div>
-			<a class="ico ico--close-white popup__close"></a>
+			<a class="icon-cancel-outline popup__close"></a>
 		</div>
 	</div>
 
@@ -22,7 +22,7 @@
 				<a class="btn popup__close btn-no-popup hide" href="#"><?php echo lang('close');?></a>
 				<a class="btn btn-yes-popup hide"><?php echo lang('yes');?></a>
 			</div>
-			<a class="ico ico--close popup__close"></a>
+			<a class="icon-cancel-outline popup__close"></a>
 		</div>
 	</div>
 
@@ -42,7 +42,7 @@
 					<p><a class="btn popup--create__btn create-cat" data-update="<?php echo lang('category_update_btn');?>" data-create="<?php echo lang('category_create_btn');?>"><?php echo lang('category_create_btn');?></a></p>
 				</form>
 			</div>
-			<a class="ico ico--close popup__close"></a>
+			<a class="icon-cancel-outline popup__close"></a>
 		</div>
 	</div>
 
@@ -50,10 +50,8 @@
 	<?php echo $_popups;?>
 	<?php endif;?>
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 	<script>window.jQuery || document.write('<script src="<?php echo base_url('assets/js/jquery.min.js');?>"><\/script>')</script>
-	<script src="<?php echo base_url('assets/js/jquery.mousewheel.min.js');?>"></script>
-	<script src="<?php echo base_url('assets/js/jquery.jscrollpane.min.js');?>"></script>
 	<script src="<?php echo base_url('assets/js/js.js');?>"></script>
 	<?php if(isset($this->scripts) && !empty($this->scripts)):?>
 	<?php foreach ($this->scripts as $key => $script) :?>
