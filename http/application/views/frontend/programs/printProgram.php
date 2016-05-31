@@ -1,62 +1,84 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
-		<div class="app-left pull-left tabs app-left--view">
+
+	<section>
+
+		<h1 class="programme-head"><?php echo $header;?></h1>
+
+		<div id="programme-body" class="programme-body programme-body--print clr">
+
+			<?php if(isset($_nav) && !empty($_nav)) echo $_nav; ?>
+
 			<?php if(!empty($tabs)):?>
 			<?php foreach ($tabs as $key => $tab) :?>
-			<div class="tabs__nav clr">
-				<ul>
-					<li><span class="tabs__dt tabs__dt--active"><?php echo $tab->name;?></span></li>
-				</ul>
-			</div>
+					<?php
+						$acces_val = true;
+						if(isset($params->access) && isset($params->access[$key])) {
+							$acces_val = (bool) $params->access[$key];
+						}
+					?>
+					<?php if($acces_val):?>
+					<h2 class="programme-body__h2"><?php echo $tab->name;?></h2>
+					<?php endif;?>
 			<?php if(!empty($tab->exercises)):?>
-			<div class="tabs__dd tabs__dd--active">
-				<ul class="l-h l-h--height-auto">
-					<?php foreach ($tab->exercises as $exercise_key => $exercise) :?>
-					<li class="exercises-my__item popup-box clr">
-						<span class="exercises-list__name"><?php echo $exercise->name;?>&nbsp;<span class="hide"><?php echo $exercise->name_desc;?></span></span>
-						<span class="exercises-list__img">
-							<?php if($exercise->image_1):?>
-							<img src="<?php echo site_url('images/'.$exercise->image_1);?>" alt="<?php echo $exercise->name;?>">
-							<?php endif;?>
-							<?php if($exercise->image_2):?>
-							<img src="<?php echo site_url('images/'.$exercise->image_2);?>" alt="<?php echo $exercise->name;?>">
-							<?php endif;?>
-							<?php if($exercise->image_3):?>
-							<img src="<?php echo site_url('images/'.$exercise->image_3);?>" alt="<?php echo $exercise->name;?>">
-							<?php endif;?>
-						</span>
-						<div class="exercises-list__item-detal clr">
-							<table>
-								<tr>
-									<th><?php echo lang('qty');?><br> <?php echo lang('times');?></th>
-									<th><?php echo lang('qty');?><br> <?php echo lang('approaches');?></th>
-									<th><?php echo lang('weight');?></th>
-								</tr>
-								<tr>
-									<td><span><?php echo $exercise->quantity;?></span></td>
-									<td><span><?php echo $exercise->approaches;?></span></td>
-									<td><span><?php echo $exercise->weight;?></span></td>
-								</tr>
-							</table>
-							<table>
-								<tr>
-									<th><?php echo lang('coment');?></th>
-								</tr>
-								<tr>
-									<td><span><?php echo $exercise->comment;?></span></td>
-								</tr>
-							</table>
-						</div>
-						<div class="popup-content--add">
-							<div class="exercises-list__item-desc">
-								<h3><?php echo $exercise->name;?></h3>
+			<?php
+				$acces_val = true;
+				if(isset($params->access) && isset($params->access[$key])) {
+					$acces_val = (bool) $params->access[$key];
+				}
+			?>
+			<?php if($acces_val):?>
+
+					<?php foreach ($tab->exercises as $exercise_key => $exercise) : ?>
+					<article class="programme-body--print__item<?php if ($exercise_key + 1 == count($tab->exercises)) echo ' programme-body--print__item--last';?>">
+						<h2 class="programme-body--print__name"><span><?php echo $exercise_key + 1; ?>. <?php echo $exercise->name;?></span> <?php echo $exercise->name_desc;?></h2>
+						<div class="programme-body--print__box clr">
+							<div class="programme-body--print__img">
+								<?php if($exercise->image_1):?>
+								<img src="<?php echo site_url('images/'.$exercise->image_1);?>" alt="<?php echo $exercise->name;?>">
+								<?php endif;?>
+								<?php if($exercise->image_2):?>
+								<img src="<?php echo site_url('images/'.$exercise->image_2);?>" alt="<?php echo $exercise->name;?>">
+								<?php endif;?>
+								<?php if($exercise->image_3):?>
+								<img src="<?php echo site_url('images/'.$exercise->image_3);?>" alt="<?php echo $exercise->name;?>">
+								<?php endif;?>
+							</div>
+							<div class="programme-body--print__detal">
+								<table>
+									<tr>
+										<th><?php echo lang('times');?></th>
+										<td><?php echo $exercise->quantity;?></td>
+										<th rowspan="3">
+											<b><?php echo lang('coment');?></b>
+											<div class="exercises-list__item-detal-coment">
+												<div class="exercises-list__item-detal-coment__bg">
+													<?php echo $exercise->comment;?>
+												</div>
+											</div>
+										</th>
+									</tr>
+									<tr>
+										<th><?php echo lang('approaches');?></th>
+										<td><?php echo $exercise->approaches;?></td>
+									</tr>
+									<tr>
+										<th><?php echo lang('weight');?></th>
+										<td><?php echo $exercise->weight;?></td>
+									</tr>
+								</table>
+							</div>
+							<div class="programme-body--print__description">
 								<?php echo $exercise->description;?>
 							</div>
 						</div>
-					</li>
+					</article>
 					<?php endforeach;?>
-				</ul>
-			</div>
+
+			<?php endif;?>
 			<?php endif;?>
 			<?php endforeach;?>
 			<?php endif;?>
+
 		</div>
+
+	</section>

@@ -6,7 +6,8 @@ RewriteBase /
 RewriteRule ^reg.html$ /registration [R=301,L] 
 RewriteRule ^login.html$ /login [R=301,L] 
 RewriteRule ^recovery.html$ /recovery [R=301,L] 
-RewriteRule ^feedback.html$ /feedback [R=301,L] 
+RewriteRule ^feedback.html$ /feedback [R=301,L]
+RewriteRule ^images/logo.png$ /assets/images/logo.png [R=301,L]
 #RewriteRule ^/?page\.html$ - [R=404]
 
 RewriteCond %{REQUEST_FILENAME} !-f

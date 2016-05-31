@@ -4,7 +4,7 @@
 	<?php echo form_open('admin/seo/add'); ?>
 	<div>
 		<label><?php echo lang('page');?></label>
-		<select name="page">
+		<select name="page" data-class="w100p mb-20">
 			<?php if(!empty($types)):?>
 				<option value="none"><?php echo lang('_select');?></option>
 			<?php foreach ($types as $key => $type) :?>
@@ -14,14 +14,14 @@
 		</select>
 	</div>
 	<div>
-		<label><?php echo lang('mata_title');?><input class="input" name="title" value="<?php echo $_title;?>"></label>
+		<label><?php echo lang('mata_title');?><input class="input mb-20 w100p" name="title" value="<?php echo $_title;?>"></label>
 	</div>
 	<div>
-		<label><?php echo lang('mata_description');?><textarea class="input" name="description"><?php echo $_description;?></textarea></label>
+		<label><?php echo lang('mata_description');?><textarea class="input mb-20" name="description"><?php echo $_description;?></textarea></label>
 	</div>
 	<div>
-		<label><?php echo lang('mata_keywords');?><textarea class="input" name="keywords"><?php echo $_keywords;?></textarea></label>
+		<label><?php echo lang('mata_keywords');?><textarea class="input mb-20" name="keywords"><?php echo $_keywords;?></textarea></label>
 	</div>
-	<button type="submit" class="btn pull-right"><?php echo lang('save_change');?></button>
+	<label class="btn pull-right"><?php echo lang('save_change');?><input type="submit" class="hide"></label>
 	<?php echo form_close(); ?>
 </div>

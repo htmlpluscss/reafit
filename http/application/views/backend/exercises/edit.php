@@ -26,6 +26,25 @@
 						<a class="icon-help" title="<?php echo lang('exercise_order_title');?>"></a>
 					</label>
 				</p>
+				<p>
+					<label>
+						<span><?php echo lang('category');?></span>
+						<?php $categories = explode("\n", str_replace("\r\n", "\n", $this->settings->categories));?>
+						<div class="select-block">
+							<select name="category">
+								<option value="none"><?php echo lang('_select');?></option>
+							<?php if(!empty($categories)):?>
+							<?php $one_cat = (count($categories) == 1) ? true : false;?>
+							<?php foreach ($categories as $key => $cat) :?>
+								<option value="<?php echo $cat;?>"<?php echo ($cat == $category || $one_cat) ? ' selected="selected"' : '';?>><?php echo $cat;?></option>
+							<?php endforeach;?>
+							<?php endif;?>
+							</select>
+							<a class="icon-help" title="<?php echo lang('program_category_help');?>"></a>
+						</div>
+					</label>
+				</p>
+				<p class="clr"></p>
 			</div>
 		</div>
 		<div class="tabs__dd tabs__dd--2">

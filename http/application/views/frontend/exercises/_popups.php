@@ -7,10 +7,10 @@
 					<a class="btn app-filter-search pull-right"><?php echo lang('apply');?></a>
 					<a class="btn popup__close pull-right"><?php echo lang('cancel');?></a>
 					<label class="btn pull-right"><input type="reset" class="hide"><?php echo lang('clear');?></label>
-					<span class="fast-result-search"><?php echo lang('search_result');?>: <b><?php echo $total_exercises;?></b></span>
+					<span class="fast-result-search"><?php echo lang('search_result');?>:&nbsp;<b><?php echo $total_exercises;?></b></span>
 				</form>
 			</div>
-			<a class="icon-cancel-outline popup__close"></a>
+			<a class="ico ico--close popup__close"></a>
 		</div>
 	</div>
 
@@ -21,6 +21,6 @@
 				<a class="btn" href="<?php echo site_url('exercises');?>"><?php echo lang('dont_save');?></a>
 				<a class="btn btn-save-popup"><?php echo lang('save');?></a>
 			</div>
-			<a class="icon-cancel-outline popup__close"></a>
+			<a class="ico ico--close popup__close"></a>
 		</div>
 	</div>

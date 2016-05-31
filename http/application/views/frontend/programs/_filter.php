@@ -4,6 +4,7 @@
 	<tr>
 	<?php $colum = 0;?>
 	<?php $group = '';?>
+	<?php $last = end($tags);?>
 	<?php foreach ($tags as $key => $tag) :?>
 	<?php if($colum != $tag->colum):?>
 		<td>
@@ -20,6 +21,16 @@
 			<?php foreach ($tag->subtags as $key => $subtag) :?>
 			<label class="checkbox"><input type="checkbox" value="<?php echo $subtag->id;?>">- <?php echo $subtag->tag;?></label>
 			<?php endforeach;?>
+			<?php endif;?>
+			<?php if($colum == 3 && $tag->id == $last->id):?>
+		</td>
+		<td>
+				<h3><?php echo lang('categories');?></h3>
+				<?php if(!empty($category_list)):?>
+					<?php foreach ($category_list as $c_key => $category) :?>
+						<label class="checkbox"><input type="checkbox" value="<?php echo $category;?>"><?php echo $category;?></label>
+					<?php endforeach;?>
+				<?php endif;?>
 			<?php endif;?>
 	<?php if($colum != $tag->colum):?>
 		</td>

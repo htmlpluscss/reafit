@@ -25,7 +25,7 @@
 					}
 
 				?>
-				<li <?php echo (!isset($hide_id) || (isset($hide_id) && empty($hide_id))) ? 'id="one-'. $exercise->hash .'" ' : '';?> class="<?php echo $class;?>" data-filter="<?php echo (!empty($exercise->tags)) ? implode(',', $exercise->tags) : '';?>" data-video="<?php echo $exercise->video;?>" data-related="<?php echo $_related;?>" data-progress="<?php echo $_progress;?>" data-id="<?php echo $exercise->hash;?>">
+				<li <?php echo (!isset($hide_id) || (isset($hide_id) && empty($hide_id))) ? 'id="one-'. $exercise->hash .'" ' : '';?> class="<?php echo $class;?>" data-filter="<?php echo (!empty($exercise->tags)) ? implode(',', $exercise->tags) . ',' . $exercise->category : $exercise->category;?>" data-video="<?php echo $exercise->video;?>" data-related="<?php echo $_related;?>" data-progress="<?php echo $_progress;?>" data-id="<?php echo $exercise->hash;?>">
 					<span class="exercises-list__name"><?php echo $exercise->name;?> <span class="hide"><?php echo $exercise->name_desc;?></span></span>
 					<span class="exercises-list__img">
 						<?php if($exercise->image_1):?>

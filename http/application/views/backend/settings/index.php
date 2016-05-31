@@ -6,11 +6,11 @@
 		<div>
 		<?php echo form_label(lang($setting->key), $setting->key);?>
 		<?php  $input = 'form_'.$setting->type;
-				echo $input($setting->key, $setting->value, array('class'=>'input', 'id'=>$setting->key));
+				echo $input($setting->key, $setting->value, array('class'=>'input w100p mb-20', 'id'=>$setting->key));
 		?>
 		</div>
 	<?php endforeach;?>
 	<?php endif;?>
-	<button type="submit" class="btn pull-right"><?php echo lang('save_change');?></button>
+	<label class="btn pull-right mt-10"><?php echo lang('save_change');?><input type="submit" class="hide"></label>
 	<?php echo form_close(); ?>
 </div>

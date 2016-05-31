@@ -1,5 +1,6 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
 	<?php echo form_open_multipart('admin/programs/'.$hash, array('class'=>'app-left pull-left tabs spy save-form')); ?>
+		<input type="hidden" name="redirect" value="" />
 		<div class="tabs__nav tabs__slider clr">
 			<div class="tabs__slider-nav pull-right">
 				<a class="tabs__slider-nav-left tabs__slider-nav-left--stop icon-collapse-left"></a>
@@ -31,6 +32,25 @@
 						<a class="icon-help" title="<?php echo lang('exercise_order_title');?>"></a>
 					</label>
 				</p>
+				<p>
+					<label>
+						<span><?php echo lang('category');?></span>
+						<?php $categories = explode("\n", str_replace("\r\n", "\n", $this->settings->categories));?>
+						<div class="select-block">
+							<select name="category">
+								<option value="none"><?php echo lang('_select');?></option>
+							<?php if(!empty($categories)):?>
+							<?php $one_cat = (count($categories) == 1) ? true : false;?>
+							<?php foreach ($categories as $key => $cat) :?>
+								<option value="<?php echo $cat;?>"<?php echo ($cat == $category || $one_cat) ? ' selected="selected"' : '';?>><?php echo $cat;?></option>
+							<?php endforeach;?>
+							<?php endif;?>
+							</select>
+							<a class="icon-help" title="<?php echo lang('program_category_help');?>"></a>
+						</div>
+					</label>
+				</p>
+				<p class="clr"></p>
 			</div>
 		</div>
 		<div class="tabs__dd tabs__dd--2">
