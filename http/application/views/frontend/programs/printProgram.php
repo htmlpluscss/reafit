@@ -10,7 +10,6 @@
 
 			<?php if(!empty($tabs)):?>
 			<?php foreach ($tabs as $key => $tab) :?>
-
 					<?php
 						$acces_val = true;
 						if(isset($params->access) && isset($params->access[$key])) {
@@ -20,7 +19,6 @@
 					<?php if($acces_val):?>
 					<h2 class="programme-body__h2"><?php echo $tab->name;?></h2>
 					<?php endif;?>
-
 			<?php if(!empty($tab->exercises)):?>
 			<?php
 				$acces_val = true;
@@ -31,7 +29,6 @@
 			<?php if($acces_val):?>
 
 					<?php foreach ($tab->exercises as $exercise_key => $exercise) : ?>
-
 					<article class="programme-body--print__item<?php if ($exercise_key + 1 == count($tab->exercises)) echo ' programme-body--print__item--last';?>">
 						<h2 class="programme-body--print__name"><span><?php echo $exercise_key + 1; ?>. <?php echo $exercise->name;?></span> <?php echo $exercise->name_desc;?></h2>
 						<div class="programme-body--print__box clr">

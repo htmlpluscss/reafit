@@ -72,7 +72,7 @@
 			<?php else:?>
 			<tbody>
 				<tr>
-					<td><?php echo lang('no_programs');?></td>
+					<td colspan="5"><?php echo lang('no_programs');?></td>
 				</tr>
 			</tbody>
 			<?php endif;?>

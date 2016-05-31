@@ -1,7 +1,9 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
 		<article class="page page-login">
+
 			<?php echo form_open('registration'); ?>
 				<h1><?php echo lang('register_lbl');?></h1>
+				<p><?php echo lang('_required');?></p>
 				<label for="mail"><?php echo lang('email');?> <sup>*</sup></label>
 				<input id="mail" name="mail" class="input" type="email" value="<?php echo (isset($mail) && !empty($mail)) ? $mail : '';?>" required="required">
 				<label for="pass"><?php echo lang('password');?> <sup>*</sup></label>
@@ -32,7 +34,7 @@
 					<?php endforeach;?>
 					<?php endif;?>
 				</select>
-				<label><?php echo lang('categories');?></label>
+				<label for=""><?php echo lang('categories');?></label>
 				<?php $categories = explode("\n", str_replace("\r\n", "\n", $this->settings->categories));?>
 				<?php if(!empty($categories)):?>
 				<?php foreach ($categories as $key => $category) :?>

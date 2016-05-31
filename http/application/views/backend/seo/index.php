@@ -85,7 +85,7 @@
 			<?php else:?>
 			<tbody>
 				<tr>
-					<td><?php echo lang('no_meta');?></td>
+					<td colspan="3"><?php echo lang('no_meta');?></td>
 				</tr>
 			</tbody>
 			<?php endif;?>

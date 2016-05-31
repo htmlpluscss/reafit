@@ -1,5 +1,6 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
 		<article class="page page-login">
+
 			<?php echo form_open('profile'); ?>
 				<h1><?php echo lang('profile_lbl');?></h1>
 				<label><?php echo lang('email');?> <sup>*</sup></label>
@@ -28,7 +29,7 @@
 					<option value="none"><?php echo lang('_select');?></option>
 					<?php if(!empty($statuses)):?>
 					<?php foreach ($statuses as $key => $value) :?>
-					<option value="<?php echo $value;?>"<?php echo (isset($type) && $type == $value) ? ' selected="selected"' : '';?>><?php echo $value;?></option>
+					<option value="<?php echo $value;?>"<?php echo (isset($status) && $status == $value) ? ' selected="selected"' : '';?>><?php echo $value;?></option>
 					<?php endforeach;?>
 					<?php endif;?>
 				</select>

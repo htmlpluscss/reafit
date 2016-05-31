@@ -1,5 +1,6 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
 		<article class="page page-login">
+
 			<?php echo form_open('recovery'); ?>
 				<h1><?php echo lang('recovery');?></h1>
 				<label for="mail"><?php echo lang('email_lbl');?></label>

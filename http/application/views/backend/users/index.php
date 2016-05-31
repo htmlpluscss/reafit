@@ -89,7 +89,7 @@
 			<?php else:?>
 			<tbody>
 				<tr>
-					<td><?php echo lang('no_users');?></td>
+					<td colspan="11"><?php echo lang('no_users');?></td>
 				</tr>
 			</tbody>
 			<?php endif;?>

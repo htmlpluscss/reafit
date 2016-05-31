@@ -107,10 +107,9 @@
 										</div>
 										<h3><?php echo $exercise->name;?></h3>
 										<?php echo $exercise->description;?>
-
+									</div>
 								</div>
 							</div>
-						</div>
 						</li>
 						<?php endforeach;?>
 						<?php endif;?>
@@ -120,6 +119,7 @@
 				<?php endforeach;?>
 				<?php endif;?>
 			</div>
+
 		</div>
 
 		<ul class="hide icon-fullscreen">

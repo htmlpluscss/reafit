@@ -23,7 +23,7 @@
 				<a class="btn btn--gray" href="<?php echo site_url('programs');?>"><?php echo lang('dont_save');?></a>
 				<a class="btn btn-save-popup"><?php echo lang('save_change');?></a>
 			</div>
-			<a class="ico ico--close popup__close"></a>
+			<a class="ico ico--close-white popup__close"></a>
 		</div>
 	</div>
 
@@ -32,12 +32,12 @@
 		<div class="popup__box">
 			<div class="popup__body">
 				<?php echo form_open_multipart('programs/add', array('class'=>'new-program-form')); ?>
-
 					<h3><?php echo lang('new_program_title');?></h3>
 					<div class="w260 pull-left">
 						<label class="input-placeholder">
 							<input class="input popup--create__name" name="name" maxlength="40">
 							<span class="input-placeholder__label"><?php echo lang('name');?> <sup>*</sup></span>
+							<a class="ico ico--help" title="<?php echo lang('required_tooltip');?>"></a>
 						</label>
 						<div class="popup__select">
 							<select name="category" class="popup--create__category" data-required-sup>
@@ -49,10 +49,12 @@
 							<?php endforeach;?>
 							<?php endif;?>
 							</select>
+							<?php /*<a class="icon-help" title="<?php echo lang('program_category_help');?>"></a>*/?>
 						</div>
 						<label class="input-placeholder">
 							<input class="input popup--create__email" name="mail" type="email" data-error="<?php echo lang('mail_not_correct');?>">
 							<span class="input-placeholder__label"><?php echo lang('email');?></span>
+							<a class="ico ico--help" title="<?php echo lang('new_program_email_help');?>"></a>
 						</label>
 						<p class="popup__required_notification"><sup>*</sup> <?php echo lang('required_notification');?></p>
 					</div>
@@ -60,10 +62,10 @@
 						<div class="input-placeholder">
 							<textarea class="input popup--create__textarea" name="description"></textarea>
 							<span class="input-placeholder__label"><?php echo lang('description');?></span>
+							<?php /*<a class="icon-help" title="<?php echo lang('program_des_help');?>"></a>*/?>
 						</div>
 						<a class="btn popup--create__btn"><?php echo lang('create');?></a>
 					</div>
-
 				<?php echo form_close(); ?>
 			</div>
 			<a class="ico ico--close popup__close" onClick="history.back();return false;"></a>
