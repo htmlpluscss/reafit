@@ -14,7 +14,7 @@ $lang['register_link']          = 'Зарегистрироваться';
 $lang['recovery_title']         = 'Восстановление доступа';
 $lang['recovery']               = 'Восстановление пароля';
 $lang['recovery_btn']           = 'Восстановить';
-$lang['recovery_desc']          = '<sup>*</sup> Мы отправим новый пароль на Ваш E-mail';
+$lang['recovery_desc']          = '* Мы отправим новый пароль на Ваш E-mail';
 $lang['recovery_send']          = 'Мы отправили новый пароль на Ваш E-mail.<br />Пожалуйста проверте Вашу почту.';
 
 $lang['registration']           = 'Регистрация';
@@ -237,7 +237,7 @@ $lang['categories']             = 'Разделы';
 $lang['exercise_category_help'] = '';
 $lang['program_category_help']  = '';
 $lang['category']               = 'Раздел';
-$lang['select_category']        = 'Все разделы';
+$lang['select_category']        = 'Выбор раздела';
 
 $lang['meta']                   = 'Мета-теги';
 $lang['meta_list_title']        = 'Список Мета-тегов';
