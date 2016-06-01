@@ -81,7 +81,7 @@
 			<?php else:?>
 			<tbody>
 				<tr>
-					<td colspan="7"><?php echo lang('no_exercises');?></td>
+					<td><?php echo lang('no_exercises');?></td>
 				</tr>
 			</tbody>
 			<?php endif;?>

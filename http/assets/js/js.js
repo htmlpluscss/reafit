@@ -8,24 +8,26 @@ http://htmlpluscss.ru
 
 */
 
-var windowWidth,
-	windowHeight,
+var windowHeight,
 	windowScrollTop,
 	resizeTimeoutId,
 	scrollTimeoutId,
 	ScrollBarWidth,
 	$window = $(window);
 
+	function pageResize(){
+		windowHeight = $window.height();
+		ScrollBarWidth = getScrollBarWidth();
+		$('main').css('min-height',windowHeight-$('header').outerHeight()-$('footer').outerHeight());
+	}
+	pageResize();
+
 $window.on({
 	resize: function(){
-		setTimeout(function(){
-			windowWidth = $window.width();
-			windowHeight = $window.height();
-			ScrollBarWidth = getScrollBarWidth();
-
-			$('main').css('min-height',windowHeight-$('header').outerHeight()-$('footer').outerHeight());
-
-		},1);
+		clearTimeout(resizeTimeoutId);
+		resizeTimeoutId = setTimeout(function(){
+			pageResize();
+		},100);
 	},
 	scroll: function(){
 		windowScrollTop = $window.scrollTop();
@@ -35,6 +37,8 @@ $window.on({
 $window.ready(function(){
 
 	$window.trigger('resize').trigger('scroll');
+
+});
 
 	// избранное
 	$('.icon-star:not(.icon-toggle-favorite), .icon-star-empty').on('click',function(e){
@@ -63,22 +67,14 @@ $window.ready(function(){
 		});
 	});
 
-// select
-	$('select').mySelect();
-
 // checkbox
-	$('.checkbox').append('<i></i>');
+	$('.checkbox').addClass('notsel').append('<i></i>');
 	$('.checkbox-star input').on('change',function(){
 		var id = $(this).closest('tr').children().first().text();
 		var status = $(this).prop('checked') ? 'favorite' : 'personal';
 		console.log('send server: ' + id + ' ' + status);
 	});
 
-// title
-	$('[title]').Title();
-
-// tabs
-	$('.tabs').tabs();
 
 	$('.play-video').on('click',function(){
 		var id = $(this).attr('data-video');
@@ -116,9 +112,16 @@ $window.ready(function(){
 		});
 	});
 
-});
+// input-placeholder
+	$('.input-placeholder').children('.input').on('keyup blur',function(){
+		var t = $(this);
+		setTimeout(function(){
+			t.parent().toggleClass('input-placeholder--active',Boolean(t.val()));
+		});
+	}).trigger('blur');
 
-;(function($){
+
+(function($){
 
 	$.fn.mySelect = function(){
 
@@ -126,7 +129,7 @@ $window.ready(function(){
 			var select = $(this);
 			select.wrap('<span class="select notsel"></span>');
 			var select_box = select.parent();
-			var c = '<span class="value"><span></span></span><a class="icon-angle-down"></a><a class="icon-angle-up"></a><span class="box"><ul>';
+			var c = '<span class="value"><span></span></span><span class="box"><ul>';
 			select.children('option').each(function() {
 				if($(this).val()!='none')
 					c += '<li data-value="' + $(this).val() + '">' + $(this).text() + '</li>';
@@ -134,8 +137,12 @@ $window.ready(function(){
 			c += '</ul></span>';
 			select.before(c);
 
+			var clss = select.attr('data-class');
 			var box_ul = select.siblings('.box');
 			var visible = select.siblings('.value').children();
+
+			if(clss !== undefined)
+				select_box.addClass(clss);
 
 			select_box.on('click', function() {
 				select_box.hasClass('focus') ? box_ul.hide() : box_ul.show();
@@ -150,6 +157,13 @@ $window.ready(function(){
 				visible.text(o.text());
 				$(this).addClass('changed');
 			}).trigger('change');
+
+			select.on('focus blur',function(){
+				select_box.trigger('click');
+			});
+
+			if(select.attr('data-required-sup') !== undefined)
+				visible.append('<sup>*</sup>');
 
 		}
 
@@ -167,6 +181,7 @@ $window.ready(function(){
 			var t = $(this);
 			var titleUp = $('<p class="title_up">');
 			titleUp.text(t.attr('title'));
+			titleUp.append('<i></i>');
 			t.removeAttr('title');
 			titleUp.appendTo(t);
 			titleUp.css({
@@ -208,6 +223,15 @@ $window.ready(function(){
 		return this.each(tab);
 
 	};
+
+// select
+	$('select').mySelect();
+
+// title
+	$('[title]').Title();
+
+// tabs
+	$('.tabs').tabs();
 
 // цели метрики
 	$('.page-login').find('form').on('click',function(){
@@ -312,7 +336,7 @@ function getScrollBarWidth(){
 		popupShow('content',$(this).closest('td'),'add');
 	});
 
-	$('form button.btn-search').on('click', function(e){
+	$('.btn--reset').on('click', function(){
 		var form = $(this).closest('form');
 		form.find('input[name="search"]').val('');
 		form.submit();
@@ -337,25 +361,6 @@ function getScrollBarWidth(){
 
 		});
 	}
-
-	/*$('.btn-to-list, .icon-link, .icon-docs, .icon-print, .icon-mail, .btn-new, .icon-mail, .open-program-link').on('click', function(e){
-		var saved = parseInt($('.btn-save').data('change'));
-		var url = $(this).attr('href');
-		var target = $(this).attr('target');
-		if(saved !=  undefined && saved == 1) {
-			e.preventDefault();
-			if(url == undefined) {
-				url = '#';
-			}
-			if(target != undefined) {
-				$('.popup--close a.btn:not(.btn-save-popup)').attr('target', target);
-			} else {
-				$('.popup--close a.btn:not(.btn-save-popup)').attr('target', '');
-			}
-			$('.popup--close a.btn:not(.btn-save-popup)').attr('href', url);
-			popupShow('close');
-		}
-	});*/
 
 	$('#btn-create-cat, .edit-cat-btn').on('click', function(e){
 		e.preventDefault();
@@ -415,22 +420,3 @@ function getScrollBarWidth(){
 		$('.popup--create-cat').find('form').submit();
 
 	});
-
-/*
- * Copyright 2012 Andrey тA.I.т Sitnik <andrey@sitnik.ru>,
- * sponsored by Evil Martians.
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
-(function(d){"use strict";d.Transitions={_names:{'transition':'transitionend','OTransition':'oTransitionEnd','WebkitTransition':'webkitTransitionEnd','MozTransition':'transitionend'},_parseTimes:function(b){var c,a=b.split(/,\s*/);for(var e=0;e<a.length;e++){c=a[e];a[e]=parseFloat(c);if(c.match(/\ds/)){a[e]=a[e]*1000}}return a},getEvent:function(){var b=false;for(var c in this._names){if(typeof(document.body.style[c])!='undefined'){b=this._names[c];break}}this.getEvent=function(){return b};return b},animFrame:function(c){var a=window.requestAnimationFrame||window.webkitRequestAnimationFrame||window.mozRequestAnimationFrame||window.msRequestAnimationFrame;if(a){this.animFrame=function(b){return a.call(window,b)}}else{this.animFrame=function(b){return setTimeout(b,10)}}return this.animFrame(c)},isSupported:function(){return this.getEvent()!==false}};d.extend(d.fn,{afterTransition:function(h,i){if(typeof(i)=='undefined'){i=h;h=1}if(!d.Transitions.isSupported()){for(var f=0;f<this.length;f++){i.call(this[f],{type:'aftertransition',elapsedTime:0,propertyName:'',currentTarget:this[f]})}return this}for(var f=0;f<this.length;f++){var j=d(this[f]);var n=j.css('transition-property').split(/,\s*/);var k=j.css('transition-duration');var l=j.css('transition-delay');k=d.Transitions._parseTimes(k);l=d.Transitions._parseTimes(l);var o,m,p,q,r;for(var g=0;g<n.length;g++){o=n[g];m=k[k.length==1?0:g];p=l[l.length==1?0:g];q=p+(m*h);r=m*h/1000;(function(b,c,a,e){setTimeout(function(){d.Transitions.animFrame(function(){i.call(b[0],{type:'aftertransition',elapsedTime:e,propertyName:c,currentTarget:b[0]})})},a)})(j,o,q,r)}}return this},transitionEnd:function(c){for(var a=0;a<this.length;a++){this[a].addEventListener(d.Transitions.getEvent(),function(b){c.call(this,b)})}return this}})}).call(this,jQuery);

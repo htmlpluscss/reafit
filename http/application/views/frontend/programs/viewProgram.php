@@ -119,7 +119,6 @@
 				<?php endforeach;?>
 				<?php endif;?>
 			</div>
-
 		</div>
 
 		<ul class="hide icon-fullscreen">

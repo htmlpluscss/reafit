@@ -79,10 +79,10 @@
 			<?php else:?>
 			<tbody>
 				<tr>
-					<td colspan="7"><?php echo lang('no_programs');?></td>
+					<td><?php echo lang('no_programs');?></td>
 				</tr>
-			<?php endif;?>
 			</tbody>
+			<?php endif;?>
 		</table>
 
 

@@ -1,10 +1,40 @@
-header, main, footer {
-	max-width:95%;
+body {
+	background: #fff;
 }
+header {
+	border-bottom: 1px solid #4a4a4a;
+}
+.logo::after {
+	color: #4a4a4a
+}
+.center {
+	max-width:98%;
+	min-width:1200px;
+}
+main {
+	display: block;
+	padding: 20px 0 200px;
+}
+textarea.input {
+	height: 220px;
+}
+.list-tags .ui-sortable-handle:hover {
+	opacity: .8
+}
+
+.info-message {
+	width: auto;
+	padding: 10px 20px;
+	background: #fcfcfd;
+	border: 1px solid #dddce1;
+}
+
+
 .col-hide .checkbox{
 	margin-right: 12px;
-	padding-left: 20px;
+	padding-left: 24px;
 }
+
 
 .list-tags,
 .add-one-form {

@@ -64,7 +64,7 @@
 			<?php else:?>
 			<tbody>
 				<tr>
-					<td colspan="7"><?php echo lang('no_categories');?></td>
+					<td><?php echo lang('no_categories');?></td>
 				</tr>
 			</tbody>
 			<?php endif;?>
