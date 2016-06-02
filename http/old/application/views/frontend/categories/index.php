@@ -1,29 +1,26 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
-		<div class="clr">
-			<div class="pull-left">
-				<a class="btn" id="btn-create-cat" data-type="create"><?php echo lang('create_category_btn');?></a>
-			</div>
-			<form class="pull-right search-form" action="<?php echo $action;?>" method="GET">
-				<input class="input" name="search" value="<?php echo (!empty($search)) ? $search : '';?>">
-				<?php if(!empty($per_page) && isset($per_page_list[0]) && !empty($per_page_list[0])):?>
-				<input type="hidden" name="items" value="<?php echo $per_page;?>" />
-				<?php endif;?>
-				<button type="submit" class="btn align-middle"><?php echo lang('find');?></button>
-				<?php if(!empty($search)):?>
-				<button type="reset" class="btn align-middle btn-search"><?php echo lang('clear');?></button>
-				<?php endif;?>
-				<?php if(isset($sort) && isset($order) && !empty($sort) && !empty($order)):?>
-				<input type="hidden" name="order" value="<?php echo $order;?>" />
-				<input type="hidden" name="sort" value="<?php echo $sort;?>" />
-				<?php else:?>
-				<input type="hidden" name="order" value="" />
-				<input type="hidden" name="sort" value="" />
-				<?php endif;?>
-			</form>
+		<div class="pull-left">
+			<a class="btn" id="btn-create-cat" data-type="create"><?php echo lang('create_category_btn');?></a>
 		</div>
+		<form class="pull-right search-form" action="<?php echo $action;?>" method="GET">
+			<input class="input" name="search" value="<?php echo (!empty($search)) ? $search : '';?>">
+			<?php if(!empty($per_page) && isset($per_page_list[0]) && !empty($per_page_list[0])):?>
+			<input type="hidden" name="items" value="<?php echo $per_page;?>" />
+			<?php endif;?>
+			<button type="submit" class="btn align-middle"><?php echo lang('find');?></button>
+			<?php if(!empty($search)):?>
+			<button type="reset" class="btn align-middle btn-search"><?php echo lang('clear');?></button>
+			<?php endif;?>
+			<?php if(isset($sort) && isset($order) && !empty($sort) && !empty($order)):?>
+			<input type="hidden" name="order" value="<?php echo $order;?>" />
+			<input type="hidden" name="sort" value="<?php echo $sort;?>" />
+			<?php else:?>
+			<input type="hidden" name="order" value="" />
+			<input type="hidden" name="sort" value="" />
+			<?php endif;?>
+		</form>
 		<?php echo $this->load->view('frontend/_pagination', array('pagination'=>$pagination, 'action' => $action), TRUE);?>
 		<table class="table100 table100--list">
-			<?php if($items):?>
 			<thead>
 				<tr>
 					<th class="hide"><?php echo lang('id');?></th>
@@ -36,6 +33,7 @@
 				</tr>
 			</thead>
 			<tbody>
+			<?php if($items):?>
 			<?php foreach ($items as $key => $item) :?>
 				<tr>
 					<td class="hide">1</td>
@@ -60,14 +58,12 @@
 					</td>
 				</tr>
 			<?php endforeach;?>
-			</tbody>
 			<?php else:?>
-			<tbody>
 				<tr>
-					<td><?php echo lang('no_categories');?></td>
+					<td colspan="7"><?php echo lang('no_categories');?></td>
 				</tr>
-			</tbody>
 			<?php endif;?>
+			</tbody>
 		</table>
 
 

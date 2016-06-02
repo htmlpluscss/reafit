@@ -15,6 +15,6 @@
 		<?php endif;?>
 	<?php endforeach;?>
 	<?php endif;?>
-	<label class="btn pull-right"><?php echo lang('save_change');?><input type="submit" class="hide"></label>
+	<button type="submit" class="btn pull-right"><?php echo lang('save_change');?></button>
 	<?php echo form_close(); ?>
 </div>
