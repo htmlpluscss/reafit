@@ -43,9 +43,6 @@
 							<?php echo $exercise->name_desc;?>
 						</h2>
 						<div class="programme-body__box clr">
-							<table>
-								<tr>
-									<td>
 							<div class="programme-img">
 								<?php if($exercise->image_1):?>
 								<img src="<?php echo site_url('images/'.$exercise->image_1);?>" alt="<?php echo $exercise->name;?>">
@@ -57,8 +54,6 @@
 								<img src="<?php echo site_url('images/'.$exercise->image_3);?>" alt="<?php echo $exercise->name;?>">
 								<?php endif;?>
 							</div>
-									</td>
-									<td>
 							<div class="programme-body__detal">
 								<table class="programme-table">
 									<tr>
@@ -81,8 +76,6 @@
 									</tr>
 								</table>
 							</div>
-									</td>
-								</tr>
 							</table>
 							<div class="programme-description">
 								<?php echo $exercise->description;?>
@@ -93,6 +86,8 @@
 
 			<?php endif;?>
 			<?php endif;?>
+					<a class="ico ico--hidden programme-body--print__group-toggle" title="<?php echo lang('hidden');?>"></a>
+					<a class="ico ico--visible programme-body--print__group-toggle" title="<?php echo lang('visible');?>"></a>
 				</div>
 			<?php endforeach;?>
 			<?php endif;?>

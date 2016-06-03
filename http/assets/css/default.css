@@ -16,8 +16,8 @@ body {
 	transition: opacity 1s;
 	opacity: 1 !important;
 }
-.min-height {
-	overflow: inherit;
+.transition {
+	transition: 1s;
 }
 a {
 	color: #000;
@@ -84,6 +84,9 @@ textarea.input {
 	overflow: auto;
 	display: block;
 	width: 100%;
+}
+.input--border-white {
+	border-color: #fff
 }
 ::-moz-placeholder {
 	opacity: .7;
@@ -234,6 +237,9 @@ select {
 	background: #fcfcfd;
 	border: solid 1px #dddce1;
 }
+.select--border-white:not(.focus) .value{
+	border-color: #fff;
+}
 .select .value:before{
 	position: absolute;
 	top: 50%;
@@ -323,8 +329,8 @@ sup {
 .ico {
 	top: 0;
 	left: 0;
-	width: 25px;
-	height: 25px;
+	width: 30px;
+	height: 30px;
 	position: absolute;
 	vertical-align: top;
 	display: inline-block;
@@ -389,6 +395,12 @@ sup {
 .ico--print:hover {
 	background-position: -260px -64px
 }
+.ico--print-white {
+	background-position: -261px -148px
+}
+.ico--print-white:hover {
+	background-position: -260px -108px
+}
 .ico--link {
 	background-position: -356px -25px
 }
@@ -430,7 +442,6 @@ sup {
 	background-position: -272px -201px
 }
 .ico--fullscreen {
-	width: 30px;
 	background-position: -218px -456px
 }
 .ico--fullscreen:hover {
@@ -462,10 +473,10 @@ sup {
 	background-position: -165px -412px
 }
 .ico--hidden {
-	background-position: -125px -377px
+	background-position: -125px -378px
 }
 .ico--hidden:hover {
-	background-position: -165px -377px
+	background-position: -165px -378px
 }
 
 
@@ -507,6 +518,18 @@ td {
 .table100 a{
 	color: #fd982c;
 	text-decoration: underline;
+}
+.table100 .bt0{
+	border-top: 0;
+}
+.table100 .bl0{
+	border-left: 0;
+}
+.table100 .br0{
+	border-right: 0;
+}
+.table100 .last-bb0 tr:last-child td{
+	border-bottom: 0;
 }
 
 .nowrap {
@@ -677,4 +700,50 @@ hr {
 .copyright {
 	text-align: center;
 	padding: 4px;
+}
+
+/*
+ * CSS Styles that are needed by jScrollPane for it to operate correctly.
+ *
+ * Include this stylesheet in your site or copy and paste the styles below into your stylesheet - jScrollPane
+ * may not operate correctly without them.
+ */
+.jspContainer{
+	overflow: hidden;
+	position: relative;
+}
+.jspPane{
+	position: absolute;
+}
+.jspVerticalBar{
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 8px;
+	height: 100%;
+}
+.jspVerticalBar:before{
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	content: '';
+	width: 8px;
+	border-radius: 4px;
+	background: #f8f8f8;
+}
+.jspCap{
+	display: none;
+}
+.jspTrack{
+	position: relative;
+}
+.jspDrag{
+	width: 8px;
+	background: #dbdbdb;
+	position: relative;
+	top: 0;
+	left: 0;
+	border-radius: 4px;
+	cursor: pointer;
 }

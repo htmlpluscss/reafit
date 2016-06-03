@@ -5,7 +5,7 @@
 					<form action="<?php echo $action;?>" method="get">
 					<?php if(isset($category_list) && !empty($category_list)):?>
 					<div class="pull-left">
-						<select name="category" class="pagination-items">
+						<select name="category" class="pagination-items" data-class="select--border-white">
 							<option value=" "><?php echo lang('all_categories');?></option>
 						<?php foreach ($category_list as $key => $item):?>
 							<option value="<?php echo $item;?>"<?php if($category == $item) {echo ' selected="selected"';}?>><?php echo $item;?></option>
@@ -14,7 +14,7 @@
 					</div>
 					<?php endif;?>
 					<div class="pull-left ml-10">
-						<select name="items" class="pagination-items">
+						<select name="items" class="pagination-items" data-class="select--border-white">
 							<?php foreach ($per_page_list as $key => $item) :?>
 							<?php if(is_integer($item)):?>
 							<option value="<?php echo $item;?>"<?php if($per_page == $item) {echo ' selected="selected"';}?>><?php echo $item;?></option>

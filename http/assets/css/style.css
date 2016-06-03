@@ -75,75 +75,6 @@ header {
 	border-right: 1px solid #ededed;
 }
 
-
-.info-message {
-	border-radius: 4px;
-	background: #fff;
-	padding: 20px;
-	color: #4a4a4a;
-	position: relative;
-	margin: 30px auto;
-	padding: 20px 30px;
-	width: 400px;
-}
-.info-message--warning:before,
-.info-message--success:before,
-.info-message--error:before {
-	position: absolute;
-	width: 20px;
-	height: 20px;
-	top: 6px;
-	left: 6px;
-	content: '!';
-	border-radius: 50%;
-	text-align: center;
-	line-height: 20px;
-	font-weight: 900;
-	background: #fd982c;
-	color: #fff;
-	opacity: 0;
-	-webkit-animation: blink 1.5s linear 0s 5 alternate;
-	animation: blink 1.5s linear 0s 5 alternate;
-}
-.info-message--success:before {
-	background: #4a4a4a;
-}
-.info-message--warning:before {
-	background: #fcfcfd;
-}
-
-.info-message__close:before {
-	position: absolute;
-	top: 0;
-	padding: 5px;
-	right: 5px;
-	font-size: 24px;
-	content: '×';
-}
-@-webkit-keyframes blink {
-	0% {
-		opacity: 1
-	}
-	100% {
-		opacity: 0
-	}
-}
-@keyframes blink {
-	0% {
-		opacity: 1
-	}
-	10% {
-		opacity: 1
-	}
-	90% {
-		opacity: 1
-	}
-	100% {
-		opacity: 0
-	}
-}
-
-
 /* title
 -----------------------------------------------------------------------------*/
 .title_up {
@@ -275,7 +206,7 @@ body > .title_up {
 /* popup
 -----------------------------------------------------------------------------*/
 .popup{
-	position: absolute;
+	position: fixed;
 	top: 0;
 	left: 0;
 	right: 0;
@@ -283,70 +214,28 @@ body > .title_up {
 	z-index: 10;
 	background: rgba(255,255,255,.9);
 	background-color: rgba(74,74,74,.9);
-
-	transition: opacity .5s;
+	opacity: 0;
 	overflow: hidden;
-
-	-webkit-perspective: 1300px;
-	-moz-perspective: 1300px;
-	perspective: 1300px;
+	transition: opacity .1s;
 }
 .popup.show{
+	opacity: 1;
 	height: 100%;
+	overflow: auto;
 }
 .popup__box {
-	top: 0;
+	top: 10px;
 	left: 0;
 	right: 0;
+	bottom: 0;
 	position: absolute;
 	width: 628px;
 	margin: auto;
 	border-radius: 6px;
 	box-shadow: 0 6px 12px rgba(0, 0, 0, .24);
-
 	background: #fff;
 	padding: 20px 26px 30px 30px;
-	overflow-y: auto;
-
-	-webkit-transform-style: preserve-3d;
-	-moz-transform-style: preserve-3d;
-	transform-style: preserve-3d;
-	-webkit-transform: translateZ(-3000px) rotateY(90deg);
-	-moz-transform: translateZ(-3000px) rotateY(90deg);
-	-ms-transform: translateZ(-3000px) rotateY(90deg);
-	transform: translateZ(-3000px) rotateY(90deg);
-	opacity: 0
 }
-
-.popup.show .popup__box {
-	-webkit-animation: slit .7s forwards ease-out;
-	-moz-animation: slit .7s forwards ease-out;
-	animation: slit .7s forwards ease-out;
-}
-
-@-webkit-keyframes slit {
-	50% {
-		-webkit-transform: translateZ(-250px) rotateY(89deg);
-		opacity: .5;
-		-webkit-animation-timing-function: ease-out;
-	}
-	100% {
-		-webkit-transform: translateZ(0) rotateY(0deg);
-		opacity: 1;
-	}
-}
-@keyframes slit {
-	50% {
-		transform: translateZ(-250px) rotateY(89deg);
-		opacity: 1;
-		animation-timing-function: ease-in;
-	}
-	100% {
-		transform: translateZ(0) rotateY(0deg);
-		opacity: 1;
-	}
-}
-
 .popup .ico--close {
 	top: -4px;
 	right: -4px;
@@ -356,7 +245,7 @@ body > .title_up {
 	top: -28px;
 }
 .popup iframe{
-	margin: auto;
+	display: block;
 }
 .popup__select,
 .popup .input-placeholder {
@@ -387,6 +276,11 @@ body > .title_up {
 	color: #4a4a4a;
 }
 
+.popup--message .popup__box {
+	height: 60px;
+	width: 345px;
+	text-align: center;
+}
 
 /* app begin 200
 -----------------------------------------------------------------------------*/

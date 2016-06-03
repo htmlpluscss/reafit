@@ -1,6 +1,31 @@
 #main {
 	opacity: 0;
 	display: block;
+	padding-bottom: 0;
+}
+
+.fullscreen #header,
+.fullscreen #footer,
+.fullscreen .programme-head,
+.fullscreen .menu_app {
+	display: none;
+}
+.fullscreen #main {
+	padding: 0;
+}
+.fullscreen .icon-fullscreen {
+	position: fixed;
+	top: 4px;
+	right: 4px;
+	display: block;
+	font-size: 20px
+}
+.icon-fullscreen .ico{
+	position: relative;
+	margin: 2px;
+}
+.icon-fullscreen li:hover{
+	opacity: 1
 }
 
 /* head
@@ -16,12 +41,12 @@
 	line-height: 22px;
 	text-transform: none;
 }
-.programme-body .ico--visible,
-.programme-body--description-hide .ico--hidden,
+.programme-body .menu_app .ico--visible,
+.programme-body--description-hide .menu_app .ico--hidden,
 .programme-body--description-hide .programme-description {
 	display: none;
 }
-.programme-body--description-hide .ico--visible {
+.programme-body--description-hide .menu_app .ico--visible {
 	display: block;
 }
 .programme-head__title {
@@ -68,7 +93,7 @@
 	padding: 10px;
 }
 .programme-body__name-b {
-	font-weight: 700;
+	font-weight: 500;
 	padding-right: 4px;
 }
 
@@ -144,12 +169,14 @@
 	background: #fff;
 	border-radius: 0 4px 4px 0;
 }
-.programme-body__box--coment:hover .programme-table__td--coment-box {
+.programme-table__td--coment-show {
 	overflow: visible;
 	z-index: 2;
 }
-.programme-body__box--coment:hover .programme-table__td--coment-inner {
-	box-shadow: 3px 4px 3px #ccc
+.programme-table__td--coment-show .programme-table__td--coment-inner {
+	box-shadow: 3px 4px 3px #ccc;
+	margin-right: -5px;
+	padding-right: 15px;
 }
 .programme-table__td--coment-b {
 	font-weight: 700;
@@ -176,8 +203,19 @@
 	margin-bottom: 20px;
 	line-height: 20px;
 }
-.programme-description b {
+.programme-description b,
+.programme-description strong{
 	font-weight: 700;
+}
+.programme-description b,
+.programme-description strong,
+.programme-description em {
+	padding: 0 5px;
+}
+.programme-description b:first-child,
+.programme-description strong:first-child,
+.programme-description em:first-child {
+	padding-left: 0;
 }
 .programme-description h3 {
 	font-weight: 700;
@@ -315,17 +353,24 @@ li:last-child .tabs__dt {
 -----------------------------------------------------------------------------*/
 .l-h {
 	border-radius: 0 4px 4px 4px;
-	min-height: 300px;
-	overflow-y: auto;
-	overflow-x: hidden;
-	padding: 20px 18px;
-	position: static;
+	padding: 20px 5px 20px 18px;
 	border: solid 1px #dddce1;
 	background: #fcfcfd;
 }
+.l-h__inner{
+	min-height: 300px;
+}
 .exercises-my__item {
 //	cursor: grab;
+	width: 902px;
 	margin-bottom: 20px;
+}
+.exercises-my__item:last-child {
+	margin-bottom: 0;
+}
+.programme-body--app {
+	float: left;
+	width: 520px;
 }
 
 /* right
@@ -338,6 +383,7 @@ li:last-child .tabs__dt {
 	background: #fcfcfd;
 	margin-bottom: 30px;
 	border-radius: 4px;
+	position: relative;
 }
 .programme-body--print__group:last-child{
 	margin: 0;
@@ -349,51 +395,70 @@ li:last-child .tabs__dt {
 	padding: 10px;
 	height: auto;
 }
-
+.programme-body--print__group-toggle {
+	position: absolute;
+	top: 8px;
+	right: 10px;
+	left: auto;
+}
+.programme-body--print__group .ico--visible,
+.programme-body--print__group-hidden .ico--hidden,
+.programme-body--print__group-hidden .programme-body__item {
+	display: none;
+}
+.programme-body--print__group-hidden .ico--visible {
+	display: block;
+}
+.programme-body--print__group-hidden .programme-body__h2 {
+	border-radius: 4px;
+	border-bottom: 0;
+}
 
 
 /* view
 -----------------------------------------------------------------------------*/
 
+
+/* popup
+-----------------------------------------------------------------------------*/
+.popup--content .popup__box {
+	padding: 10px
+}
+.popup .programme-img img {
+	height: 140px;
+	margin-left: 10px;
+	width: 140px;
+}
+.popup .programme-description {
+	border-top: 0;
+	padding: 0 0 0 10px;
+}
+.popup .programme-body__name {
+	padding: 0;
+	margin-bottom: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
 /* old
 -----------------------------------------------------------------------------
 -----------------------------------------------------------------------------*/
 
-.fullscreen header,
-.fullscreen footer {
-	display: none;
-}
-.fullscreen main {
-	padding-top: 5px;
-}
-.fullscreen .icon-fullscreen {
-	position: fixed;
-	top: 4px;
-	right: 4px;
-	display: block;
-	font-size: 20px
-}
-.icon-fullscreen li{
-	opacity: .5;
-	margin: 4px;
-}
-.icon-fullscreen li:hover{
-	opacity: 1
-}
-.transition {
-	transition: 1s;
-}
-
-header .name-programme {
-	position: absolute;
-	top: 12px;
-	left: 94px;
-	font-size: 20px
-}
 
 
-/* popup
------------------------------------------------------------------------------*/
+
+
+
+
+
 .popup--filter .popup__box {
 	width: 980px;
 	overflow: hidden;
@@ -461,9 +526,6 @@ header .name-programme {
 }
 
 
-.popup--content .popup__box {
-	padding: 20px 12px 20px 20px
-}
 .popup--content .popup-content__images {
 	float: left;
 	width: 216px;
@@ -600,8 +662,6 @@ header .name-programme {
 	margin-left: 17px;
 }
 .menu_app a{
-	width: 30px;
-	height: 30px;
 	position: relative;
 	display: block;
 }
@@ -616,9 +676,6 @@ header .name-programme {
 
 
 
-.app-left {
-	width: 460px;
-}
 .app-left--view {
 	width: 100%;
 }

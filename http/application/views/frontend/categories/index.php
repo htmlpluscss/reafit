@@ -4,7 +4,7 @@
 				<a class="btn" id="btn-create-cat" data-type="create"><?php echo lang('create_category_btn');?></a>
 			</div>
 			<form class="pull-right search-form input-block" action="<?php echo $action;?>" method="GET">
-				<input class="input pull-left input-block__first" name="search" value="<?php echo (!empty($search)) ? $search : '';?>">
+				<input class="input input--border-white pull-left input-block__first" name="search" value="<?php echo (!empty($search)) ? $search : '';?>">
 				<?php if(!empty($per_page) && isset($per_page_list[0]) && !empty($per_page_list[0])):?>
 				<input type="hidden" name="items" value="<?php echo $per_page;?>" />
 				<?php endif;?>
@@ -27,19 +27,19 @@
 			<thead>
 				<tr>
 					<th class="hide"><?php echo lang('id');?></th>
-					<th><?php echo lang('name');?> <a href="#" class="sort-btn<?php echo (isset($sort) && isset($order) && $sort == 'asc' && $order == 'name') ? ' active' : '';?>" data-order="name" data-sort="asc">&#8595;</a><a href="#" class="sort-btn<?php echo (isset($sort) && isset($order) && $sort == 'desc' && $order == 'name') ? ' active' : '';?>" data-order="name" data-sort="desc">&#8593;</a></th>
-					<th class="col-hide-2"><?php echo lang('description');?></th>
-					<th class="col-hide-3"><?php echo lang('created');?> <a href="#" class="sort-btn<?php echo (isset($sort) && isset($order) && $sort == 'asc' && $order == 'created') ? ' active' : '';?>" data-order="created" data-sort="asc">&#8595;</a><a href="#" class="sort-btn<?php echo (isset($sort) && isset($order) && $sort == 'desc' && $order == 'created') ? ' active' : '';?>" data-order="created" data-sort="desc">&#8593;</a></th>
-					<th class="col-hide-4"><?php echo lang('total_programs');?></th>
-					<th class="col-hide-8"><?php echo lang('total_exercises');?></th>
-					<th><?php echo lang('actions');?></th>
+					<th class="bt0 bl0"><?php echo lang('name');?> <a href="#" class="sort-btn<?php echo (isset($sort) && isset($order) && $sort == 'asc' && $order == 'name') ? ' active' : '';?>" data-order="name" data-sort="asc">&#8595;</a><a href="#" class="sort-btn<?php echo (isset($sort) && isset($order) && $sort == 'desc' && $order == 'name') ? ' active' : '';?>" data-order="name" data-sort="desc">&#8593;</a></th>
+					<th class="bt0 col-hide-2"><?php echo lang('description');?></th>
+					<th class="bt0 col-hide-3"><?php echo lang('created');?> <a href="#" class="sort-btn<?php echo (isset($sort) && isset($order) && $sort == 'asc' && $order == 'created') ? ' active' : '';?>" data-order="created" data-sort="asc">&#8595;</a><a href="#" class="sort-btn<?php echo (isset($sort) && isset($order) && $sort == 'desc' && $order == 'created') ? ' active' : '';?>" data-order="created" data-sort="desc">&#8593;</a></th>
+					<th class="bt0 col-hide-4"><?php echo lang('total_programs');?></th>
+					<th class="bt0 col-hide-8"><?php echo lang('total_exercises');?></th>
+					<th class="bt0 br0"><?php echo lang('actions');?></th>
 				</tr>
 			</thead>
-			<tbody>
+			<tbody class="last-bb0">
 			<?php foreach ($items as $key => $item) :?>
 				<tr>
 					<td class="hide">1</td>
-					<td><a class="edit-cat-btn" href="#" data-id="<?php echo $item->id;?>" data-type="update"><?php echo $item->name;?></a></td>
+					<td class="bl0"><a class="edit-cat-btn" href="#" data-id="<?php echo $item->id;?>" data-type="update"><?php echo $item->name;?></a></td>
 					<td><?php echo $item->description;?></td>
 					<td class="align-middle align-center">
 						<?php if($item->created):?>
@@ -52,7 +52,7 @@
 					<td class="align-middle align-center">
 						<?php echo $item->exercises;?>
 					</td>
-					<td class="align-center align-middle nowrap">
+					<td class="br0 align-center align-middle nowrap">
 						<a class="icon-edit edit-cat-btn" href="#" data-id="<?php echo $item->id;?>" data-type="update" title="<?php echo lang('edit_category');?>"></a>
 						<a class="icon-folder-open-empty" href="<?php echo base_url('programs?category='.$item->name)?>" title="<?php echo lang('open_category_programs');?>"></a>
 						<a class="icon-folder-open-empty" href="<?php echo base_url('exercises?category='.$item->name)?>" title="<?php echo lang('open_category_exercises');?>"></a>

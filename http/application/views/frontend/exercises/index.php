@@ -5,7 +5,7 @@
 				<a class="btn ml-10" id="btn-create-cat" data-type="create"><?php echo lang('create_category_btn');?></a>
 			</div>
 			<form class="pull-right input-block" action="<?php echo $action;?>" method="GET">
-				<input class="input pull-left input-block__first" name="search" value="<?php echo (!empty($search)) ? $search : '';?>">
+				<input class="input input--border-white pull-left input-block__first" name="search" value="<?php echo (!empty($search)) ? $search : '';?>">
 				<?php if(!empty($per_page) && isset($per_page_list[0]) && !empty($per_page_list[0])):?>
 				<input type="hidden" name="items" value="<?php echo $per_page;?>" />
 				<?php endif;?>
@@ -21,20 +21,20 @@
 			<thead>
 				<tr>
 					<th class="hide"><?php echo lang('id');?></th>
-					<th><?php echo lang('name');?></th>
-					<th class="col-hide-2"><?php echo lang('exercise_image_1');?></th>
-					<th class="col-hide-3"><?php echo lang('exercise_image_2');?></th>
-					<th class="col-hide-4"><?php echo lang('exercise_image_3');?></th>
-					<th class="col-hide-8"><?php echo lang('tags');?></th>
-					<th class="col-hide-9"><?php echo lang('category');?></th>
-					<th><?php echo lang('actions');?></th>
+					<th class="bt0 bl0"><?php echo lang('name');?></th>
+					<th class="bt0 col-hide-2"><?php echo lang('exercise_image_1');?></th>
+					<th class="bt0 col-hide-3"><?php echo lang('exercise_image_2');?></th>
+					<th class="bt0 col-hide-4"><?php echo lang('exercise_image_3');?></th>
+					<th class="bt0 col-hide-8"><?php echo lang('tags');?></th>
+					<th class="bt0 col-hide-9"><?php echo lang('category');?></th>
+					<th class="bt0 br0"><?php echo lang('actions');?></th>
 				</tr>
 			</thead>
-			<tbody>
+			<tbody class="last-bb0">
 			<?php foreach ($items as $key => $item) :?>
 				<tr>
 					<td class="hide">1</td>
-					<td><b><?php echo $item->name;?></b> <?php echo $item->name_desc;?></td>
+					<td class="bl0"><b><?php echo $item->name;?></b> <?php echo $item->name_desc;?></td>
 					<td>
 						<?php if($item->image_1):?>
 						<img src="<?php echo site_url('images/'.$item->image_1);?>" height="100" alt="<?php echo $item->name;?>">
@@ -62,7 +62,7 @@
 						<?php echo $item->category;?>
 						<?php endif;?>
 					</td>
-					<td>
+					<td class="br0">
 						<ul class="one-event">
 							<li><a class="icon-edit" href="<?php echo site_url('exercises/'.$item->hash);?>" title="<?php echo lang('edit');?>"></a></li>
 							<li><a class="icon-trash-empty one-event__delete" href="<?php echo site_url('exercises/delete/'.$item->hash);?>" data-text="<?php echo lang('delete_exercidse');?>" title="<?php echo lang('delete');?>"></a></li>

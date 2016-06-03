@@ -8,7 +8,7 @@
 <?php if($fullscreen) :?>
 <li><a class="ico ico--fullscreen-exit app-fullscreen"></a></li>
 <?php endif;?>
-<li><a class="ico ico--print" target="_blank" href="<?php echo site_url('print/'.$hash);?>"<?php if (!$fullscreen) echo ' title="'.lang('print_page').'"';?>></a></li>
+<li><a class="ico ico--print<?php if ($fullscreen) echo '-white';?>" target="_blank" href="<?php echo site_url('print/'.$hash);?>"<?php if (!$fullscreen) echo ' title="'.lang('print_page').'"';?>></a></li>
 <?php else:?>
 <li><a class="ico ico--print" onclick="window.print()" href="#"<?php if (!$fullscreen) echo ' title="'. lang('print') .'"';?>></a></li>
 <li><a class="ico ico--hidden" title="<?php echo lang('hide_description');?>" onClick="$('#programme-body').addClass('programme-body--description-hide')"></a></li>

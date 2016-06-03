@@ -7,7 +7,7 @@
 			</div>
 		</div>
 
-		<div class="programme-body tabs">
+		<div class="programme-body tabs app-left">
 
 				<?php if(isset($_nav) && !empty($_nav)) echo $_nav; ?>
 
@@ -38,7 +38,9 @@
 				?>
 				<?php if($acces_val):?>
 				<div class="tabs__dd tabs__dd--<?php echo $key + 1;?><?php if($key == 0) { echo ' tabs__dd--active';}?>">
-					<ul class="l-h">
+					<div class="l-h">
+					<div class="l-h__inner">
+					<ul>
 						<?php if(!empty($tab->exercises)):?>
 						<?php foreach ($tab->exercises as $exercise_key => $exercise) :?>
 						<li id="one-<?php echo $key.'-'.$exercise_key;?>" class="exercises-my__item popup-box clr" data-video="<?php echo $exercise->video;?>">
@@ -49,10 +51,10 @@
 										<?php echo $exercise->name_desc;?>
 									</div>
 									<div class="programme-body__box-icons">
-										<a class="ico ico--info popup__btn" data-popup="add"></a>
-										<?php //if(!empty($exercise->video)):?>
+										<a class="ico ico--info popup__btn" data-popup="info_item"></a>
+										<?php if(!empty($exercise->video)):?>
 										<a class="ico ico--play play-video" data-popup="play"></a>
-										<?php //endif;?>
+										<?php endif;?>
 									</div>
 								</div>
 								<div class="programme-img">
@@ -88,23 +90,23 @@
 									</table>
 								</div>
 								<div class="hide">
-									<div class="popup-content--add">
-										<div class="exercises-list__item-desc">
-											<div class="exercises-list__item-detal-btn">
-												<a class="btn popup__close"><?php echo lang('close');?></a>
-											</div>
-											<div class="exercises-list__item-detal clr">
-												<?php if($exercise->image_1):?>
-												<img src="<?php echo site_url('images/'.$exercise->image_1);?>" alt="<?php echo $exercise->name;?>">
-												<?php endif;?>
-												<?php if($exercise->image_2):?>
-												<img src="<?php echo site_url('images/'.$exercise->image_2);?>" alt="<?php echo $exercise->name;?>">
-												<?php endif;?>
-												<?php if($exercise->image_3):?>
-												<img src="<?php echo site_url('images/'.$exercise->image_3);?>" alt="<?php echo $exercise->name;?>">
-												<?php endif;?>
-											</div>
-											<h3><?php echo $exercise->name;?></h3>
+									<div class="popup-content--info_item">
+										<div class="programme-img">
+											<?php if($exercise->image_1):?>
+											<img src="<?php echo site_url('images/'.$exercise->image_1);?>" alt="<?php echo $exercise->name;?>">
+											<?php endif;?>
+											<?php if($exercise->image_2):?>
+											<img src="<?php echo site_url('images/'.$exercise->image_2);?>" alt="<?php echo $exercise->name;?>">
+											<?php endif;?>
+											<?php if($exercise->image_3):?>
+											<img src="<?php echo site_url('images/'.$exercise->image_3);?>" alt="<?php echo $exercise->name;?>">
+											<?php endif;?>
+										</div>
+										<div class="programme-description">
+											<p class="programme-body__name">
+												<span class="programme-body__name-b"><?php echo $exercise->name;?></span>
+												<?php echo $exercise->name_desc;?>
+											</p>
 											<?php echo $exercise->description;?>
 										</div>
 									</div>
@@ -114,6 +116,8 @@
 						<?php endforeach;?>
 						<?php endif;?>
 					</ul>
+					</div>
+					</div>
 				</div>
 				<?php endif;?>
 				<?php endforeach;?>

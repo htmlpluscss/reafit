@@ -16,7 +16,9 @@
 
 	<div class="popup popup--content">
 		<div class="popup__box">
-			<div class="popup__body"></div>
+			<div class="popup__body">
+				<div class="popup__inner"></div>
+			</div>
 			<a class="ico ico--close-white popup__close"></a>
 		</div>
 	</div>
@@ -24,7 +26,7 @@
 	<div class="popup popup--msg">
 		<div class="popup__box">
 			<div class="popup__body">
-				<p></p>
+				<div class="popup__inner"></div>
 				<a class="btn popup__close btn-cancel-popup hide" href="#"><?php echo lang('cancel');?></a>
 				<a class="btn popup__close btn-no-popup hide" href="#"><?php echo lang('close');?></a>
 				<a class="btn btn-yes-popup hide"><?php echo lang('yes');?></a>

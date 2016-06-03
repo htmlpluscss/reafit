@@ -37,31 +37,85 @@
 			</nav>
 		</div>
 	</header>
+
+<?php if($this->router->method == 'add'):?>
+	<div class="popup popup--create popup--lock show">
+		<div class="popup__box">
+			<div class="popup__body">
+				<?php echo form_open_multipart('programs/add', array('class'=>'new-program-form')); ?>
+
+					<h3><?php echo lang('new_program_title');?></h3>
+					<div class="w260 pull-left">
+						<label class="input-placeholder">
+							<input class="input popup--create__name" name="name" maxlength="40">
+							<span class="input-placeholder__label"><?php echo lang('name');?> <sup>*</sup></span>
+						</label>
+						<div class="popup__select">
+							<select name="category" class="popup--create__category" data-required-sup>
+								<option value="none"><?php echo lang('select_category');?></option>
+							<?php if(!empty($category_list)):?>
+							<?php $one_cat = (count($category_list) == 1) ? true : false;?>
+							<?php foreach ($category_list as $key => $cat) :?>
+								<option value="<?php echo $cat;?>"<?php echo ($cat == $category || $one_cat) ? ' selected="selected"' : '';?>><?php echo $cat;?></option>
+							<?php endforeach;?>
+							<?php endif;?>
+							</select>
+						</div>
+						<label class="input-placeholder">
+							<input class="input popup--create__email" name="mail" type="email" data-error="<?php echo lang('mail_not_correct');?>">
+							<span class="input-placeholder__label"><?php echo lang('email');?></span>
+						</label>
+						<p class="popup__required_notification"><sup>*</sup> <?php echo lang('required_notification');?></p>
+					</div>
+					<div class="w260 pull-right">
+						<div class="input-placeholder">
+							<textarea class="input popup--create__textarea" name="description"></textarea>
+							<span class="input-placeholder__label"><?php echo lang('description');?></span>
+						</div>
+						<a class="btn popup--create__btn"><?php echo lang('create');?></a>
+					</div>
+
+				<?php echo form_close(); ?>
+			</div>
+			<a class="ico ico--close popup__close" onClick="history.back();return false;"></a>
+		</div>
+	</div>
+<?php endif;?>
+
+<?php if(isset($info)):?>
+	<div class="popup popup--message show">
+		<div class="popup__box">
+			<div class="info-message info-message--warning"><?php echo $info;?></div>
+			<a class="ico ico--close-white popup__close"></a>
+		</div>
+	</div>
+<?php endif;?>
+
+<?php if(isset($success)):?>
+	<div class="popup popup--message show">
+		<div class="popup__box">
+			<div class="info-message info-message--success"><?php echo $success;?></div>
+			<a class="ico ico--close-white popup__close"></a>
+		</div>
+	</div>
+<?php endif;?>
+
+<?php if(isset($error)):?>
+	<div class="popup popup--message show">
+		<div class="popup__box">
+			<div class="info-message info-message--error"><?php echo $error;?></div>
+			<a class="ico ico--close-white popup__close"></a>
+		</div>
+	</div>
+<?php endif;?>
+
+<?php if(function_exists('validation_errors') && validation_errors()):?>
+	<div class="popup popup--message show">
+		<div class="popup__box">
+			<div class="info-message info-message--error"><?php echo validation_errors();?></div>
+			<a class="ico ico--close-white popup__close"></a>
+		</div>
+	</div>
+<?php endif;?>
+
 	<main id="main" class="center clr">
-		<?php if(isset($info)):?>
-		<div class="info-message info-message--warning">
-			<p><?php echo $info;?></p>
-			<a class="info-message__close"></a>
-		</div>
-		<?php endif;?>
-
-		<?php if(isset($success)):?>
-		<div class="info-message info-message--success">
-			<p><?php echo $success;?></p>
-			<a class="info-message__close"></a>
-		</div>
-		<?php endif;?>
-
-		<?php if(isset($error)):?>
-		<div class="info-message info-message--error">
-			<p><?php echo $error;?></p>
-			<a class="info-message__close"></a>
-		</div>
-		<?php endif;?>
-
-		<?php if(function_exists('validation_errors') && validation_errors()):?>
-		<div class="info-message info-message--error">
-			<p><?php echo validation_errors();?></p>
-			<a class="info-message__close"></a>
-		</div>
-		<?php endif;?>

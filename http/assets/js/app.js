@@ -30,18 +30,17 @@ var pageResizeApp,
 	});
 
 	pageResizeApp = function(){
-		var f = body.hasClass('fullscreen') ? 0 : $('footer').height();
+//		var f = body.hasClass('fullscreen') ? 0 : $('footer').height();
 		if(list.length>0){
-			var h = windowHeight - list.offset().top - f;
-			list.height(h);
+			var h = windowHeight - list.offset().top// - f;
+//			list.height(h);
 		}
-		var h = windowHeight - $('.tabs__dd--active .l-h').offset().top - f;
-//		$('.l-h').not('.l-h--height-auto').height(h-16);
+		var h = windowHeight - $('.tabs__dd--active .l-h').offset().top// - f;
+		$('.l-h__inner').not('.l-h--height-auto').height(h-62); // p-b:20 .programme-body + .l-h p-b:20px + p-t:20px + b-t:1px + b-b:1px
 		h < 300 ? body.addClass('min-height') : body.removeClass('min-height');
 
-	// высота комментариев
-		$('.programme-table__td--coment-inner').each(function(){
-			$(this).closest('.programme-body__box').toggleClass('programme-body__box--coment',$(this).height()>$(this).parent().height());
+		$('.tabs__dd--active .l-h__inner').jScrollPane({
+			verticalGutter : 0
 		});
 	}
 
@@ -56,6 +55,9 @@ var pageResizeApp,
 			t.addClass('tabs__dt--active');
 			tabs.find('.tabs__dt').not(t).removeClass('tabs__dt--active');
 			tabs.find('.tabs__dd').removeClass('tabs__dd--active').filter('.tabs__dd--'+t.attr('data-tab')).addClass('tabs__dd--active');
+
+				pageResize();
+				pageResizeApp();
 
 // разобрать //
 			if(tab_id != undefined && $('form.save-form input[name="params[tab]"]').length > 0) {
@@ -86,6 +88,19 @@ var pageResizeApp,
 	}).trigger('scroll');
 */
 
+	// высота комментариев
+	$('.programme-table__td--coment-box').hover(function(){
+		if($(this).children().outerHeight() > $(this).parent().height())
+			$(this).addClass('programme-table__td--coment-show');
+	},function(){
+		$(this).removeClass('programme-table__td--coment-show');
+	});
+
+// скрыть показать блок для печати
+	$('.programme-body--print__group-toggle').on('click',function () {
+		$(this).parent().toggleClass('programme-body--print__group-hidden');
+	});
+
 /* Иконки в шапке ---------- */
 
 	// fullscreen
@@ -93,7 +108,7 @@ var pageResizeApp,
 		body.toggleClass('fullscreen');
 		setTimeout(function(){
 			$window.trigger('resize');
-		});
+		},1);
 	});
 
 	// save
@@ -106,7 +121,7 @@ var pageResizeApp,
 		} else {
 			$('form.save-form input[name="redirect"]').val('');
 		}
-		var tab_id = $('.tabs__slider ul .tabs__dt--active').data('tab');
+		var tab_id = $('.tabs__nav ul .tabs__dt--active').data('tab');
 		if(tab_id != undefined && $('form.save-form input[name="params[tab]"]').length > 0) {
 			$('form.save-form input[name="params[tab]"]').val(tab_id);
 		}
@@ -123,7 +138,7 @@ var pageResizeApp,
 		} else {
 			$('form.save-form input[name="redirect"]').val('');
 		}
-		var tab_id = $('.tabs__slider ul .tabs__dt--active').data('tab');
+		var tab_id = $('.tabs__nav ul .tabs__dt--active').data('tab');
 		if(tab_id != undefined && $('form.save-form input[name="params[tab]"]').length > 0) {
 			$('form.save-form input[name="params[tab]"]').val(tab_id);
 		}
@@ -137,7 +152,7 @@ var pageResizeApp,
 		var action = $(this).data('action');
 		e.preventDefault();
 		if(action != undefined) {
-			var tab_id = $('.tabs__slider ul .tabs__dt--active').data('tab');
+			var tab_id = $('.tabs__nav ul .tabs__dt--active').data('tab');
 			if(tab_id != undefined && $('form.save-form input[name="params[tab]"]').length > 0) {
 				$('form.save-form input[name="params[tab]"]').val(tab_id);
 			}
@@ -196,10 +211,6 @@ var pageResizeApp,
 		}
 	});
 
-	// создать
-	$('.btn-new').on('click',function(){
-		//popupShow('close');
-	});
 
 	// сохранить при выходе?
 	$('.popup--close .btn:not(.btn-save-popup)').on('click', function(e){
@@ -256,7 +267,7 @@ var pageResizeApp,
 				if(action != false) {
 					$('form.save-form').get(0).setAttribute('action', action);
 				}
-				var tab_id = $('.tabs__slider ul .tabs__dt--active').data('tab');
+				var tab_id = $('.tabs__nav ul .tabs__dt--active').data('tab');
 				if(tab_id != undefined && $('form.save-form input[name="params[tab]"]').length > 0) {
 					$('form.save-form input[name="params[tab]"]').val(tab_id);
 				}
@@ -272,9 +283,9 @@ var pageResizeApp,
 	$('.app-add-tab').hover(function(){
 		var placeholder = $('<li class="placeholder">');
 		placeholder.html('<span class="tabs__dt">+</span>');
-		$('.tabs__slider ul').append(placeholder);
+		$('.tabs__nav ul').append(placeholder);
 	},function(){
-		$('.tabs__slider .placeholder').remove();
+		$('.tabs__nav .placeholder').remove();
 	});
 	$('.app-add-tab').on('click',function(){
 		var program = $('form.save-form').data('program');
@@ -283,7 +294,7 @@ var pageResizeApp,
             count =  parseInt($(this).attr('data-count'));
             count++;
         }
-		var dt = $('.tabs__slider .placeholder').removeClass('placeholder').children();
+		var dt = $('.tabs__nav .placeholder').removeClass('placeholder').children();
 		if(dt.length==0) return;
 		var dd = $('.tabs__dd--start').clone(true);
 		var dataTab = parseInt($('.tabs__dt').length + count);
@@ -294,8 +305,7 @@ var pageResizeApp,
 		$('.btn-save').attr('data-change', 1);
 		dd.find('.l-h')
 			.attr('data-type', 'exercises['+dataTab+'][data]')
-			.append('<input id="tabs-exercises-'+dataTab+'" type="hidden" name="exercises['+dataTab+'][name]" value="" />');
-		//dd.find('.popup-content--add .exercises-list__item-desc').removeClass('in-exercises-list');
+			.append('<input id="tabs-exercises-'+dataTab+'" type="hidden" name="exercises['+dataTab+'][name]" value="">');
 		setTimeout(function(){
 			dt.trigger('click');
 			dd.find('.input').focus();
@@ -315,7 +325,7 @@ var pageResizeApp,
 		e.preventDefault();
 		var exist = $('.save-form .tabs__dd.note').length;
 		if(exist > 0) {
-			$('.tabs__slider ul > li > span').removeClass('tabs__dt--active');
+			$('.tabs__nav ul > li > span').removeClass('tabs__dt--active');
 			$('.tabs .tabs__dd--active').removeClass('tabs__dd--active');
 			$('.tabs .tabs__dd.note').addClass('tabs__dd--active');
 		} else {
@@ -341,7 +351,7 @@ var pageResizeApp,
 	            });
 			});
 			$('.app-add-tab').attr('data-count', count);
-			$('.tabs__slider ul > li > span').removeClass('tabs__dt--active');
+			$('.tabs__nav ul > li > span').removeClass('tabs__dt--active');
 			$('.tabs .tabs__dd--active').removeClass('tabs__dd--active');
 			$('form.save-form').prepend('<div class="tabs__dd tabs__dd--' + count + ' tabs__dd--active note"><div class="l-h"><h2>Заметка</h2><textarea class="editor" name="note"></textarea></div></div>');
 			$('.btn-save').attr('data-change', 1);
@@ -383,7 +393,7 @@ var pageResizeApp,
 			list.children().draggable('destroy').droppable('destroy');
 			draggable_droppable_sortable();
 			$window.trigger('resize');
-			$('.tabs__slider').sliderTab();
+//			$('.tabs__nav').sliderTab();
 			$('.btn-save').attr('data-change', 1);
 		}
 	});
@@ -420,7 +430,7 @@ var pageResizeApp,
 						li.last().children().trigger('click');
 					}
 					else {
-						$('.tabs__slider ul').append('<li class="placeholder"><span class="tabs__dt"></span></li>');
+						$('.tabs__nav ul').append('<li class="placeholder"><span class="tabs__dt"></span></li>');
 						$('.app-add-tab').trigger('click');
 					}
 				});
@@ -854,102 +864,7 @@ var pageResizeApp,
 				}
 			}
 	}
-/*
-	$('.exercises-my__prev').click(function(e) {
-		var box = $('.popup-box--active').removeClass('popup-box--active').prev();
-		if(box!=undefined && box.length>0){
-			box.addClass('popup-box--active');
-			popupShow('content',box,'add');
-		} else {
-			$('.popup').trigger('click');
-		}
-	});
 
-	$('.exercises-my__next').click(function(e) {
-		var box = $('.popup-box--active').removeClass('popup-box--active').next();
-		if(box!=undefined && box.length>0){
-			box.addClass('popup-box--active');
-			popupShow('content',box,'add');
-		} else {
-			$('.popup').trigger('click');
-		}
-	});
-
-*/
-// листание помещений
-	$.fn.sliderTab = function(){
-
-		var s = $(this);
-		var b = s.children('.box');
-		var ul = b.children();
-		var li = ul.children();
-
-		var xStart,
-			abscissa = 0;
-		var b_w = b.width();
-		var ul_w = ul.width();
-		var nextprev = $('.tabs__slider-nav-left, .tabs__slider-nav-right');
-
-		ul_w > b_w ? nextprev.show() : nextprev.hide();
-
-		nextprev.off().on('click',function(){
-			var t = $(this);
-			var a = li.filter('.active');
-			if(a.length==0) a = li.first();
-			var n = t.hasClass('tabs__slider-nav-right') ? a.next() : a.prev();
-			if(n.length == 0 || t.hasClass('tabs__slider-nav-left--stop')) {
-				t.addClass('tabs__slider-nav-left--stop');
-				return;
-			}
-			else
-				t.siblings().removeClass('tabs__slider-nav-left--stop');
-
-			var l = n.position().left;
-			b_w = b.width();
-			ul_w = ul.width();
-			if (l + b_w > ul_w) {
-				t.addClass('tabs__slider-nav-left--stop');
-			}
-			n.addClass('active');
-			a.removeClass('active');
-			abscissa = -l;
-			transformTranslate();
-		});
-
-		b.off().on('touchstart touchmove touchend',function(event){
-			if (event.type == 'touchstart') {
-				var touch = event.originalEvent.touches[0];
-				xStart = abscissa - parseInt(touch.clientX);
-				b.addClass('touch');
-			}
-			if (event.type == 'touchmove') {
-				var touch = event.originalEvent.touches[0];
-				abscissa = xStart + parseInt(touch.clientX);
-				transformTranslate();
-			}
-			if (event.type == 'touchend') {
-				b.removeClass('touch');
-				if(abscissa>0)
-					abscissa = 0;
-				if (-abscissa + b_w > ul_w)
-					abscissa = b_w - ul_w;
-				transformTranslate();
-			}
-		});
-
-		function transformTranslate() {
-			ul.css({
-				'-o-transform':'translate('+ abscissa +'px, 0px)',
-				'-webkit-transform':'translate('+ abscissa +'px, 0)',
-				'-webkit-transform':'translate3d('+ abscissa +'px, 0, 0)',
-				'transform':'translate('+ abscissa +'px, 0)',
-				'transform':'translate3d('+ abscissa +'px, 0, 0)'
-			});
-		}
-
-	};
-
-	$('.tabs__slider').sliderTab();
 
 // create App
 	// название программы
@@ -965,27 +880,26 @@ var pageResizeApp,
 			if(v.length == 0) {
 				i.focus();
 			}
-			if(c.val() == 'none') {
-				return;
+			else if(c.val() == 'none' && !c.closest('.select').hasClass('focus')) {
+				c.focus();
 			}
-		} else{
-			$('.tabs__slider .tabs__dt').each(function(){
-				$(this).add($('.tabs__dd--'+$(this).attr('data-tab'))).remove();
-			});
-			$('.popup--create').removeClass('popup--lock').trigger('click');
-
-			$('.tabs__slider ul').append('<li class="placeholder"><span class="tabs__dt"></span></li>');
-			$('.app-add-tab').trigger('click');
-
-			saveDesc(v,e.val(),t.val(),c.val());
-
-			$('form.save-form').append('<input type="hidden" name="name" value="'+v+'" />');
-			$('form.save-form').append('<input type="hidden" name="mail" value="'+e.val()+'" />');
-			$('form.save-form').append('<input type="hidden" name="description" value="'+t.val()+'" />');
-			$('form.save-form').append('<input type="hidden" name="category" value="'+c.val()+'" />');
-			//$('form.new-program-form').submit();
-			i.add(e).add(t).val('');
+			return false;
 		}
+		$('.tabs__nav .tabs__dt').each(function(){
+			$(this).add($('.tabs__dd--'+$(this).attr('data-tab'))).remove();
+		});
+		$('.popup--create').removeClass('popup--lock').trigger('click');
+
+		$('.tabs__nav ul').append('<li class="placeholder"><span class="tabs__dt"></span></li>');
+		$('.app-add-tab').trigger('click');
+
+		saveDesc(v,e.val(),t.val(),c.val());
+
+		$('form.save-form').append('<input type="hidden" name="name" value="'+v+'">');
+		$('form.save-form').append('<input type="hidden" name="mail" value="'+e.val()+'">');
+		$('form.save-form').append('<input type="hidden" name="description" value="'+t.val()+'">');
+		$('form.save-form').append('<input type="hidden" name="category" value="'+c.val()+'">');
+		i.add(e).add(t).val('');
 	});
 	$('.popup--create__name').on('keyup',function(){
 		$('title').text($(this).val());
@@ -1020,7 +934,7 @@ var pageResizeApp,
 			data:     data,
 			success: $.proxy(function(data){
 				if(data['success'].length != 0) {
-					$('.popup--msg p').html('Программа отправлена');
+					$('.popup--msg .popup__inner').html('Программа отправлена');
 					$('.popup--msg a.btn-no-popup').removeClass('hide');
 					if(!$('.popup--msg a.btn-cancel-popup').hasClass('hide')) {
 						$('.popup--msg a.btn-cancel-popup').addClass('hide');

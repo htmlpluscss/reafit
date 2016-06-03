@@ -5,7 +5,7 @@
 				<a class="btn ml-10" id="btn-create-cat" data-type="create"><?php echo lang('create_category_btn');?></a>
 			</div>
 			<form class="pull-right search-form input-block" action="<?php echo $action;?>" method="GET">
-				<input class="input pull-left input-block__first" name="search" value="<?php echo (!empty($search)) ? $search : '';?>">
+				<input class="input input--border-white pull-left input-block__first" name="search" value="<?php echo (!empty($search)) ? $search : '';?>">
 				<?php if(!empty($per_page) && isset($per_page_list[0]) && !empty($per_page_list[0])):?>
 				<input type="hidden" name="items" value="<?php echo $per_page;?>" />
 				<?php endif;?>
@@ -31,20 +31,20 @@
 			<thead>
 				<tr>
 					<th class="hide"><?php echo lang('id');?></th>
-					<th><?php echo lang('name');?> <a href="#" class="sort-btn<?php echo (isset($sort) && isset($order) && $sort == 'asc' && $order == 'name') ? ' active' : '';?>" data-order="name" data-sort="asc">&#8595;</a><a href="#" class="sort-btn<?php echo (isset($sort) && isset($order) && $sort == 'desc' && $order == 'name') ? ' active' : '';?>" data-order="name" data-sort="desc">&#8593;</a></th>
-					<th class="col-hide-2"><?php echo lang('description');?></th>
-					<th class="col-hide-9"><?php echo lang('category');?> <a href="#" class="sort-btn<?php echo (isset($sort) && isset($order) && $sort == 'asc' && $order == 'category') ? ' active' : '';?>" data-order="category" data-sort="asc">&#8595;</a><a href="#" class="sort-btn<?php echo (isset($sort) && isset($order) && $sort == 'desc' && $order == 'category') ? ' active' : '';?>" data-order="category" data-sort="desc">&#8593;</a></th>
-					<th class="col-hide-3"><?php echo lang('created');?> <a href="#" class="sort-btn<?php echo (isset($sort) && isset($order) && $sort == 'asc' && $order == 'created') ? ' active' : '';?>" data-order="created" data-sort="asc">&#8595;</a><a href="#" class="sort-btn<?php echo (isset($sort) && isset($order) && $sort == 'desc' && $order == 'created') ? ' active' : '';?>" data-order="created" data-sort="desc">&#8593;</a></th>
-					<th class="col-hide-4"><?php echo lang('edited');?> <a href="#" class="sort-btn<?php echo (isset($sort) && isset($order) && $sort == 'asc' && $order == 'edited') ? ' active' : '';?>" data-order="edited" data-sort="asc">&#8595;</a><a href="#" class="sort-btn<?php echo (isset($sort) && isset($order) && $sort == 'desc' && $order == 'edited') ? ' active' : '';?>" data-order="edited" data-sort="desc">&#8593;</a></th>
-					<th class="col-hide-8"><?php echo lang('favorite');?></th>
-					<th><?php echo lang('actions');?></th>
+					<th class="bt0 bl0"><?php echo lang('name');?> <a href="#" class="sort-btn<?php echo (isset($sort) && isset($order) && $sort == 'asc' && $order == 'name') ? ' active' : '';?>" data-order="name" data-sort="asc">&#8595;</a><a href="#" class="sort-btn<?php echo (isset($sort) && isset($order) && $sort == 'desc' && $order == 'name') ? ' active' : '';?>" data-order="name" data-sort="desc">&#8593;</a></th>
+					<th class="bt0 col-hide-2"><?php echo lang('description');?></th>
+					<th class="bt0 col-hide-9"><?php echo lang('category');?> <a href="#" class="sort-btn<?php echo (isset($sort) && isset($order) && $sort == 'asc' && $order == 'category') ? ' active' : '';?>" data-order="category" data-sort="asc">&#8595;</a><a href="#" class="sort-btn<?php echo (isset($sort) && isset($order) && $sort == 'desc' && $order == 'category') ? ' active' : '';?>" data-order="category" data-sort="desc">&#8593;</a></th>
+					<th class="bt0 col-hide-3"><?php echo lang('created');?> <a href="#" class="sort-btn<?php echo (isset($sort) && isset($order) && $sort == 'asc' && $order == 'created') ? ' active' : '';?>" data-order="created" data-sort="asc">&#8595;</a><a href="#" class="sort-btn<?php echo (isset($sort) && isset($order) && $sort == 'desc' && $order == 'created') ? ' active' : '';?>" data-order="created" data-sort="desc">&#8593;</a></th>
+					<th class="bt0 col-hide-4"><?php echo lang('edited');?> <a href="#" class="sort-btn<?php echo (isset($sort) && isset($order) && $sort == 'asc' && $order == 'edited') ? ' active' : '';?>" data-order="edited" data-sort="asc">&#8595;</a><a href="#" class="sort-btn<?php echo (isset($sort) && isset($order) && $sort == 'desc' && $order == 'edited') ? ' active' : '';?>" data-order="edited" data-sort="desc">&#8593;</a></th>
+					<th class="bt0 col-hide-8"><?php echo lang('favorite');?></th>
+					<th class="bt0 br0"><?php echo lang('actions');?></th>
 				</tr>
 			</thead>
-			<tbody>
+			<tbody class="last-bb0">
 			<?php foreach ($items as $key => $item) :?>
 				<tr>
 					<td class="hide">1</td>
-					<td><a href="<?php echo base_url('programs/'.$item->hash);?>"><?php echo $item->name;?></a></td>
+					<td class="bl0"><a href="<?php echo base_url('programs/'.$item->hash);?>"><?php echo $item->name;?></a></td>
 					<td><?php echo $item->description;?></td>
 					<td class="align-middle align-center">
 						<?php if(in_array($item->category, $category_list)):?>
@@ -68,7 +68,7 @@
 						<a class="icon-star-empty" href="<?php echo base_url('programs/favorite/'.$item->hash);?>" data-type="1" title="<?php echo lang('add_too_exercise');?>"></a>
 						<?php endif;?>
 					</td>
-					<td class="align-center align-middle nowrap">
+					<td class="br0 align-center align-middle nowrap">
 						<a class="icon-link" target="_blank" href="<?php echo base_url($item->hash);?>" title="<?php echo lang('oublic_link');?>"></a>
 						<a class="icon-folder-open-empty" href="<?php echo base_url('programs/'.$item->hash)?>" title="<?php echo lang('open_for_edit');?>"></a>
 						<a class="icon-trash-empty one-event__delete" href="<?php echo site_url('programs/delete/'.$item->hash);?>" data-text="<?php echo lang('delete_program');?>" title="<?php echo lang('delete');?>"></a>
