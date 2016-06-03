@@ -1,6 +1,6 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
 <body>
-	<header>
+	<header id="header">
 		<div class="center">
 			<a href="<?php echo base_url();?>" class="logo">
 				<img src="<?php echo base_url('assets/images/logo.png');?>" alt="<?php echo $this->settings->site_name;?>">
@@ -31,13 +31,13 @@
 					<li><a href="<?php echo site_url('feedback');?>"><?php echo lang('feedback');?></a></li>
 					<?php if(!empty($this->user)):?>
 					<li class="menu_top__sep"><a href="<?php echo site_url('profile');?>"><?php echo $profile_lbl;?></a></li>
-					<li><a href="<?php echo site_url('logout');?>" title="<?php echo lang('logout');?>" class="menu_top__exit ico ico--exit"></a></li>
+					<li><a href="<?php echo site_url('logout');?>" class="menu_top__exit ico ico--exit"></a></li>
 					<?php endif;?>
 				</ul>
 			</nav>
 		</div>
 	</header>
-	<main class="center clr">
+	<main id="main" class="center clr">
 		<?php if(isset($info)):?>
 		<div class="info-message info-message--warning">
 			<p><?php echo $info;?></p>

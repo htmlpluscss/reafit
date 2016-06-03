@@ -8,6 +8,9 @@ http://htmlpluscss.ru
 
 */
 
+var pageResizeApp,
+	resizeTimeoutIdApp;
+
 (function($){
 
 	var list = $('.exercises-list');
@@ -17,22 +20,50 @@ http://htmlpluscss.ru
 
 	$window.on({
 		resize: function(){
-			setTimeout(function(){
-
-				var f = $('body').hasClass('fullscreen') ? 0 : $('footer').height();
-				if(list.length>0){
-					var h = windowHeight - list.offset().top - f;
-					list.height(h);
-				}
-				h = windowHeight - $('.tabs__dd--active .l-h').offset().top - f;
-				$('.l-h').not('.l-h--height-auto').height(h-16);
-				h < 300 ? $('body').addClass('min-height') : $('body').removeClass('min-height');
-
+			clearTimeout(resizeTimeoutId);
+			clearTimeout(resizeTimeoutIdApp);
+			resizeTimeoutIdApp = setTimeout(function(){
+				pageResize();
+				pageResizeApp();
 			},1);
 		}
 	});
 
-	$('body').addClass('show');
+	pageResizeApp = function(){
+		var f = body.hasClass('fullscreen') ? 0 : $('footer').height();
+		if(list.length>0){
+			var h = windowHeight - list.offset().top - f;
+			list.height(h);
+		}
+		var h = windowHeight - $('.tabs__dd--active .l-h').offset().top - f;
+//		$('.l-h').not('.l-h--height-auto').height(h-16);
+		h < 300 ? body.addClass('min-height') : body.removeClass('min-height');
+
+	// высота комментариев
+		$('.programme-table__td--coment-inner').each(function(){
+			$(this).closest('.programme-body__box').toggleClass('programme-body__box--coment',$(this).height()>$(this).parent().height());
+		});
+	}
+
+	$('#main').addClass('show');
+
+// tabs
+	(function(tabs){
+
+		tabs.on('click','.tabs__dt',function(){
+			var t = $(this);
+			var tab_id = t.data('tab');
+			t.addClass('tabs__dt--active');
+			tabs.find('.tabs__dt').not(t).removeClass('tabs__dt--active');
+			tabs.find('.tabs__dd').removeClass('tabs__dd--active').filter('.tabs__dd--'+t.attr('data-tab')).addClass('tabs__dd--active');
+
+// разобрать //
+			if(tab_id != undefined && $('form.save-form input[name="params[tab]"]').length > 0) {
+				$('form.save-form input[name="params[tab]"]').val(tab_id);
+			}
+		});
+
+	}($('.tabs')));
 
 /* load img ---------- */
 /*
@@ -59,7 +90,7 @@ http://htmlpluscss.ru
 
 	// fullscreen
 	$('.app-fullscreen').on('click',function(){
-		$('body').toggleClass('fullscreen');
+		body.toggleClass('fullscreen');
 		setTimeout(function(){
 			$window.trigger('resize');
 		});
@@ -260,7 +291,7 @@ http://htmlpluscss.ru
 		$('.tabs__dd--start').after(dd);
 		dt.attr('data-tab',dataTab);
 		$(this).attr('data-tab-id', dataTab);
-		$('body .btn-save').attr('data-change', 1);
+		$('.btn-save').attr('data-change', 1);
 		dd.find('.l-h')
 			.attr('data-type', 'exercises['+dataTab+'][data]')
 			.append('<input id="tabs-exercises-'+dataTab+'" type="hidden" name="exercises['+dataTab+'][name]" value="" />');
@@ -289,13 +320,13 @@ http://htmlpluscss.ru
 			$('.tabs .tabs__dd.note').addClass('tabs__dd--active');
 		} else {
 			count = 0;
-			$('body > .title_up').html('Заметка').css({
+			body.children('.title_up').html('Заметка').css({
 					'top':  $('a.icon-plus-outline.app-add-note').offset().top,
-					'left': $('a.icon-plus-outline.app-add-note').offset().left + $('a.icon-plus-outline.app-add-note').outerWidth() / 2 - $('body > .title_up').outerWidth() / 2
+					'left': $('a.icon-plus-outline.app-add-note').offset().left + $('a.icon-plus-outline.app-add-note').outerWidth() / 2 - body.children('.title_up').outerWidth() / 2
 				});
 			loadCSS('/assets/css/editor/editor.css');
 			$.getScripts(['/assets/js/editor/langs/ru.js','/assets/js/editor/trumbowyg.js']).done(function() {
-				$('body .editor').trumbowyg({
+				$('.editor').trumbowyg({
 	                fullscreenable: false,
 	                lang: 'ru',
 	                btns: [
@@ -306,14 +337,14 @@ http://htmlpluscss.ru
 	                removeformatPasted: true,
 	                semantic: true
 	            }).on('tbwchange', function(){
-	                $('body .btn-save').attr('data-change', 1);
+	                $('.btn-save').attr('data-change', 1);
 	            });
 			});
 			$('.app-add-tab').attr('data-count', count);
 			$('.tabs__slider ul > li > span').removeClass('tabs__dt--active');
 			$('.tabs .tabs__dd--active').removeClass('tabs__dd--active');
 			$('form.save-form').prepend('<div class="tabs__dd tabs__dd--' + count + ' tabs__dd--active note"><div class="l-h"><h2>Заметка</h2><textarea class="editor" name="note"></textarea></div></div>');
-			$('body .btn-save').attr('data-change', 1);
+			$('.btn-save').attr('data-change', 1);
 			$('form.form-name-proggram .app-add-note').text('Изменить заметку');
 		}
 	});
@@ -353,7 +384,7 @@ http://htmlpluscss.ru
 			draggable_droppable_sortable();
 			$window.trigger('resize');
 			$('.tabs__slider').sliderTab();
-			$('body .btn-save').attr('data-change', 1);
+			$('.btn-save').attr('data-change', 1);
 		}
 	});
 
@@ -395,7 +426,7 @@ http://htmlpluscss.ru
 				});
 			}
 		});
-		$('body .btn-save').attr('data-change', 1);
+		$('.btn-save').attr('data-change', 1);
 	});
 
 	// tab right
@@ -453,13 +484,13 @@ http://htmlpluscss.ru
 				up ? li.after(n) : li.before(n);
 			});
 		});
-		$('body .btn-save').attr('data-change', 1);
+		$('.btn-save').attr('data-change', 1);
 	});
 
 	// удалить
 	$('.app-left').on('click','.ico-delete-item',function(){
 		var li = $(this).closest('.exercises-my__item');
-		$('body .btn-save').attr('data-change', 1);
+		$('.btn-save').attr('data-change', 1);
 		li.fadeOut(1000,function(){
 			li.remove();
 		});
@@ -565,7 +596,7 @@ http://htmlpluscss.ru
 
 			$('.tabs__dd--active .exercises-my').append(li);
 		}
-		$('body .btn-save').attr('data-change', 1);
+		$('.btn-save').attr('data-change', 1);
 	});
 
 	// Добавить из popup (плюс)
@@ -651,12 +682,12 @@ http://htmlpluscss.ru
 
 	// изменение формы
 	$('form.spy').on('change', function() {
-		$('body .btn-save').attr('data-change', 1);
+		$('.btn-save').attr('data-change', 1);
 	});
 
 	$('form.form-name-proggram').on('change', function() {
-		$('body .btn-save').attr('data-change', 1);
-		$('body .btn-save').attr('data-change-desc', 1);
+		$('.btn-save').attr('data-change', 1);
+		$('.btn-save').attr('data-change-desc', 1);
 	});
 
 /* Список справа ---------- */
@@ -768,12 +799,12 @@ http://htmlpluscss.ru
  			activate: function(event, ui) {
 				if(!ui.helper.hasClass('ui-draggable-dragging')) {
 					ui.placeholder.height(ui.item.height());
-					$('body .btn-save').attr('data-change', 1);
+					$('.btn-save').attr('data-change', 1);
 				}
 			},
 			receive: function(event, ui) {
 				addMyItem(ui.helper);
-				$('body .btn-save').attr('data-change', 1);
+				$('.btn-save').attr('data-change', 1);
 			}
 		});
 	}

@@ -168,7 +168,7 @@ body > .title_up {
 	content: "";
 	height: 14px;
 	left: 50%;
-	margin-left: -14px;
+	margin-left: -15px;
 	overflow: hidden;
 	position: absolute;
 	top: 100%;
@@ -179,7 +179,7 @@ body > .title_up {
 	box-shadow: 0 1px 3px rgba(0,0,0,.2);
 	content: "";
 	height: 15px;
-	left: 4px;
+	left: 7px;
 	position: absolute;
 	top: -10px;
 	-webkit-transform: rotate(45deg);
@@ -187,99 +187,6 @@ body > .title_up {
 	width: 15px;
 }
 
-/* tabs
------------------------------------------------------------------------------*/
-.tabs__nav {
-	height: 60px;
-}
-.tabs__nav .box{
-	overflow: hidden;
-	position: relative;
-	height: 62px;
-}
-.tabs__nav li{
-	float: left;
-}
-.tabs__dt {
-	float: left;
-	padding: 15px 20px;
-	cursor: pointer;
-	height: 55px;
-	font-size: 20px;
-	font-size: 13px;
-	line-height: 30px;
-	position: relative;
-	white-space: nowrap;
-	background: #f3f3f3;
-	color: #16130d;
-	top: 5px;
-}
-li:first-child .tabs__dt {
-	border-radius: 4px 0 0 0;
-	padding-left: 22px;
-}
-li:last-child .tabs__dt {
-	border-radius: 0 4px 0 0;
-	padding-right: 22px;
-}
-.tabs__nav .placeholder .tabs__dt{
-	padding: 14px 25px;
-}
-.tabs__dt:before {
-	position: absolute;
-	width: 8px;
-	top: -2px;
-	right: 0;
-	bottom: 0;
-	content: '';
-	padding: 15px 18px;
-	border-radius: 0 8px 0 0;
-	border-top: solid 2px #fff;
-	border-right: solid 2px #fff;
-}
-.tabs__dt--active {
-	border: solid 1px #dddce1;
-	background: #fcfcfd;
-	border-bottom: 0;
-	height: 60px;
-	top: 1px;
-	z-index: 1;
-	margin-left: -6px;
-	font-size: 15px;
-	border-radius: 4px 4px 0 0 !important;
-	font-weight: 700;
-	max-width: 300px;
-}
-li:first-child .tabs__dt--active {
-	margin-left: 0;
-}
-.tabs__dt--active:before {
-	display: none;
-}
-.tabs__dd {
-	display: none;
-}
-.tabs__dd--active {
-	display: block;
-}
-.tabs__dt--delete,
-.tabs__dd--delete {
-	opacity: .3
-}
-
-.app-left--print .tabs__nav li {
-	float: none;
-}
-.app-left--print .tabs__dt--active {
-	display: block;
-	float: none;
-	background: #f3f3f3;
-	max-width: inherit;
-}
-.app-left--print__item {
-	border-top: 1px solid #dddce1;
-	border-radius: 0 0 6px 6px;
-}
 
 
 /* page

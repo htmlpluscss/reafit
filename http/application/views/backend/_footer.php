@@ -1,7 +1,7 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
 	</main>
 
-	<footer>
+	<footer id="footer">
 
 		<p class="copyright">© <?php echo date('Y');?> «<?php echo $this->settings->site_name;?>»</p>
 

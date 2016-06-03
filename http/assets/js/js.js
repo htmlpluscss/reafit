@@ -10,24 +10,26 @@ http://htmlpluscss.ru
 
 var windowHeight,
 	windowScrollTop,
+	pageResize,
 	resizeTimeoutId,
 	scrollTimeoutId,
 	ScrollBarWidth,
+	body = $('body'),
 	$window = $(window);
 
-	function pageResize(){
-		windowHeight = $window.height();
-		ScrollBarWidth = getScrollBarWidth();
-		$('main').css('min-height',windowHeight-$('header').outerHeight()-$('footer').outerHeight());
-	}
-	pageResize();
+pageResize = function(){
+	windowHeight = $window.height();
+	ScrollBarWidth = getScrollBarWidth();
+	$('#main').css('min-height',windowHeight-$('#header').height()-$('#footer').height());
+}
+pageResize();
 
 $window.on({
 	resize: function(){
 		clearTimeout(resizeTimeoutId);
 		resizeTimeoutId = setTimeout(function(){
 			pageResize();
-		},100);
+		},1);
 	},
 	scroll: function(){
 		windowScrollTop = $window.scrollTop();
@@ -189,7 +191,7 @@ $window.ready(function(){
 				'left': t.offset().left + t.outerWidth() / 2 - titleUp.outerWidth() / 2
 			});
 			t.hover(function(){
-				titleUp.appendTo('body');
+				titleUp.appendTo(body);
 				titleUp.css({
 					'top':  t.offset().top,
 					'left': t.offset().left + t.outerWidth() / 2 - titleUp.outerWidth() / 2
@@ -203,35 +205,11 @@ $window.ready(function(){
 
 	};
 
-
-	$.fn.tabs = function(){
-
-		var tab = function(){
-			tabs = $(this);
-			tabs.on('click','.tabs__dt',function(){
-				var t = $(this);
-				t.addClass('tabs__dt--active');
-				tabs.find('.tabs__dt').not(t).removeClass('tabs__dt--active');
-				tabs.find('.tabs__dd').removeClass('tabs__dd--active').filter('.tabs__dd--'+t.attr('data-tab')).addClass('tabs__dd--active');
-				var tab_id = $('.tabs__slider ul .tabs__dt--active').data('tab');
-				if(tab_id != undefined && $('form.save-form input[name="params[tab]"]').length > 0) {
-					$('form.save-form input[name="params[tab]"]').val(tab_id);
-				}
-			});
-		}
-
-		return this.each(tab);
-
-	};
-
 // select
 	$('select').mySelect();
 
 // title
 	$('[title]').Title();
-
-// tabs
-	$('.tabs').tabs();
 
 // цели метрики
 	$('.page-login').find('form').on('click',function(){
@@ -261,7 +239,7 @@ function errorEmail(t){
 function getScrollBarWidth(){
 	var div = $('<div class="scroolbarwidth">');
 	div.append('<p></p>');
-	$('body').append(div);
+	body.append(div);
 	var w = div.width() - div.children().width();
 	div.remove();
 	return w;
@@ -284,22 +262,22 @@ function getScrollBarWidth(){
 	function popupShow(mod,b,s){
 		var popup = $('.popup--'+mod);
 		var box = popup.children('.popup__box');
-		var body = box.children('.popup__body');
+		var popupBody = box.children('.popup__body');
 		if(mod=='content' && s == 'related_progress'){
-			body.html(b);
-			var h = body.height();
+			popupBody.html(b);
+			var h = popupBody.height();
 		}
 		else if(mod=='content' && b != undefined && s==undefined){
-			body.html(b);
-			var h = body.height();
+			popupBody.html(b);
+			var h = popupBody.height();
 		}
 		else if(mod=='content'){
 			var content = b.find('.popup-content--'+s).clone(true);
-			body.html(content);
+			popupBody.html(content);
 			var h = content.height();
 		}
 		else {
-			var h = body.height();
+			var h = popupBody.height();
 		}
 		if(h > windowHeight - 40)
 			h = windowHeight - 40;

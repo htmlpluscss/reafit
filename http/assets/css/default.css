@@ -9,6 +9,7 @@ body {
 	font: 14px/22px 'Roboto', sans-serif;
 	position: relative;
 	min-width:1200px;
+	min-width:1000px;
 	background: #ffaa00;
 }
 .show {
@@ -337,15 +338,18 @@ sup {
 	position: relative;
 	background-position: -532px -64px
 }
+.ico--exit.ico:hover {
+	background-position: -532px -24px
+}
 .ico--close,
 .ico--close-white {
 	left: auto;
 	width: 40px;
 	height: 40px;
-	background-position: -524px -132px
+	background-position: -420px -215px
 }
 .ico--close-white {
-	background-position: -494px -132px
+	background-position: -389px -215px
 }
 .ico--help:after {
 	content: "?";
@@ -380,7 +384,10 @@ sup {
 	background-position: -214px -25px
 }
 .ico--print {
-	background-position: -260px -25px
+	background-position: -261px -25px
+}
+.ico--print:hover {
+	background-position: -260px -64px
 }
 .ico--link {
 	background-position: -356px -25px
@@ -407,7 +414,7 @@ sup {
 	background-position: -214px -65px
 }
 .ico--print:hover {
-	background-position: -260px -65px
+	background-position: -261px -65px
 }
 .ico--link:hover {
 	background-position: -356px -65px
@@ -423,23 +430,42 @@ sup {
 	background-position: -272px -201px
 }
 .ico--fullscreen {
-	background-position: -370px -199px
+	width: 30px;
+	background-position: -218px -456px
+}
+.ico--fullscreen:hover {
+	background-position: -218px -376px
 }
 .ico--fullscreen-exit {
-	background-position: -370px -199px
+	background-position: -268px -456px
+}
+.ico--fullscreen-exit:hover {
+	background-position: -268px -376px
 }
 
 .ico--play {
-	background-position: -22px -125px
+	background-position: -22px -225px
+}
+.ico--play:hover {
+	background-position: -22px -315px
 }
 .ico--info {
-	background-position: -75px -125px
+	background-position: -75px -224px
+}
+.ico--info:hover {
+	background-position: -75px -314px
 }
 .ico--visible {
-	background-position: -35px -457px
+	background-position: -125px -412px
+}
+.ico--visible:hover {
+	background-position: -165px -412px
 }
 .ico--hidden {
-	background-position: -35px -423px
+	background-position: -125px -377px
+}
+.ico--hidden:hover {
+	background-position: -165px -377px
 }
 
 
@@ -518,10 +544,10 @@ td {
 	left: 0;
 	width: 22px;
 	height: 22px;
-	background: url(../images/sprite.svg) -203px -224px;
+	background: url(../images/sprite.svg) -474px -257px;
 }
 .checkbox input:checked ~ i {
-	background-position: -203px -194px
+	background-position: -474px -227px
 }
 
 .checkbox-star .icon-star,
@@ -600,9 +626,6 @@ hr {
 	margin-right: 10px;
 }
 
-.copyright {
-	text-align: center;
-}
 
 .ui-widget {
 	font: 14px 'PT Sans', sans-serif;
@@ -646,9 +669,12 @@ hr {
 }
 /* footer
 -----------------------------------------------------------------------------*/
-footer {
+#footer {
 	background: #4a4a4a;
 	font-size: 12px;
 	color: #fff;
+}
+.copyright {
+	text-align: center;
 	padding: 4px;
 }

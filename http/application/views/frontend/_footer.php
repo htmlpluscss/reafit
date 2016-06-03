@@ -1,11 +1,18 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
 	</main>
 
-	<footer>
+<?php if($this->router->class != 'programs' || $this->router->method == 'printProgram') :?>
 
-		<p class="copyright">© <?php echo date('Y');?> «<?php echo $this->settings->site_name;?>»</p>
+	<footer id="footer">
+
+		<p class="copyright hide">© <?php echo date('Y');?> «<?php echo $this->settings->site_name;?>»</p>
+		<p class="copyright"><?php echo $this->router->class . ' | ' . $this->router->method . ' | ' . $this->router->default_controller;?></p>
 
 	</footer>
+
+<?php endif;?>
+
+<?php if($this->router->class == 'programs') :?>
 
 	<div class="popup popup--content">
 		<div class="popup__box">
@@ -50,8 +57,12 @@
 	<?php echo $_popups;?>
 	<?php endif;?>
 
+<?php endif;?>
+
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 	<script>window.jQuery || document.write('<script src="<?php echo base_url('assets/js/jquery.min.js');?>"><\/script>')</script>
+	<script src="<?php echo base_url('assets/js/jquery.mousewheel.min.js');?>"></script>
+	<script src="<?php echo base_url('assets/js/jquery.jscrollpane.min.js');?>"></script>
 	<script src="<?php echo base_url('assets/js/js.js');?>"></script>
 	<?php if(isset($this->scripts) && !empty($this->scripts)):?>
 	<?php foreach ($this->scripts as $key => $script) :?>

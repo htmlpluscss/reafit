@@ -1,6 +1,6 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
 <body>
-	<header>
+	<header id="header">
 		<div class="center">
 			<a href="<?php echo base_url('admin');?>" class="logo">
 				<img src="<?php echo base_url('assets/images/logo.png');?>" alt="<?php echo $this->settings->site_name;?>">
@@ -30,7 +30,7 @@
 			<?php endif;?>
 		</div>
 	</header>
-	<main class="center clr">
+	<main id="main" class="center clr">
 		<?php if(isset($info)):?>
 		<div class="info-message info-message--warning">
 			<p><?php echo $info;?></p>

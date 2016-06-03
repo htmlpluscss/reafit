@@ -1,30 +1,91 @@
-body {
-	overflow: auto;
-	opacity: 1
-}
-.exercises-list__item-detal {
-	margin-top: 20px;
-}
-.popup-content--add {
-	margin-top: 10px;
-}
-.tabs__dt--active {
-	font-weight: 700;
-	font-size: 18px;
-}
-.tabs__dd--active {
-	margin-bottom: 30px;
-}
 .menu_top {
 	display: none;
 }
 
 @media print {
+
 	body {
-		min-width: inherit;
+		min-width: initial;
+		background: #fff;
 	}
-	footer,
-	.menu_app {
-		display: none;
+	#header,
+	#footer,
+	.menu_app,
+	.ico,
+	.title_up {
+		display: none !important;
 	}
+	.center {
+		max-width: initial;
+	}
+	#main {
+		padding: 0;
+	}
+	.programme-head {
+		background: #fff;
+		color: #000;
+	}
+	.programme-head__title {
+		font-weight: 700;
+		float: none;
+		margin: auto;
+		text-align: center;
+	}
+	.programme-body {
+		padding: 0;
+	}
+	.programme-body__item {
+		padding: 0 0 14px 14px;
+	}
+	.programme-body--print__group{
+		border: 0;
+		background: #fff;
+		page-break-inside: avoid
+	}
+	.programme-body__h2 {
+		background: #fff;
+		border: 0;
+		color: #000;
+		font-size: 18px;
+		font-weight: 700;
+		padding: 12px 0;
+	}
+	.programme-body__box {
+		border: 1px solid #000;
+	}
+
+	.programme-img {
+//		position: absolute;
+		top: 0;
+		left: 0;
+		width: 318px;
+	}
+	.programme-body__detal {
+		width: auto;
+		float: right;
+		background: #fff;
+	}
+
+	.programme-body__name {
+		color: #000;
+		padding-bottom: 5px;
+	}
+	.programme-description {
+		padding: 10px 10px 0;
+		border-top-color: #000;
+	}
+	.programme-description p {
+		font-size: 14px;
+		line-height: 18px;
+		margin-bottom: 16px;
+	}
+	.programme-table__th,
+	.programme-table__td {
+		border-top-color: #000;
+		border-left-color: #000
+	}
+	.programme-table__bg {
+		background: #fff;
+	}
+
 }
