@@ -276,10 +276,30 @@ body > .title_up {
 	color: #4a4a4a;
 }
 
-.popup--message .popup__box {
+.info-message .popup__box {
 	height: 60px;
-	width: 345px;
+	width: 400px;
 	text-align: center;
+	padding: 0;
+	background: none;
+}
+.info-message--error .popup__box {
+	text-align: left;
+}
+.info-message .popup__inner {
+	padding: 30px;
+	background: #fff;
+	border-radius: inherit;
+	border: 3px solid #4a4a4a;
+}
+.info-message--error .popup__inner {
+	border-color: #d0021b;
+}
+.info-message--success .popup__inner {
+	border-color: #4a90e2;
+}
+.info-message--warning .popup__inner {
+	border-color: #ffaa00;
 }
 
 /* app begin 200

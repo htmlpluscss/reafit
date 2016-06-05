@@ -83,36 +83,44 @@
 <?php endif;?>
 
 <?php if(isset($info)):?>
-	<div class="popup popup--message show">
+	<div class="popup info-message info-message--warning show">
 		<div class="popup__box">
-			<div class="info-message info-message--warning"><?php echo $info;?></div>
+			<div class="popup__inner">
+				<?php echo $info;?>
+			</div>
 			<a class="ico ico--close-white popup__close"></a>
 		</div>
 	</div>
 <?php endif;?>
 
 <?php if(isset($success)):?>
-	<div class="popup popup--message show">
+	<div class="popup info-message info-message--success show">
 		<div class="popup__box">
-			<div class="info-message info-message--success"><?php echo $success;?></div>
+			<div class="popup__inner">
+				<?php echo $success;?>
+			</div>
 			<a class="ico ico--close-white popup__close"></a>
 		</div>
 	</div>
 <?php endif;?>
 
 <?php if(isset($error)):?>
-	<div class="popup popup--message show">
+	<div class="popup info-message info-message--error show">
 		<div class="popup__box">
-			<div class="info-message info-message--error"><?php echo $error;?></div>
+			<div class="popup__inner">
+				<?php echo $error;?>
+			</div>
 			<a class="ico ico--close-white popup__close"></a>
 		</div>
 	</div>
 <?php endif;?>
 
 <?php if(function_exists('validation_errors') && validation_errors()):?>
-	<div class="popup popup--message show">
+	<div class="popup info-message info-message--error show">
 		<div class="popup__box">
-			<div class="info-message info-message--error"><?php echo validation_errors();?></div>
+			<div class="popup__inner">
+				<?php echo validation_errors();?>
+			</div>
 			<a class="ico ico--close-white popup__close"></a>
 		</div>
 	</div>

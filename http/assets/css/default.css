@@ -85,6 +85,9 @@ textarea.input {
 	display: block;
 	width: 100%;
 }
+.input::-ms-clear {
+	display: none
+}
 .input--border-white {
 	border-color: #fff
 }
@@ -96,15 +99,6 @@ textarea.input {
 }
 ::-webkit-input-placeholder {
 	opacity: .7;
-}
-.input:hover::-moz-placeholder {
-	opacity: .3;
-}
-.input:hover:-ms-input-placeholder {
-	opacity: .3;
-}
-.input:hover::-webkit-input-placeholder {
-	opacity: .3;
 }
 .input:focus::-moz-placeholder {
 	opacity: 0;
@@ -182,7 +176,7 @@ button::-moz-focus-inner {
 	line-height: 48px;
 	height: 48px;
 	border-radius: 4px;
-	background: #4a90e2;
+	background-color: #4a90e2;
 }
 .block100 {
 	width: 100%;
@@ -334,7 +328,7 @@ sup {
 	position: absolute;
 	vertical-align: top;
 	display: inline-block;
-	background: url(../images/sprite.svg);
+	background-image: url(../images/sprite.svg);
 }
 .ico--exit.ico {
 	width: 24px;
@@ -367,13 +361,19 @@ sup {
 	font-weight: 300
 }
 .ico--edit {
-	width: 40px;
-	height: 40px;
-	position: relative;
-	float: left;
-	top: -7px;
-	background-position: -126px -188px
+	outline:1px solid red;
+	background-position: -471px -302px
 }
+.ico--edit:hover {
+	background-position: -471px -332px
+}
+.ico--detal {
+	background-position: -471px -302px
+}
+.ico--detal:hover {
+	background-position: -471px -332px
+}
+
 .ico--plus {
 	background-position: -25px -25px
 }
@@ -386,20 +386,15 @@ sup {
 .ico--save {
 	background-position: -168px -25px
 }
+.ico--save-exit {
+	outline:1px solid red;
+	background-position: -214px -25px
+}
 .ico--save-plus {
 	background-position: -214px -25px
 }
 .ico--print {
 	background-position: -261px -25px
-}
-.ico--print:hover {
-	background-position: -260px -64px
-}
-.ico--print-white {
-	background-position: -261px -148px
-}
-.ico--print-white:hover {
-	background-position: -260px -108px
 }
 .ico--link {
 	background-position: -356px -25px
@@ -409,6 +404,42 @@ sup {
 }
 .ico--note {
 	background-position: -402px -25px
+}
+
+.ico--plus-white {
+	background-position: -25px -145px
+}
+.ico--open-white {
+	background-position: -73px -145px
+}
+.ico--new-white {
+	background-position: -122px -145px
+}
+.ico--save-white {
+	background-position: -168px -145px
+}
+.ico--save-exit-white {
+	outline:1px solid red;
+	background-position: -214px -145px
+}
+.ico--save-plus-white {
+	background-position: -214px -145px
+}
+.ico--print-white {
+	background-position: -261px -145px
+}
+.ico--link-white {
+	background-position: -356px -145px
+}
+.ico--cart-white {
+	background-position: -450px -145px
+}
+.ico--note-white {
+	background-position: -402px -145px
+}
+
+.ico--print:hover {
+	background-position: -260px -64px
 }
 .ico--plus:hover {
 	background-position: -25px -65px
@@ -438,9 +469,53 @@ sup {
 	background-position: -402px -65px
 }
 
-.ico--exit-app {
-	background-position: -272px -201px
+.ico--plus-white:hover {
+	background-position: -25px -105px
 }
+.ico--open-white:hover {
+	background-position: -73px -105px
+}
+.ico--new-white:hover {
+	background-position: -122px -105px
+}
+.ico--save-white:hover {
+	background-position: -168px -105px
+}
+.ico--save-exit-white:hover {
+	background-position: -214px -105px
+}
+.ico--save-plus-white:hover {
+	background-position: -214px -105px
+}
+.ico--print-white:hover {
+	background-position: -260px -105px
+}
+.ico--link-white:hover {
+	background-position: -356px -105px
+}
+.ico--cart-white:hover {
+	background-position: -450px -105px
+}
+.ico--note-white:hover {
+	background-position: -402px -105px
+}
+
+.ico--exit-app {
+	outline:1px solid red;
+	background-position: -347px -256px
+}
+.ico--exit-app-white {
+	outline:1px solid red;
+	background-position: -347px -256px
+}
+.ico--exit-app:hover {
+	background-position: -347px -221px
+}
+.ico--exit-app-white:hover {
+	outline:1px solid red;
+	background-position: -347px -256px
+}
+
 .ico--fullscreen {
 	background-position: -218px -456px
 }
@@ -455,16 +530,16 @@ sup {
 }
 
 .ico--play {
-	background-position: -22px -225px
+	background-position: -20px -222px
 }
 .ico--play:hover {
-	background-position: -22px -315px
+	background-position: -20px -312px
 }
 .ico--info {
-	background-position: -75px -224px
+	background-position: -73px -221px
 }
 .ico--info:hover {
-	background-position: -75px -314px
+	background-position: -73px -311px
 }
 .ico--visible {
 	background-position: -125px -412px
@@ -478,10 +553,36 @@ sup {
 .ico--hidden:hover {
 	background-position: -165px -378px
 }
+.ico--search {
+	background-position: -332px -372px
+}
 
-
-
-
+.ico--progress {
+	background-position: -98px -222px
+}
+.ico--progress:hover {
+	background-position: -98px -312px
+}
+.ico--delete {
+	background-position: -129px -222px
+}
+.ico--delete:hover {
+	background-position: -129px -312px
+}
+.ico--related {
+	background-position: -47px -222px
+}
+.ico--related:hover {
+	background-position: -47px -312px
+}
+.ico--add-item {
+	width: 40px;
+	height: 40px;
+	background-position: -523px -149px
+}
+.ico--star {
+	background-position: -191px -290px
+}
 
 /* table
 -----------------------------------------------------------------------------*/
@@ -581,7 +682,7 @@ td {
 	display: inline-block;
 }
 
-h1, h2, h3, h4, b {
+h1, h2, h3, h4 {
 	font-weight: 400
 }
 h1 {
@@ -650,9 +751,6 @@ hr {
 }
 
 
-.ui-widget {
-	font: 14px 'PT Sans', sans-serif;
-}
 .ui-tabs .ui-tabs-panel {
 	padding: 8px 0 12px;
 }
@@ -666,30 +764,37 @@ hr {
 }
 
 .ui-autocomplete {
-	border: 1px solid #aaa;
-	background: #f9f9f9;
-	box-shadow: 0 2px 2px #e1e1e1 inset;
+	width: 441px;
+	padding: 5px;
+	border-radius: 4px;
+	background: #fff;
+	box-shadow: 0 6px 12px rgba(0,0,0,.24);
+	border: solid 1px #dddce1;
 	z-index: 9;
-    left: 0;
-    position: absolute;
-    top: 0;
+	left: 0;
+	position: absolute;
+	top: 0;
+	transform: translateY(1px);
 }
 .ui-autocomplete .ui-menu-item {
-	padding: 3px 7px;
-	height: 25px;
+	padding: 8px 10px 7px 11px;
 	position: relative;
 	overflow: hidden;
 	white-space: nowrap;
 	text-overflow: ellipsis;
+	font-size: 12px;
+	line-height: 17px;
+	color: #4a4a4a;
+	border-radius: 4px;
+	cursor: pointer;
 }
 .ui-autocomplete .ui-state-focus {
-	background: #fff;
-	cursor: pointer;
-	font-weight: 700
+	background: #ecf3fc;
 }
 .ui-helper-hidden-accessible {
 	display: none;
 }
+
 /* footer
 -----------------------------------------------------------------------------*/
 #footer {

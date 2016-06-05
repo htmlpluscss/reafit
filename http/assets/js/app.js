@@ -8,10 +8,13 @@ http://htmlpluscss.ru
 
 */
 
-var pageResizeApp,
-	resizeTimeoutIdApp;
-
 (function($){
+
+	var navTab = $('.tabs__nav'),
+		widthTab,
+		pageResizeApp,
+		resizeTimeoutIdApp;
+
 
 	var list = $('.exercises-list');
 	var listOne = list.children().not('.exercises-list__item--set');
@@ -42,6 +45,22 @@ var pageResizeApp,
 		$('.tabs__dd--active .l-h__inner').jScrollPane({
 			verticalGutter : 0
 		});
+
+// right
+		h = windowHeight - $('.exercises-body .l-h').offset().top;
+		$('.exercises-body .l-h').height(h-62); // p-b:20 .programme-body + .l-h p-b:20px + p-t:20px + b-t:1px + b-b:1px
+		$('.exercises-body .l-h__inner').jScrollPane({
+			verticalGutter : 0
+		});
+	}
+
+	widthTab = function(){
+		var last = navTab.find('.tabs__dt').last();
+		if(navTab.width() < last.position().left + last.width()) {
+			navTab.addClass('tabs__nav--mini');
+		}else {
+			navTab.removeClass('tabs__nav--mini');
+		}
 	}
 
 	$('#main').addClass('show');
@@ -58,6 +77,10 @@ var pageResizeApp,
 
 				pageResize();
 				pageResizeApp();
+
+				widthTab();
+
+
 
 // разобрать //
 			if(tab_id != undefined && $('form.save-form input[name="params[tab]"]').length > 0) {
@@ -121,7 +144,7 @@ var pageResizeApp,
 		} else {
 			$('form.save-form input[name="redirect"]').val('');
 		}
-		var tab_id = $('.tabs__nav ul .tabs__dt--active').data('tab');
+		var tab_id = navTab.find('.tabs__dt--active').data('tab');
 		if(tab_id != undefined && $('form.save-form input[name="params[tab]"]').length > 0) {
 			$('form.save-form input[name="params[tab]"]').val(tab_id);
 		}
@@ -138,7 +161,7 @@ var pageResizeApp,
 		} else {
 			$('form.save-form input[name="redirect"]').val('');
 		}
-		var tab_id = $('.tabs__nav ul .tabs__dt--active').data('tab');
+		var tab_id = navTab.find('.tabs__dt--active').data('tab');
 		if(tab_id != undefined && $('form.save-form input[name="params[tab]"]').length > 0) {
 			$('form.save-form input[name="params[tab]"]').val(tab_id);
 		}
@@ -152,7 +175,7 @@ var pageResizeApp,
 		var action = $(this).data('action');
 		e.preventDefault();
 		if(action != undefined) {
-			var tab_id = $('.tabs__nav ul .tabs__dt--active').data('tab');
+			var tab_id = navTab.find('.tabs__dt--active').data('tab');
 			if(tab_id != undefined && $('form.save-form input[name="params[tab]"]').length > 0) {
 				$('form.save-form input[name="params[tab]"]').val(tab_id);
 			}
@@ -267,7 +290,7 @@ var pageResizeApp,
 				if(action != false) {
 					$('form.save-form').get(0).setAttribute('action', action);
 				}
-				var tab_id = $('.tabs__nav ul .tabs__dt--active').data('tab');
+				var tab_id = navTab.find('.tabs__dt--active').data('tab');
 				if(tab_id != undefined && $('form.save-form input[name="params[tab]"]').length > 0) {
 					$('form.save-form input[name="params[tab]"]').val(tab_id);
 				}
@@ -283,9 +306,9 @@ var pageResizeApp,
 	$('.app-add-tab').hover(function(){
 		var placeholder = $('<li class="placeholder">');
 		placeholder.html('<span class="tabs__dt">+</span>');
-		$('.tabs__nav ul').append(placeholder);
+		navTab.find('ul').append(placeholder);
 	},function(){
-		$('.tabs__nav .placeholder').remove();
+		navTab.find('.placeholder').remove();
 	});
 	$('.app-add-tab').on('click',function(){
 		var program = $('form.save-form').data('program');
@@ -294,7 +317,7 @@ var pageResizeApp,
             count =  parseInt($(this).attr('data-count'));
             count++;
         }
-		var dt = $('.tabs__nav .placeholder').removeClass('placeholder').children();
+		var dt = navTab.find('.placeholder').removeClass('placeholder').children();
 		if(dt.length==0) return;
 		var dd = $('.tabs__dd--start').clone(true);
 		var dataTab = parseInt($('.tabs__dt').length + count);
@@ -325,9 +348,9 @@ var pageResizeApp,
 		e.preventDefault();
 		var exist = $('.save-form .tabs__dd.note').length;
 		if(exist > 0) {
-			$('.tabs__nav ul > li > span').removeClass('tabs__dt--active');
-			$('.tabs .tabs__dd--active').removeClass('tabs__dd--active');
-			$('.tabs .tabs__dd.note').addClass('tabs__dd--active');
+			navTab.find('.tabs__dt--active').removeClass('tabs__dt--active');
+			$('.tabs__dd--active').removeClass('tabs__dd--active');
+			$('.tabs__dd.note').addClass('tabs__dd--active');
 		} else {
 			count = 0;
 			body.children('.title_up').html('Заметка').css({
@@ -351,7 +374,7 @@ var pageResizeApp,
 	            });
 			});
 			$('.app-add-tab').attr('data-count', count);
-			$('.tabs__nav ul > li > span').removeClass('tabs__dt--active');
+			navTab.find('.tabs__dt--active').removeClass('tabs__dt--active');
 			$('.tabs .tabs__dd--active').removeClass('tabs__dd--active');
 			$('form.save-form').prepend('<div class="tabs__dd tabs__dd--' + count + ' tabs__dd--active note"><div class="l-h"><h2>Заметка</h2><textarea class="editor" name="note"></textarea></div></div>');
 			$('.btn-save').attr('data-change', 1);
@@ -430,7 +453,7 @@ var pageResizeApp,
 						li.last().children().trigger('click');
 					}
 					else {
-						$('.tabs__nav ul').append('<li class="placeholder"><span class="tabs__dt"></span></li>');
+						navTab.find('ul').append('<li class="placeholder"><span class="tabs__dt"></span></li>');
 						$('.app-add-tab').trigger('click');
 					}
 				});
@@ -701,8 +724,7 @@ var pageResizeApp,
 	});
 
 /* Список справа ---------- */
-	//listOne.append($('.exercises-list-btn-block--one').clone(true));
-	//listSet.append($('.exercises-list-btn-block--set').clone(true));
+
 
 // фильтр
 	$('.filter-show').on('click',function(){
@@ -754,6 +776,14 @@ var pageResizeApp,
 
 	inputExercises.autocomplete({
 		source: searchExercises,
+		open: function(event, ui) {
+			console.log(event)
+			console.log(ui)
+		},
+		close: function(event, ui) {
+			console.log(event)
+			console.log(ui)
+		},
 		select: function(event, ui){
 			var v = ui.item.value;
 
@@ -885,12 +915,12 @@ var pageResizeApp,
 			}
 			return false;
 		}
-		$('.tabs__nav .tabs__dt').each(function(){
+		navTab.find('.tabs__dt').each(function(){
 			$(this).add($('.tabs__dd--'+$(this).attr('data-tab'))).remove();
 		});
 		$('.popup--create').removeClass('popup--lock').trigger('click');
 
-		$('.tabs__nav ul').append('<li class="placeholder"><span class="tabs__dt"></span></li>');
+		navTab.find('ul').append('<li class="placeholder"><span class="tabs__dt"></span></li>');
 		$('.app-add-tab').trigger('click');
 
 		saveDesc(v,e.val(),t.val(),c.val());
