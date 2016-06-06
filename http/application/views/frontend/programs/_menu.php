@@ -29,7 +29,7 @@
 <li><a class="ico ico--plus<?php if ($fullscreen) echo '-white';?> app-add-tab"<?php echo (!$fullscreen) ? ' title="'.lang('add_tab').'"' : '';?>></a></li>
 <li><a class="ico ico--open<?php if ($fullscreen) echo '-white';?> data-tab-link" data-tab="open"<?php echo (!$fullscreen) ? ' title="'.lang('open').'"' : '';?>></a></li>
 <li><a class="ico ico--new<?php if ($fullscreen) echo '-white';?> btn-new" href="<?php echo site_url('programs/add');?>"<?php echo (!$fullscreen) ? ' title="'.lang('create').'"' : '';?> data-action="<?php echo site_url('programs/add');?>"></a></li>
-<li><a class="ico ico--save<?php if ($fullscreen) echo '-white';?>" <?php echo (!$fullscreen) ? ' title="'.lang('save').'"' : '';?>></a></li>
+<li><a class="ico ico--save<?php if ($fullscreen) echo '-white';?> btn-save" data-change="<?php echo ($this->router->method == 'edit')? '0' : 1;?>"<?php echo (!$fullscreen) ? ' title="'.lang('save').'"' : '';?>></a></li>
 <li><a class="ico ico--save-exit<?php if ($fullscreen) echo '-white';?>" <?php echo (!$fullscreen) ? ' title="'.lang('save_and_exit').'"' : '';?>></a></li>
 <li><a class="ico ico--save-plus<?php if ($fullscreen) echo '-white';?> data-tab-link" data-tab="save-as"<?php echo (!$fullscreen) ? ' title="'.lang('save_as').'"' : '';?>></a></li>
 

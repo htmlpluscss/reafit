@@ -125,6 +125,7 @@ button::-moz-focus-inner {
 .input-placeholder {
 	display: block;
 	position: relative;
+	background: #fff;
 }
 .input-placeholder .input {
 	display: block;
@@ -193,6 +194,20 @@ button::-moz-focus-inner {
 	color: #4a4a4a;
 	border: solid 1px #dddce1;
 	background: #fff;
+}
+.btn--next,
+.btn--prev {
+	width: 44px;
+	height: 44px;
+	padding: 0;
+	background: url(../images/sprite.svg) #edf4fd -52px -413px;
+}
+.btn--prev {
+	background-position: -22px -413px;
+}
+.btn--next:hover,
+.btn--prev:hover {
+	background-color: #aed1ff;
 }
 
 .input-block__first {
@@ -582,6 +597,12 @@ sup {
 }
 .ico--star {
 	background-position: -191px -290px
+}
+.ico--plusik {
+	margin: auto;
+	right: 0;
+	bottom: 0;
+	background-position: -240px -318px;
 }
 
 /* table

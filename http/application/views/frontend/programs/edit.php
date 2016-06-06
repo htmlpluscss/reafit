@@ -26,11 +26,14 @@
 						<?php if(!empty($tabs)):?>
 						<?php $_tab_key = 8;?>
 						<?php foreach ($tabs as $key => $tab) :?>
-							<li<?php if($key == 0) echo ' class="tabs__li-first"';?>><span class="tabs__dt tabs__dt<?php if($_tab_key == $active_tab) { echo ' tabs__dt--active';}?>" data-tab="<?php echo $_tab_key++;?>"><?php echo $tab->name;?></span></li>
+							<li<?php if($key == 0) echo ' class="tabs__li-first"';?>>
+								<span class="tabs__dt<?php if($_tab_key == $active_tab) echo ' tabs__dt--active';?>" data-tab="<?php echo $_tab_key++;?>"><?php echo $tab->name;?></span>
+							</li>
 						<?php endforeach;?>
 						<?php endif;?>
 						</ul>
 					</div>
+					<a class="tabs__btn-select"></a>
 				</div>
 
 				<div class="hide">
@@ -129,9 +132,12 @@
 					<div class="l-h">
 						<div class="l-h__inner">
 							<form class="l-h__width form-tabs add-tab-form">
-								<h2><?php echo lang('add_tab_title');?></h2>
-								<p class="clr"><label><span><?php echo lang('tab__name_title');?>:</span> <input class="input add-tab-form__name" maxlength="40"></label></p>
-								<p><a class="btn add-tab-form__btn"><?php echo lang('save');?></a></p>
+								<div class="programme-body__h3"><?php echo lang('add_tab_title');?></div>
+								<label class="input-placeholder mb-14 w260">
+									<input class="input add-tab-form__name" maxlength="40">
+									<span class="input-placeholder__label"><?php echo lang('tab__name_title');?> <sup>*</sup></span>
+								</label>
+								<a class="btn add-tab-form__btn"><?php echo lang('save');?></a>
 							</form>
 						</div>
 					</div>
@@ -140,41 +146,45 @@
 					<div class="l-h">
 						<div class="l-h__inner">
 							<div class="l-h__width">
-								<h2><?php echo lang('open_program');?></h2>
+								<div class="programme-body__h3"><?php echo lang('open_program');?></div>
 								<?php if(empty($items)):?>
 								<p><?php echo lang('no_programs');?></p>
 								<?php else:?>
-								<table class="table100">
-									<thead>
-										<tr>
-											<th><?php echo lang('name');?></th>
-											<th><?php echo lang('created');?></th>
-											<th><?php echo lang('edited');?></th>
-											<th><?php echo lang('actions');?></th>
-										</tr>
-									</thead>
-									<tbody>
-										<?php foreach ($items as $key => $item) :?>
-										<tr>
-											<td><a href="<?php echo base_url('programs/'.$item->hash);?>" class="open-program-link"><?php echo $item->name;?></a></td>
-											<td class="align-middle">
-											<?php if($item->created):?>
-											<?php echo date('d.m.Y', strtotime($item->created));?>
-											<?php endif;?>
-											</td>
-											<td class="align-middle">
-											<?php if($item->edited):?>
-											<?php echo date('d.m.Y', strtotime($item->edited));?>
-											<?php endif;?>
-											</td>
-											<td class="align-center align-middle nowrap">
-												<a class="icon-link" target="_blank" href="<?php echo base_url($item->hash);?>"></a>
-												<a class="icon-folder-open-empty open-program-link" href="<?php echo base_url('programs/'.$item->hash);?>"></a>
-											</td>
-										</tr>
-										<?php endforeach;?>
-									</tbody>
-								</table>
+								<div class="table-border-radius">
+									<table class="table100">
+										<thead>
+											<tr>
+												<th class="bt0 bl0"><?php echo lang('name');?></th>
+												<th class="bt0"><?php echo lang('created');?></th>
+												<th class="bt0"><?php echo lang('edited');?></th>
+												<th class="bt0 br0"><?php echo lang('actions');?></th>
+											</tr>
+										</thead>
+										<tbody class="last-bb0">
+											<?php foreach ($items as $key => $item) :?>
+											<tr>
+												<td class="bl0">
+													<a href="<?php echo base_url('programs/'.$item->hash);?>" class="open-program-link"><?php echo $item->name;?></a>
+												</td>
+												<td class="align-middle">
+													<?php if($item->created):?>
+													<?php echo date('d.m.Y', strtotime($item->created));?>
+													<?php endif;?>
+												</td>
+												<td class="align-middle">
+													<?php if($item->edited):?>
+													<?php echo date('d.m.Y', strtotime($item->edited));?>
+													<?php endif;?>
+												</td>
+												<td class="br0 align-center align-middle nowrap">
+													<a class="icon-link" target="_blank" href="<?php echo base_url($item->hash);?>"></a>
+													<a class="icon-folder-open-empty open-program-link" href="<?php echo base_url('programs/'.$item->hash);?>"></a>
+												</td>
+											</tr>
+											<?php endforeach;?>
+										</tbody>
+									</table>
+								</div>
 								<?php endif;?>
 							</div>
 						</div>
@@ -202,7 +212,7 @@
 					<?php if(!empty($tabs)):?>
 					<?php $_tab_key = 8;?>
 					<?php foreach ($tabs as $key => $tab) :?>
-					<div class="tabs__dd<?php if($_tab_key == $active_tab) { echo ' tabs__dd--active';}?> tabs__dd--<?php echo $_tab_key++;?>">
+					<div class="tabs__dd<?php if($_tab_key == $active_tab) echo ' tabs__dd--active'; if($_tab_key == 8) echo ' tabs__dd--first';?> tabs__dd--<?php echo $_tab_key++;?>">
 						<div class="l-h">
 							<div class="l-h__inner">
 								<input type="hidden" name="exercises[<?php echo $tab->hash;?>][name]" value="<?php echo $tab->name;?>">

@@ -12,6 +12,7 @@
 				<?php if(isset($_nav) && !empty($_nav)) echo $_nav; ?>
 
 				<div class="tabs__nav clr">
+					<div class="box">
 						<ul>
 						<?php if(!empty($tabs)):?>
 						<?php foreach ($tabs as $key => $tab) :?>
@@ -27,6 +28,7 @@
 						<?php endforeach;?>
 						<?php endif;?>
 						</ul>
+					</div>
 				</div>
 				<?php if(!empty($tabs)):?>
 				<?php foreach ($tabs as $key => $tab) :?>

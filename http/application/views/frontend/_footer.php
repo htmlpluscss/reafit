@@ -1,7 +1,7 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
 	</main>
 
-<?php if($this->router->class != 'programs' || $this->router->method == 'printProgram') :?>
+<?php if(!($this->router->class == 'programs' && ($this->router->method == 'add' || $this->router->method == 'edit' || $this->router->method == 'viewProgram'))) :?>
 
 	<footer id="footer">
 
@@ -9,6 +9,22 @@
 		<p class="copyright"><?php echo $this->router->class . ' | ' . $this->router->method . ' | ' . $this->router->default_controller;?></p>
 
 	</footer>
+
+<?php endif;?>
+
+<?php if($this->router->class == 'programs' || $this->router->class == 'categories' || $this->router->class == 'exercises') :?>
+
+	<div class="popup popup--msg popup--height-auto">
+		<div class="popup__box">
+			<div class="popup__body">
+				<div class="popup__inner"></div>
+				<a class="btn btn--gray popup__close btn-cancel-popup hide"><?php echo lang('cancel');?></a>
+				<a class="btn popup__close btn-no-popup hide"><?php echo lang('close');?></a>
+				<a class="btn btn-yes-popup hide"><?php echo lang('yes');?></a>
+			</div>
+			<a class="ico ico--close popup__close"></a>
+		</div>
+	</div>
 
 <?php endif;?>
 
@@ -23,41 +39,36 @@
 		</div>
 	</div>
 
-	<div class="popup popup--msg">
-		<div class="popup__box">
-			<div class="popup__body">
-				<div class="popup__inner"></div>
-				<a class="btn popup__close btn-cancel-popup hide" href="#"><?php echo lang('cancel');?></a>
-				<a class="btn popup__close btn-no-popup hide" href="#"><?php echo lang('close');?></a>
-				<a class="btn btn-yes-popup hide"><?php echo lang('yes');?></a>
-			</div>
-			<a class="ico ico--close popup__close"></a>
-		</div>
-	</div>
+	<?php if(isset($_popups) && !empty($_popups)):?>
+	<?php echo $_popups;?>
+	<?php endif;?>
+
+<?php endif;?>
+
+<?php if(($this->router->class == 'categories' || $this->router->class == 'exercises' || $this->router->class == 'programs') && $this->router->method == 'index') :?>
 
 	<div class="popup popup--create-cat">
 		<div class="popup__box">
 			<div class="popup__body">
-				<form data-create="<?php echo site_url('categories/add');?>" data-update="<?php echo site_url('categories/edit');?>" action="#" method="post">
-					<h3 data-create="<?php echo lang('create_new_cat');?>"><?php echo lang('create_new_cat');?></h3>
-					<p class="clr">
-						<label><span><?php echo lang('category_title');?>:<sup>*</sup></span> <input class="input popup--create__cat_name" maxlength="40" name="name"></label>
-						<a class="icon-help" title="<?php echo lang('required_tooltip');?>"></a>
-					</p>
-					<p class="clr">
-						<label><span><?php echo lang('category_description');?>:</span> <textarea class="input popup--create__cat_textarea" name="description"></textarea></label>
-						<a class="icon-help" title="<?php echo lang('category_description_tooltip');?>"></a>
-					</p>
-					<p><a class="btn popup--create__btn create-cat" data-update="<?php echo lang('category_update_btn');?>" data-create="<?php echo lang('category_create_btn');?>"><?php echo lang('category_create_btn');?></a></p>
+				<form class="popup__inner" data-create="<?php echo site_url('categories/add');?>" data-update="<?php echo site_url('categories/edit');?>" method="post">
+					<h3 data-create="<?php echo lang('create_new_cat');?>" data-update="<?php echo lang('update_cat');?>"><?php echo lang('create_new_cat');?></h3>
+					<label class="input-placeholder">
+						<input class="input popup--create__cat_name" name="name" maxlength="40">
+						<span class="input-placeholder__label"><?php echo lang('category_title');?> <sup>*</sup></span>
+					</label>
+					<label class="input-placeholder">
+						<textarea class="input popup--create__cat_textarea" name="description"></textarea>
+						<span class="input-placeholder__label"><?php echo lang('category_description');?></span>
+					</label>
+					<label>
+						<a class="btn popup--create-cat__btn" data-update="<?php echo lang('category_update_btn');?>" data-create="<?php echo lang('category_create_btn');?>"><?php echo lang('category_create_btn');?></a>
+						<input type="submit" class="hide">
+					</label>
 				</form>
 			</div>
 			<a class="ico ico--close popup__close"></a>
 		</div>
 	</div>
-
-	<?php if(isset($_popups) && !empty($_popups)):?>
-	<?php echo $_popups;?>
-	<?php endif;?>
 
 <?php endif;?>
 

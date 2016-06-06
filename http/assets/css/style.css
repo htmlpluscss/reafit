@@ -81,7 +81,7 @@ header {
 	position: absolute;
 	background: #fff;
 	padding:0px 12px 2px;
-	margin-top: -40px;
+	margin-top: -45px;
 	font-size: 12px;
 	line-height: 30px;
 	color: #3b3d4d;
@@ -96,8 +96,7 @@ body > .title_up {
 	display: block;
 }
 .title_up i {
-	content: "";
-	height: 14px;
+	height: 12px;
 	left: 50%;
 	margin-left: -15px;
 	overflow: hidden;
@@ -302,59 +301,59 @@ body > .title_up {
 	border-color: #ffaa00;
 }
 
-/* app begin 200
------------------------------------------------------------------------------*/
-.exercises-list__item-desc h3{
-	font-weight: 700;
+.popup--create-cat .popup__box {
+	width: 345px;
 }
-.exercises-list__item-desc ul{
-	margin: 8px 12px;
+.popup--create-cat textarea.input {
+	height: 65px;
 }
-.exercises-list__item-desc p{
-	margin: 8px 0;
-	line-height: 18px;
-}
-.exercises-list__item-desc p em{
-	padding-right: 5px;
-	font-size: 16px
-}
-.exercises-list__item-desc .ahtung b{
-	padding-right: 5px;
-	font-size: 16px;
-	font-weight: 700
-}
-.exercises-list__item-detal-btn {
-	position: absolute;
-	top: 0;
-	right: 0;
-	padding: 12px 12px 0 0;
-	width: 114px;
-	z-index: 1;
-//	background: #fff
-}
-.exercises-list__item-detal-btn--admin {
-	float: right;
-	top: -12px;
-	right: -12px;
-	position: relative;
-}
-.exercises-list__item-detal-btn .btn{
+.popup--create-cat__btn {
 	display: block;
-	margin-bottom: 8px;
 }
-/* app end 200
------------------------------------------------------------------------------*/
+
+/* popup close
+--------------------------------*/
+.popup--msg .popup__box,
+.popup--close .popup__box {
+	height: 204px;
+	overflow: visible;
+	text-align: center;
+}
+.popup--msg .popup__inner,
+.popup--close p{
+	font-weight: 500;
+	color: #4a4a4a;
+	padding: 32px 0 24px;
+}
+.popup--msg .btn,
+.popup--close .btn{
+	margin: 2px;
+	font-size: 12px;
+	font-weight: 400;
+	margin: 0 6px 22px;
+	height: 44px;
+	line-height: 44px;
+	padding: 0 22px;
+	min-width: 100px
+}
+
+.popup--create .error {
+	float: left;
+	clear: left;
+}
 
 /* table list
 -----------------------------------------------------------------------------*/
-.table100--list th{
+.table-border-radius {
+	border-radius: 4px;
+	border: 1px solid #dddce1;
+	overflow: hidden;
 }
 .table100--list td{
 	vertical-align: middle;
 }
 .table100--list b {
 	padding-right: 5px;
-	font-weight: 700
 }
 .one-event {
 	text-align: center;
@@ -371,7 +370,7 @@ body > .title_up {
 	display: inline-block;
 	vertical-align: top;
 	font-size: 11px;
-	border: 1px solid #aaa;
+	border:1px solid #4a4a4a;
 	border-radius: 3px;
 	white-space: nowrap;
 	padding: 0 3px;

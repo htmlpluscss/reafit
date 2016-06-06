@@ -76,7 +76,6 @@
 									</tr>
 								</table>
 							</div>
-							</table>
 							<div class="programme-description">
 								<?php echo $exercise->description;?>
 							</div>
