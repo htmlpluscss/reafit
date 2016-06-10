@@ -83,6 +83,8 @@
 	<?php endforeach;?>
 	<?php endif;?>
 
+<?php if($this->router->class == 'site') :?>
+
 	<script>
 		(function (d, w, c) {
 			(w[c] = w[c] || []).push(function() {
@@ -110,6 +112,8 @@
 		})(document, window, "yandex_metrika_callbacks");
 	</script>
 	<noscript><div><img src="https://mc.yandex.ru/watch/35342380" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+
+<?php endif;?>
 
 </body>
 </html>

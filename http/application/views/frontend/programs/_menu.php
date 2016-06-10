@@ -40,6 +40,6 @@
 <?php endif;?>
 
 <li><a class="ico ico--cart<?php if ($fullscreen) echo '-white';?> app-delete-tab"<?php echo (!$fullscreen) ? ' title="'.lang('remove_tab').'"' : '';?>></a></li>
-<li><a class="ico ico--note<?php if ($fullscreen) echo '-white';?> app-add-note"<?php $_title = (!empty($note)) ? lang('note') : lang('add_note'); echo (!$fullscreen) ? ' title="'.$_title.'"' : '';?>></a></li>
+<li><a class="ico ico--note<?php if ($fullscreen) echo '-white';?> data-tab-link app-add-note" data-tab="note"<?php $_title = (!empty($note)) ? lang('note') : lang('add_note'); echo (!$fullscreen) ? ' title="'.$_title.'"' : '';?> data-alt-text="<?php echo lang('note');?>"></a></li>
 
 <li><a class="ico ico--exit-app<?php if ($fullscreen) echo '-white';?> btn-to-list" href="<?php echo site_url('programs');?>"<?php echo (!$fullscreen) ? ' title="'.lang('exit_app').'"' : '';?> data-action="<?php echo site_url('programs');?>"></a></li>

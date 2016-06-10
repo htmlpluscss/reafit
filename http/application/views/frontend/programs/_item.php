@@ -31,7 +31,7 @@
 						<div class="programme-body__box-head">
 							<div class="programme-body__box-name">
 								<span class="programme-body__box-title"><?php echo $exercise->name;?></span>
-								<?php echo $exercise->name_desc;?>
+								<span class="hide-app-right"><?php echo $exercise->name_desc;?></span>
 							</div>
 
 <div class="exercises-list-btn-block exercises-list-btn-block--one hide"></div>
@@ -66,7 +66,7 @@
 								<?php if($exercise->related):?>
 								<a class="ico ico--related popup__btn" data-popup="related"></a>
 								<?php endif;?>
-								<a class="ico ico--delete ico-delete-item"></a>
+								<a class="ico ico--delete ico-delete-item hide-app-right"></a>
 							</div>
 						</div>
 						<div class="programme-img">
@@ -74,7 +74,7 @@
 							<img src="<?php echo site_url('images/'.$exercise->image_1);?>" alt="<?php echo $exercise->name;?>">
 							<?php endif;?>
 							<?php if($exercise->image_3):?>
-							<img src="<?php echo site_url('images/'.$exercise->image_3);?>" alt="<?php echo $exercise->name;?>">
+							<img class="hide-app-right" src="<?php echo site_url('images/'.$exercise->image_3);?>" alt="<?php echo $exercise->name;?>">
 							<?php endif;?>
 						</div>
 					</div>

@@ -21,7 +21,7 @@
 						$_exercises = '';
 					}
 				?>
-				<li id="set-<?php echo $program->hash;?>" class="exercises-list__item exercises-list__item--set hide popup-box" data-exercises="<?php echo $_exercises;?>">
+				<li id="set-<?php echo $program->hash;?>" class="exercises-list__item exercises-list__item--set popup-box" data-exercises="<?php echo $_exercises;?>">
 					<span class="exercises-list__name"><?php echo $program->name;?></span>
 					<span class="exercises-list__img">
 						<?php if(!empty($program->image)):?>

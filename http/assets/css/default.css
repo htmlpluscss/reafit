@@ -126,6 +126,7 @@ button::-moz-focus-inner {
 	display: block;
 	position: relative;
 	background: #fff;
+	border-radius: 4px;
 }
 .input-placeholder .input {
 	display: block;
@@ -165,6 +166,19 @@ button::-moz-focus-inner {
 	z-index: 3;
 }
 
+.input-placeholder textarea.input {
+	height: 68px;
+	padding-top: 14px;
+}
+.input-placeholder .select {
+	display: block;
+	height: 44px;
+	width: 100%;
+}
+.input-placeholder .select .value {
+	background: none;
+}
+
 
 .btn {
 	display:inline-block;
@@ -200,10 +214,10 @@ button::-moz-focus-inner {
 	width: 44px;
 	height: 44px;
 	padding: 0;
-	background: url(../images/sprite.svg) #edf4fd -52px -413px;
+	background: url(../images/sprite.svg) #edf4fd -52px -415px;
 }
 .btn--prev {
-	background-position: -22px -413px;
+	background-position: -22px -415px;
 }
 .btn--next:hover,
 .btn--prev:hover {
@@ -351,20 +365,20 @@ sup {
 	padding: 0;
 	top: 3px;
 	position: relative;
-	background-position: -532px -64px
+	background-position: -532px -66px
 }
 .ico--exit.ico:hover {
-	background-position: -532px -24px
+	background-position: -532px -26px
 }
 .ico--close,
 .ico--close-white {
 	left: auto;
 	width: 40px;
 	height: 40px;
-	background-position: -420px -215px
+	background-position: -420px -217px
 }
 .ico--close-white {
-	background-position: -389px -215px
+	background-position: -389px -217px
 }
 .ico--help:after {
 	content: "?";
@@ -383,10 +397,10 @@ sup {
 	background-position: -471px -332px
 }
 .ico--detal {
-	background-position: -471px -302px
+	background-position: -519px -365px
 }
 .ico--detal:hover {
-	background-position: -471px -332px
+	background-position: -519px -395px
 }
 
 .ico--plus {
@@ -402,11 +416,10 @@ sup {
 	background-position: -168px -25px
 }
 .ico--save-exit {
-	outline:1px solid red;
-	background-position: -214px -25px
+	background-position: -471px -414px
 }
 .ico--save-plus {
-	background-position: -214px -25px
+	background-position: -214px -24px
 }
 .ico--print {
 	background-position: -261px -25px
@@ -434,8 +447,7 @@ sup {
 	background-position: -168px -145px
 }
 .ico--save-exit-white {
-	outline:1px solid red;
-	background-position: -214px -145px
+	background-position: -471px -535px
 }
 .ico--save-plus-white {
 	background-position: -214px -145px
@@ -454,34 +466,37 @@ sup {
 }
 
 .ico--print:hover {
-	background-position: -260px -64px
+	background-position: -260px -66px
 }
 .ico--plus:hover {
-	background-position: -25px -65px
+	background-position: -25px -67px
 }
 .ico--open:hover {
-	background-position: -73px -65px
+	background-position: -73px -67px
 }
 .ico--new:hover {
-	background-position: -122px -65px
+	background-position: -122px -67px
 }
 .ico--save:hover {
-	background-position: -168px -65px
+	background-position: -168px -67px
+}
+.ico--save-exit:hover {
+	background-position: -471px -456px
 }
 .ico--save-plus:hover {
-	background-position: -214px -65px
+	background-position: -214px -66px
 }
 .ico--print:hover {
-	background-position: -261px -65px
+	background-position: -261px -67px
 }
 .ico--link:hover {
-	background-position: -356px -65px
+	background-position: -356px -67px
 }
 .ico--cart:hover {
-	background-position: -450px -65px
+	background-position: -450px -67px
 }
 .ico--note:hover {
-	background-position: -402px -65px
+	background-position: -402px -67px
 }
 
 .ico--plus-white:hover {
@@ -497,7 +512,7 @@ sup {
 	background-position: -168px -105px
 }
 .ico--save-exit-white:hover {
-	background-position: -214px -105px
+	background-position: -471px -495px
 }
 .ico--save-plus-white:hover {
 	background-position: -214px -105px
@@ -516,19 +531,16 @@ sup {
 }
 
 .ico--exit-app {
-	outline:1px solid red;
-	background-position: -347px -256px
+	background-position: -397px -371px
 }
 .ico--exit-app-white {
-	outline:1px solid red;
-	background-position: -347px -256px
+	background-position: -397px -406px
 }
 .ico--exit-app:hover {
-	background-position: -347px -221px
+	background-position: -397px -476px
 }
 .ico--exit-app-white:hover {
-	outline:1px solid red;
-	background-position: -347px -256px
+	background-position: -397px -441px
 }
 
 .ico--fullscreen {
@@ -545,50 +557,52 @@ sup {
 }
 
 .ico--play {
-	background-position: -20px -222px
+	background-position: -20px -224px
 }
 .ico--play:hover {
-	background-position: -20px -312px
+	background-position: -20px -314px
 }
 .ico--info {
-	background-position: -73px -221px
+	background-position: -73px -223px
 }
 .ico--info:hover {
-	background-position: -73px -311px
+	background-position: -73px -313px
 }
 .ico--visible {
-	background-position: -125px -412px
+	background-position: -125px -411px
 }
 .ico--visible:hover {
-	background-position: -165px -412px
+	background-position: -165px -411px
 }
 .ico--hidden {
-	background-position: -125px -378px
+	background-position: -125px -377px
 }
 .ico--hidden:hover {
-	background-position: -165px -378px
+	background-position: -165px -377px
 }
 .ico--search {
 	background-position: -332px -372px
 }
 
 .ico--progress {
-	background-position: -98px -222px
+	background-position: -98px -223px;
+	background-position: -558px -306px
 }
 .ico--progress:hover {
-	background-position: -98px -312px
+	background-position: -98px -313px;
+	background-position: -558px -336px
 }
 .ico--delete {
-	background-position: -129px -222px
+	background-position: -129px -224px
 }
 .ico--delete:hover {
-	background-position: -129px -312px
+	background-position: -129px -314px
 }
 .ico--related {
-	background-position: -47px -222px
+	background-position: -47px -224px
 }
 .ico--related:hover {
-	background-position: -47px -312px
+	background-position: -47px -314px
 }
 .ico--add-item {
 	width: 40px;
@@ -689,10 +703,10 @@ td {
 	left: 0;
 	width: 22px;
 	height: 22px;
-	background: url(../images/sprite.svg) -474px -257px;
+	background: url(../images/sprite.svg) -474px -259px;
 }
 .checkbox input:checked ~ i {
-	background-position: -474px -227px
+	background-position: -474px -229px
 }
 
 .checkbox-star .icon-star,
@@ -784,6 +798,7 @@ hr {
 	cursor: grabbing !important
 }
 
+.tabs__select,
 .ui-autocomplete {
 	width: 441px;
 	padding: 5px;
@@ -795,8 +810,8 @@ hr {
 	left: 0;
 	position: absolute;
 	top: 0;
-	transform: translateY(1px);
 }
+.tabs__select span,
 .ui-autocomplete .ui-menu-item {
 	padding: 8px 10px 7px 11px;
 	position: relative;
@@ -807,8 +822,10 @@ hr {
 	line-height: 17px;
 	color: #4a4a4a;
 	border-radius: 4px;
+	display: block;
 	cursor: pointer;
 }
+.tabs__select span:hover,
 .ui-autocomplete .ui-state-focus {
 	background: #ecf3fc;
 }

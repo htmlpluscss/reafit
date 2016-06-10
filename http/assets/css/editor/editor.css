@@ -17,10 +17,11 @@
 .trumbowyg-box, .trumbowyg-editor {
   display: block;
   position: relative;
-  border: 1px solid #aaa;
-  width: 96%;
+  border: 1px solid #dddce1;
   min-height: 300px;
-  margin: 17px auto; }
+  background: #fff;
+  border-radius: 0 0 4px 4px;
+}
 
 .trumbowyg-editor b {
   font-weight: bold;

@@ -165,7 +165,7 @@ $window.ready(function(){
 				select.blur();
 			});
 
-			if(select.attr('data-required-sup') !== undefined)
+			if(select.attr('data-required-sup') !== undefined && select.val() == 'none')
 				visible.append('<sup>*</sup>');
 
 		}
