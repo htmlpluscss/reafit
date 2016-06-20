@@ -39,7 +39,7 @@
 			<?php foreach ($items as $key => $item) :?>
 				<tr>
 					<td class="hide">1</td>
-					<td class="bl0"><a class="edit-cat-btn" data-id="<?php echo $item->id;?>" data-type="update"><?php echo $item->name;?></a></td>
+					<td class="bl0"><?php echo $item->name;?></td>
 					<td><?php echo $item->description;?></td>
 					<td class="align-middle align-center">
 						<?php if($item->created):?>
@@ -47,10 +47,18 @@
 						<?php endif;?>
 					</td>
 					<td class="align-middle align-center">
-						<?php echo $item->programs;?>
+						<?php if ($item->programs == '0') {?>
+							<?php echo $item->programs;?>
+						<?php } else { ?>
+							<a href="<?php echo base_url('programs?category='.$item->name)?>"><?php echo $item->programs;?></a>
+						<?php } ?>
 					</td>
 					<td class="align-middle align-center">
-						<?php echo $item->exercises;?>
+						<?php if ($item->exercises == '0') {?>
+							<?php echo $item->exercises;?>
+						<?php } else { ?>
+							<a href="<?php echo base_url('exercises?category='.$item->name)?>"><?php echo $item->exercises;?></a>
+						<?php } ?>
 					</td>
 					<td class="br0 align-center align-middle nowrap">
 						<a class="icon-edit edit-cat-btn" data-id="<?php echo $item->id;?>" data-type="update" title="<?php echo lang('edit_category');?>"></a>

@@ -11,16 +11,17 @@
 
 				<div class="tabs__dd tabs__dd--detal">
 					<div class="l-h">
-						<div class="l-h__inner">
-							<form class="l-h__width form-tabs form-name-proggram" data-submit="1">
+						<div class="l-h__inner baron">
+							<div class="l-h__width form-tabs form-name-proggram" data-submit="1">
+
 								<div class="programme-body__h3"><?php echo lang('program_detal');?></div>
 								<label class="input-placeholder mb-14 w260">
-									<input class="input name-programme--input" maxlength="40" value="<?php echo $name;?>">
+									<input class="input name-programme--input" name="name" maxlength="40" value="<?php echo $name;?>">
 									<span class="input-placeholder__label"><?php echo lang('name');?><sup>*</sup></span>
 								</label>
 
 								<div class="input-placeholder mb-14 w260">
-									<select name="category name-programme--category" data-required-sup>
+									<select class="name-programme--category" name="category" data-required-sup>
 										<option value="none"><?php echo lang('_select');?></option>
 									<?php if(!empty($category_list)):?>
 									<?php $one_cat = (count($category_list) == 1) ? true : false;?>
@@ -32,11 +33,11 @@
 								</div>
 
 								<label class="input-placeholder mb-14 w260">
-									<input class="input name-programme--email" type="email" data-error="<?php echo lang('mail_not_correct');?>" value="<?php echo $mail;?>">
+									<input class="input name-programme--email" name="mail" type="email" data-error="<?php echo lang('mail_not_correct');?>" value="<?php echo $mail;?>">
 									<span class="input-placeholder__label"><?php echo lang('email');?></span>
 								</label>
 								<label class="input-placeholder mb-14 w260">
-									<textarea class="input name-programme--textarea"><?php echo $description_text;?></textarea>
+									<textarea class="input name-programme--textarea" name="description"><?php echo $description_text;?></textarea>
 									<span class="input-placeholder__label"><?php echo lang('description');?></span>
 								</label>
 
@@ -49,9 +50,10 @@
 								<?php if(!empty($tabs)):?>
 								<?php foreach ($tabs as $key => $tab) :?>
 								<?php $acces_val = (isset($params->access) && isset($params->access[$key])) ? $params->access[$key] : 1; ?>
-									<li class="clr access--<?php echo $key + 8;?>">
+									<li>
 										<label class="checkbox">
-											<input type="checkbox" class="hide access" value="<?php echo $key;?>"<?php echo ($acces_val == 1) ? ' checked' : '';?>> <?php echo $tab->name;?>
+											<input type="checkbox" class="access-tabs__item" value="<?php echo $key;?>"<?php if ($acces_val == 1) echo ' checked="checked"';?>>
+											<?php echo $tab->name;?>
 										</label>
 									</li>
 								<?php endforeach;?>
@@ -69,22 +71,26 @@
 									<a class="btn app-add-note data-tab-link" data-tab="note"><?php echo lang('edit_note');?></a>
 
 								<?php } ?>
-
-							</form>
+							</div>
+							<div class="baron__track">
+								<div class="baron__free">
+									<a class="baron__bar"></a>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
 				<div class="tabs__dd tabs__dd--save-as">
 					<div class="l-h">
-						<div class="l-h__inner">
-							<form class="l-h__width form-tabs form-name-proggram" data-action="<?php echo base_url('programs/add');?>" data-submit="1">
+						<div class="l-h__inner baron">
+							<div class="l-h__width form-tabs form-name-proggram" data-action="<?php echo base_url('programs/add');?>" data-submit="1">
 								<div class="programme-body__h3"><?php echo lang('save_program_as');?></div>
 								<label class="input-placeholder mb-14 w260">
 									<input maxlength="40" class="input">
 									<span class="input-placeholder__label"><?php echo lang('name');?><sup>*</sup></span>
 								</label>
 								<div class="input-placeholder mb-14 w260">
-									<select name="category" data-required-sup>
+									<select data-required-sup>
 										<option value="none"><?php echo lang('select_category');?></option>
 									<?php if(!empty($category_list)):?>
 									<?php $one_cat = (count($category_list) == 1) ? true : false;?>
@@ -95,35 +101,46 @@
 									</select>
 								</div>
 								<label class="input-placeholder mb-14 w260">
-									<input maxlength="40" class="input" type="email" data-error="<?php echo lang('mail_not_correct');?>">
+									<input maxlength="40" class="input" type="email">
 									<span class="input-placeholder__label"><?php echo lang('email');?></span>
 								</label>
 								<div class="input-placeholder mb-14 w260">
-									<textarea name="description" class="input"></textarea>
+									<textarea class="input"></textarea>
 									<span class="input-placeholder__label"><?php echo lang('description');?></span>
 								</div>
 								<a class="btn save-program-as"><?php echo lang('save');?></a>
-							</form>
+							</div>
+							<div class="baron__track">
+								<div class="baron__free">
+									<a class="baron__bar"></a>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
 				<div class="tabs__dd<?php if(empty($tabs)){ echo ' tabs__dd--active';}?> tabs__dd--start">
 					<div class="l-h">
-						<div class="l-h__inner">
-							<form class="l-h__width form-tabs add-tab-form">
+						<div class="l-h__inner baron">
+							<div class="l-h__width add-tab-form">
 								<div class="programme-body__h3"><?php echo lang('add_tab_title');?></div>
 								<label class="input-placeholder mb-14 w260">
 									<input class="input add-tab-form__name" maxlength="40">
 									<span class="input-placeholder__label"><?php echo lang('tab__name_title');?> <sup>*</sup></span>
 								</label>
 								<a class="btn add-tab-form__btn"><?php echo lang('save');?></a>
-							</form>
+							</div>
+							<ul class="exercises-my"></ul>
+							<div class="baron__track">
+								<div class="baron__free">
+									<a class="baron__bar"></a>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
 				<div class="tabs__dd tabs__dd--open">
 					<div class="l-h">
-						<div class="l-h__inner">
+						<div class="l-h__inner baron">
 							<div class="l-h__width">
 								<div class="programme-body__h3"><?php echo lang('open_program');?></div>
 								<?php if(empty($items)):?>
@@ -165,6 +182,11 @@
 									</table>
 								</div>
 								<?php endif;?>
+							</div>
+							<div class="baron__track">
+								<div class="baron__free">
+									<a class="baron__bar"></a>
+								</div>
 							</div>
 						</div>
 					</div>

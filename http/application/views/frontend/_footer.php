@@ -1,4 +1,5 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
+		</div>
 	</main>
 
 <?php if(!($this->router->class == 'programs' && ($this->router->method == 'add' || $this->router->method == 'edit' || $this->router->method == 'viewProgram'))) :?>
@@ -33,7 +34,7 @@
 	<div class="popup popup--content">
 		<div class="popup__box">
 			<div class="popup__body">
-				<div class="popup__inner"></div>
+				<div class="popup__inner baron"></div>
 			</div>
 			<a class="ico ico--close-white popup__close"></a>
 		</div>
@@ -74,8 +75,7 @@
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 	<script>window.jQuery || document.write('<script src="<?php echo base_url('assets/js/jquery.min.js');?>"><\/script>')</script>
-	<script src="<?php echo base_url('assets/js/jquery.mousewheel.min.js');?>"></script>
-	<script src="<?php echo base_url('assets/js/jquery.jscrollpane.min.js');?>"></script>
+	<script src="<?php echo base_url('assets/js/baron.min.js');?>"></script>
 	<script src="<?php echo base_url('assets/js/js.js');?>"></script>
 	<?php if(isset($this->scripts) && !empty($this->scripts)):?>
 	<?php foreach ($this->scripts as $key => $script) :?>

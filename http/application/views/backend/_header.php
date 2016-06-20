@@ -10,17 +10,17 @@
 			<?php else:?>
 			<nav>
 				<ul class="menu_top">
-					<li><a href="<?php echo site_url('admin/exercises');?>"><?php echo lang('exercises');?></a></li>
+					<li<?php if (site_url('admin/exercises') == '/'.$this->uri->uri_string) echo ' class="active"';?>><a href="<?php echo site_url('admin/exercises');?>"><?php echo lang('exercises');?></a></li>
 					<?php if($this->user->is_admin ==  1):?>
-					<li><a href="<?php echo site_url('admin/exercises/users');?>"><?php echo lang('user_exercises');?></a></li>
+					<li<?php if (site_url('admin/exercises/users') == '/'.$this->uri->uri_string) echo ' class="active"';?>><a href="<?php echo site_url('admin/exercises/users');?>"><?php echo lang('user_exercises');?></a></li>
 					<?php endif;?>
-					<li><a href="<?php echo site_url('admin/programs');?>"><?php echo lang('programs');?></a></li>
+					<li<?php if (site_url('admin/programs') == '/'.$this->uri->uri_string) echo ' class="active"';?>><a href="<?php echo site_url('admin/programs');?>"><?php echo lang('programs');?></a></li>
 					<?php if($this->user->is_admin ==  1):?>
-					<li class="menu_top__sep"><a href="<?php echo site_url('admin/programs/users');?>"><?php echo lang('user_programs');?></a></li>
-					<li><a href="<?php echo site_url('admin/tags');?>"><?php echo lang('tags');?></a></li>
-					<li class="menu_top__sep"><a href="<?php echo site_url('admin/users');?>"><?php echo lang('users');?></a></li>
-					<li><a href="<?php echo site_url('admin/seo');?>"><?php echo lang('meta');?></a></li>
-					<li><a href="<?php echo site_url('admin/settings');?>"><?php echo lang('settings');?></a></li>
+					<li class="menu_top__sep<?php if (site_url('admin/programs/users') == '/'.$this->uri->uri_string) echo ' active';?>"><a href="<?php echo site_url('admin/programs/users');?>"><?php echo lang('user_programs');?></a></li>
+					<li<?php if (site_url('admin/tags') == '/'.$this->uri->uri_string) echo ' class="active"';?>><a href="<?php echo site_url('admin/tags');?>"><?php echo lang('tags');?></a></li>
+					<li class="menu_top__sep<?php if (site_url('admin/users') == '/'.$this->uri->uri_string) echo ' active';?>"><a href="<?php echo site_url('admin/users');?>"><?php echo lang('users');?></a></li>
+					<li<?php if (site_url('admin/seo') == '/'.$this->uri->uri_string) echo ' class="active"';?>><a href="<?php echo site_url('admin/seo');?>"><?php echo lang('meta');?></a></li>
+					<li<?php if (site_url('admin/settings') == '/'.$this->uri->uri_string) echo ' class="active"';?>><a href="<?php echo site_url('admin/settings');?>"><?php echo lang('settings');?></a></li>
 					<?php endif;?>
 					<?php if(!empty($this->user)):?>
 					<li><a href="<?php echo site_url('logout');?>" title="<?php echo lang('logout');?>" class="menu_top__exit ico ico--exit"></a></li>

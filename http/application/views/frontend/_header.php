@@ -18,19 +18,19 @@
 							$profile_lbl = $this->user->surname;
 						}
 					?>
-					<li><a href="<?php echo site_url('programs');?>"><?php echo lang('programs');?></a></li>
-					<li><a href="<?php echo site_url('categories');?>"><?php echo lang('my_categories');?></a></li>
-					<li class="menu_top__sep"><a href="<?php echo site_url('exercises');?>"><?php echo lang('my_exercises');?></a></li>
+					<li<?php if (site_url('programs') == '/'.$this->uri->uri_string) echo ' class="active"';?>><a href="<?php echo site_url('programs');?>"><?php echo lang('programs');?></a></li>
+					<li<?php if (site_url('categories') == '/'.$this->uri->uri_string) echo ' class="active"';?>><a href="<?php echo site_url('categories');?>"><?php echo lang('my_categories');?></a></li>
+					<li class="menu_top__sep<?php if (site_url('exercises') == '/'.$this->uri->uri_string) echo ' active';?>"><a href="<?php echo site_url('exercises');?>"><?php echo lang('my_exercises');?></a></li>
 					<?php else:?>
-					<li><a href="<?php echo site_url('login');?>"><?php echo lang('login');?></a></li>
-					<li><a href="<?php echo site_url('registration');?>"><?php echo lang('registration');?></a></li>
+					<li<?php if (site_url('login') == '/'.$this->uri->uri_string) echo ' class="active"';?>><a href="<?php echo site_url('login');?>"><?php echo lang('login');?></a></li>
+					<li<?php if (site_url('registration') == '/'.$this->uri->uri_string) echo ' class="active"';?>><a href="<?php echo site_url('registration');?>"><?php echo lang('registration');?></a></li>
 					<?php endif;?>
 					<?php if(!empty($this->settings->forum_url)):?>
 					<li><a href="<?php echo $this->settings->forum_url;?>" target="_blank"><?php echo lang('forum');?></a></li>
 					<?php endif; ?>
-					<li><a href="<?php echo site_url('feedback');?>"><?php echo lang('feedback');?></a></li>
+					<li<?php if (site_url('feedback') == '/'.$this->uri->uri_string) echo ' class="active"';?>><a href="<?php echo site_url('feedback');?>"><?php echo lang('feedback');?></a></li>
 					<?php if(!empty($this->user)):?>
-					<li class="menu_top__sep"><a href="<?php echo site_url('profile');?>"><?php echo $profile_lbl;?></a></li>
+					<li class="menu_top__sep<?php if (site_url('profile') == '/'.$this->uri->uri_string) echo ' active';?>"><a href="<?php echo site_url('profile');?>"><?php echo $profile_lbl;?></a></li>
 					<li><a href="<?php echo site_url('logout');?>" class="menu_top__exit ico ico--exit"></a></li>
 					<?php endif;?>
 				</ul>
@@ -72,7 +72,7 @@
 							<textarea class="input popup--create__textarea" name="description"></textarea>
 							<span class="input-placeholder__label"><?php echo lang('description');?></span>
 						</div>
-						<a class="btn popup--create__btn"><?php echo lang('create');?></a>
+						<label class="btn popup--create__btn"><?php echo lang('create');?><input type="submit" class="hide"></label>
 					</div>
 
 				<?php echo form_close(); ?>
@@ -126,4 +126,5 @@
 	</div>
 <?php endif;?>
 
-	<main id="main" class="center clr">
+	<main id="main">
+		<div class="center clr">

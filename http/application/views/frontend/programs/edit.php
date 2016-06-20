@@ -37,22 +37,30 @@
 					<div class="tabs__select"></div>
 				</div>
 
-				<?php include('_app_left.php');//echo $_app_left; ?>
+				<form class="send-email-form hide" action="<?php echo base_url('programs/mail/'.$hash);?>">
+					<input name="mail[]" class="send-email-form__email">
+					<div class="send-email-form__error-text msg-popup"><?php echo lang('msg_send_email');?></div>
+				</form>
 
 				<?php echo form_open_multipart('programs/'.$hash, array('class'=>'save-form spy', 'data-program'=>$hash)); ?>
-					<input type="hidden" name="name" class="name-programme--input" value="<?php echo $name;?>">
-					<input type="hidden" name="category" class="name-programme--category" value="<?php echo $category;?>">
-					<input type="hidden" name="mail" class="name-programme--email" value="<?php echo $mail;?>">
-					<input type="hidden" name="description" class="name-programme--textarea" value="<?php echo $mail;?>">
+
 					<input type="hidden" name="redirect" value="">
 					<input type="hidden" name="params[tab]" value="">
 
+					<?php include('_app_left.php');//echo $_app_left; ?>
+					<?php include('_templates.php'); ?>
+
 					<div class="tabs__dd tabs__dd--note note">
 						<div class="l-h">
-							<div class="l-h__inner">
+							<div class="l-h__inner baron">
 								<div class="l-h__width l-h__editor">
 									<div class="programme-body__h3"><?php echo lang('note');?></div>
 									<textarea class="editor" name="note"><?php echo $note;?></textarea>
+								</div>
+								<div class="baron__track">
+									<div class="baron__free">
+										<a class="baron__bar"></a>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -63,17 +71,22 @@
 					<?php foreach ($tabs as $key => $tab) :?>
 					<div class="tabs__dd<?php if($_tab_key == $active_tab) echo ' tabs__dd--active'; if($_tab_key == 8) echo ' tabs__dd--first';?> tabs__dd--<?php echo $_tab_key++;?>">
 						<div class="l-h">
-							<div class="l-h__inner">
+							<div class="l-h__inner baron">
 								<input type="hidden" name="exercises[<?php echo $tab->hash;?>][name]" value="<?php echo $tab->name;?>">
+								<?php $acces_val = (isset($params->access) && isset($params->access[$key])) ? $params->access[$key] : 1; ?>
+								<input type="hidden" name="params[access][]" class="access-tab-<?php echo $key;?>" value="<?php echo $acces_val;?>">
 								<ul class="exercises-my" data-type="exercises[<?php echo $tab->hash;?>][data]">
 
 								<?php if(!empty($tab->exercises)):?>
-									<?php echo $this->load->view('frontend/'.$this->router->class.'/_item', array('program' => $hash, 'hide_id'=>true, 'exercises'=>$tab->exercises, 'key'=>$key, 'tab'=>$tab, 'type' => 'exercises['.$tab->hash.'][data]'), TRUE);?>
+									<?php echo $this->load->view('frontend/'.$this->router->class.'/_item', array('program' => $hash, 'exercises'=>$tab->exercises, 'key'=>$key, 'tab'=>$tab, 'type' => 'exercises['.$tab->hash.'][data]'), TRUE);?>
 								<?php endif;?>
 
 								</ul>
-								<?php $acces_val = (isset($params->access) && isset($params->access[$key])) ? $params->access[$key] : 1; ?>
-								<input type="hidden" name="params[access][]" class="access-tab-<?php echo $key;?>" value="<?php echo $acces_val;?>">
+								<div class="baron__track">
+									<div class="baron__free">
+										<a class="baron__bar"></a>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -101,19 +114,25 @@
 
 					</div>
 				</div>
-				<div class="r-h">
-					<div class="r-h__inner">
-						<ul class="exercises-list clr">
-							<?php if($exercises):?>
-							<?php echo $this->load->view('frontend/'.$this->router->class.'/_item', array('exercises'=>$exercises, 'hide_id'=>false, 'class'=>'exercises-list__item app-right__item popup-box','type'=>false), TRUE);?>
-							<?php endif;?>
-							<?php if($programs):?>
-							<?php //echo $this->load->view('frontend/'.$this->router->class.'/_item_program', array('programs'=>$programs), TRUE);?>
-							<?php endif;?>
-						</ul>
+				<div class="relative">
+					<div class="r-h">
+						<div class="r-h__inner baron">
+							<ul class="exercises-list clr">
+								<?php if($exercises):?>
+								<?php echo $this->load->view('frontend/'.$this->router->class.'/_item', array('exercises'=>$exercises,'type'=>false), TRUE);?>
+								<?php endif;?>
+								<?php if($programs):?>
+								<?php //echo $this->load->view('frontend/'.$this->router->class.'/_item_program', array('programs'=>$programs), TRUE);?>
+								<?php endif;?>
+							</ul>
+							<div class="baron__track">
+								<div class="baron__free">
+									<a class="baron__bar"></a>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
-
 			</div>
 		</div>
 

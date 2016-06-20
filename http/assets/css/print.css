@@ -17,7 +17,7 @@
 		display: none !important;
 	}
 	.center {
-		max-width: initial;
+		width: auto;
 	}
 	#main {
 		padding: 0;

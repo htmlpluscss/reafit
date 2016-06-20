@@ -30,13 +30,13 @@
 <li><a class="ico ico--open<?php if ($fullscreen) echo '-white';?> data-tab-link" data-tab="open"<?php echo (!$fullscreen) ? ' title="'.lang('open').'"' : '';?>></a></li>
 <li><a class="ico ico--new<?php if ($fullscreen) echo '-white';?> btn-new" href="<?php echo site_url('programs/add');?>"<?php echo (!$fullscreen) ? ' title="'.lang('create').'"' : '';?> data-action="<?php echo site_url('programs/add');?>"></a></li>
 <li><a class="ico ico--save<?php if ($fullscreen) echo '-white';?> btn-save" data-change="<?php echo ($this->router->method == 'edit')? '0' : 1;?>"<?php echo (!$fullscreen) ? ' title="'.lang('save').'"' : '';?>></a></li>
-<li><a class="ico ico--save-exit<?php if ($fullscreen) echo '-white';?>" <?php echo (!$fullscreen) ? ' title="'.lang('save_and_exit').'"' : '';?>></a></li>
-<li><a class="ico ico--save-plus<?php if ($fullscreen) echo '-white';?> data-tab-link" data-tab="save-as"<?php echo (!$fullscreen) ? ' title="'.lang('save_as').'"' : '';?>></a></li>
+<li><a class="ico ico--email<?php if ($fullscreen) echo '-white';?> send-email-form__btn" <?php echo (!$fullscreen) ? ' title="'.lang('to_email').'"' : '';?>></a></li>
+<li><a class="ico ico--save-plus<?php if ($fullscreen) echo '-white';?> data-tab-link" data-tab="save-as"<?php if (!$fullscreen) echo ' title="'.lang('save_as').'"';?>></a></li>
 
 
 <?php if($this->router->method == 'edit'):?>
-<li><a class="ico ico--print<?php if ($fullscreen) echo '-white';?>" target="_blank" href="<?php echo site_url('print/'.$hash);?>"<?php echo (!$fullscreen) ? ' title="'.lang('print').'"' : '';?>></a></li>
 <li><a class="ico ico--link<?php if ($fullscreen) echo '-white';?>" target="_blank" href="<?php echo site_url($hash);?>"<?php echo (!$fullscreen) ? ' title="'.lang('public_link').'"' : '';?>></a></li>
+<li><a class="ico ico--print<?php if ($fullscreen) echo '-white';?>" target="_blank" href="<?php echo site_url('print/'.$hash);?>"<?php echo (!$fullscreen) ? ' title="'.lang('print').'"' : '';?>></a></li>
 <?php endif;?>
 
 <li><a class="ico ico--cart<?php if ($fullscreen) echo '-white';?> app-delete-tab"<?php echo (!$fullscreen) ? ' title="'.lang('remove_tab').'"' : '';?>></a></li>

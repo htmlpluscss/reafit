@@ -61,6 +61,7 @@ header {
 	-webkit-transform:scaleX(0);
 	transform:scaleX(0)
 }
+.menu_top .active a:after,
 .menu_top a:hover:after{
 	visibility:visible;
 	-webkit-transform:scaleX(1);
@@ -146,6 +147,7 @@ body > .title_up {
 	margin: 20px 0;
 }
 .page-login p a{
+	color: #000;
 	border-bottom: 1px solid;
 }
 .page-login p a:hover{

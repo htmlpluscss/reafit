@@ -1,5 +1,7 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
 		<article class="page page-login">
+				<h1>Регистрация отключена</h1>
+<?php /*
 			<?php echo form_open('registration'); ?>
 				<h1><?php echo lang('register_lbl');?></h1>
 				<label for="mail"><?php echo lang('email');?> <sup>*</sup></label>
@@ -44,6 +46,6 @@
 
 				<p><?php echo lang('register_desc');?></p>
 
-			<?php echo form_close(); ?>
+			<?php echo form_close();*/ ?>
 
 		</article>

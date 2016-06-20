@@ -25,48 +25,36 @@
 					}
 
 				?>
-				<li <?php echo (!isset($hide_id) || (isset($hide_id) && empty($hide_id))) ? 'id="one-'. $exercise->hash .'" ' : '';?> class="<?php echo $class;?>" data-filter="<?php echo (!empty($exercise->tags)) ? implode(',', $exercise->tags) . ',' . $exercise->category : $exercise->category;?>" data-video="<?php echo $exercise->video;?>" data-related="<?php echo $_related;?>" data-progress="<?php echo $_progress;?>" data-id="<?php echo $exercise->hash;?>">
+
+<?php //echo $this->load->view('frontend/'.$this->router->class.'/_item_detail', array('exercise'=>$exercise, 'key'=>$key, 'tab'=>isset($tab)? $tab : false, 'type' => (!isset($type)) ? false : $type ), TRUE);?>
+
+<?php if(isset($type) && !empty($type)):?>
+				<li class="exercises-my__item l-h__width clr popup-box">
+
+					<input type="hidden" name="<?php echo $type;?>[]" value="<?php echo $exercise->hash;?>" class="var__id">
+					<input type="hidden" name="<?php echo $type;?>[quantity][]" value="<?php if (isset($exercise->quantity)) echo $exercise->quantity;?>" class="var__quantity">
+					<input type="hidden" name="<?php echo $type;?>[approaches][]" value="<?php if (isset($exercise->approaches)) echo $exercise->approaches;?>" class="var__approaches">
+					<input type="hidden" name="<?php echo $type;?>[weight][]" value="<?php if (isset($exercise->weight)) echo $exercise->weight;?>" class="var__weight">
+					<input type="hidden" name="<?php echo $type;?>[comment][]" value="<?php if (isset($exercise->comment)) echo $exercise->comment;?>" class="var__comment">
 
 					<div class="programme-body__box clr">
 						<div class="programme-body__box-head">
 							<div class="programme-body__box-name">
 								<span class="programme-body__box-title"><?php echo $exercise->name;?></span>
-								<span class="hide-app-right"><?php echo $exercise->name_desc;?></span>
+								<span><?php echo $exercise->name_desc;?></span>
 							</div>
-
-<div class="exercises-list-btn-block exercises-list-btn-block--one hide"></div>
-							<div class="programme-body__box-icons not-drop">
-<?php if(false):?>
-								<a class="ico ico--info popup__btn" data-popup="info_item"></a>
-
-								<?php if(isset($type) && !empty($type)):?>
-								<a class="ico ico--edit exercise popup__btn" data-popup="add"></a>
-								<?php else:?>
-								<a class="ico ico--info exercise popup__btn" data-popup="add"></a>
-								<?php endif;?>
-								<a class="ico ico--add-item exercises-list__add-to-left"></a>
-
-								<a class="ico ico--delete ico-delete-item"></a>
-
-								<a class="ico ico--star icon-toggle-favorite<?php echo (!empty($exercise->favorite)) ? ' active':'';?>" data-url="<?php echo base_url('exercises/favorite/'.$exercise->hash);?>"></a>
-
-								<a class="icon-down-bold ico-move-item"></a>
-								<a class="icon-up-bold ico-move-item"></a>
-
-								<a class="ico ico--related popup__btn" data-popup="related"></a>
-								<a class="ico ico--info popup__btn" data-popup="add"></a>
-<?php endif;?>
+							<div class="programme-body__box-icons">
 								<?php if(!empty($exercise->video)):?>
-								<a class="ico ico--play play-video" data-popup="play"></a>
+								<a class="ico ico--play play-video not-drop" data-popup="play"></a>
 								<?php endif;?>
-								<a class="ico ico--info popup__btn" data-popup="add"></a>
+								<a class="ico ico--info popup__btn not-drop" data-popup="edit"></a>
 								<?php if($exercise->progress):?>
-								<a class="ico ico--progress popup__btn" data-popup="progress"></a>
+								<a class="ico ico--progress popup__btn not-drop" data-popup="progress"></a>
 								<?php endif;?>
 								<?php if($exercise->related):?>
-								<a class="ico ico--related popup__btn" data-popup="related"></a>
+								<a class="ico ico--related popup__btn not-drop" data-popup="related"></a>
 								<?php endif;?>
-								<a class="ico ico--delete ico-delete-item hide-app-right"></a>
+								<a class="ico ico--delete ico-delete-item not-drop"></a>
 							</div>
 						</div>
 						<div class="programme-img">
@@ -74,81 +62,50 @@
 							<img src="<?php echo site_url('images/'.$exercise->image_1);?>" alt="<?php echo $exercise->name;?>">
 							<?php endif;?>
 							<?php if($exercise->image_3):?>
-							<img class="hide-app-right" src="<?php echo site_url('images/'.$exercise->image_3);?>" alt="<?php echo $exercise->name;?>">
+							<img src="<?php echo site_url('images/'.$exercise->image_3);?>" alt="<?php echo $exercise->name;?>">
 							<?php endif;?>
 						</div>
 					</div>
+<?php else:?>
+				<li
+					id="one-<?php echo $exercise->hash;?>"
+					data-id="<?php echo $exercise->hash;?>"
+					class="exercises-list__item app-right__item popup-box"
+					data-filter="<?php echo (!empty($exercise->tags)) ? implode(',', $exercise->tags) . ',' . $exercise->category : $exercise->category;?>"
+					data-video="<?php echo $exercise->video;?>"
+					data-related="<?php echo $_related;?>"
+					data-progress="<?php echo $_progress;?>"
+					data-images="<?php if($exercise->image_1) echo $exercise->image_1; ?>|<?php if($exercise->image_2) echo $exercise->image_2;?>|<?php if($exercise->image_3) echo $exercise->image_3;?>"
+					data-name="<?php echo $exercise->name;?>"
+					data-name_desc="<?php echo $exercise->name_desc;?>"
 
-					<?php //echo $this->load->view('frontend/'.$this->router->class.'/_item_detail', array('exercise'=>$exercise, 'key'=>$key, 'tab'=>isset($tab)? $tab : false, 'type' => (!isset($type)) ? false : $type ), TRUE);?>
-					<div class="hide">
-						<div class="popup-content--add">
-							<div class="programme-img">
-								<?php if($exercise->image_1):?>
-								<img src="<?php echo site_url('images/'.$exercise->image_1);?>" alt="<?php echo $exercise->name;?>">
+					>
+					<div class="var__exercise-description hide"><?php echo $exercise->description;?></div>
+
+					<div class="item-img_name item-img_name--app-right programme-body__box">
+						<?php if($exercise->image_1):?>
+							<img class="item-img_name__img" src="<?php echo site_url('images/'.$exercise->image_1);?>" alt="<?php echo $exercise->name;?>">
+						<?php endif;?>
+						<div class="item-img_name__bottom">
+							<span class="item-img_name__title"><?php echo $exercise->name;?></span>
+						</div>
+						<div class="item-img_name__hover">
+							<div class="item-img_name__icons">
+								<?php if(!empty($exercise->video)):?>
+								<a class="ico ico--play-white play-video not-drop" data-popup="play"></a>
 								<?php endif;?>
-								<?php if($exercise->image_2):?>
-								<img src="<?php echo site_url('images/'.$exercise->image_2);?>" alt="<?php echo $exercise->name;?>">
+								<a class="ico ico--info-white popup__btn not-drop" data-popup="add"></a>
+								<?php if($exercise->progress):?>
+								<a class="ico ico--progress-white popup__btn not-drop" data-popup="progress"></a>
 								<?php endif;?>
-								<?php if($exercise->image_3):?>
-								<img src="<?php echo site_url('images/'.$exercise->image_3);?>" alt="<?php echo $exercise->name;?>">
+								<?php if($exercise->related):?>
+								<a class="ico ico--related-white popup__btn not-drop" data-popup="related"></a>
 								<?php endif;?>
+								<a class="ico ico--add-item exercises-list__add-to-left"></a>
+								<a class="ico ico--star<?php if (!empty($exercise->favorite)) echo ' ico--star--active';?>" data-url="<?php echo base_url('exercises/favorite/'.$exercise->hash);?>"></a>
 							</div>
-							<div class="programme-body__detal">
-								<table class="programme-table programme-table--input">
-									<tr>
-										<td>
-											<input data-name="quantity"<?php echo (isset($tab) && isset($tab->hash)) ? ' name="'.$type.'[quantity][]"' : '';?> class="input" value="<?php echo (isset($exercise->quantity) && $exercise->quantity != '0') ? $exercise->quantity : '';?>" placeholder="<?php echo lang('times');?>">
-										</td>
-										<td rowspan="2">
-											<textarea data-name="comment"<?php echo (isset($tab) && isset($tab->hash)) ? ' name="'.$type.'[comment][]"' : '';?> class="input" placeholder="<?php echo lang('coment');?>"><?php echo (isset($exercise->comment)) ? $exercise->comment : '';?></textarea>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<input data-name="approaches"<?php echo (isset($tab) && isset($tab->hash)) ? ' name="'.$type.'[approaches][]"' : '';?>  class="input" value="<?php echo (isset($exercise->approaches) && $exercise->approaches != '0') ? $exercise->approaches : '';?>" placeholder="<?php echo lang('approaches');?>">
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<input data-name="weight"<?php echo (isset($tab) && isset($tab->hash)) ? ' name="'.$type.'[weight][]"' : '';?>  class="input" value="<?php echo (isset($exercise->weight) && $exercise->weight != '0') ? $exercise->weight : '';?>" placeholder="<?php echo lang('weight');?>">
-										</td>
-										<td>
-											<a class="btn programme-table__btn-save pull-left exercises-my__save"><?php echo lang('save');?></a>
-											<a class="btn btn--next pull-right ml-10 exercises-my__save exercises-my__save--next"></a>
-											<a class="btn btn--prev pull-right exercises-my__save exercises-my__save--prev"></a>
-										</td>
-									</tr>
-								</table>
-							</div>
-							<div class="programme-description">
-								<p class="programme-body__name">
-									<span class="programme-body__name-b"><?php echo $exercise->name;?></span>
-									<?php echo $exercise->name_desc;?>
-								</p>
-								<?php echo $exercise->description;?>
-							</div>
-
-
-							<div class="hide exercises-list__item-desc<?php echo (!isset($type) || empty($type)) ? ' in-exercises-list' : '';?>">
-								<div class="exercises-list__item-detal-btn">
-									<div class="popup__add-to-left hide-not-in-list">
-										<a class="btn"><?php echo lang('add');?></a>
-									</div>
-									<a class="btn exercises-my__save hide-in-list"><?php echo lang('save');?></a>
-									<a class="btn exercises-my__save exercises-my__prev hide-in-list"><?php echo lang('prev');?></a>
-									<a class="btn exercises-my__save exercises-my__next hide-in-list"><?php echo lang('next');?></a>
-									<a class="btn popup__close"><?php echo lang('close');?></a>
-								</div>
-								<div class="exercises-list__item-detal">
-
-								</div>
-							</div>
-
 						</div>
 					</div>
-
-					<?php if(isset($type) && !empty($type)):?>
-					<input type="hidden" name="<?php echo $type;?>[]" value="<?php echo $exercise->hash;?>">
-					<?php endif;?>
+<?php endif;?>
 				</li>
 			<?php endforeach ?>

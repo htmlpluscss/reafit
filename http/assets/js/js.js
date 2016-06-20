@@ -13,13 +13,13 @@ var windowHeight,
 	pageResize,
 	resizeTimeoutId,
 	scrollTimeoutId,
-	ScrollBarWidth,
+//	ScrollBarWidth,
 	body = $('body'),
 	$window = $(window);
 
 pageResize = function(){
 	windowHeight = $window.height();
-	ScrollBarWidth = getScrollBarWidth();
+//	ScrollBarWidth = getScrollBarWidth();
 	$('#main').css('min-height',windowHeight-$('#header').height()-$('#footer').height());
 }
 pageResize();
@@ -86,7 +86,9 @@ $window.ready(function(){
 		popupShow('content',video);
 	});
 
+			// убрал проверку, сделать ее в слечае отправки емайла
 // email
+/*
 	$('.input').filter('[type="email"]')
 		.on('change blur',function(){
 			var f = $(this).closest('form');
@@ -106,7 +108,7 @@ $window.ready(function(){
 				}
 			}
 		});
-
+*/
 // info-message
 	$('.info-message__close').one('click',function(){
 		$(this).parent().fadeOut(function(){
@@ -236,7 +238,7 @@ function errorEmail(t){
 	test || t.val().length==0 ? e.addClass('hide') : e.removeClass('hide');
 	return test;
 }
-
+/*
 function getScrollBarWidth(){
 	var div = $('<div class="scroolbarwidth">');
 	div.append('<p></p>');
@@ -245,7 +247,7 @@ function getScrollBarWidth(){
 	div.remove();
 	return w;
 }
-
+*/
 // popup
 	(function(){
 		var popup = $('.popup');
@@ -264,14 +266,15 @@ function getScrollBarWidth(){
 		var popup = $('.popup--'+mod);
 		var box = popup.children('.popup__box');
 		var popupBody = box.find('.popup__inner');
-		if(w != undefined){
+		if(w !== undefined){
 			box.width(w);
 		}
-		if(mod=='content' && s == 'related_progress'){
-			popupBody.html(b);
-			var h = popupBody.height();
-		}
-		else if(mod=='content' && b != undefined && s==undefined){
+		if (
+			(s == 'template') 			||
+			(s == 'related_progress')
+//			(mod=='content' && b != undefined && s==undefined) // пиши правила для каждого случая
+			)
+		{
 			popupBody.html(b);
 			var h = popupBody.height();
 		}
@@ -284,12 +287,19 @@ function getScrollBarWidth(){
 			var h = popupBody.height();
 		}
 		if(h > windowHeight - 100) {
-			box.width(box.width()+18); // 18 ширрина скрола + отступ
-			content.css('padding-right',8);
+			if(content){
+				box.width(box.width()+18); // 18 ширрина скрола + отступ
+				content.css('padding-right',18);
+				popupBody.append('<div class="baron__track"><div class="baron__free"><a class="baron__bar"></a></div></div>');
+			}
 			h = windowHeight - 100;
 			popupBody.height(h);
-			popupBody.jScrollPane({
-				verticalGutter : 0
+			setTimeout(function(){
+				popupBody.baron({
+					bar: '.baron__bar'
+				}).controls({
+					track: '.baron__free'
+				});
 			});
 		}
 		if(!popup.hasClass('popup--height-auto'))
