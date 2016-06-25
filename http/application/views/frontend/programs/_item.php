@@ -29,7 +29,7 @@
 <?php //echo $this->load->view('frontend/'.$this->router->class.'/_item_detail', array('exercise'=>$exercise, 'key'=>$key, 'tab'=>isset($tab)? $tab : false, 'type' => (!isset($type)) ? false : $type ), TRUE);?>
 
 <?php if(isset($type) && !empty($type)):?>
-				<li class="exercises-my__item l-h__width clr popup-box">
+				<li class="exercises-my__item l-h__width clr popup-box" data-id="<?php echo $exercise->hash;?>">
 
 					<input type="hidden" name="<?php echo $type;?>[]" value="<?php echo $exercise->hash;?>" class="var__id">
 					<input type="hidden" name="<?php echo $type;?>[quantity][]" value="<?php if (isset($exercise->quantity)) echo $exercise->quantity;?>" class="var__quantity">
@@ -45,16 +45,16 @@
 							</div>
 							<div class="programme-body__box-icons">
 								<?php if(!empty($exercise->video)):?>
-								<a class="ico ico--play play-video not-drop" data-popup="play"></a>
+								<a class="ico ico--play play-video not-drop" data-video="<?php echo $exercise->video; ?>"></a>
 								<?php endif;?>
-								<a class="ico ico--info popup__btn not-drop" data-popup="edit"></a>
+								<a class="ico ico--info popup__btn popup__btn--edit not-drop"></a>
 								<?php if($exercise->progress):?>
-								<a class="ico ico--progress popup__btn not-drop" data-popup="progress"></a>
+								<a class="ico ico--progress popup__btn popup__btn--progress not-drop"></a>
 								<?php endif;?>
 								<?php if($exercise->related):?>
-								<a class="ico ico--related popup__btn not-drop" data-popup="related"></a>
+								<a class="ico ico--related popup__btn popup__btn--related not-drop"></a>
 								<?php endif;?>
-								<a class="ico ico--delete ico-delete-item not-drop"></a>
+								<a class="ico ico--delete exercises-my__item-delete not-drop"></a>
 							</div>
 						</div>
 						<div class="programme-img">
@@ -70,42 +70,18 @@
 				<li
 					id="one-<?php echo $exercise->hash;?>"
 					data-id="<?php echo $exercise->hash;?>"
-					class="exercises-list__item app-right__item popup-box"
+					class="exercises-list__item app-right__item"
 					data-filter="<?php echo (!empty($exercise->tags)) ? implode(',', $exercise->tags) . ',' . $exercise->category : $exercise->category;?>"
+					data-favorite="<?php echo $exercise->favorite;?>"
 					data-video="<?php echo $exercise->video;?>"
 					data-related="<?php echo $_related;?>"
 					data-progress="<?php echo $_progress;?>"
 					data-images="<?php if($exercise->image_1) echo $exercise->image_1; ?>|<?php if($exercise->image_2) echo $exercise->image_2;?>|<?php if($exercise->image_3) echo $exercise->image_3;?>"
 					data-name="<?php echo $exercise->name;?>"
 					data-name_desc="<?php echo $exercise->name_desc;?>"
-
 					>
 					<div class="var__exercise-description hide"><?php echo $exercise->description;?></div>
-
-					<div class="item-img_name item-img_name--app-right programme-body__box">
-						<?php if($exercise->image_1):?>
-							<img class="item-img_name__img" src="<?php echo site_url('images/'.$exercise->image_1);?>" alt="<?php echo $exercise->name;?>">
-						<?php endif;?>
-						<div class="item-img_name__bottom">
-							<span class="item-img_name__title"><?php echo $exercise->name;?></span>
-						</div>
-						<div class="item-img_name__hover">
-							<div class="item-img_name__icons">
-								<?php if(!empty($exercise->video)):?>
-								<a class="ico ico--play-white play-video not-drop" data-popup="play"></a>
-								<?php endif;?>
-								<a class="ico ico--info-white popup__btn not-drop" data-popup="add"></a>
-								<?php if($exercise->progress):?>
-								<a class="ico ico--progress-white popup__btn not-drop" data-popup="progress"></a>
-								<?php endif;?>
-								<?php if($exercise->related):?>
-								<a class="ico ico--related-white popup__btn not-drop" data-popup="related"></a>
-								<?php endif;?>
-								<a class="ico ico--add-item exercises-list__add-to-left"></a>
-								<a class="ico ico--star<?php if (!empty($exercise->favorite)) echo ' ico--star--active';?>" data-url="<?php echo base_url('exercises/favorite/'.$exercise->hash);?>"></a>
-							</div>
-						</div>
-					</div>
+					<div class="item-img_name"></div>
 <?php endif;?>
 				</li>
 			<?php endforeach ?>

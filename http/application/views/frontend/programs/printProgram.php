@@ -12,28 +12,15 @@
 
 			<?php if(!empty($tabs)):?>
 
-			<?php foreach ($tabs as $key => $tab) :?>
+			<?php foreach ($tabs as $key => $tab) :
+
+				if( empty($tab->exercises) || $params->access[$key] != 1 ) continue;
+
+				?>
 
 				<div class="programme-body--print__group">
 
-					<?php
-						$acces_val = true;
-						if(isset($params->access) && isset($params->access[$key])) {
-							$acces_val = (bool) $params->access[$key];
-						}
-					?>
-					<?php if($acces_val):?>
 					<h2 class="programme-body__h2"><?php echo $tab->name;?></h2>
-					<?php endif;?>
-
-			<?php if(!empty($tab->exercises)):?>
-			<?php
-				$acces_val = true;
-				if(isset($params->access) && isset($params->access[$key])) {
-					$acces_val = (bool) $params->access[$key];
-				}
-			?>
-			<?php if($acces_val):?>
 
 					<?php foreach ($tab->exercises as $exercise_key => $exercise) : ?>
 
@@ -81,12 +68,12 @@
 							</div>
 						</div>
 					</article>
+
 					<?php endforeach;?>
 
-			<?php endif;?>
-			<?php endif;?>
 					<a class="ico ico--hidden programme-body--print__group-toggle" title="<?php echo lang('hidden');?>"></a>
 					<a class="ico ico--visible programme-body--print__group-toggle" title="<?php echo lang('visible');?>"></a>
+
 				</div>
 			<?php endforeach;?>
 			<?php endif;?>

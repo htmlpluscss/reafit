@@ -9,6 +9,7 @@
 		</div>
 
 		<div class="app clr">
+
 			<div class="programme-body programme-body--app tabs app-left">
 
 					<?php if(isset($_nav) && !empty($_nav)) echo $_nav; ?>
@@ -42,13 +43,14 @@
 					<div class="send-email-form__error-text msg-popup"><?php echo lang('msg_send_email');?></div>
 				</form>
 
+				<?php include('_templates.php'); ?>
+
 				<?php echo form_open_multipart('programs/'.$hash, array('class'=>'save-form spy', 'data-program'=>$hash)); ?>
 
 					<input type="hidden" name="redirect" value="">
 					<input type="hidden" name="params[tab]" value="">
 
 					<?php include('_app_left.php');//echo $_app_left; ?>
-					<?php include('_templates.php'); ?>
 
 					<div class="tabs__dd tabs__dd--note note">
 						<div class="l-h">
@@ -96,44 +98,8 @@
 
 			</div>
 
-			<div class="exercises-body app-right pull-right">
+			<?php include('_app_right.php'); ?>
 
-				<div class="search-exercises">
-
-					<div class="search-exercises__filter clr">
-
-						<div class="search-exercises__input pull-left">
-							<input id="autocomplete-exercises" class="input" placeholder="<?php echo lang('exercise_search');?>">
-							<a class="search-exercises__clear-input hide ico ico--close"></a>
-							<a class="ico ico--search"></a>
-						</div>
-
-						<a class="btn pull-right tab-exercises-list tab-exercises-list--active ico ico--programs ml-10" title="<?php echo lang('programs');?>"></a>
-						<a class="btn pull-right tab-exercises-list ico ico--exercises ml-10" title="<?php echo lang('exercises');?>"></a>
-						<a class="btn pull-right search-exercises__btn filter-show"><?php echo lang('filter');?></a>
-
-					</div>
-				</div>
-				<div class="relative">
-					<div class="r-h">
-						<div class="r-h__inner baron">
-							<ul class="exercises-list clr">
-								<?php if($exercises):?>
-								<?php echo $this->load->view('frontend/'.$this->router->class.'/_item', array('exercises'=>$exercises,'type'=>false), TRUE);?>
-								<?php endif;?>
-								<?php if($programs):?>
-								<?php //echo $this->load->view('frontend/'.$this->router->class.'/_item_program', array('programs'=>$programs), TRUE);?>
-								<?php endif;?>
-							</ul>
-							<div class="baron__track">
-								<div class="baron__free">
-									<a class="baron__bar"></a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
 		</div>
 
 		<ul class="hide icon-fullscreen">

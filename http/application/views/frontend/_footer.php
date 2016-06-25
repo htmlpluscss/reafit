@@ -6,8 +6,8 @@
 
 	<footer id="footer">
 
-		<p class="copyright hide">© <?php echo date('Y');?> «<?php echo $this->settings->site_name;?>»</p>
-		<p class="copyright"><?php echo $this->router->class . ' | ' . $this->router->method . ' | ' . $this->router->default_controller;?></p>
+		<p class="copyright">© <?php echo date('Y');?> «<?php echo $this->settings->site_name;?>»</p>
+		<p class="copyright hide"><?php echo $this->router->class . ' | ' . $this->router->method . ' | ' . $this->router->default_controller;?></p>
 
 	</footer>
 

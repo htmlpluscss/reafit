@@ -10,22 +10,136 @@ http://htmlpluscss.ru
 
 (function($){
 
-	var navTab = $('.tabs__nav'),
-		navTabActive,
-		navTabXscroll,
-		widthTab,
-		pageResizeApp,
+	var navTab = $('.tabs__nav'), // вкладки
+		navTabActive, // активная вкладка
+		navTabXscroll, // смеещение вкладок
+		widthTab, // общая ширина вкладок
+		pageResizeApp, // resize приложения
 		resizeTimeoutIdApp,
-		leftScroller,
-		rightScroller = $('.app-right .r-h__inner'),
-		formProgramm = $('form.save-form'),
-		templates = $('.templates').children();
+		leftScroller, // активный скролл
+		rightScroller = $('.app-right .r-h__inner'), // активный скролл
+		formProgramm = $('form.save-form'), // форма программы
+		formProgrammChange = false, // программа изменина
+		templateAdd = $('.templates__add').children(), // добавить упражнение
+		templateAddSet = $('.templates__add-set').children(), // добавить программу
+		templateEdit = $('.templates__edit').children(), // редактировать упражнение
+		templateImgName = $('.templates__img-name').children(), // упражнение картинка и название
+		templateImgNameWidth, // ширина шаблона
+		templateLeft = $('.templates__item-left').children(), // упражнение в программе
+		templateSet = $('.templates__set').children(), // набор упражнений (программа справа)
+		ExercisesOne = [],  // массив упражнений
+		ExercisesSet = [],  // массив программ
+		searchExercises = [],  // массив названий упражнений и программ
+		searchExercisesId = [],  // массив id упражнений и программ
+		searchExercisesTag = [],  // массив поиковых тегов упражнений и программ
+		targetPopup,     // упражнение вызвавшее popup
+		list = $('.exercises-list'), // выборка упражнений и программ (справа)
+		listMy = $('.exercises-my'), // выборка вкладок упражнений (слева)
+		listOne = list.children().not('.exercises-list__item--set'), // упражнения
+		listSet = list.children('.exercises-list__item--set'); // программы
+
+var start = new Date();
 
 
-	var list = $('.exercises-list');
-	var listOne = list.children().not('.exercises-list__item--set');
-	var listSet = list.children('.exercises-list__item--set');
-	var listMy = $('.exercises-my');
+// создаем массив упражнений
+	listOne.each(function(){
+		var t = $(this);
+		var id = t.attr('data-id');
+		var img = t.attr('data-images').split('|');
+		var params = [
+			t.attr('data-name'),
+			t.attr('data-favorite'),
+			t.children('.var__exercise-description').html(),
+			t.attr('data-video'),
+			img[0],
+			img[1],
+			img[2],
+			t.attr('data-filter'),
+			t.attr('data-related'),
+			t.attr('data-progress'),
+			t.attr('data-name_desc')
+		];
+		ExercisesOne[id] = params;
+
+	// строим DOM
+		t.html(itemHmltImgName(id,params));
+
+	// массивы для поиска
+		searchExercises.push(t.attr('data-name'));
+		searchExercisesId.push(t.attr('data-id'));
+
+	});
+
+// создаем массив программ
+	listSet.each(function(){
+		var t = $(this);
+		var id = t.attr('data-id');
+		var params = [
+			t.attr('data-name'),
+			t.attr('data-favorite'),
+			t.children('.var__exercise-description').html(),
+			t.attr('data-video'),
+			t.attr('data-images'),
+			t.attr('data-exercises')
+		];
+		ExercisesSet[t.attr('data-id')] = params;
+
+	// строим DOM
+		t.html(itemHmltImgName(id,params,true));
+
+	// массивы для поиска
+		searchExercises.push(t.attr('data-name'));
+		searchExercisesId.push(t.attr('data-id'));
+
+	});
+
+	function itemHmltImgName(id,params,set){
+		var template = templateImgName.clone(true);
+		var icons = template.find('.item-img_name__icons').children();
+
+		if(!params){
+			params = ExercisesOne[id];
+		}
+
+		template.attr('data-id',id);
+
+		template.find('.item-img_name__title').text(params[0]);
+
+		if(params[1].length>0)
+			icons.filter('.ico--star').addClass('ico--star--active');
+
+		params[4] === undefined ?
+			template.find('.item-img_name__img').remove(): // это тормозит !!!!!!!!!
+			template.find('.item-img_name__img').attr('src','/images/'+params[4]);
+
+		if(set){
+			template.addClass('item-img_name--set');
+			icons.filter('.ico--play-white').remove();
+			icons.filter('.ico--related-white').remove();
+			icons.filter('.ico--progress-white').remove();
+			icons.filter('.ico--star').attr('data-url','/programs/favorite/'+id);
+		}
+		else {
+			params[3].length > 0 ?
+				icons.filter('.ico--play-white').attr('data-video',params[3]):
+				icons.filter('.ico--play-white').remove();
+			if(params[8].length==0)
+				icons.filter('.ico--related-white').remove();
+			if(params[9].length==0)
+				icons.filter('.ico--progress-white').remove();
+			icons.filter('.ico--star').attr('data-url','/exercises/favorite/'+id);
+		}
+		return template;
+	}
+
+//	console.log(ExercisesOne);
+	console.log(ExercisesSet);
+
+var end = new Date();
+
+	console.log('Скорость ' + (end.getTime()-start.getTime()) + ' мс');
+
+
 
 	$window.on({
 		resize: function(){
@@ -60,12 +174,15 @@ http://htmlpluscss.ru
 			}).controls({
 				track: '.baron__free'
 			});
+
+			templateImgNameWidth = list.children().filter(':visible').first().width();
 		}
 	}
 
 	widthTab = function(){
 		var ul = navTab.find('ul');
 		var li = ul.children();
+		if(li.length<2) return;
 		var last = li.last();
 		var liActive = navTabActive.parent();
 		var liActiveWidth = liActive.outerWidth();
@@ -153,7 +270,7 @@ http://htmlpluscss.ru
 	}).trigger('scroll');
 */
 
-	// высота комментариев
+// высота комментариев
 	$('.programme-table__td--coment-box').hover(function(){
 		if($(this).children().outerHeight() > $(this).parent().height())
 			$(this).addClass('programme-table__td--coment-show');
@@ -185,7 +302,7 @@ http://htmlpluscss.ru
 		} else {
 			formProgramm.find('input[name="redirect"]').val('');
 		}
-//		console.log(formProgramm.serialize())
+console.log(formProgramm.serializeArray())
 		formProgramm.submit();
 	});
 
@@ -252,6 +369,8 @@ http://htmlpluscss.ru
 		}
 	}
 */
+
+// разобраться
 	$('.btn-to-list, .icon-link, .icon-docs, .icon-print, .icon-mail, .btn-new, .icon-mail, .open-program-link').on('click', function(e){
 		var saved = parseInt($('.btn-save').data('change'));
 		var action = $(this).data('action');
@@ -280,7 +399,8 @@ http://htmlpluscss.ru
 	});
 
 
-	// сохранить при выходе?
+// разобраться
+// сохранить при выходе?
 	$('.popup--close .btn:not(.btn-save-popup)').on('click', function(e){
 		var url = $(this).attr('href');
 		if(url == '#') {
@@ -369,7 +489,7 @@ http://htmlpluscss.ru
 		dt.attr('data-tab',dataTab);
 		$(this).attr('data-tab-id', dataTab);
 		$('.btn-save').attr('data-change', 1);
-		dd.find('.l-h__inner')
+		dd.find('.exercises-my')
 			.attr('data-type', 'exercises['+dataTab+'][data]')
 			.append('<input id="tabs-exercises-'+dataTab+'" type="hidden" name="exercises['+dataTab+'][name]" value="">');
 		setTimeout(function(){
@@ -388,6 +508,8 @@ http://htmlpluscss.ru
 		});
 		widthTab();
 	});
+
+// инициализация редактора
 	$('.app-add-note').on('click', function() {
 
 		if($('.editor').is('.trumbowyg-textarea'))
@@ -436,7 +558,7 @@ http://htmlpluscss.ru
 	    return $.when.apply($, _arr);
 	}
 
-	// форма вкладки
+// создание новой вкладки
 	$('.add-tab-form__btn').on('click',function(){
 		var f = $(this).closest('.add-tab-form');
 		var i = f.find('.add-tab-form__name');
@@ -453,12 +575,13 @@ http://htmlpluscss.ru
 			$('.btn-save').attr('data-change', 1);
 		}
 	});
+// создание вкладки на enter
 	$('.add-tab-form__name').on('keyup',function(event){
 		if(event.keyCode == 13)
 			$('.add-tab-form__btn').trigger('click');
 	});
 
-	// delete tab
+// delete tab
 	$('.app-delete-tab').hover(function(){
 		var del = $('.tabs__dt--active');
 		if(del.hasClass('tabs__dt--not-delete')) return;
@@ -500,9 +623,10 @@ http://htmlpluscss.ru
 		$('.btn-save').attr('data-change', 1);
 	});
 
-	// tab right
+// переключение програм/упражнений
 	$('.tab-exercises-list').on('click',function(){
-		if($(this).hasClass('icon-th-large')){
+		$(this).addClass('tab-exercises-list--active').siblings().removeClass('tab-exercises-list--active');
+		if($(this).hasClass('tab-exercises-list--set')){
 			listOne.addClass('hide');
 			listSet.removeClass('hide');
 		}
@@ -510,13 +634,12 @@ http://htmlpluscss.ru
 			listOne.removeClass('hide');
 			listSet.addClass('hide');
 		}
-		list.scrollTop(0);
 		setTimeout(function(){
 			$window.trigger('resize');
 		});
 	});
 
-// Доступно пациенту
+// Доступно пациенту (вклвадка детали)
 	$('.access-tabs__item').on('change', function(){
 		var tab = $(this).val();
 		var value = $(this).prop('checked') ? 1 : 0;
@@ -529,7 +652,7 @@ http://htmlpluscss.ru
 
 /* Иконки в упражнении ---------- */
 
-	// вверх\вниз
+// вверх\вниз
 	$('.app-left').on('click','.ico-move-item',function(){
 		var t = $(this);
 		var li = t.closest('.exercises-my__item');
@@ -553,100 +676,126 @@ http://htmlpluscss.ru
 		$('.btn-save').attr('data-change', 1);
 	});
 
-	// удалить
-	$('.app-left').on('click','.ico-delete-item',function(){
+// удалить упражнение
+	$('.exercises-my__item-delete').on('click',function(){
 		var li = $(this).closest('.exercises-my__item');
-		$('.btn-save').attr('data-change', 1);
+//		$('.btn-save').attr('data-change', 1);
 		li.fadeOut(1000,function(){
 			li.remove();
 		});
 	});
 
 
-	// popup__btn
-	$('.app-left, .app-right').on('click','.popup__btn',function(){// не надо будет делигировать, т.к. шаблоны наследуют события
-		var box = $(this).closest('.popup-box').addClass('popup-box--active'); // удалить, не важно чье окно, события в окне
-		var p = $(this).attr('data-popup');
-		var w = false;
-		$('.popup-box').not(box).removeClass('popup-box--active'); // но может быть слева важно, для навигации
-		// related & progress
-		if(p == 'related' || p == 'progress'){
-			var item = box.attr('data-'+p).split(',');
-			var id = box.attr('data-id');
-			box = $('<ul class="related_progress clr">');
-			for(var i=0; i<item.length; i++){
-				var selector = '#one-'+item[i];
-				var li = $(selector).clone();
-				li.removeAttr('id').attr('data-id',selector);
-				if('#one-'+id==selector)
-					li.addClass('related_progress__current');
-				li.on('click',function(event){
-					var id = $(this).attr('data-id');
-					var selector = $(event.target).attr('class').split(' ');
-					$(id).find('.'+selector[0]).trigger('click');
-				});
-				box.append(li);
-			}
-			p = 'related_progress';
-		}
-		if(p == 'add' || p == 'edit'){
-			w = 826;
+// popup__btn
+	$('.popup__btn').on('click',function(){
+		var t = $(this);
+		targetPopup = t.closest('.popup-box');
+		var id = targetPopup.attr('data-id');
+		var item = ExercisesOne[id];
+		var width = false;
 
-// переделываю на шаблон
-			var template = templates.filter('.templates__' + p).children().clone(true);
-			if(p=='edit'){
-				box = $('#one-'+ box.children('.var__id').val());
-				template.find('.var__quantity').val(box.find('.var__quantity').val());
-				template.find('.var__approaches').val(box.find('.var__approaches').val());
-				template.find('.var__weight').val(box.find('.var__weight').val());
-				template.find('.var__comment').text(box.find('.var__comment').val());
+	// related & progress
+		if(t.hasClass('popup__btn--related') || t.hasClass('popup__btn--progress')){
+			var template = $('<div class="related_progress clr">');
+			var items = t.hasClass('popup__btn--related') ? item[8].split(',') : item[9].split(',');
+
+			width = items.length < 4 ? (templateImgNameWidth + 10) * items.length : (templateImgNameWidth + 10) * 4; // 10 это margin-left
+			width -= 10;
+
+			for(var i = 0; i < items.length; i++){
+
+				var siblings = items[i];
+				if(ExercisesOne[siblings] !== undefined) { // временно, пока попадает несуществаующие(неподкюченные) упражнения
+					siblings == id ?
+						template.append(itemHmltImgName(siblings).addClass('item-img_name--current-in-progress')):
+						template.append(itemHmltImgName(siblings));
+				}
+
 			}
-			var img = box.attr('data-images').split('|');
-			for (var i = 0; i < img.length; i++) {
-				template.find('.programme-img').append('<img src="/images/'+img[i]+'">');
-			}
-			template.attr('data-id',box.attr('data-id'));
-			template.find('.var__exercise-name').text(box.attr('data-name'));
-			template.find('.var__exercise-name_desc').text(box.attr('data-name_desc'));
-			template.find('.var__exercise-description').html(box.find('.var__exercise-description').children().clone());
-			popupShow('content',template,'template',w);
-			return false;
 		}
-		popupShow('content',box,p,w);
+		// add set
+		if(targetPopup.hasClass('item-img_name--set')){
+			var template = templateAddSet.clone(true);
+			item = ExercisesSet[id];
+
+			if(item[4] !== undefined)
+				template.find('.programme-img').append('<img src="/images/'+item[4]+'">');
+
+			template.attr('data-id',id);
+			template.find('.var__exercise-name').text(item[0]);
+			template.find('.var__exercise-description').html(item[2]);
+		}
+		// add one & edit
+		else if(t.hasClass('popup__btn--add') || t.hasClass('popup__btn--edit')){
+			var template = templateAdd.clone(true);
+
+			if(t.hasClass('popup__btn--edit')){
+				template = templateEdit.clone(true);
+				template.find('.popup__input--quantity').val(targetPopup.find('.var__quantity').val());
+				template.find('.popup__input--approaches').val(targetPopup.find('.var__approaches').val());
+				template.find('.popup__input--weight').val(targetPopup.find('.var__weight').val());
+				template.find('.popup__input--comment').text(targetPopup.find('.var__comment').val());
+			}
+
+			if(item[4] !== undefined)
+				template.find('.programme-img').append('<img src="/images/'+item[4]+'">');
+			if(item[5] !== undefined)
+				template.find('.programme-img').append('<img src="/images/'+item[5]+'">');
+			if(item[6] !== undefined)
+				template.find('.programme-img').append('<img src="/images/'+item[6]+'">');
+
+			template.attr('data-id',id);
+			template.find('.var__exercise-name').text(item[0]);
+			template.find('.var__exercise-name_desc').text(item[10]);
+			template.find('.var__exercise-description').html(item[2]);
+
+			width = 826;
+		}
+		// view
+		else if(t.hasClass('popup__btn--view')){
+			var template = targetPopup.clone();
+			template.find('.popup-hidden').addClass('hide');
+			template.find('.popup-visible').removeClass('hide');
+		}
+		popupShow('content',template,width);
 	});
+
 
 // события в шаблонах
 
 // add
 	// Добавить
 	function addItemAppLeft(id,data,index) {
-		var item = $('#one-'+id);
-		var datatType = leftScroller.children('ul').attr('data-type') + '[data]';
-		var template = templates.filter('.templates__item-left').children().clone(true);
-		var img = item.attr('data-images').split('|');
+		var item = ExercisesOne[id];
+		var datatType = leftScroller.children('ul').attr('data-type');
+		var template = templateLeft.clone(true);
 		var icons = template.find('.programme-body__box-icons').children();
 		if(data===undefined)
-			data=['quantity','approaches','weight','coment'];
+			data=['quantity','approaches','weight','comment'];
 
-		if(img[0].length>0)
-			template.find('.programme-img').append('<img src="/images/'+img[0]+'">');
-		if(img[2].length>0)
-			template.find('.programme-img').append('<img src="/images/'+img[2]+'">');
+		template.attr('data-id',id);
 
-		template.find('.var__id').val(item.attr('data-id')).attr('name',datatType+'[]');
+		if(item[4] !== undefined)
+			template.find('.programme-img').append('<img src="/images/'+item[4]+'">');
+		if(item[6] !== undefined)
+			template.find('.programme-img').append('<img src="/images/'+item[6]+'">');
+
+		template.find('.var__id').val(id).attr('name',datatType+'[]');
 		template.find('.var__quantity').val(data['quantity']).attr('name',datatType+'[quantity][]');
 		template.find('.var__approaches').val(data['approaches']).attr('name',datatType+'[approaches][]');
 		template.find('.var__weight').val(data['weight']).attr('name',datatType+'[weight][]');
-		template.find('.var__comment').val(data['coment']).attr('name',datatType+'[comment][]');
-		template.find('.var__exercise-name').text(item.attr('data-name'));
-		template.find('.var__exercise-name_desc').text(item.attr('data-name_desc'));
+		template.find('.var__comment').val(data['comment']).attr('name',datatType+'[comment][]');
+		template.find('.var__exercise-name').text(item[0]);
+		template.find('.var__exercise-name_desc').text(item[10]);
 
-		if(item.attr('data-progress').length==0)
-			icons.filter('.ico--progress').remove();
-		if(item.attr('data-related').length==0)
-			icons.filter('.ico--related').remove();
-		if(item.attr('data-video').length==0)
+		item[3].length > 0 ?
+			icons.filter('.ico--play').attr('data-video',item[3]):
 			icons.filter('.ico--play').remove();
+
+		if(item[9].length==0)
+			icons.filter('.ico--progress').remove();
+		if(item[8].length==0)
+			icons.filter('.ico--related').remove();
 
 		if(index === undefined){
 			leftScroller.children('ul').append(template);
@@ -657,15 +806,20 @@ http://htmlpluscss.ru
 		}
 
 	}
-	function addSetAppLeft(id) {
-		var item = $('#one-'+id);
+	function addSetAppLeft(id,index) {
+		var items = ExercisesSet[id][5].split('|');
+		for(var i = 0; i < items.length; i++){
+			index === undefined ?
+				addItemAppLeft(items[i]):
+				addItemAppLeft(items[i],false,index+i);
+		}
 		console.log('спросить: развернуть по вкладкам или в текущую вкладку?');
 	}
 
 	// добавить из app-right
 	$('.exercises-list__add-to-left').on('click',function(){
-		var id = $(this).closest('li').attr('data-id');
-		if($(this).hasClass('exercises-list__add-to-left--set')){
+		var id = $(this).closest('.popup-box').attr('data-id');
+		if($(this).closest('.popup-box').hasClass('item-img_name--set')){
 			addSetAppLeft(id);
 		} else {
 			addItemAppLeft(id);
@@ -674,10 +828,10 @@ http://htmlpluscss.ru
 
 	// Добавить из popup
 	$('.popup__add-to-left').on('click',function(){
+		var id = $(this).closest('.popup-content--add').attr('data-id');
 		if($(this).hasClass('popup__add-to-left--set')){
-
+			addSetAppLeft(id);
 		} else {
-			var id = $(this).closest('.popup-content--add').attr('data-id');
 			var data = [];
 			$(this).closest('.programme-table').find('.input').each(function(){
 				data[$(this).attr('name')] = $(this).val();
@@ -689,31 +843,17 @@ http://htmlpluscss.ru
 
 
 
-// edit (pедактируем в popup)
-	// input
-	$('.templates__edit').find('.input').on('keyup blur change',function(){
-
+// popup__input
+	$('.popup__input').on('change keyup blur',function(){
+		targetPopup.children('.var__' + $(this).attr('name')).val($(this).val());
 	});
 
-	// next & prev
-	$('.exercises-my__save').on('click',function(){
-		var activeItem = $('.popup-box--active');
-		var inputArr = $(this).closest('.programme-table').find('.input');
-		activeItem.find('.input').each(function(i){
-			$(this).val(inputArr.eq(i).val());
-			if($(this).is('textarea'))
-				$(this).text(inputArr.eq(i).val());
-		});
-		if($(this).hasClass('exercises-my__save--prev')){
-			var box = activeItem.removeClass('popup-box--active').prev();
-		}
-		if($(this).hasClass('exercises-my__save--next')){
-			var box = activeItem.removeClass('popup-box--active').next();
-		}
+// popup__prev & popup__next
+	$('.popup__prev, .popup__next').on('click',function(){
+		var next = $(this).hasClass('popup__next') ? targetPopup.next() : targetPopup.prev();
 		$('.popup').trigger('click');
-		if(box!=undefined && box.length>0){
-			box.addClass('popup-box--active');
-			popupShow('content',box,'add',826);
+		if(next.length>0){
+			next.find('.popup__btn--edit').trigger('click');
 		}
 	});
 
@@ -834,27 +974,13 @@ http://htmlpluscss.ru
 
 				$('.tabs__dd--active .exercises-my').append(li);
 			});
-		} else {
-			var detal = $(this).closest('.exercises-list__item-detal-btn').siblings('.exercises-list__item-detal');
-			detal.find('.input').each(function(){
-				$(this).is('textarea') ?
-					$(this).text($(this).val()):
-					$(this).attr('value',$(this).val());
-			});
-			$('.popup-box--active .exercises-list__add-to-left').trigger('click',detal.html());
 		}
-		$('.popup').trigger('click');
 	});
 */
 	// избранное
-	$('.icon-toggle-favorite').click(function(e){
-		e.preventDefault();
+	$('.icon-toggle-favorite').on('click',function(){
 		var url = $(this).data('url');
-		var active = $(this).hasClass('active');
-		var type = 0;
-		if(!active) {
-			type = 1;
-		}
+		var type = $(this).hasClass('ico--star--active') ? 0 : 1;
 		$.ajax({
 			type:     'POST',
 			dataType: 'json',
@@ -865,7 +991,7 @@ http://htmlpluscss.ru
 			},
 			success: $.proxy(function(data){
 				if(data['success'].length != 0) {
-					$(this).toggleClass('active');
+					$(this).toggleClass('ico--star--active');
 				}
 			}, this)
 		});
@@ -873,6 +999,7 @@ http://htmlpluscss.ru
 
 
 
+// разобраться
 	// изменение формы
 	$('form.spy').on('change', function() {
 		$('.btn-save').attr('data-change', 1);
@@ -883,8 +1010,9 @@ http://htmlpluscss.ru
 		$('.btn-save').attr('data-change-desc', 1);
 	});
 
-/* Список справа ---------- */
 
+
+/* Список справа ---------- */
 
 // фильтр
 	$('.filter-show').on('click',function(){
@@ -904,7 +1032,7 @@ http://htmlpluscss.ru
 		$('.popup--filter').trigger('click');
 	});
 
-	// быстрый результат
+// быстрый результат
 	$('.popup--filter input').on('change',function(){
 		listOne.removeClass('fast-filter');
 		$('.popup--filter input').filter(':checked').each(function(){
@@ -918,7 +1046,7 @@ http://htmlpluscss.ru
 		$('.fast-result-search b').text(listOne.size()-listOne.filter('.fast-filter').size());
 	});
 
-	// reset
+// reset
 	$('.popup--filter form').on('reset',function(){
 		setTimeout(function(){
 			$('.popup--filter input').first().trigger('change');
@@ -929,39 +1057,25 @@ http://htmlpluscss.ru
 	var inputExercises = $('#autocomplete-exercises');
 	var inputExercisesClear = $('.search-exercises__clear-input');
 	var selectExercises = $('.search-exercises__select select');
-	var searchExercises = [];
-	listOne.find('.programme-body__box-title').each(function () {
-		searchExercises.push($(this).text());
-	});
 
 	inputExercises.autocomplete({
 		source: searchExercises,
-		open: function(event, ui) {
-			console.log(event)
-			console.log(ui)
-		},
-		close: function(event, ui) {
-			console.log(event)
-			console.log(ui)
-		},
 		select: function(event, ui){
 			var v = ui.item.value;
-
-			listOne.addClass('hide').children('.programme-body__box-title').each(function(){
-				if (v == $(this).text())
-					$(this).closest('li').removeClass('hide');
-			});
+			var id = searchExercises.indexOf(ui.item.value);
+			listOne.removeClass('hide').not('#one-'+searchExercisesId[id]).addClass('hide');
 		}
 	});
 
 	inputExercisesClear.on('click',function(){
 		inputExercises.val('');
-		inputExercisesClear.removeClass('show');
+		inputExercisesClear.addClass('hide');
 		listOne.removeClass('hide');
+		$('.app-filter-search').trigger('click');
 	});
 
-	inputExercises.on('change keyup',function(event){
-		$(this).val().length > 0 ? inputExercisesClear.addClass('show') : inputExercisesClear.removeClass('show');
+	inputExercises.on('change keyup blur',function(event){
+		inputExercisesClear.toggleClass('hide',$(this).val().length == 0);
 	});
 
 // захват и перетаскиваний
@@ -970,21 +1084,7 @@ http://htmlpluscss.ru
 		listMy = $('.exercises-my');
 
 		list.children().draggable({
-			helper: function() {
-				var exercises = $(this).data('exercises');
-				if(exercises != undefined) {
-					var items = exercises.split(',');
-					var html = '';
-					$.each(items , function(i, val) {
-						var item = $(items[i])[0].outerHTML;
-						html = html + item;
-					});
-					console.log(html);
-					return html;
-				} else {
-					return $(this).clone(true);
-				}
-			},
+			helper: 'clone',
 			opacity: 0.9,
 			zIndex: 2,
 			connectToSortable: listMy,
@@ -1001,48 +1101,21 @@ http://htmlpluscss.ru
  			activate: function(event, ui) {
 				if(!ui.helper.hasClass('ui-draggable-dragging')) {
 					ui.placeholder.height(ui.item.height());
-					$('.btn-save').attr('data-change', 1);
+//					$('.btn-save').attr('data-change', 1);
 				}
 			},
 			receive: function(event, ui) {
-				addItemAppLeft(ui.helper.attr('data-id'),false,ui.helper.index());
+				ui.helper.is('[data-exercises]') ?
+					addSetAppLeft(ui.helper.attr('data-id'),ui.helper.index()):
+					addItemAppLeft(ui.helper.attr('data-id'),false,ui.helper.index());
 				ui.helper.remove();
-				$('.btn-save').attr('data-change', 1);
+//				$('.btn-save').attr('data-change', 1);
 			}
 		});
 	}
 	draggable_droppable_sortable();
 
-	function addMyItem(li){
-/*			li.find('.exercises-my__save').on('click',function(){
-				var detal = $(this).closest('.exercises-list__item-detal-btn').siblings('.exercises-list__item-detal');
-				detal.find('.input').each(function(){
-					$(this).is('textarea') ?
-						$(this).text($(this).val()):
-						$(this).attr('value',$(this).val());
-				});
-				$('.popup-box--active .exercises-list__item-detal').html(detal.html());
-				if($(this).hasClass('exercises-my__prev')){
-					var box = $('.popup-box--active').removeClass('popup-box--active').prev();
-				}
-				if($(this).hasClass('exercises-my__next')){
-					var box = $('.popup-box--active').removeClass('popup-box--active').next();
-				}
-				if(box!=undefined && box.length>0){
-					box.addClass('popup-box--active');
-					popupShow('content',box,'add');
-				}
-				else
-					$('.popup').trigger('click');
-			});
-*/
-//			li.find('.popup__add-to-left').addClass('hide').siblings('.hide').removeClass('hide');
-//			li.find('.popup__add-to-left').remove();
-
-			li.removeAttr('style id').attr('class','exercises-my__item l-h__width popup-box clr');
-			li.find('.programme-body__box-icons').children().each(function(){
-				$(this).attr('class',$(this).attr('class').replace('-white',''));
-			});
+/*	function addMyItem(li){
 
 			var name = $('.tabs__dd--active .exercises-my').data('type');
 			var data = li.find('input[type="hidden"]');
@@ -1063,12 +1136,12 @@ http://htmlpluscss.ru
 				}
 			}
 	}
-
+*/
 
 // create App
+
 	// название программы
-	$('.new-program-form').on('submit',function(e){
-		e.preventDefault();
+	$('.new-program-form').on('submit',function(){
 		var f = $(this);
 		var i = $('.popup--create__name');
 		var e = $('.popup--create__email');
@@ -1084,20 +1157,12 @@ http://htmlpluscss.ru
 			}
 			return false;
 		}
-// потуму что создать -> перезагрузка *
-//*		navTab.find('.tabs__dt').each(function(){
-//*			$(this).add($('.tabs__dd--'+$(this).attr('data-tab'))).remove();
-//*		});
-//*		$('.popup--create').removeClass('popup--lock').trigger('click');
-
-//* в шаблоне сразу так сделать:
-//*		navTab.find('ul').append('<li class="placeholder"><span class="tabs__dt"></span></li>');
-//*		$('.app-add-tab').trigger('click');
-
-		saveDesc(v,e.val(),t.val(),c.val());
 
 		f.closest('.popup').remove();
-//*		i.add(e).add(t).val('');
+		saveDesc(v,e.val(),t.val(),c.val());
+		$('.app-add-tab').trigger('click');
+
+		return false;
 	});
 	$('.popup--create__name').on('keyup',function(){
 		$('title').text($(this).val());
@@ -1106,9 +1171,9 @@ http://htmlpluscss.ru
 	// save proggramm
 	function saveDesc(n,e,t,c){
 		$('.programme-head__title').text(n);
-		formProgramm.find('.name-programme--input').val(n);
-		formProgramm.find('.name-programme--email').val(e);
-		formProgramm.find('.name-programme--textarea').text(t);
+		formProgramm.find('.name-programme--input').val(n).trigger('blur');
+		formProgramm.find('.name-programme--email').val(e).trigger('blur');
+		formProgramm.find('.name-programme--textarea').text(t).trigger('blur');
 		formProgramm.find('.name-programme--category').val(c).trigger('change');
 	}
 
@@ -1131,31 +1196,6 @@ http://htmlpluscss.ru
 			popupShow('content',msg);
 		}
 
-/*
-		var f = $(this).closest('.send-email-form');
-		var url = f.data('url');
-		if(f.hasClass('not-valid-form')) return;
-		var data = f.serialize();
-		$.ajax({
-			type:     'POST',
-			dataType: 'json',
-			cache:    false,
-			url:      url,
-			data:     data,
-			success: $.proxy(function(data){
-				if(data['success'].length != 0) {
-					$('.popup--msg .popup__inner').html('Программа отправлена');
-					$('.popup--msg a.btn-no-popup').removeClass('hide');
-					if(!$('.popup--msg a.btn-cancel-popup').hasClass('hide')) {
-						$('.popup--msg a.btn-cancel-popup').addClass('hide');
-					}
-					if(!$('.popup--msg a.btn-yes-popup').hasClass('hide')) {
-						$('.popup--msg a.btn-yes-popup').addClass('hide');
-					}
-					popupShow('msg');
-				}
-			}, this)
-		});
-*/	});
+	});
 
 })(jQuery);

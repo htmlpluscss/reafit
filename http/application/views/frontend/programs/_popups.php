@@ -2,21 +2,21 @@
 	<?php if(isset($_filter)):?>
 	<div class="popup popup--filter">
 		<div class="popup__box">
-			<div class="popup__body">
-				<form class="popup__inner baron clr">
+			<form class="popup__body">
+				<div class="popup__inner baron clr">
 					<?php echo $_filter;?>
-					<hr>
-					<a class="btn app-filter-search pull-right"><?php echo lang('apply');?></a>
-					<a class="btn btn--gray popup__close pull-right"><?php echo lang('cancel');?></a>
-					<label class="btn btn--white pull-right"><input type="reset" class="hide"><?php echo lang('clear');?></label>
-					<span class="fast-result-search pull-left"><?php echo lang('search_result');?>:<b><?php echo $total_exercises;?></b></span>
 					<div class="baron__track">
 						<div class="baron__free">
 							<a class="baron__bar"></a>
 						</div>
 					</div>
-				</form>
-			</div>
+				</div>
+				<hr>
+				<a class="btn app-filter-search pull-right"><?php echo lang('apply');?></a>
+				<a class="btn btn--gray popup__close pull-right"><?php echo lang('cancel');?></a>
+				<label class="btn btn--white pull-right"><input type="reset" class="hide"><?php echo lang('clear');?></label>
+				<span class="fast-result-search pull-left"><?php echo lang('search_result');?>:<b><?php echo $total_exercises;?></b></span>
+			</form>
 			<a class="ico ico--close-white popup__close"></a>
 		</div>
 	</div>

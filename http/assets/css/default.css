@@ -640,11 +640,14 @@ sup {
 	background-position: -523px -151px
 }
 .ico--star {
-	background-position: -191px -292px;
+	background-position: -191px -322px;
 	left: auto;
 	position: absolute !important;
 	right: 0;
 	top: -62px;
+}
+.ico--star--active {
+	background-position: -191px -292px;
 }
 .ico--star:hover {
 	opacity: .8;
@@ -655,6 +658,16 @@ sup {
 	right: 0;
 	bottom: 0;
 	background-position: -240px -318px;
+}
+
+.ico--next,
+.ico--prev {
+	border-radius: 3px;
+	background-color: #edf4fd;
+	background-position: -58px -422px;
+}
+.ico--prev {
+	background-position: -30px -422px;
 }
 
 /* table
@@ -798,6 +811,9 @@ hr {
 }
 .w100 {
 	width: 100px;
+}
+.w106 {
+	width: 106px;
 }
 .w260 {
 	width: 260px;

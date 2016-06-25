@@ -79,10 +79,7 @@ $window.ready(function(){
 
 
 	$('.play-video').on('click',function(){
-		var id = $(this).attr('data-video');
-		if(id==undefined)
-			id = $(this).closest('.popup-box').attr('data-video');
-		var video =	'<iframe src="http://www.youtube.com/embed/'+id+'?autoplay=1" width="608" height="400" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
+		var video =	'<iframe src="http://www.youtube.com/embed/'+$(this).attr('data-video')+'?autoplay=1" width="608" height="400" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
 		popupShow('content',video);
 	});
 
@@ -253,46 +250,34 @@ function getScrollBarWidth(){
 		var popup = $('.popup');
 		popup.on('click',function(event){
 			var t = $(event.target);
-			if((t.is(popup) || t.is('.popup__close')) && !popup.is('.popup--lock')) {
+			if((t.is(popup) || t.is('.popup__close')) && !t.closest(popup).is('.popup--lock')) {
 				popup.removeClass('show');
-				$('.popup-box--active').removeClass('popup-box--active');
 				if(t.closest(popup).is('.popup--content'))
 					t.closest(popup).find('.popup__box').removeAttr('style').children('.popup__body').html('<div class="popup__inner"></div>');
 			}
 		});
 	})();
 
-	function popupShow(mod,b,s,w){
+	function popupShow(mod,html,width){
+		var padding = 100; // отступ в окне + крестик
 		var popup = $('.popup--'+mod);
 		var box = popup.children('.popup__box');
 		var popupBody = box.find('.popup__inner');
-		if(w !== undefined){
-			box.width(w);
+		if(width !== undefined){
+			box.width(width);
 		}
-		if (
-			(s == 'template') 			||
-			(s == 'related_progress')
-//			(mod=='content' && b != undefined && s==undefined) // пиши правила для каждого случая
-			)
-		{
-			popupBody.html(b);
-			var h = popupBody.height();
+		if(html !== undefined){
+			popupBody.html(html);
 		}
-		else if(mod=='content'){
-			var content = b.find('.popup-content--'+s).clone(true);
-			popupBody.html(content);
-			var h = content.height();
-		}
-		else {
-			var h = popupBody.height();
-		}
-		if(h > windowHeight - 100) {
-			if(content){
-				box.width(box.width()+18); // 18 ширрина скрола + отступ
-				content.css('padding-right',18);
+		if (mod == 'filter') padding = 150;
+		var h = popupBody.height();
+		if(h > windowHeight - padding) {
+			if(mod == 'content'){
+				box.width(box.width()+4); // 10 ширрина скрола + отступ
+				popupBody.css('padding-right',4);
 				popupBody.append('<div class="baron__track"><div class="baron__free"><a class="baron__bar"></a></div></div>');
 			}
-			h = windowHeight - 100;
+			h = windowHeight - padding;
 			popupBody.height(h);
 			setTimeout(function(){
 				popupBody.baron({
@@ -305,6 +290,7 @@ function getScrollBarWidth(){
 		if(!popup.hasClass('popup--height-auto'))
 			box.height(h);
 		popup.addClass('show').siblings('.popup.show').removeClass('show');
+		popup.focus();
 	}
 
 // one-event of table100--list
@@ -322,6 +308,7 @@ function getScrollBarWidth(){
 	});
 
 	$('.one-event__detal').on('click',function(){
+// переделать шаблоном
 		popupShow('content',$(this).closest('td'),'add');
 	});
 

@@ -45,65 +45,59 @@
 						<ul>
 							<?php if(!empty($tab->exercises)):?>
 							<?php foreach ($tab->exercises as $exercise_key => $exercise) :?>
-							<li id="one-<?php echo $key.'-'.$exercise_key;?>" class="exercises-my__item popup-box clr" data-video="<?php echo $exercise->video;?>">
+							<li class="exercises-my__item">
 								<div class="programme-body__box clr">
-									<div class="programme-body__box-head">
-										<div class="programme-body__box-name">
-											<span class="programme-body__box-title"><?php echo $exercise->name;?></span>
-											<?php echo $exercise->name_desc;?>
-										</div>
-										<div class="programme-body__box-icons">
-											<a class="ico ico--info popup__btn" data-popup="info_item"></a>
-											<?php if(!empty($exercise->video)):?>
-											<a class="ico ico--play play-video" data-popup="play"></a>
-											<?php endif;?>
-										</div>
-									</div>
-									<div class="programme-img">
-										<?php if($exercise->image_1):?>
-										<img src="<?php echo site_url('images/'.$exercise->image_1);?>" alt="<?php echo $exercise->name;?>">
-										<?php endif;?>
-										<?php if($exercise->image_3):?>
-										<img src="<?php echo site_url('images/'.$exercise->image_3);?>" alt="<?php echo $exercise->name;?>">
-										<?php endif;?>
-									</div>
-									<div class="programme-body__detal">
-										<table class="programme-table">
-											<tr>
-												<th class="programme-table__th programme-table__bt0"><?php echo lang('times');?></th>
-												<td class="programme-table__td programme-table__bl0 programme-table__bt0"><?php echo $exercise->quantity;?></td>
-												<td class="programme-table__td programme-table__bt0 programme-table__td--coment" rowspan="3">
-													<div class="programme-table__td--coment-box">
-														<div class="programme-table__td--coment-inner">
-															<div class="programme-table__td--coment-b"><?php echo lang('coment');?></div>
-															<?php echo $exercise->comment;?>
-														</div>
-													</div>
-												</td>
-											</tr>
-											<tr>
-												<th class="programme-table__th programme-table__bg"><?php echo lang('approaches');?></th>
-												<td class="programme-table__td programme-table__bl0 programme-table__bg"><?php echo $exercise->approaches;?></td>
-											</tr>
-											<tr>
-												<th class="programme-table__th"><?php echo lang('weight');?></th>
-												<td class="programme-table__td programme-table__bl0"><?php echo $exercise->weight;?></td>
-											</tr>
-										</table>
-									</div>
-									<div class="hide">
-										<div class="popup-content--info_item">
-											<div class="programme-img">
-												<?php if($exercise->image_1):?>
-												<img src="<?php echo site_url('images/'.$exercise->image_1);?>" alt="<?php echo $exercise->name;?>">
-												<?php endif;?>
-												<?php if($exercise->image_2):?>
-												<img src="<?php echo site_url('images/'.$exercise->image_2);?>" alt="<?php echo $exercise->name;?>">
-												<?php endif;?>
-												<?php if($exercise->image_3):?>
-												<img src="<?php echo site_url('images/'.$exercise->image_3);?>" alt="<?php echo $exercise->name;?>">
+									<div class="popup-box">
+										<div class="popup-hidden programme-body__box-head">
+											<div class="programme-body__box-name">
+												<span class="programme-body__box-title"><?php echo $exercise->name;?></span>
+												<?php echo $exercise->name_desc;?>
+											</div>
+											<div class="programme-body__box-icons">
+												<a class="ico ico--info popup__btn popup__btn--view"></a>
+												<?php if(!empty($exercise->video)):?>
+												<a class="ico ico--play play-video" data-video="<?php echo $exercise->video; ?>"></a>
 												<?php endif;?>
 											</div>
+										</div>
+										<div class="programme-img">
+											<?php if($exercise->image_1):?>
+											<img src="<?php echo site_url('images/'.$exercise->image_1);?>" alt="<?php echo $exercise->name;?>">
+											<?php endif;?>
+											<?php if($exercise->image_2):?>
+											<span class="popup-visible hide">
+												<img src="<?php echo site_url('images/'.$exercise->image_2);?>" alt="<?php echo $exercise->name;?>">
+											</span>
+											<?php endif;?>
+											<?php if($exercise->image_3):?>
+											<img src="<?php echo site_url('images/'.$exercise->image_3);?>" alt="<?php echo $exercise->name;?>">
+											<?php endif;?>
+										</div>
+										<div class="popup-hidden programme-body__detal">
+											<table class="programme-table">
+												<tr>
+													<th class="programme-table__th programme-table__bt0"><?php echo lang('times');?></th>
+													<td class="programme-table__td programme-table__bl0 programme-table__bt0"><?php echo $exercise->quantity;?></td>
+													<td class="programme-table__td programme-table__bt0 programme-table__td--coment" rowspan="3">
+														<div class="programme-table__td--coment-box">
+															<div class="programme-table__td--coment-inner">
+																<div class="programme-table__td--coment-b"><?php echo lang('coment');?></div>
+																<?php echo $exercise->comment;?>
+															</div>
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<th class="programme-table__th programme-table__bg"><?php echo lang('approaches');?></th>
+													<td class="programme-table__td programme-table__bl0 programme-table__bg"><?php echo $exercise->approaches;?></td>
+												</tr>
+												<tr>
+													<th class="programme-table__th"><?php echo lang('weight');?></th>
+													<td class="programme-table__td programme-table__bl0"><?php echo $exercise->weight;?></td>
+												</tr>
+											</table>
+										</div>
+										<div class="popup-visible hide">
 											<div class="programme-description">
 												<p class="programme-body__name">
 													<span class="programme-body__name-b"><?php echo $exercise->name;?></span>
