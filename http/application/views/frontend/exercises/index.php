@@ -1,9 +1,6 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
 		<div class="clr">
-			<div class="pull-left">
-				<a class="btn" href="<?php echo site_url('exercises/add');?>"><?php echo lang('create_exercise');?></a>
-				<a class="btn ml-10" id="btn-create-cat" data-type="create"><?php echo lang('create_category_btn');?></a>
-			</div>
+			<a class="btn pull-left" href="<?php echo site_url('exercises/add');?>"><?php echo lang('create_exercise');?></a>
 			<form class="pull-right input-block" action="<?php echo $action;?>" method="GET">
 				<input class="input input--border-white pull-left input-block__first" name="search" value="<?php echo (!empty($search)) ? $search : '';?>">
 				<?php if(!empty($per_page) && isset($per_page_list[0]) && !empty($per_page_list[0])):?>

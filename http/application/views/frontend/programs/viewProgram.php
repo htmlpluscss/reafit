@@ -5,6 +5,7 @@
 			<div class="programme-head__icons">
 				<a class="ico ico--fullscreen app-fullscreen" title="<?php echo lang('fullscreen');?>"></a>
 			</div>
+			<span class="programme-head__change-time"><?php echo lang('time_change'); // или так сегодня/вчера в 14:54?>: 14 июня 2016</span>
 		</div>
 
 		<div class="programme-body tabs app-left">

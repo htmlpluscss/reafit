@@ -2,7 +2,7 @@
 
 		<div class="programme-head">
 			<h1 class="programme-head__title"><?php echo $header;?></h1>
-			<a class="ico ico--detal pull-left data-tab-link" data-tab="detal" title="<?php echo lang('program_detal');?>" data-change="0"></a>
+			<a class="ico ico--detal pull-left data-tab-link" data-tab="detal" title="<?php echo lang('program_detal');?>"></a>
 			<div class="programme-head__icons">
 				<a class="ico ico--fullscreen app-fullscreen" title="<?php echo lang('fullscreen');?>"></a>
 			</div>
@@ -12,7 +12,7 @@
 
 			<div class="programme-body programme-body--app tabs app-left">
 
-					<?php if(isset($_nav) && !empty($_nav)) echo $_nav; ?>
+				<?php if(isset($_nav) && !empty($_nav)) echo $_nav; ?>
 
 				<div class="tabs__nav clr">
 					<div class="box">

@@ -18,9 +18,9 @@
 							$profile_lbl = $this->user->surname;
 						}
 					?>
-					<li<?php if (site_url('programs') == '/'.$this->uri->uri_string) echo ' class="active"';?>><a href="<?php echo site_url('programs');?>"><?php echo lang('programs');?></a></li>
+					<li<?php if (site_url('programs') == '/'.$this->uri->uri_string) echo ' class="active"';?>><a href="<?php echo site_url('programs');?>"><?php echo lang('my_programs');?></a></li>
 					<li<?php if (site_url('categories') == '/'.$this->uri->uri_string) echo ' class="active"';?>><a href="<?php echo site_url('categories');?>"><?php echo lang('my_categories');?></a></li>
-					<li class="menu_top__sep<?php if (site_url('exercises') == '/'.$this->uri->uri_string) echo ' active';?>"><a href="<?php echo site_url('exercises');?>"><?php echo lang('my_exercises');?></a></li>
+					<li class="menu_top__sep<?php if (site_url('exercises') == '/'.$this->uri->uri_string) echo ' active';?>" style="padding:0"><a style="padding:0" href="<?php echo site_url('exercises');?>"><?php //echo lang('my_exercises');?></a></li>
 					<?php else:?>
 					<li<?php if (site_url('login') == '/'.$this->uri->uri_string) echo ' class="active"';?>><a href="<?php echo site_url('login');?>"><?php echo lang('login');?></a></li>
 					<li<?php if (site_url('registration') == '/'.$this->uri->uri_string) echo ' class="active"';?>><a href="<?php echo site_url('registration');?>"><?php echo lang('registration');?></a></li>
@@ -38,7 +38,7 @@
 		</div>
 	</header>
 
-<?php if($this->router->method == 'add'):?>
+<?php if($this->router->class == 'programs' && $this->router->method == 'add'):?>
 	<div class="popup popup--create popup--lock show">
 		<div class="popup__box">
 			<div class="popup__body">

@@ -127,6 +127,28 @@ body > .title_up {
 	background: #fff;
 	padding: 20px;
 }
+.users-stat__screenshot {
+	color: #fd982c;
+	font-size: 18px;
+	font-weight: 500;
+	line-height: 28px;
+	text-align: center;
+	display: block;
+	text-decoration: none !important;
+}
+.users-stat__screenshot:hover {
+	color: #4a4a4a;
+}
+.users-stat__screenshot img {
+	border-radius: 4px;
+	display: block;
+}
+.users-stat__screenshot:hover img{
+	box-shadow: 0 0 10px #4a4a4a
+}
+.users-stat__screenshot-text {
+	display: block;
+}
 
 /* page-login
 -----------------------------------------------------------------------------*/
@@ -202,6 +224,74 @@ body > .title_up {
 .page-text tr:hover td{
 	background: #ccc;
 	color: #000;
+}
+
+/* input-file
+-----------------------------------------------------------------------------*/
+.input-file {
+	display: block;
+	position: relative;
+}
+.input-file__label {
+	font-size: 12px;
+	line-height: 14px;
+	padding-top: 6px;
+	color: #818181;
+}
+.input-file__input {
+	width: 174px;
+	height: 44px;
+	padding: 0 16px;
+	background: #fff;
+	border: solid 1px #dddce1;
+	border-radius: 4px 0 0 4px;
+	border-right: 0;
+}
+.input-file__value {
+	font-size: 12px;
+	font-weight: 300;
+	color: #dddce1;
+	line-height: 42px;
+	display: block;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.input-file--active .input-file__value {
+	color: #4a4a4a
+}
+.input-file .btn {
+	width: 88px;
+	height: 44px;
+	line-height: 44px;
+	font-size: 12px;
+	color: #fcfcfd;
+	padding: 0;
+	font-weight: 400;
+	border-radius: 0 4px 4px 0;
+}
+.input-file--video .input {
+	width: 262px;
+	background: #fff;
+}
+.input-file--video .input-file__label {
+	padding-top: 12px;
+}
+.trumbowyg-editor {
+	height: auto !important;
+}
+.input-file__img {
+	height: 42px;
+	left: 100px;
+	position: absolute;
+	top: 1px;
+	width: 42px;
+}
+.input-file__img:hover {
+	width: auto;
+	height: auto;
+	z-index: 1;
+	top: 0;
 }
 
 /* popup

@@ -1,8 +1,6 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
 		<div class="clr">
-			<div class="pull-left">
-				<a class="btn" id="btn-create-cat" data-type="create"><?php echo lang('create_category_btn');?></a>
-			</div>
+			<a class="btn create-cat-btn"><?php echo lang('create_category_btn');?></a>
 			<form class="pull-right search-form input-block" action="<?php echo $action;?>" method="GET">
 				<input class="input input--border-white pull-left input-block__first" name="search" value="<?php echo (!empty($search)) ? $search : '';?>">
 				<?php if(!empty($per_page) && isset($per_page_list[0]) && !empty($per_page_list[0])):?>
@@ -61,7 +59,7 @@
 						<?php } ?>
 					</td>
 					<td class="br0 align-center align-middle nowrap">
-						<a class="icon-edit edit-cat-btn" data-id="<?php echo $item->id;?>" data-type="update" title="<?php echo lang('edit_category');?>"></a>
+						<a class="icon-edit edit-cat-btn" data-id="<?php echo $item->id;?>" title="<?php echo lang('edit_category');?>"></a>
 						<a class="icon-folder-open-empty" href="<?php echo base_url('programs?category='.$item->name)?>" title="<?php echo lang('open_category_programs');?>"></a>
 						<a class="icon-folder-open-empty" href="<?php echo base_url('exercises?category='.$item->name)?>" title="<?php echo lang('open_category_exercises');?>"></a>
 						<a class="icon-trash-empty one-event__delete" href="<?php echo site_url('categories/delete/'.$item->id);?>" data-text="<?php echo lang('delete_category');?>" title="<?php echo lang('delete');?>"></a>

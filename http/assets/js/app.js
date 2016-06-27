@@ -14,12 +14,13 @@ http://htmlpluscss.ru
 		navTabActive, // активная вкладка
 		navTabXscroll, // смеещение вкладок
 		widthTab, // общая ширина вкладок
+		countTab, // количество вкладок
 		pageResizeApp, // resize приложения
 		resizeTimeoutIdApp,
 		leftScroller, // активный скролл
 		rightScroller = $('.app-right .r-h__inner'), // активный скролл
 		formProgramm = $('form.save-form'), // форма программы
-		formProgrammChange = false, // программа изменина
+		formProgrammChange = false, // программа(упражнение) изменина
 		templateAdd = $('.templates__add').children(), // добавить упражнение
 		templateAddSet = $('.templates__add-set').children(), // добавить программу
 		templateEdit = $('.templates__edit').children(), // редактировать упражнение
@@ -133,7 +134,7 @@ var start = new Date();
 	}
 
 //	console.log(ExercisesOne);
-	console.log(ExercisesSet);
+//	console.log(ExercisesSet);
 
 var end = new Date();
 
@@ -285,7 +286,7 @@ var end = new Date();
 
 /* Иконки в шапке ---------- */
 
-	// fullscreen
+// fullscreen
 	$('.app-fullscreen').on('click',function(){
 		body.toggleClass('fullscreen');
 		setTimeout(function(){
@@ -293,125 +294,78 @@ var end = new Date();
 		},1);
 	});
 
-	// save
+// сохранить программу, сохранить и отправить емайл, сохранить как
 	$('.btn-save').on('click', function(){
-		var action = $(this).data('action');
-		$('.btn-save').data('change', 0);
-		if(action != undefined) {
-			formProgramm.find('input[name="redirect"]').val(action);
-		} else {
-			formProgramm.find('input[name="redirect"]').val('');
+		// redirect
+		var action = $(this).hasClass('btn-save--redirect') ? $(this).data('action') : '';
+		formProgramm.find('input[name="redirect"]').val(action);
+
+		// send email
+		if($(this).hasClass('btn-save--send-email')) {
+			var email = formProgramm.find('.name-programme--email');
+			if(testEmail(email.val())){
+				// отправка емайла, хотя по идее достаточно строки ниже: name="send" value="1"
+				// тогда и форму отпавки емайла удалить
+				$('.send-email-form__email').val(email.val()).parent().trigger('submit');
+			}
+			else {
+				var msg = $('.send-email-form__error-text').clone();
+				msg.find('.btn').on('click',function(){
+					$('.tabs__dt').filter('[data-tab="detal"]').trigger('click');
+					setTimeout(function(){
+						email.focus();
+						email.selectionStart = email.val().length;
+					});
+				});
+				popupShow('content',msg);
+				return false;
+			}
+//			formProgramm.append('<input type="hidden" name="send" value="1">');
 		}
-console.log(formProgramm.serializeArray())
+
+		// save-as
+		if($(this).hasClass('btn-save--save-as')) {
+			if($('.form-save-as__name').val()==""){
+				$('.form-save-as__name').focus();
+				return false;
+			}
+			else{
+				$('.name-programme--input').val($('.form-save-as__name').val());
+				$('.name-programme--category').val($('.form-save-as__category').val());
+				$('.name-programme--email').val($('.form-save-as__email').val());
+				$('.name-programme--textarea').val($('.form-save-as__description').val());
+				formProgramm.attr('action', $(this).data('action'));
+			}
+		}
+
+console.log(formProgramm.serializeArray());
 		formProgramm.submit();
 	});
 
 
-/*
-	$('.btn-save:not(.data-tab-link), .btn-save-popup').on('click', function(e){
-		e.preventDefault();
-		var action = $(this).data('action');
-		$('.btn-save').data('change', 0);
-		if(action != undefined) {
-			$('form.save-form input[name="redirect"]').val(action);
-		} else {
-			$('form.save-form input[name="redirect"]').val('');
-		}
-		$('form.save-form').submit();
-	});
-
-*/
-// сoхранить и отправить
-	$('.app-save-and-send').on('click', function(e){
-		e.preventDefault();
-		var action = $(this).data('action');
-		$('.btn-save').data('change', 0);
-		if(action != undefined) {
-			formProgramm.find('input[name="redirect"]').val(action);
-		} else {
-			formProgramm.find('input[name="redirect"]').val('');
-		}
-//		changesProgramSave();
-
-		formProgramm.append('<input type="hidden" name="send" value="1">');
-		formProgramm.submit();
-	});
-
-	$('.btn-save-action').on('click', function(e){
-		var action = $(this).data('action');
-		e.preventDefault();
-		if(action != undefined) {
-			formProgramm.find('input[name="redirect"]').val(action);
-			formProgramm.submit();
-		}
-	});
-/*
-	function changesProgramSave() {
-		var name = $('form.form-name-proggram').find('.name-programme--input').val();
-		if(name != undefined && name.length != 0) {
-			$('form.save-form').find('input[type=hidden].name-programme--input').val(name);
-			$('.name-programme').text(name);
-		}
-
-		var mail = $('form.form-name-proggram').find('.name-programme--email').val();
-		if(mail != undefined && mail.length != 0) {
-			$('form.save-form').find('input[type=hidden].name-programme--email').val(mail);
-		}
-
-		var desc = $('form.form-name-proggram').find('.name-programme--textarea').val();
-		if(desc != undefined && desc.length != 0) {
-			$('form.save-form').find('input[type=hidden].name-programme--textarea').val(desc);
-		}
-
-		var category = $('form.form-name-proggram').find('select').val();
-		if(category != undefined && category.length != 0) {
-			$('form.save-form').find('input[type=hidden].name-programme--category').val(category);
-		}
-	}
-*/
-
-// разобраться
-	$('.btn-to-list, .icon-link, .icon-docs, .icon-print, .icon-mail, .btn-new, .icon-mail, .open-program-link').on('click', function(e){
-		var saved = parseInt($('.btn-save').data('change'));
-		var action = $(this).data('action');
-		var changed_desc = parseInt($('.btn-save').data('change-desc'));
-		var url = $(this).attr('href');
-		var target = $(this).attr('target');
-		if(saved !=  undefined && saved == 1) {
-			e.preventDefault();
-			if(changed_desc !=  undefined && changed_desc == 1) {
-				changesProgramSave();
-			}
-			if(url == undefined) {
-				url = '#';
-			}
-			if(target != undefined) {
-				$('.popup--close a.btn:not(.btn-save-popup)').attr('target', target);
-			} else {
-				$('.popup--close a.btn:not(.btn-save-popup)').attr('target', '');
-			}
-			$('.popup--close a.btn:not(.btn-save-popup)').attr('href', url);
-			if(action != undefined) {
-				$('.popup--close .popup__body a.btn-save-popup').attr('data-action', action);
-			}
-			popupShow('close');
-		}
-	});
-
-
-// разобраться
 // сохранить при выходе?
-	$('.popup--close .btn:not(.btn-save-popup)').on('click', function(e){
+	// изменение формы программы
+	formProgramm.on('change', function() {
+		formProgrammChange = true;
+	});
+	// клик по ссылкам переадресаций
+	$('#header a, .open-program-link, .btn-new, .btn-to-list').on('click', function(){
 		var url = $(this).attr('href');
-		if(url == '#') {
-			e.preventDefault();
-			$('.popup--close').removeClass('show');
+		if(url !== undefined) {
+			$('.link-exit-redirect').attr('href',url);
+			formProgramm.children('input[name="redirect"]').val(url);
 		} else {
-			popupShow('create');
+			$('.link-exit-redirect').removeAttr('href');
+			formProgramm.children('input[name="redirect"]').val('');
+		}
+		if(formProgrammChange){
+			popupShow('close');
+			return false;
 		}
 	});
 
-	// tab вне tabs
+
+// tab вне tabs
 	$('.data-tab-link').on('click',function(){
 		var tab = $(this).attr('data-tab');
 		$('.tabs__dt').filter('[data-tab="'+tab+'"]').trigger('click');
@@ -422,50 +376,7 @@ console.log(formProgramm.serializeArray())
 		}
 	});
 
-
-	// save as && title
-	$('.form-name-proggram').each(function(){
-		var f = $(this);
-		var i = f.find('.input').first();
-		var e = f.find('.input[type="email"]');
-		var t = f.find('textarea');
-		var c = f.find('select');
-// разобраться
-		var b = f.find('.btn:not(.app-save-and-send):not(.app-add-note)');
-		var submit = f.data('submit');
-		var action = f.data('action');
-		if(submit == undefined) {
-			submit = false;
-		} else {
-			submit = parseInt(submit);
-			if(submit == 1) {
-				submit = true;
-			} else {
-				submit = false;
-			}
-		}
-		if(action == undefined) {
-			action = false;
-		}
-		b.on('click',function(){
-			if(i.val()=="")
-				i.focus();
-			else{
-				$('title').text(i.val());
-				$('.name-programme').text(i.val());
-				saveDesc(i.val(),e.val(),t.val(),c.val());
-				if(action != false) {
-					formProgramm.get(0).setAttribute('action', action);
-				}
-				if(submit) {
-					formProgramm.submit();
-				}
-				popupShow('save');
-			}
-		});
-	});
-
-	// add tab
+// add tab
 	$('.app-add-tab').hover(function(){
 		var placeholder = $('<li class="placeholder">');
 		placeholder.html('<span class="tabs__dt"><i class="ico ico--plusik"></i></span>');
@@ -476,6 +387,7 @@ console.log(formProgramm.serializeArray())
 	$('.app-add-tab').on('click',function(){
 		var program = formProgramm.data('program');
 		var count = 1;
+// разобраться сount
 		if ($(this).attr('data-count') !== undefined) {
             count =  parseInt($(this).attr('data-count'));
             count++;
@@ -483,15 +395,17 @@ console.log(formProgramm.serializeArray())
 		var dt = navTab.find('.placeholder').removeClass('placeholder').children();
 		if(dt.length==0) return;
 		var dd = $('.tabs__dd--start').clone(true);
-		var dataTab = parseInt($('.tabs__dt').length + count);
-		dd.removeClass('tabs__dd--start').addClass('tabs__dd--' + dataTab);
+		countTab = parseInt($('.tabs__dt').length + count);
+		dd.removeClass('tabs__dd--start').addClass('tabs__dd--' + countTab);
 		formProgramm.append(dd);
-		dt.attr('data-tab',dataTab);
-		$(this).attr('data-tab-id', dataTab);
-		$('.btn-save').attr('data-change', 1);
-		dd.find('.exercises-my')
-			.attr('data-type', 'exercises['+dataTab+'][data]')
-			.append('<input id="tabs-exercises-'+dataTab+'" type="hidden" name="exercises['+dataTab+'][name]" value="">');
+		dt.attr('data-tab',countTab);
+		$(this).attr('data-tab-id', countTab);
+
+		formProgrammChange = true;
+
+		dd.find('.l-h__inner')
+			.attr('data-type', 'exercises['+countTab+'][data]')
+			.append('<input id="tabs-exercises-'+countTab+'" type="hidden" name="exercises['+countTab+'][name]" value="">');
 		setTimeout(function(){
 			dt.trigger('click');
 			dd.find('.input').focus();
@@ -499,12 +413,12 @@ console.log(formProgramm.serializeArray())
 		dd.find('.input').on('keyup',function(){
 			var name = $(this).val();
 			dt.text(name);
-			$('#tabs-exercises-'+dataTab).val(name);
+			$('#tabs-exercises-'+countTab).val(name);
 			widthTab();
 		});
 		dd.find('.add-tab-form__btn').one('click',function(){
-			dd.find('.l-h__inner').append('<input type="hidden" name="params[access][]" class="access-tab-' + parseInt(dataTab - 8) + '" value="1">');
-			$('.access-tabs').append('<li><label class="checkbox"><input type="checkbox" class="access" value="' + parseInt(dataTab - 8) + '" checked="checked"> ' + dt.text() + '<i></i></label></li>');
+			dd.find('.l-h__inner').append('<input type="hidden" name="params[access][]" class="access-tab-' + parseInt(countTab - 8) + '" value="1">');
+			$('.access-tabs').append('<li><label class="checkbox"><input type="checkbox" class="access" value="' + parseInt(countTab - 8) + '" checked="checked"> ' + dt.text() + '<i></i></label></li>');
 		});
 		widthTab();
 	});
@@ -527,12 +441,8 @@ console.log(formProgramm.serializeArray())
                 ],
                 removeformatPasted: true,
                 semantic: true
-            }).on('tbwchange', function(){
-                $('.btn-save').attr('data-change', 1);
             });
 		});
-
-		$('.btn-save').attr('data-change', 1);
 
 		$('.btn.app-add-note').text($('.btn.app-add-note').attr('data-alt-text'));
 		var altText = $('.ico--note.app-add-note').attr('data-alt-text')+'<i></i>';
@@ -541,6 +451,9 @@ console.log(formProgramm.serializeArray())
 			body.children('.title_up').html(altText).css('left',$('.ico--note.app-add-note').offset().left + $('.ico--note.app-add-note').outerWidth() / 2 - body.children('.title_up').outerWidth() / 2);
 
 
+	});
+	$('.editor').on('tbwchange', function(){
+		formProgrammChange = true;
 	});
 	loadCSS = function(href) {
 	    var cssLink = $("<link rel='stylesheet' href='"+href+"'>");
@@ -562,17 +475,21 @@ console.log(formProgramm.serializeArray())
 	$('.add-tab-form__btn').on('click',function(){
 		var f = $(this).closest('.add-tab-form');
 		var i = f.find('.add-tab-form__name');
+		if($(this).hasClass('add-tab-form__btn__only')) {
+			$('.programme-body').addClass('programme-body--one-tab');
+			$('.add-tab-form__btn__only').remove();
+		}
 		if(i.val()=="")
 			i.focus();
 		else {
+			var ul = $('<ul class="exercises-my">');
+			ul.attr('data-type', 'exercises['+countTab+'][data]');
+			f.after(ul);
 			f.remove();
 
-//			if(listMy.hasClass('ui-sortable'))
-//				listMy.sortable('destroy');
-//			list.children().draggable('destroy').droppable('destroy');
-//			draggable_droppable_sortable();
-//			$window.trigger('resize');
-			$('.btn-save').attr('data-change', 1);
+			$window.trigger('resize');
+			draggable_droppable_sortable();
+			$('.add-tab-form__btn__only').remove();
 		}
 	});
 // создание вкладки на enter
@@ -599,11 +516,7 @@ console.log(formProgramm.serializeArray())
         }
 		$('.app-add-tab').attr('data-count', count);
 		var del = $('.tabs__dt--active');
-/*		if(!del.hasClass('note')) {
-			var rem_idx = $('.tabs__dt--active').data('tab');
-			$('form.form-name-proggram ul.access-tabs li.access--'+rem_idx).remove();
-		}
-*/		if(del.hasClass('tabs__dt--not-delete')) return;
+		if(del.hasClass('tabs__dt--not-delete')) return;
 		var li = del.parent().siblings();
 		del.add('.tabs__dd--active').fadeOut(1000,function(){
 			if($(this).hasClass('tabs__dd--active')){
@@ -620,7 +533,7 @@ console.log(formProgramm.serializeArray())
 				});
 			}
 		});
-		$('.btn-save').attr('data-change', 1);
+		formProgrammChange = true;
 	});
 
 // переключение програм/упражнений
@@ -647,7 +560,7 @@ console.log(formProgramm.serializeArray())
 
 // добавить в шаблон новой вкладки
 //		formProgramm.append('<input type="hidden" name="params[access][]" class="access-tab-' + idx + '" value="' + value + '">');
-
+		formProgrammChange = true;
 	});
 
 /* Иконки в упражнении ---------- */
@@ -673,16 +586,16 @@ console.log(formProgramm.serializeArray())
 				up ? li.after(n) : li.before(n);
 			});
 		});
-		$('.btn-save').attr('data-change', 1);
+		formProgrammChange = true;
 	});
 
 // удалить упражнение
 	$('.exercises-my__item-delete').on('click',function(){
 		var li = $(this).closest('.exercises-my__item');
-//		$('.btn-save').attr('data-change', 1);
 		li.fadeOut(1000,function(){
 			li.remove();
 		});
+		formProgrammChange = true;
 	});
 
 
@@ -766,7 +679,27 @@ console.log(formProgramm.serializeArray())
 // add
 	// Добавить
 	function addItemAppLeft(id,data,index) {
-		var item = ExercisesOne[id];
+/*
+			var name = $('.tabs__dd--active .exercises-my').data('type');
+			var data = li.find('input[type="hidden"]');
+			data.remove();
+			li.append('<input type="hidden" name="'+name+'[]" value="'+li.data('id')+'">');
+
+			var type = $('.tabs__dd--active .exercises-my').attr('data-type');
+			if(type != 'related' && type != 'progress') {
+				var detail = li.find('.popup-content--add');
+				if(detail.length != 0) {
+					detail.find('.exercises-list__item-desc').removeClass('in-exercises-list');
+					li.find('a.icon-info').addClass('icon-pencil').removeClass('icon-info');
+					var exercise_data = detail.find('.exercises-list__item-detal input, .exercises-list__item-detal textarea');
+					$.each(exercise_data , function(i, val) {
+						var new_name_suffix = $(this).attr('data-name');
+						$(this).attr('name', name+'['+new_name_suffix+'][]');
+					});
+				}
+			}
+
+*/		var item = ExercisesOne[id];
 		var datatType = leftScroller.children('ul').attr('data-type');
 		var template = templateLeft.clone(true);
 		var icons = template.find('.programme-body__box-icons').children();
@@ -799,12 +732,12 @@ console.log(formProgramm.serializeArray())
 
 		if(index === undefined){
 			leftScroller.children('ul').append(template);
-			leftScroller.animate({scrollTop : leftScroller.children('ul').height()}, 1000);
+			leftScroller.stop().animate({scrollTop : leftScroller.children('ul').height()}, 1000);
 		}
 		else {
 			leftScroller.children('ul').children().eq(index).before(template);
 		}
-
+		formProgrammChange = true;
 	}
 	function addSetAppLeft(id,index) {
 		var items = ExercisesSet[id][5].split('|');
@@ -819,11 +752,7 @@ console.log(formProgramm.serializeArray())
 	// добавить из app-right
 	$('.exercises-list__add-to-left').on('click',function(){
 		var id = $(this).closest('.popup-box').attr('data-id');
-		if($(this).closest('.popup-box').hasClass('item-img_name--set')){
-			addSetAppLeft(id);
-		} else {
-			addItemAppLeft(id);
-		}
+		$(this).closest('.popup-box').hasClass('item-img_name--set') ? addSetAppLeft(id) : addItemAppLeft(id);
 	});
 
 	// Добавить из popup
@@ -845,7 +774,7 @@ console.log(formProgramm.serializeArray())
 
 // popup__input
 	$('.popup__input').on('change keyup blur',function(){
-		targetPopup.children('.var__' + $(this).attr('name')).val($(this).val());
+		targetPopup.children('.var__' + $(this).attr('name')).val($(this).val()).trigger('change');
 	});
 
 // popup__prev & popup__next
@@ -857,127 +786,8 @@ console.log(formProgramm.serializeArray())
 		}
 	});
 
-/*
-	// добавить
-	$('.exercises-list__add-to-left').on('click',function(event,detal){
-		if($(this).hasClass('exercises-list__add-to-left--set')){
-			var li = $(this).closest('li');
-			var items = li.data('exercises').split(',');
-			$.each(items , function(i, val) {
-				var li = $(items[i]).clone();
-				if(detal!=undefined)
-					li.find('.exercises-list__item-detal').html(detal);
-				addMyItem(li);
 
-				var name = $('.tabs__dd--active .exercises-my').data('type');
-				if(name == undefined) {
-					name = $('.tabs__dt--active').attr('data-type');
-				}
-
-				var _li = $(li);
-				var data = _li.find('input[type="hidden"]');
-				if(data.length == 0) {
-					_li.append('<input type="hidden" name="'+name+'[]" value="'+_li.data('id')+'">');
-				}
-
-				var type = $('.tabs__dd--active .exercises-my').attr('data-type');
-				if(type != 'related' && type != 'progress') {
-					var detail = _li.find('.popup-content--add');
-					if(detail.length != 0) {
-						detail.find('.exercises-list__item-desc').removeClass('in-exercises-list');
-						_li.find('a.icon-info').addClass('icon-pencil').removeClass('icon-info');
-						var exercise_data = detail.find('.exercises-list__item-detal input, .exercises-list__item-detal textarea');
-						$.each(exercise_data , function(i, val) {
-							var new_name_suffix = $(this).attr('data-name');
-							$(this).attr('name', name+'['+new_name_suffix+'][]');
-						});
-					}
-				}
-
-				$('.tabs__dd--active .exercises-my').append(li);
-			});
-		} else {
-			var li = $(this).closest('li').clone();
-			if(detal!=undefined)
-				li.find('.exercises-list__item-detal').html(detal);
-			addMyItem(li);
-
-			var name = $('.tabs__dd--active .exercises-my').data('type');
-			if(name == undefined) {
-				name = $('.tabs__dt--active').attr('data-type');
-			}
-
-			var _li = $(li);
-			var data = _li.find('input[type="hidden"]');
-			data.remove();
-
-			_li.append('<input type="hidden" name="'+name+'[]" value="'+_li.data('id')+'">');
-
-			var type = $('.tabs__dd--active .exercises-my').attr('data-type');
-			if(type != 'related' && type != 'progress') {
-				var detail = _li.find('.popup-content--add');
-				if(detail.length != 0) {
-					detail.find('.exercises-list__item-desc').removeClass('in-exercises-list');
-					_li.find('a.icon-info').addClass('icon-pencil').removeClass('icon-info');
-					var exercise_data = detail.find('.exercises-list__item-detal input, .exercises-list__item-detal textarea');
-					$.each(exercise_data , function(i, val) {
-						var new_name_suffix = $(this).attr('data-name');
-						$(this).attr('name', name+'['+new_name_suffix+'][]');
-					});
-				}
-			}
-
-			$('.tabs__dd--active .exercises-my').append(li);
-		}
-		$('.btn-save').attr('data-change', 1);
-	});
-
-	// Добавить из popup (плюс)
-	$('.popup__add-to-left').on('click',function(){
-		if($(this).hasClass('popup__add-to-left--set')){
-			var id = $(this).data('id');
-			var li = $(id);
-			console.log(id);
-			console.log(li.data('exercises'));
-			console.log(li.attr('data-exercises'));
-			var items = li.data('exercises').split(',');
-			$.each(items , function(i, val) {
-				var li = $(items[i]).clone();
-				if(detal!=undefined)
-					li.find('.exercises-list__item-detal').html(detal);
-				addMyItem(li);
-
-				var name = $('.tabs__dd--active .exercises-my').data('type');
-				if(name == undefined) {
-					name = $('.tabs__dt--active').attr('data-type');
-				}
-
-				var _li = $(li);
-				var data = _li.find('input[type="hidden"]');
-				if(data.length == 0) {
-					_li.append('<input type="hidden" name="'+name+'[]" value="'+_li.data('id')+'">');
-				}
-
-				var type = $('.tabs__dd--active .exercises-my').attr('data-type');
-				if(type != 'related' && type != 'progress') {
-					var detail = _li.find('.popup-content--add');
-					if(detail.length != 0) {
-						detail.find('.exercises-list__item-desc').removeClass('in-exercises-list');
-						_li.find('a.icon-info').addClass('icon-pencil').removeClass('icon-info');
-						var exercise_data = detail.find('.exercises-list__item-detal input, .exercises-list__item-detal textarea');
-						$.each(exercise_data , function(i, val) {
-							var new_name_suffix = $(this).attr('data-name');
-							$(this).attr('name', name+'['+new_name_suffix+'][]');
-						});
-					}
-				}
-
-				$('.tabs__dd--active .exercises-my').append(li);
-			});
-		}
-	});
-*/
-	// избранное
+// избранное
 	$('.icon-toggle-favorite').on('click',function(){
 		var url = $(this).data('url');
 		var type = $(this).hasClass('ico--star--active') ? 0 : 1;
@@ -996,20 +806,6 @@ console.log(formProgramm.serializeArray())
 			}, this)
 		});
 	});
-
-
-
-// разобраться
-	// изменение формы
-	$('form.spy').on('change', function() {
-		$('.btn-save').attr('data-change', 1);
-	});
-
-	$('form.form-name-proggram').on('change', function() {
-		$('.btn-save').attr('data-change', 1);
-		$('.btn-save').attr('data-change-desc', 1);
-	});
-
 
 
 /* Список справа ---------- */
@@ -1082,6 +878,8 @@ console.log(formProgramm.serializeArray())
 	function draggable_droppable_sortable(){
 
 		listMy = $('.exercises-my');
+		listMy.filter('.ui-sortable').sortable('destroy');
+		list.children('.ui-draggable-handle').draggable('destroy');
 
 		list.children().draggable({
 			helper: 'clone',
@@ -1098,10 +896,12 @@ console.log(formProgramm.serializeArray())
 			containment: "#main",
 			scroll: false,
 			tolerance:"pointer",
+			update: function() {
+				formProgrammChange = true;
+			},
  			activate: function(event, ui) {
 				if(!ui.helper.hasClass('ui-draggable-dragging')) {
 					ui.placeholder.height(ui.item.height());
-//					$('.btn-save').attr('data-change', 1);
 				}
 			},
 			receive: function(event, ui) {
@@ -1109,34 +909,11 @@ console.log(formProgramm.serializeArray())
 					addSetAppLeft(ui.helper.attr('data-id'),ui.helper.index()):
 					addItemAppLeft(ui.helper.attr('data-id'),false,ui.helper.index());
 				ui.helper.remove();
-//				$('.btn-save').attr('data-change', 1);
 			}
 		});
 	}
 	draggable_droppable_sortable();
 
-/*	function addMyItem(li){
-
-			var name = $('.tabs__dd--active .exercises-my').data('type');
-			var data = li.find('input[type="hidden"]');
-			data.remove();
-			li.append('<input type="hidden" name="'+name+'[]" value="'+li.data('id')+'">');
-
-			var type = $('.tabs__dd--active .exercises-my').attr('data-type');
-			if(type != 'related' && type != 'progress') {
-				var detail = li.find('.popup-content--add');
-				if(detail.length != 0) {
-					detail.find('.exercises-list__item-desc').removeClass('in-exercises-list');
-					li.find('a.icon-info').addClass('icon-pencil').removeClass('icon-info');
-					var exercise_data = detail.find('.exercises-list__item-detal input, .exercises-list__item-detal textarea');
-					$.each(exercise_data , function(i, val) {
-						var new_name_suffix = $(this).attr('data-name');
-						$(this).attr('name', name+'['+new_name_suffix+'][]');
-					});
-				}
-			}
-	}
-*/
 
 // create App
 
@@ -1161,7 +938,6 @@ console.log(formProgramm.serializeArray())
 		f.closest('.popup').remove();
 		saveDesc(v,e.val(),t.val(),c.val());
 		$('.app-add-tab').trigger('click');
-
 		return false;
 	});
 	$('.popup--create__name').on('keyup',function(){
@@ -1176,26 +952,5 @@ console.log(formProgramm.serializeArray())
 		formProgramm.find('.name-programme--textarea').text(t).trigger('blur');
 		formProgramm.find('.name-programme--category').val(c).trigger('change');
 	}
-
-	// send email
-	$('.send-email-form__btn').on('click',function(){
-
-		var email = formProgramm.find('.name-programme--email');
-		if(testEmail(email.val())){
-			$('.send-email-form__email').val(email.val()).parent().trigger('submit');
-		}
-		else {
-			var msg = $('.send-email-form__error-text').clone();
-			msg.find('.btn').on('click',function(){
-				$('.tabs__dt').filter('[data-tab="detal"]').trigger('click');
-				setTimeout(function(){
-					email.focus();
-					email.selectionStart = email.val().length;
-				});
-			});
-			popupShow('content',msg);
-		}
-
-	});
 
 })(jQuery);

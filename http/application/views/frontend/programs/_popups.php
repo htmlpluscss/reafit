@@ -26,8 +26,8 @@
 		<div class="popup__box">
 			<div class="popup__body">
 				<p><?php echo lang('program_not_saved');?></p>
-				<a class="btn btn--gray" href="<?php echo site_url('programs');?>"><?php echo lang('dont_save');?></a>
-				<a class="btn btn-save-popup"><?php echo lang('save_change');?></a>
+				<a class="btn btn--gray link-exit-redirect" href="<?php echo site_url('programs');?>"><?php echo lang('dont_save');?></a>
+				<a class="btn btn-save btn-save--redirect link-exit-redirect"><?php echo lang('save_change');?></a>
 			</div>
 			<a class="ico ico--close-white popup__close"></a>
 		</div>

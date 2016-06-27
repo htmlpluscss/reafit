@@ -2,7 +2,7 @@
 		</div>
 	</main>
 
-<?php if(!($this->router->class == 'programs' && ($this->router->method == 'add' || $this->router->method == 'edit' || $this->router->method == 'viewProgram'))) :?>
+<?php if(!(($this->router->class == 'programs' || $this->router->class == 'exercises') && ($this->router->method == 'add' || $this->router->method == 'edit' || $this->router->method == 'viewProgram'))) :?>
 
 	<footer id="footer">
 
@@ -29,7 +29,7 @@
 
 <?php endif;?>
 
-<?php if($this->router->class == 'programs') :?>
+<?php if($this->router->class == 'programs' || $this->router->class == 'exercises') :?>
 
 	<div class="popup popup--content">
 		<div class="popup__box">
@@ -46,7 +46,7 @@
 
 <?php endif;?>
 
-<?php if(($this->router->class == 'categories' || $this->router->class == 'exercises' || $this->router->class == 'programs') && $this->router->method == 'index') :?>
+<?php if($this->router->class == 'categories') :?>
 
 	<div class="popup popup--create-cat">
 		<div class="popup__box">

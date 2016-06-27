@@ -26,11 +26,11 @@
 <li><a class="ico ico--fullscreen-exit app-fullscreen"></a></li>
 <?php endif;?>
 
-<li><a class="ico ico--plus<?php if ($fullscreen) echo '-white';?> app-add-tab"<?php echo (!$fullscreen) ? ' title="'.lang('add_tab').'"' : '';?>></a></li>
+<li><a class="ico ico--plus<?php if ($fullscreen) echo '-white';?> data-tab-link app-add-tab" data-tab="start"<?php echo (!$fullscreen) ? ' title="'.lang('add_tab').'"' : '';?>></a></li>
 <li><a class="ico ico--open<?php if ($fullscreen) echo '-white';?> data-tab-link" data-tab="open"<?php echo (!$fullscreen) ? ' title="'.lang('open').'"' : '';?>></a></li>
 <li><a class="ico ico--new<?php if ($fullscreen) echo '-white';?> btn-new" href="<?php echo site_url('programs/add');?>"<?php echo (!$fullscreen) ? ' title="'.lang('create').'"' : '';?> data-action="<?php echo site_url('programs/add');?>"></a></li>
-<li><a class="ico ico--save<?php if ($fullscreen) echo '-white';?> btn-save" data-change="<?php echo ($this->router->method == 'edit')? '0' : 1;?>"<?php echo (!$fullscreen) ? ' title="'.lang('save').'"' : '';?>></a></li>
-<li><a class="ico ico--email<?php if ($fullscreen) echo '-white';?> send-email-form__btn" <?php echo (!$fullscreen) ? ' title="'.lang('to_email').'"' : '';?>></a></li>
+<li><a class="ico ico--save<?php if ($fullscreen) echo '-white';?> btn-save"<?php echo (!$fullscreen) ? ' title="'.lang('save').'"' : '';?>></a></li>
+<li><a class="ico ico--email<?php if ($fullscreen) echo '-white';?> btn-save btn-save--send-email" <?php echo (!$fullscreen) ? ' title="'.lang('to_email').'"' : '';?>></a></li>
 <li><a class="ico ico--save-plus<?php if ($fullscreen) echo '-white';?> data-tab-link" data-tab="save-as"<?php if (!$fullscreen) echo ' title="'.lang('save_as').'"';?>></a></li>
 
 
@@ -42,4 +42,4 @@
 <li><a class="ico ico--cart<?php if ($fullscreen) echo '-white';?> app-delete-tab"<?php echo (!$fullscreen) ? ' title="'.lang('remove_tab').'"' : '';?>></a></li>
 <li><a class="ico ico--note<?php if ($fullscreen) echo '-white';?> data-tab-link app-add-note" data-tab="note"<?php $_title = (!empty($note)) ? lang('note') : lang('add_note'); echo (!$fullscreen) ? ' title="'.$_title.'"' : '';?> data-alt-text="<?php echo lang('note');?>"></a></li>
 
-<li><a class="ico ico--exit-app<?php if ($fullscreen) echo '-white';?> btn-to-list" href="<?php echo site_url('programs');?>"<?php echo (!$fullscreen) ? ' title="'.lang('exit_app').'"' : '';?> data-action="<?php echo site_url('programs');?>"></a></li>
+<li><a class="ico ico--exit-app<?php if ($fullscreen) echo '-white';?> btn-to-list" href="<?php echo site_url('programs');?>"<?php echo (!$fullscreen) ? ' title="'.lang('exit_app').'"' : '';?>></a></li>

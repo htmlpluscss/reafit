@@ -420,6 +420,9 @@ sup {
 .ico--save-plus {
 	background-position: -214px -24px
 }
+.ico--save-exit {
+	background-position: -470px -414px
+}
 .ico--print {
 	background-position: -261px -25px
 }
@@ -450,6 +453,9 @@ sup {
 }
 .ico--save-plus-white {
 	background-position: -214px -145px
+}
+.ico--save-exit-white {
+	background-position: -470px -535px
 }
 .ico--print-white {
 	background-position: -261px -145px
@@ -485,6 +491,9 @@ sup {
 .ico--save-plus:hover {
 	background-position: -214px -66px
 }
+.ico--save-exit:hover {
+	background-position: -470px -456px
+}
 .ico--print:hover {
 	background-position: -261px -67px
 }
@@ -515,6 +524,9 @@ sup {
 }
 .ico--save-plus-white:hover {
 	background-position: -214px -105px
+}
+.ico--save-exit-white:hover {
+	background-position: -470px -495px
 }
 .ico--print-white:hover {
 	background-position: -260px -105px
@@ -668,6 +680,16 @@ sup {
 }
 .ico--prev {
 	background-position: -30px -422px;
+}
+
+.ico--img-pic,
+.ico--video-pic {
+	position: relative;
+	background-position: -194px -223px;
+	height: 22px;
+}
+.ico--video-pic {
+	background-position: -245px -224px
 }
 
 /* table
@@ -828,6 +850,9 @@ hr {
 }
 .mb-20 {
 	margin-bottom: 20px;
+}
+.mb-30 {
+	margin-bottom: 30px;
 }
 .mt-10 {
 	margin-top: 10px;

@@ -12,7 +12,7 @@
 				<div class="tabs__dd tabs__dd--detal">
 					<div class="l-h">
 						<div class="l-h__inner baron">
-							<div class="l-h__width form-tabs form-name-proggram" data-submit="1">
+							<div class="l-h__width form-tabs form-name-proggram">
 
 								<div class="programme-body__h3"><?php echo lang('program_detal');?></div>
 								<label class="input-placeholder mb-14 w260">
@@ -44,6 +44,7 @@
 								<a class="btn save-program hide"><?php echo lang('save');?></a>
 								<a class="btn app-save-and-send hide"><?php echo lang('save_and_send');?></a>
 
+								<?php if($this->router->method == 'edit'):?>
 								<div class="programme-body__h3"><?php echo lang('access_pacient');?></div>
 
 								<ul class="access-tabs">
@@ -71,6 +72,7 @@
 									<a class="btn app-add-note data-tab-link" data-tab="note"><?php echo lang('edit_note');?></a>
 
 								<?php } ?>
+								<?php endif;?>
 							</div>
 							<div class="baron__track">
 								<div class="baron__free">
@@ -83,14 +85,14 @@
 				<div class="tabs__dd tabs__dd--save-as">
 					<div class="l-h">
 						<div class="l-h__inner baron">
-							<div class="l-h__width form-tabs form-name-proggram" data-action="<?php echo base_url('programs/add');?>" data-submit="1">
+							<div class="l-h__width form-save-as">
 								<div class="programme-body__h3"><?php echo lang('save_program_as');?></div>
 								<label class="input-placeholder mb-14 w260">
-									<input maxlength="40" class="input">
+									<input maxlength="40" class="input form-save-as__name">
 									<span class="input-placeholder__label"><?php echo lang('name');?><sup>*</sup></span>
 								</label>
 								<div class="input-placeholder mb-14 w260">
-									<select data-required-sup>
+									<select data-required-sup class="form-save-as__category">
 										<option value="none"><?php echo lang('select_category');?></option>
 									<?php if(!empty($category_list)):?>
 									<?php $one_cat = (count($category_list) == 1) ? true : false;?>
@@ -101,14 +103,14 @@
 									</select>
 								</div>
 								<label class="input-placeholder mb-14 w260">
-									<input maxlength="40" class="input" type="email">
+									<input maxlength="40" class="input form-save-as__email" type="email">
 									<span class="input-placeholder__label"><?php echo lang('email');?></span>
 								</label>
 								<div class="input-placeholder mb-14 w260">
-									<textarea class="input"></textarea>
+									<textarea class="input form-save-as__description"></textarea>
 									<span class="input-placeholder__label"><?php echo lang('description');?></span>
 								</div>
-								<a class="btn save-program-as"><?php echo lang('save');?></a>
+								<a class="btn btn-save btn-save--save-as" data-action="<?php echo base_url('programs/add');?>"><?php echo lang('save');?></a>
 							</div>
 							<div class="baron__track">
 								<div class="baron__free">
@@ -127,9 +129,11 @@
 									<input class="input add-tab-form__name" maxlength="40">
 									<span class="input-placeholder__label"><?php echo lang('tab__name_title');?> <sup>*</sup></span>
 								</label>
-								<a class="btn add-tab-form__btn"><?php echo lang('save');?></a>
+								<?php if ($this->router->method == 'add') { ?>
+								<a class="btn btn--gray mr-10 add-tab-form__btn add-tab-form__btn__only hide"><?php echo lang('not_tab');?></a>
+								<?php } ?>
+								<a class="btn add-tab-form__btn"><?php echo lang('add_tab');?></a>
 							</div>
-							<ul class="exercises-my"></ul>
 							<div class="baron__track">
 								<div class="baron__free">
 									<a class="baron__bar"></a>

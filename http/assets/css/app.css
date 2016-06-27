@@ -61,6 +61,14 @@
 	white-space: nowrap;
 	text-transform: none;
 }
+.programme-head__change-time {
+	color: #4a4a4a;
+	font-size: 11px;
+	opacity: 0.5;
+	position: absolute;
+	right: 7px;
+	top: 100%;
+}
 .programme-head .ico--detal {
 	position: relative;
 	float: left;
@@ -488,12 +496,13 @@ li:last-child .tabs__dt {
 -----------------------------------------------------------------------------*/
 .l-h {
 	border-radius: 0 4px 4px 4px;
-	padding: 20px 5px 20px 18px;
 	border: solid 1px #dddce1;
 	background: #f8f8f8;
+	padding: 20px 0;
 }
 .l-h__inner{
 	min-height: 300px;
+	padding: 0 5px 0 18px;
 }
 .l-h__inner > .exercises-my{
 	min-height: 100%;
@@ -628,6 +637,9 @@ li:last-child .tabs__dt {
 	margin: 0 20px 20px 0;
 	float: left;
 	position: relative;
+}
+.exercises-list__item--set.app-right__item {
+	margin-right: 18px;
 }
 
 .item-img_name {
@@ -875,6 +887,9 @@ li:last-child .tabs__dt {
 	text-align: center;
 }
  */
+.form-tabs--filter h3 ~ h3{
+	margin-top: 12px;
+}
 
 /* popup create
 --------------------------------*/

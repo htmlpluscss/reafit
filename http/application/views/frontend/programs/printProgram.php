@@ -4,6 +4,7 @@
 
 		<div class="programme-head">
 			<h1 class="programme-head__title"><?php echo $header;?></h1>
+			<span class="programme-head__change-time"><?php echo lang('time_change'); // или так сегодня/вчера в 14:54?>: 14 июня 2016</span>
 		</div>
 
 		<div id="programme-body" class="programme-body programme-body--print">
