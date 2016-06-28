@@ -177,8 +177,8 @@
 													<?php endif;?>
 												</td>
 												<td class="br0 align-center align-middle nowrap">
-													<a class="icon-link" target="_blank" href="<?php echo base_url($item->hash);?>"></a>
-													<a class="icon-folder-open-empty open-program-link" href="<?php echo base_url('programs/'.$item->hash);?>"></a>
+													<a class="ico-mini ico-link" target="_blank" href="<?php echo base_url($item->hash);?>"></a>
+													<a class="ico-mini ico-open open-program-link" href="<?php echo base_url('programs/'.$item->hash);?>"></a>
 												</td>
 											</tr>
 											<?php endforeach;?>

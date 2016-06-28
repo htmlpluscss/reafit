@@ -179,6 +179,42 @@ button::-moz-focus-inner {
 }
 
 
+.input-count {
+	display: block;
+}
+.input-count__label {
+	line-height: 44px;
+	font-size: 12px;
+	font-weight: 300;
+	color: #4a4a4a;
+	float: left;
+}
+.input-count__box {
+	position: relative;
+	width: 80px;
+	float: right;
+}
+.input-count .input {
+	padding: 0 30px 0 0;
+	background: #fff;
+	display: block;
+	text-align: center;
+	width: 100%;
+}
+.input-count__up,
+.input-count__down {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 30px;
+	height: 24px;
+	border-left: 1px solid #dddce1;
+}
+.input-count__down {
+	border-top: 1px solid #dddce1;
+	top: 24px;
+}
+
 .btn {
 	display:inline-block;
 	cursor: pointer;
@@ -262,6 +298,8 @@ select {
 .select--border-white:not(.focus) .value{
 	border-color: #fff;
 }
+.input-count__up:before,
+.input-count__down:before,
 .select .value:before{
 	position: absolute;
 	top: 50%;
@@ -272,6 +310,15 @@ select {
 	border-style: solid;
 	border-color: #929292 transparent;
 }
+.input-count__up:before{
+	right: 12px;
+	border-width: 0 4px 4px;
+}
+.input-count__down:before {
+	right: 12px;
+	margin-top: -2px;
+}
+
 .select.focus .value{
 	background: #fff;
 	border-radius: 4px 4px 0 0;
@@ -378,6 +425,10 @@ sup {
 }
 .ico--close-white {
 	background-position: -389px -217px
+}
+.ico--close:hover,
+.ico--close-white:hover {
+	opacity: .7
 }
 .ico--help:after {
 	content: "?";
@@ -692,6 +743,42 @@ sup {
 	background-position: -245px -224px
 }
 
+
+.ico-mini {
+	outline:1px solid red;
+	width: 20px;
+	height: 20px;
+	vertical-align: top;
+	display: inline-block;
+	background-image: url(../images/sprite.svg);
+}
+.ico-mini.ico-edit {
+	background-position: 
+}
+.ico-open_programs {
+	background-position: 
+}
+.ico-open_exercises {
+	background-position: 
+}
+.ico-mini.ico-delete {
+	background-position: 
+}
+.ico-mini.ico-link {
+}
+.ico-mini.ico-open {
+}
+.ico-mini.ico-star-orange {
+}
+.ico-mini.ico-star-black {
+
+}
+.ico-mini.ico-up,
+.ico-mini.ico-down {
+	height: 15px;
+	width: 12px;
+}
+
 /* table
 -----------------------------------------------------------------------------*/
 table {
@@ -836,6 +923,9 @@ hr {
 }
 .w106 {
 	width: 106px;
+}
+.w200 {
+	width: 200px;
 }
 .w260 {
 	width: 260px;

@@ -25,9 +25,17 @@
 			<thead>
 				<tr>
 					<th class="hide"><?php echo lang('id');?></th>
-					<th class="bt0 bl0"><?php echo lang('name');?> <a href="#" class="sort-btn<?php echo (isset($sort) && isset($order) && $sort == 'asc' && $order == 'name') ? ' active' : '';?>" data-order="name" data-sort="asc">&#8595;</a><a class="sort-btn<?php echo (isset($sort) && isset($order) && $sort == 'desc' && $order == 'name') ? ' active' : '';?>" data-order="name" data-sort="desc">&#8593;</a></th>
+					<th class="bt0 bl0">
+						<?php echo lang('name');?>
+						<a href="#" class="ico-mini ico-down sort-btn<?php echo (isset($sort) && isset($order) && $sort == 'asc' && $order == 'name') ? ' active' : '';?>" data-order="name" data-sort="asc"></a>
+						<a class="ico-mini ico-up sort-btn<?php echo (isset($sort) && isset($order) && $sort == 'desc' && $order == 'name') ? ' active' : '';?>" data-order="name" data-sort="desc"></a>
+					</th>
 					<th class="bt0 col-hide-2"><?php echo lang('description');?></th>
-					<th class="bt0 col-hide-3"><?php echo lang('created');?> <a href="#" class="sort-btn<?php echo (isset($sort) && isset($order) && $sort == 'asc' && $order == 'created') ? ' active' : '';?>" data-order="created" data-sort="asc">&#8595;</a><a href="#" class="sort-btn<?php echo (isset($sort) && isset($order) && $sort == 'desc' && $order == 'created') ? ' active' : '';?>" data-order="created" data-sort="desc">&#8593;</a></th>
+					<th class="bt0 col-hide-3">
+						<?php echo lang('created');?>
+						<a href="#" class="ico-mini ico-down sort-btn<?php echo (isset($sort) && isset($order) && $sort == 'asc' && $order == 'created') ? ' active' : '';?>" data-order="created" data-sort="asc"></a>
+						<a href="#" class="ico-mini ico-up sort-btn<?php echo (isset($sort) && isset($order) && $sort == 'desc' && $order == 'created') ? ' active' : '';?>" data-order="created" data-sort="desc"></a>
+					</th>
 					<th class="bt0 col-hide-4"><?php echo lang('total_programs');?></th>
 					<th class="bt0 col-hide-8"><?php echo lang('total_exercises');?></th>
 					<th class="bt0 br0"><?php echo lang('actions');?></th>
@@ -59,10 +67,10 @@
 						<?php } ?>
 					</td>
 					<td class="br0 align-center align-middle nowrap">
-						<a class="icon-edit edit-cat-btn" data-id="<?php echo $item->id;?>" title="<?php echo lang('edit_category');?>"></a>
-						<a class="icon-folder-open-empty" href="<?php echo base_url('programs?category='.$item->name)?>" title="<?php echo lang('open_category_programs');?>"></a>
-						<a class="icon-folder-open-empty" href="<?php echo base_url('exercises?category='.$item->name)?>" title="<?php echo lang('open_category_exercises');?>"></a>
-						<a class="icon-trash-empty one-event__delete" href="<?php echo site_url('categories/delete/'.$item->id);?>" data-text="<?php echo lang('delete_category');?>" title="<?php echo lang('delete');?>"></a>
+						<a class="ico-mini ico-edit edit-cat-btn" data-id="<?php echo $item->id;?>" title="<?php echo lang('edit_category');?>"></a>
+						<a class="ico-mini ico-open_programs" href="<?php echo base_url('programs?category='.$item->name)?>" title="<?php echo lang('open_category_programs');?>"></a>
+						<a class="ico-mini ico-open_exercises" href="<?php echo base_url('exercises?category='.$item->name)?>" title="<?php echo lang('open_category_exercises');?>"></a>
+						<a class="ico-mini ico-delete one-event__delete" href="<?php echo site_url('categories/delete/'.$item->id);?>" data-text="<?php echo lang('delete_category');?>" title="<?php echo lang('delete');?>"></a>
 					</td>
 				</tr>
 			<?php endforeach;?>

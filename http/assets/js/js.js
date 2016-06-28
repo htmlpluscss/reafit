@@ -121,6 +121,15 @@ $window.ready(function(){
 		});
 	}).trigger('blur');
 
+// input-count__box
+	$('.input-count__up, .input-count__down').on('click',function(){
+		var count = $(this).hasClass('input-count__up') ? 1 : -1;
+		var input = $(this).siblings('.input');
+		var v = parseInt(input.val());
+		v += count;
+		if(v<1) v = 1;
+		input.val(v);
+	});
 
 (function($){
 

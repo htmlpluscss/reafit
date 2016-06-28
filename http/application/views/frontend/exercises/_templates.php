@@ -4,11 +4,7 @@
 
 	<ul class="templates__item-left">
 		<li class="exercises-my__item l-h__width popup-box clr" data-id="{{$exercise->hash}}">
-			<input type="hidden" name="exercises[{{tab}}][data][]" value="{{$exercise->hash}}" class="var__id">
-			<input type="hidden" name="exercises[{{tab}}][quantity][]" value="{{$exercise->quantity}}" class="var__quantity">
-			<input type="hidden" name="exercises[{{tab}}][approaches][]" value="{{$exercise->approaches}}" class="var__approaches">
-			<input type="hidden" name="exercises[{{tab}}][weight][]" value="{{$exercise->weight}}" class="var__weight">
-			<input type="hidden" name="exercises[{{tab}}][comment][]" value="{{$exercise->comment}}" class="var__comment">
+			<input class="var__type" type="hidden" value="{{$exercise->hash}}" name="{{type}}">
 			<div class="programme-body__box clr">
 				<div class="programme-body__box-head">
 					<div class="programme-body__box-name">
@@ -36,7 +32,8 @@
 				<table class="programme-table programme-table--input">
 					<tr>
 						<td>
-							<a class="btn programme-table__btn popup__add-to-left"><?php echo lang('add');?></a>
+							<a class="btn programme-table__btn w106 mb-14 popup__add-to-left"><?php echo lang('add');?></a>
+							<a class="btn btn--gray programme-table__btn w106 popup__close"><?php echo lang('close');?></a>
 						</td>
 					</tr>
 				</table>

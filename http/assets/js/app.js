@@ -679,45 +679,12 @@ console.log(formProgramm.serializeArray());
 // add
 	// Добавить
 	function addItemAppLeft(id,data,index) {
-/*
-			var name = $('.tabs__dd--active .exercises-my').data('type');
-			var data = li.find('input[type="hidden"]');
-			data.remove();
-			li.append('<input type="hidden" name="'+name+'[]" value="'+li.data('id')+'">');
 
-			var type = $('.tabs__dd--active .exercises-my').attr('data-type');
-			if(type != 'related' && type != 'progress') {
-				var detail = li.find('.popup-content--add');
-				if(detail.length != 0) {
-					detail.find('.exercises-list__item-desc').removeClass('in-exercises-list');
-					li.find('a.icon-info').addClass('icon-pencil').removeClass('icon-info');
-					var exercise_data = detail.find('.exercises-list__item-detal input, .exercises-list__item-detal textarea');
-					$.each(exercise_data , function(i, val) {
-						var new_name_suffix = $(this).attr('data-name');
-						$(this).attr('name', name+'['+new_name_suffix+'][]');
-					});
-				}
-			}
-
-*/		var item = ExercisesOne[id];
-		var datatType = leftScroller.children('ul').attr('data-type');
+		var item = ExercisesOne[id];
 		var template = templateLeft.clone(true);
 		var icons = template.find('.programme-body__box-icons').children();
-		if(data===undefined)
-			data=['quantity','approaches','weight','comment'];
 
 		template.attr('data-id',id);
-
-		if(item[4] !== undefined)
-			template.find('.programme-img').append('<img src="/images/'+item[4]+'">');
-		if(item[6] !== undefined)
-			template.find('.programme-img').append('<img src="/images/'+item[6]+'">');
-
-		template.find('.var__id').val(id).attr('name',datatType+'[]');
-		template.find('.var__quantity').val(data['quantity']).attr('name',datatType+'[quantity][]');
-		template.find('.var__approaches').val(data['approaches']).attr('name',datatType+'[approaches][]');
-		template.find('.var__weight').val(data['weight']).attr('name',datatType+'[weight][]');
-		template.find('.var__comment').val(data['comment']).attr('name',datatType+'[comment][]');
 		template.find('.var__exercise-name').text(item[0]);
 		template.find('.var__exercise-name_desc').text(item[10]);
 
@@ -725,10 +692,39 @@ console.log(formProgramm.serializeArray());
 			icons.filter('.ico--play').attr('data-video',item[3]):
 			icons.filter('.ico--play').remove();
 
+		if(item[4] !== undefined)
+			template.find('.programme-img').append('<img src="/images/'+item[4]+'">');
+		if(item[6] !== undefined)
+			template.find('.programme-img').append('<img src="/images/'+item[6]+'">');
+
 		if(item[9].length==0)
 			icons.filter('.ico--progress').remove();
 		if(item[8].length==0)
 			icons.filter('.ico--related').remove();
+
+		// упражнения, добавляем похожии и прогресс
+		var type = navTabActive.data('tab');
+		if(type=='related' || type=='progress'){
+
+			template.find('.var__type').val(id).attr('name',type+'[]');
+
+		}
+		// программа
+		else {
+
+			var datatType = leftScroller.children('ul').attr('data-type');
+			if(data===undefined)
+				data=['quantity','approaches','weight','comment'];
+
+			template.find('.var__id').val(id).attr('name',datatType+'[]');
+			template.find('.var__quantity').val(data['quantity']).attr('name',datatType+'[quantity][]');
+			template.find('.var__approaches').val(data['approaches']).attr('name',datatType+'[approaches][]');
+			template.find('.var__weight').val(data['weight']).attr('name',datatType+'[weight][]');
+			template.find('.var__comment').val(data['comment']).attr('name',datatType+'[comment][]');
+
+			formProgrammChange = true;
+
+		}
 
 		if(index === undefined){
 			leftScroller.children('ul').append(template);
@@ -737,7 +733,7 @@ console.log(formProgramm.serializeArray());
 		else {
 			leftScroller.children('ul').children().eq(index).before(template);
 		}
-		formProgrammChange = true;
+
 	}
 	function addSetAppLeft(id,index) {
 		var items = ExercisesSet[id][5].split('|');

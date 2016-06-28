@@ -522,6 +522,12 @@ li:last-child .tabs__dt {
 	box-shadow: 0 3px 6px rgba(0,0,0,.3);
 	border: solid 2px #4a90e2;
 }
+.programme-body__box--current{
+	border-color: #4a90e2;
+}
+.programme-body__box--current .programme-body__box-name {
+	height: 112px;
+}
 .exercises-my__item:last-child {
 	margin-bottom: 0;
 }

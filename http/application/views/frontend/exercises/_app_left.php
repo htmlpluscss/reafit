@@ -8,17 +8,17 @@
 								<div class="l-h__width">
 
 									<div class="programme-body__h3"><?php echo lang('exercise_name');?></div>
-									<label class="input-placeholder mb-14 w260">
+									<label class="input-placeholder mb-14">
 										<input class="input name-programme--input" name="name" maxlength="40" value="<?php echo $name;?>">
 										<span class="input-placeholder__label"><?php echo lang('name');?><sup>*</sup></span>
 									</label>
 
-									<label class="input-placeholder mb-14 w260">
+									<label class="input-placeholder mb-14">
 										<input class="input name-programme--email" name="name_desc" value="<?php echo $name_desc;?>">
 										<span class="input-placeholder__label"><?php echo lang('exercise_desc');?></span>
 									</label>
 
-									<div class="input-placeholder mb-14 w260">
+									<div class="input-placeholder mb-14">
 										<select class="name-programme--category" name="category" data-required-sup>
 											<option value="none"><?php echo lang('_select');?></option>
 										<?php if(!empty($category_list)):?>
@@ -31,11 +31,17 @@
 									</div>
 
 									<div class="programme-body__h3"><?php echo lang('description');?></div>
-									<textarea name="description" class="editor"><?php echo $description_text;?></textarea>
+									<div class="mb-14">
+										<textarea name="description" class="editor"><?php echo $description_text;?></textarea>
+									</div>
 
-									<label class="input-placeholder mb-14 w260">
-										<input class="input" name="order" value="<?php echo $order;?>">
-										<span class="input-placeholder__label"><?php echo lang('exercise_order');?></span>
+									<label class="input-count w200 clr">
+										<span class="input-count__label"><?php echo lang('exercise_order');?></span>
+										<div class="input-count__box notsel">
+											<input class="input" type="tel" name="order" value="<?php echo $order;?>">
+											<a class="input-count__up"></a>
+											<a class="input-count__down"></a>
+										</div>
 									</label>
 
 								</div>
@@ -138,7 +144,7 @@
 						</div>
 					</div>
 
-					<div class="tabs__dd tabs__dd--same">
+					<div class="tabs__dd tabs__dd--related">
 						<div class="l-h">
 							<div class="l-h__inner baron">
 

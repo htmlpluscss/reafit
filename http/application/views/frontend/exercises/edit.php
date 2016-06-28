@@ -19,7 +19,7 @@
 							<li class="tabs__li-first"><span class="tabs__dt tabs__dt--active" data-tab="description"><?php echo lang('description');?></span></li>
 							<li><span class="tabs__dt tabs__dt" data-tab="media"><?php echo lang('media');?></span></li>
 							<li><span class="tabs__dt tabs__dt" data-tab="filter"><?php echo lang('filter');?></span></li>
-							<li><span class="tabs__dt tabs__dt" data-tab="same"><?php echo lang('same');?></span></li>
+							<li><span class="tabs__dt tabs__dt" data-tab="related"><?php echo lang('same');?></span></li>
 							<li><span class="tabs__dt tabs__dt" data-tab="progress"><?php echo lang('progress');?></span></li>
 						</ul>
 					</div>

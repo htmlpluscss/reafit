@@ -33,12 +33,44 @@
 						$current = true;
 					}
 				?>
-				<?php if($type == 'progress' && $current):?>
-				<li class="exercises-my__item exercises-my__item--current-progress l-h__width clr">
-					<span class="exercises-list__name"><?php echo $name;?></span>
-					<input type="hidden" name="<?php echo $type;?>[]" value="<?php echo $hash;?>">
-				</li>
-				<?php $current = false; $insert = true;?>
+				<?php if($type == 'progress' || $type == 'related'):?>
+					<li class="exercises-my__item l-h__width clr">
+						<input type="hidden" name="<?php echo $type;?>[]" value="<?php echo $exercise->hash;?>">
+						<div class="programme-body__box clr<?php if($current) echo " programme-body__box--current";?>">
+							<div class="programme-body__box-head">
+								<div class="programme-body__box-name">
+									<span class="programme-body__box-title"><?php echo $exercise->name;?></span>
+									<span><?php echo $exercise->name_desc;?></span>
+								</div>
+
+								<?php if(!$current) :?>
+								<div class="programme-body__box-icons">
+									<?php if(!empty($exercise->video)):?>
+									<a class="ico ico--play play-video not-drop" data-video="<?php echo $exercise->video; ?>"></a>
+									<?php endif;?>
+									<a class="ico ico--info popup__btn popup__btn--edit not-drop"></a>
+									<?php if($exercise->progress):?>
+									<a class="ico ico--progress popup__btn popup__btn--progress not-drop"></a>
+									<?php endif;?>
+									<?php if($exercise->related):?>
+									<a class="ico ico--related popup__btn popup__btn--related not-drop"></a>
+									<?php endif;?>
+									<a class="ico ico--delete exercises-my__item-delete not-drop"></a>
+								</div>
+								<?php endif;?>
+
+							</div>
+							<div class="programme-img">
+								<?php if($exercise->image_1):?>
+								<img src="<?php echo site_url('images/'.$exercise->image_1);?>" alt="<?php echo $exercise->name;?>">
+								<?php endif;?>
+								<?php if($exercise->image_3):?>
+								<img src="<?php echo site_url('images/'.$exercise->image_3);?>" alt="<?php echo $exercise->name;?>">
+								<?php endif;?>
+							</div>
+						</div>
+						<?php if($current) : $current = false; $insert = true; endif;?>
+					</li>
 				<?php else:?>
 				<li
 					id="one-<?php echo $exercise->hash;?>"

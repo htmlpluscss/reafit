@@ -61,12 +61,12 @@
 					</td>
 					<td class="br0">
 						<ul class="one-event">
-							<li><a class="icon-edit" href="<?php echo site_url('exercises/'.$item->hash);?>" title="<?php echo lang('edit');?>"></a></li>
-							<li><a class="icon-trash-empty one-event__delete" href="<?php echo site_url('exercises/delete/'.$item->hash);?>" data-text="<?php echo lang('delete_exercidse');?>" title="<?php echo lang('delete');?>"></a></li>
-							<li><a class="icon-info one-event__detal" title="просмотреть"></a></li>
+							<li><a class="ico-mini ico-edit" href="<?php echo site_url('exercises/'.$item->hash);?>" title="<?php echo lang('edit');?>"></a></li>
+							<li><a class="ico-mini ico-delete one-event__delete" href="<?php echo site_url('exercises/delete/'.$item->hash);?>" data-text="<?php echo lang('delete_exercidse');?>" title="<?php echo lang('delete');?>"></a></li>
+							<li><a class="ico-mini ico-info one-event__detal" title="просмотреть"></a></li>
 							<li>
 								<?php if(!empty($item->video)):?>
-								<a class="icon-play play-video" data-video="<?php echo $item->video;?>" title="<?php echo lang('open_video');?>"></a>
+								<a class="ico-mini ico-play play-video" data-video="<?php echo $item->video;?>" title="<?php echo lang('open_video');?>"></a>
 								<?php endif;?>
 							</li>
 						</ul>
