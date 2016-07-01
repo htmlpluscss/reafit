@@ -469,7 +469,7 @@ sup {
 	background-position: -309px -25px
 }
 .ico--save-plus {
-	background-position: -214px -24px
+	background-position: -486px -25px
 }
 .ico--save-exit {
 	background-position: -470px -414px
@@ -503,7 +503,7 @@ sup {
 	background-position: -309px -145px
 }
 .ico--save-plus-white {
-	background-position: -214px -145px
+	background-position: -488px -145px
 }
 .ico--save-exit-white {
 	background-position: -470px -535px
@@ -540,7 +540,7 @@ sup {
 	background-position: -309px -67px
 }
 .ico--save-plus:hover {
-	background-position: -214px -66px
+	background-position: -486px -67px
 }
 .ico--save-exit:hover {
 	background-position: -470px -456px
@@ -574,7 +574,7 @@ sup {
 	background-position: -309px -105px
 }
 .ico--save-plus-white:hover {
-	background-position: -214px -105px
+	background-position: -488px -105px
 }
 .ico--save-exit-white:hover {
 	background-position: -470px -495px
@@ -659,18 +659,16 @@ sup {
 }
 
 .ico--progress {
-	background-position: -98px -223px;
-	background-position: -558px -306px
+	background-position: -555px -305px
 }
 .ico--progress:hover {
-	background-position: -98px -313px;
-	background-position: -558px -336px
+	background-position: -555px -335px
 }
 .ico--progress-white {
-	background-position: -558px -396px
+	background-position: -555px -395px
 }
 .ico--progress-white:hover {
-	background-position: -558px -366px
+	background-position: -555px -365px
 }
 .ico--delete {
 	background-position: -129px -224px
@@ -700,21 +698,20 @@ sup {
 	background-position: -523px -109px
 }
 .ico--add-item:hover {
-	background-position: -523px -151px
+	background-position: -523px -151px;
 }
 .ico--star {
-	background-position: -191px -322px;
+	background-position: -191px -314px;
 	left: auto;
 	position: absolute !important;
 	right: 0;
 	top: -62px;
 }
 .ico--star--active {
-	background-position: -191px -292px;
+	background-position: -191px -284px
 }
-.ico--star:hover {
-	opacity: .8;
-	background-position: -191px -292px;
+.ico--star:hover{
+	opacity: .7
 }
 .ico--plusik {
 	margin: auto;
@@ -745,40 +742,79 @@ sup {
 
 
 .ico-mini {
-	outline:1px solid red;
 	width: 20px;
 	height: 20px;
 	vertical-align: top;
 	display: inline-block;
 	background-image: url(../images/sprite.svg);
 }
+.ico-mini.ico-info {
+	background-position: -78px -342px
+}
+.ico-mini.ico-info:hover {
+	background-position: -78px -228px
+}
 .ico-mini.ico-edit {
-	background-position: 
+	background-position: -447px -309px
+}
+.ico-mini.ico-edit:hover {
+	background-position: -447px -339px
 }
 .ico-open_programs {
-	background-position: 
+	background-position: -511px -227px
+}
+.ico-open_programs:hover {
+	background-position: -511px -253px;
 }
 .ico-open_exercises {
-	background-position: 
+	background-position: -542px -226px
+}
+.ico-open_exercises:hover {
+	background-position: -542px -252px;
 }
 .ico-mini.ico-delete {
-	background-position: 
+	background-position: -134px -343px
+}
+.ico-mini.ico-delete:hover {
+	background-position: -134px -229px;
 }
 .ico-mini.ico-link {
+	background-position: -90px -186px
+}
+.ico-mini.ico-link:hover {
+	background-position: -186px -186px;
 }
 .ico-mini.ico-open {
+	background-position: -29px -186px
+}
+.ico-mini.ico-open:hover {
+	background-position: -125px -186px;
 }
 .ico-mini.ico-star-orange {
+	background-position: -196px -288px
 }
-.ico-mini.ico-star-black {
-
+.ico-mini.ico-star-blue:hover,
+.ico-mini.ico-star-orange:hover {
+	background-position: -196px -258px
+}
+.ico-mini.ico-star-blue {
+	background-position: -196px -348px
 }
 .ico-mini.ico-up,
 .ico-mini.ico-down {
 	height: 15px;
-	width: 12px;
+	width: 13px;
+	background-position: -108px -470px
 }
-
+.ico-mini.ico-down {
+	background-position: -108px -510px
+}
+.ico-mini.ico-up:hover {
+	background-position: -128px -470px
+}
+.ico-mini.ico-down:hover {
+	background-position: -128px -510px
+}
 /* table
 -----------------------------------------------------------------------------*/
 table {

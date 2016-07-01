@@ -54,7 +54,7 @@
 					<td>
 						<a class="users-stat__screenshot" href="<?php echo site_url('programs/add');?>">
 							<span class="users-stat__screenshot-text"><?php echo lang('main_add_prog');?></span>
-							<img src="assets/images/add-app.png" width="460" alt="Как создать программу реафит">
+							<img src="assets/images/add-app.png" width="460" alt="">
 						</a>
 						<?php if($add_prog):?>
 						<?php echo $add_prog;?>
@@ -63,22 +63,28 @@
 					<td>
 						<a class="users-stat__screenshot" href="<?php echo site_url('programs');?>">
 							<span class="users-stat__screenshot-text"><?php echo lang('main_open_prog');?></span>
-							<img src="assets/images/edit-app.png" width="460" alt="Как редактировать программу реафит">
+							<img src="assets/images/edit-app.png" width="460" alt="">
 						</a>
 						<?php if($open_prog):?>
 						<?php echo $open_prog;?>
 						<?php endif;?>
 					</td>
 				</tr>
-				<tr class="hide">
+				<tr>
 					<td>
-						<h2><a href="<?php echo site_url('exercises/add');?>"><?php echo lang('main_add_app');?> <span class="icon-right-big"></span></a></h2>
+						<a class="users-stat__screenshot" href="<?php echo site_url('exercises/add');?>">
+							<span class="users-stat__screenshot-text"><?php echo lang('main_add_app');?></span>
+							<img src="assets/images/add-item.png" width="460" alt="">
+						</a>
 						<?php if($add_app):?>
 						<?php echo $add_app;?>
 						<?php endif;?>
 					</td>
 					<td>
-						<h2><a href="<?php echo site_url('exercises');?>"><?php echo lang('main_open_app');?> <span class="icon-right-big"></span></a></h2>
+						<a class="users-stat__screenshot" href="<?php echo site_url('exercises');?>">
+							<span class="users-stat__screenshot-text"><?php echo lang('main_open_app');?></span>
+							<img src="assets/images/edit-item.png" width="460" alt="">
+						</a>
 						<?php if($open_app):?>
 						<?php echo $open_app;?>
 						<?php endif;?>

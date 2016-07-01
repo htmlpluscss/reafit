@@ -61,7 +61,7 @@
 					</td>
 					<td class="br0">
 						<ul class="one-event">
-							<li><a class="ico-mini ico-edit" href="<?php echo site_url('exercises/'.$item->hash);?>" title="<?php echo lang('edit');?>"></a></li>
+							<li><a class="ico-mini ico-open" href="<?php echo site_url('exercises/'.$item->hash);?>" title="<?php echo lang('edit');?>"></a></li>
 							<li><a class="ico-mini ico-delete one-event__delete" href="<?php echo site_url('exercises/delete/'.$item->hash);?>" data-text="<?php echo lang('delete_exercidse');?>" title="<?php echo lang('delete');?>"></a></li>
 							<li><a class="ico-mini ico-info one-event__detal" title="просмотреть"></a></li>
 							<li>
