@@ -43,9 +43,8 @@ $window.ready(function(){
 });
 
 	// избранное
-	$('.icon-star:not(.icon-toggle-favorite), .icon-star-empty').on('click',function(e){
-		e.preventDefault();
-		var url = $(this).attr('href');
+	$('.icon-toggle-favorite-list').on('click',function(){
+		var url = $(this).data('href');
 		var type = parseInt($(this).data('type'));
 		$.ajax({
 			type:     'POST',
@@ -58,11 +57,11 @@ $window.ready(function(){
 			success: $.proxy(function(data){
 				if(data['success'].length != 0) {
 					if(type == 0) {
-						$(this).attr('class', 'icon-star-empty');
-						$(this).attr('data-type', 1);
+						$(this).removeClass('ico-star-blue').addClass('ico-star-orange');
+						$(this).data('type', 1);
 					} else {
-						$(this).attr('class', 'icon-star');
-						$(this).attr('data-type', 0);
+						$(this).addClass('ico-star-blue').removeClass('ico-star-orange');
+						$(this).data('type', 0);
 					}
 				}
 			}, this)
@@ -322,8 +321,9 @@ function getScrollBarWidth(){
 	});
 
 	$('.one-event__detal').on('click',function(){
-// переделать шаблоном
-		popupShow('content',$(this).closest('td'),'add');
+// аналогично .popup__btn--view
+		var template = $(this).closest('td').find('.popup-content--add').clone();
+		popupShow('content',template);
 	});
 
 	$('.btn--reset').on('click', function(){

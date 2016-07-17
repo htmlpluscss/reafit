@@ -45,7 +45,8 @@ class Exercises extends MY_Controller {
             $search_array = array(
                     'name'        => $search,
                     'name_desc'   => $search,
-                    'description' => $search
+                    'description' => $search,
+                    'hash'        => $search,
                 );
         } else {
             $search_array = array();
@@ -95,6 +96,7 @@ class Exercises extends MY_Controller {
                     'surname'          => $search,
                     'name'             => $search,
                     'middle_name'      => $search,
+                    'hash'             => $search,
                 );
         } else {
             $search_array = array();
@@ -571,7 +573,8 @@ class Exercises extends MY_Controller {
     		$params = array(
     			'name'        => trim($param),
     			'name_desc'   => trim($param),
-    			'description' => trim($param)
+    			'description' => trim($param),
+                'hash'        => trim($param),
     		);
     	} else {
     		$params = null;

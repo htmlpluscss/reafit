@@ -76,9 +76,9 @@
 					</td>
 					<td class="align-middle align-center">
 						<?php if(!empty($item->favorite)):?>
-						<a class="ico-mini ico-star-blue" href="<?php echo base_url('programs/favorite/'.$item->hash);?>" data-type="0" title="<?php echo lang('delete_from_exercise');?>"></a>
+						<a class="ico-mini icon-toggle-favorite-list ico-star-blue" data-href="<?php echo base_url('programs/favorite/'.$item->hash);?>" data-type="0" title="<?php echo lang('delete_from_exercise');?>"></a>
 						<?php else:?>
-						<a class="ico-mini ico-star-orange" href="<?php echo base_url('programs/favorite/'.$item->hash);?>" data-type="1" title="<?php echo lang('add_too_exercise');?>"></a>
+						<a class="ico-mini icon-toggle-favorite-list ico-star-orange" data-href="<?php echo base_url('programs/favorite/'.$item->hash);?>" data-type="1" title="<?php echo lang('add_too_exercise');?>"></a>
 						<?php endif;?>
 					</td>
 					<td class="br0 align-center align-middle nowrap">

@@ -198,6 +198,7 @@ class Programs extends MY_Controller {
         $data['category']          = (isset($category)) ? $category : '';
         $data['category_list']     = $this->getCategoryList();
         $data['filter_categories'] = $this->getFilterCategoryList();
+        $data['note']              = '';
 
         $this->addStyle('app.css');
         $this->addScript('jquery.ui.touch-punch.min.js');

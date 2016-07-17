@@ -81,7 +81,7 @@
 						<?php endif;?>
 					</td>
 					<td class="one-event one-event--line">
-						<a class="icon-folder-open-empty" href="<?php echo base_url('admin/users/'.$item->url);?>" target="_blank"></a>
+						<a class="ico-mini ico-open" href="<?php echo base_url('admin/users/'.$item->url);?>" target="_blank"></a>
 					</td>
 				</tr>
 			<?php endforeach;?>

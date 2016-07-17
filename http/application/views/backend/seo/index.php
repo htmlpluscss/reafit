@@ -75,8 +75,8 @@
 					</td>
 					<td>
 						<ul class="one-event">
-							<li><a class="icon-edit" href="<?php echo site_url('admin/seo/'.$item->hash);?>"></a></li>
-							<li><a class="icon-trash-empty one-event__delete" href="<?php echo site_url('admin/seo/delete/'.$item->hash);?>" data-text="<?php echo lang('delete_meta');?>"></a></li>
+							<li><a class="ico-mini ico-edit" href="<?php echo site_url('admin/seo/'.$item->hash);?>"></a></li>
+							<li><a class="ico-mini ico-delete one-event__delete" href="<?php echo site_url('admin/seo/delete/'.$item->hash);?>" data-text="<?php echo lang('delete_meta');?>"></a></li>
 						</ul>
 					</td>
 				</tr>

@@ -431,7 +431,7 @@ class Exercises_model extends CI_Model {
             }
             if(!empty($params)) {
                 $first = true;
-                $keys = array('name', 'name_desc', 'description');
+                $keys = array('name', 'name_desc', 'description', 'hash');
                 foreach ($params as $key => $param) {
                     if(in_array($key, $keys)) {
                         if($first) {
@@ -649,7 +649,7 @@ class Exercises_model extends CI_Model {
 
             if(!empty($params)) {
                 $first = true;
-                $keys = array('name', 'name_desc', 'description');
+                $keys = array('name', 'name_desc', 'description', 'hash');
                 $this->db->group_start();
                 foreach ($params as $key => $param) {
                     if(in_array($key, $keys)) {
@@ -722,7 +722,7 @@ class Exercises_model extends CI_Model {
 
             if(!empty($params)) {
                 $first = true;
-                $keys = array('name', 'name_desc', 'description');
+                $keys = array('name', 'name_desc', 'description', 'hash');
                 $this->db->group_start();
                 foreach ($params as $key => $param) {
                     if(in_array($key, $keys)) {
@@ -802,7 +802,7 @@ class Exercises_model extends CI_Model {
         if(!empty($params)) {
             $first = true;
             $user_search = array('surname', 'name', 'middle_name');
-            $keys = array('name', 'name_desc', 'description');
+            $keys = array('name', 'name_desc', 'description', 'hash');
             $this->db->group_start();
             foreach ($params as $key => $param) {
                 if(in_array($key, $keys)) {

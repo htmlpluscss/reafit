@@ -92,8 +92,14 @@
 			<?php endforeach ?>
 			<?php endif;?>
 			<?php if(!$current && !$insert && $type == 'progress'):?>
-				<li class="exercises-my__item exercises-my__item--current-progress l-h__width clr">
-					<span class="exercises-list__name"><?php echo lang('current_exercise_name');?></span>
+				<li class="exercises-my__item l-h__width clr">
+					<div class="programme-body__box programme-body__box--current clr">
+						<div class="programme-body__box-head">
+							<div class="programme-body__box-name">
+								<span class="programme-body__box-title"><?php echo lang('current_exercise_name');?></span>
+							</div>
+						</div>
+					</div>
 					<?php if(!empty($type)):?>
 					<input type="hidden" name="<?php echo $type;?>[]" value="current">
 					<?php endif;?>

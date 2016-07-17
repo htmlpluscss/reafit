@@ -114,16 +114,6 @@
 .programme-body__item {
 	padding: 10px;
 }
-.programme-body__name {
-	font-size: 15px;
-	line-height: 20px;
-	color: #4a90e2;
-	padding: 10px;
-}
-.programme-body__name-b {
-	font-weight: 500;
-	padding-right: 4px;
-}
 
 
 .programme-body__box {
@@ -133,18 +123,6 @@
 	background: #fff;
 }
 
-.programme-img {
-	position: relative;
-	float: left;
-	padding: 5px 5px 5px 0;
-}
-.programme-img img {
-	float: left;
-	margin-left: 4px;
-	display: block;
-	width: 100px;
-	height: 100px;
-}
 
 .programme-body__detal {
 	width: 450px;
@@ -249,33 +227,6 @@
 	padding: 8px 10px;
 }
 
-.programme-description {
-	overflow: hidden;
-	clear: both;
-	padding: 20px 20px 0;
-	border-top: 1px solid #dddce1;
-}
-.programme-description p {
-	font-size: 14px;
-	margin-bottom: 20px;
-	line-height: 20px;
-}
-.programme-description b,
-.programme-description strong,
-.programme-description em {
-	padding: 0 5px;
-}
-.programme-description b:first-child,
-.programme-description strong:first-child,
-.programme-description em:first-child {
-	padding-left: 0;
-}
-.programme-description h3 {
-	font-weight: 700;
-	font-size: 15px;
-	margin-top: 30px;
-	line-height: 20px;
-}
 
 .programme-body__box-head {
 	width: 232px;
@@ -449,10 +400,10 @@ li:last-child .tabs__dt {
 	border-radius: 0 4px 0 0;
 	border-top: 1px solid #e1e1e1;
 	border-right: 1px solid #e1e1e1;
-	background: url(../images/sprite.svg) #fff -20px -340px;
+	background: url(../images/sprite.svg) #fff -18px -370px;
 }
 .tabs__nav--mini .tabs__btn-select:hover {
-	background-position: -20px -380px;
+	background-position: -18px -410px;
 }
 .tabs__nav--mini .tabs__btn-select:after,
 .tabs__nav--mini .tabs__btn-select:before {
@@ -522,8 +473,9 @@ li:last-child .tabs__dt {
 	box-shadow: 0 3px 6px rgba(0,0,0,.3);
 	border: solid 2px #4a90e2;
 }
-.programme-body__box--current{
-	border-color: #4a90e2;
+.programme-body__box--current,
+.item-img_name--current-in-progress {
+	border-color: #4a90e2 !important;
 }
 .programme-body__box--current .programme-body__box-name {
 	height: 112px;
@@ -661,9 +613,6 @@ li:last-child .tabs__dt {
 .item-img_name--set {
 	box-shadow: 3px 3px 0 #d0d0d0, 6px 6px 0 #ebebeb;
 }
-.item-img_name--current-in-progress {
-	border-color: #4a4a4a;
-}
 .item-img_name--current-in-progress .item-img_name__hover {
 	display: none !important;
 }
@@ -772,50 +721,6 @@ li:last-child .tabs__dt {
 /* view
 -----------------------------------------------------------------------------*/
 
-
-/* popup
------------------------------------------------------------------------------*/
-.popup--content .popup__box {
-	padding: 10px;
-}
-.popup .programme-img img {
-	height: 140px;
-	margin-left: 10px;
-	width: 140px;
-}
-.popup .programme-description {
-	border-top: 0;
-	padding: 0 0 0 10px;
-}
-.popup .programme-body__name {
-	padding: 0;
-	margin-bottom: 10px;
-}
-
-.popup-content--add {
-	padding: 4px;
-}
-.popup-content--add .programme-body__detal {
-	width: auto;
-	float: right;
-}
-.popup-content--add .programme-img {
-	background: #f8f8f8;
-	border-radius: 4px;
-	padding: 6px 17px;
-}
-.popup-content--add .programme-img img{
-	border-radius: 4px;
-	margin: 0;
-}
-
-.msg-popup {
-	padding: 20px;
-	text-align: center;
-}
-.msg-popup .btn {
-	margin-top: 20px;
-}
 
 
 /* related & progress

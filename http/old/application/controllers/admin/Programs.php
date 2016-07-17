@@ -471,7 +471,8 @@ class Programs extends MY_Controller {
             $params = array(
                 'name'        => trim($param),
                 'name_desc'   => trim($param),
-                'description' => trim($param)
+                'description' => trim($param),
+                'hash'        => trim($param)
             );
         } else {
             $params = null;
@@ -508,7 +509,8 @@ class Programs extends MY_Controller {
         if($param && is_string($param)) {
             $params = array(
                 'name'        => trim($param),
-                'description' => trim($param)
+                'description' => trim($param),
+                'hash'        => trim($param)
             );
         } else {
             $params = null;

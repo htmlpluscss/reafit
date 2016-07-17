@@ -494,7 +494,7 @@ class Programs_model extends CI_Model {
             }
             if(!empty($params)) {
                 $first = true;
-                $keys = array('name', 'description');
+                $keys = array('name', 'description', 'hash');
                 foreach ($params as $key => $param) {
                     if(in_array($key, $keys)) {
                         if($first) {
@@ -668,7 +668,7 @@ class Programs_model extends CI_Model {
             }
             if(!empty($params)) {
                 $first = true;
-                $keys = array('name', 'description');
+                $keys = array('name', 'description', 'hash');
                 $this->db->group_start();
                 foreach ($params as $key => $param) {
                     if(in_array($key, $keys)) {
@@ -769,7 +769,7 @@ class Programs_model extends CI_Model {
 
             if(!empty($params)) {
                 $first = true;
-                $keys = array('name', 'description');
+                $keys = array('name', 'description', 'hash');
                 $this->db->group_start();
                 foreach ($params as $key => $param) {
                     if(in_array($key, $keys)) {

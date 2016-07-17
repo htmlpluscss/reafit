@@ -1,28 +1,24 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
 	</main>
 
-	<footer id="footer">
-
-		<p class="copyright">© <?php echo date('Y');?> «<?php echo $this->settings->site_name;?>»</p>
-
-	</footer>
-
 	<div class="popup popup--content">
 		<div class="popup__box">
-			<div class="popup__body"></div>
-			<a class="icon-cancel-outline popup__close"></a>
+			<div class="popup__body">
+				<div class="popup__inner baron"></div>
+			</div>
+			<a class="ico ico--close-white popup__close"></a>
 		</div>
 	</div>
 
-	<div class="popup popup--msg">
+	<div class="popup popup--msg popup--height-auto">
 		<div class="popup__box">
 			<div class="popup__body">
-				<p></p>
-				<a class="btn popup__close btn-cancel-popup hide" href="#"><?php echo lang('cancel');?></a>
-				<a class="btn popup__close btn-no-popup hide" href="#"><?php echo lang('close');?></a>
+				<div class="popup__inner"></div>
+				<a class="btn btn--gray popup__close btn-cancel-popup hide"><?php echo lang('cancel');?></a>
+				<a class="btn popup__close btn-no-popup hide"><?php echo lang('close');?></a>
 				<a class="btn btn-yes-popup hide"><?php echo lang('yes');?></a>
 			</div>
-			<a class="icon-cancel-outline popup__close"></a>
+			<a class="ico ico--close popup__close"></a>
 		</div>
 	</div>
 
@@ -35,6 +31,7 @@
 
 	<script src="<?php echo base_url('assets/js/jquery-ui.min.js');?>"></script>
 	<script src="<?php echo base_url('assets/js/jquery.cookie.js');?>"></script>
+	<script src="<?php echo base_url('assets/js/baron.min.js');?>"></script>
 	<script src="<?php echo base_url('assets/js/js.js');?>"></script>
 	<script src="<?php echo base_url('assets/js/admin.js');?>"></script>
 	<?php if(isset($this->scripts) && !empty($this->scripts)):?>

@@ -1,5 +1,6 @@
 body {
 	background: #fff;
+	min-width:1200px;
 }
 header {
 	border-bottom: 1px solid #4a4a4a;
@@ -15,20 +16,60 @@ main {
 	display: block;
 	padding: 20px 0 200px;
 }
+.app,
+.programme-head {
+	width: 980px;
+	margin: auto;
+}
+.programme-head {
+	border-radius: 4px
+}
+.fullscreen .icon-fullscreen {
+	background: #4a4a4a;
+	border-radius: 4px;
+}
+
+.filter-left {
+	float: left;
+	width: 50%;
+}
+.filter-left:nth-child(2),
+.filter-left:nth-child(3),
+.filter-left:nth-child(4) {
+	float: right;
+}
+.filter-left h3 {
+	line-height: 16px;
+	padding: 6px 0;
+}
+.filter-left .checkbox {
+	font-size: 13px;
+	line-height: 15px;
+	min-height: 26px;
+	padding-left: 28px;
+	padding-top: 8px;
+}
+.filter-left .checkbox i {
+	top: 50%;
+	margin-top: -10px;
+}
+
+.btn--popup {
+	display: block;
+	font-size: 12px;
+	font-weight: 400;
+	height: 44px;
+	margin-bottom: 10px;
+	line-height: 44px;
+}
+
+
 textarea.input {
 	height: 220px;
 }
 .list-tags .ui-sortable-handle:hover {
 	opacity: .8
 }
-
-.info-message {
-	width: auto;
-	padding: 10px 20px;
-	background: #fcfcfd;
-	border: 1px solid #dddce1;
-}
-
 
 .col-hide .checkbox{
 	margin-right: 12px;
@@ -63,3 +104,4 @@ textarea.input {
 	text-align: center;
 	width: 50px;
 }
+

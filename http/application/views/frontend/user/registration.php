@@ -1,6 +1,6 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
 		<article class="page page-login">
-				<h1>Регистрация отключена</h1>
+				<h1 style="text-align:center">Регистрация отключена</h1>
 <?php /*
 			<?php echo form_open('registration'); ?>
 				<h1><?php echo lang('register_lbl');?></h1>

@@ -342,7 +342,6 @@ console.log(formProgramm.serializeArray());
 		formProgramm.submit();
 	});
 
-
 // сохранить при выходе?
 	// изменение формы программы
 	formProgramm.on('change', function() {
@@ -351,12 +350,11 @@ console.log(formProgramm.serializeArray());
 	// клик по ссылкам переадресаций
 	$('#header a, .open-program-link, .btn-new, .btn-to-list').on('click', function(){
 		var url = $(this).attr('href');
-		if(url !== undefined) {
-			$('.link-exit-redirect').attr('href',url);
-			formProgramm.children('input[name="redirect"]').val(url);
+		if(url === undefined) {
+			$('.save-exit-redirect').removeAttr('data-action');
 		} else {
-			$('.link-exit-redirect').removeAttr('href');
-			formProgramm.children('input[name="redirect"]').val('');
+			$('.link-exit-redirect').attr('href', url);
+			$('.save-exit-redirect').attr('data-action', url);
 		}
 		if(formProgrammChange){
 			popupShow('close');

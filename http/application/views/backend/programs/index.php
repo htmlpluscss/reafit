@@ -55,14 +55,15 @@
 					</td>
 					<td>
 						<ul class="one-event">
-							<li><a class="icon-edit" href="<?php echo site_url('admin/programs/'.$item->hash);?>"></a></li>
-							<li><a class="icon-trash-empty one-event__delete" href="<?php echo site_url('admin/programs/delete/'.$item->hash.'?return=admin/programs');?>" data-text="<?php echo lang('delete_program');?>"></a></li>
-							<li><a class="icon-info one-event__detal"></a></li>
+							<li><a class="ico-mini ico-edit" href="<?php echo site_url('admin/programs/'.$item->hash);?>"></a></li>
+							<li><a class="ico-mini ico-delete one-event__delete" href="<?php echo site_url('admin/programs/delete/'.$item->hash.'?return=admin/programs');?>" data-text="<?php echo lang('delete_program');?>"></a></li>
+							<li><a class="ico-mini ico-info one-event__detal"></a></li>
 							<li>
 								<?php if(!empty($item->video)):?>
-								<a class="icon-play play-video" data-video="<?php echo $item->video;?>"></a>
+								<a class="ico-mini ico--play play-video" data-video="<?php echo $item->video;?>"></a>
 								<?php endif;?>
 							</li>
+							<li><a class="ico-mini ico-link" target="_blank" href="<?php echo site_url($item->hash);?>"></a></li>
 						</ul>
 						<?php echo $this->load->view('backend/'.$this->router->class.'/_item_detail_program', array('exercise'=>$item), TRUE);?>
 					</td>

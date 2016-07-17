@@ -64,11 +64,9 @@
 							<li><a class="ico-mini ico-open" href="<?php echo site_url('exercises/'.$item->hash);?>" title="<?php echo lang('edit');?>"></a></li>
 							<li><a class="ico-mini ico-delete one-event__delete" href="<?php echo site_url('exercises/delete/'.$item->hash);?>" data-text="<?php echo lang('delete_exercidse');?>" title="<?php echo lang('delete');?>"></a></li>
 							<li><a class="ico-mini ico-info one-event__detal" title="просмотреть"></a></li>
-							<li>
-								<?php if(!empty($item->video)):?>
-								<a class="ico-mini ico-play play-video" data-video="<?php echo $item->video;?>" title="<?php echo lang('open_video');?>"></a>
-								<?php endif;?>
-							</li>
+							<?php if(!empty($item->video)):?>
+							<li><a class="ico-mini ico--play play-video" data-video="<?php echo $item->video;?>" title="<?php echo lang('open_video');?>"></a></li>
+							<?php endif;?>
 						</ul>
 						<?php echo $this->load->view('frontend/'.$this->router->class.'/_item_detail', array('exercise'=>$item), TRUE);?>
 					</td>

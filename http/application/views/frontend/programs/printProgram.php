@@ -15,7 +15,13 @@
 
 			<?php foreach ($tabs as $key => $tab) :
 
-				if( empty($tab->exercises) || $params->access[$key] != 1 ) continue;
+				$visible = false;
+				if( !empty($params->access) ) {
+					if( $params->access[$key] != 1 )
+						$visible = true;
+				}
+
+				if( empty($tab->exercises) || $visible ) continue;
 
 				?>
 

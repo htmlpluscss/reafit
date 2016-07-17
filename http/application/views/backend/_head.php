@@ -4,13 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<title><?php echo $title;?></title>
-	<meta name="viewport" content="width=1000">
-	<?php if(isset($description)):?>
-	<meta name="description" content="<?php echo ($description) ? $description : '';?>">
-	<?php endif;?>
-	<?php if(isset($keywords)):?>
-	<meta name="keywords" content="<?php echo ($keywords) ? $keywords : '';?>">
-	<?php endif;?>
+	<meta name="viewport" content="width=1200">
 	<link href="<?php echo base_url('assets/css/default.css');?>" rel="stylesheet">
 	<link href="<?php echo base_url('assets/css/fontello.css');?>" rel="stylesheet">
 	<link href="<?php echo base_url('assets/css/style.css');?>" rel="stylesheet">

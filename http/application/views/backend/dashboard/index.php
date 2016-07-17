@@ -6,7 +6,7 @@
 	<li><?php echo lang('total_users_programs');?>: <?php echo $users_programs;?></li>
 	<li><?php echo lang('total_users_exercises');?>: <?php echo $users_exercises;?></li>
 </ul>
-
+<hr>
 <ul>
 	<li>
 		<span><?php echo lang('last_10_reg_users');?>:</span>
@@ -73,7 +73,7 @@
 		<?php endif;?>
 	</li>
 </ul>
-
+<hr>
 <ul>
 	<li><?php echo lang('total_admin_programs');?>: <?php echo $admin_programs;?></li>
 	<li><?php echo lang('total_admin_exercises');?>: <?php echo $admin_exercises;?></li>

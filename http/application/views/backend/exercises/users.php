@@ -82,12 +82,12 @@
 					</td>
 					<td>
 						<ul class="one-event">
-							<li><a class="icon-edit" href="<?php echo site_url('admin/exercises/'.$item->hash);?>"></a></li>
-							<li><a class="icon-trash-empty one-event__delete" href="<?php echo site_url('admin/exercises/delete/'.$item->hash.'?return=admin/exercises/users');?>" data-text="<?php echo lang('delete_exercidse');?>"></a></li>
-							<li><a class="icon-info one-event__detal"></a></li>
+							<li><a class="ico-mini ico-edit" href="<?php echo site_url('admin/exercises/'.$item->hash);?>"></a></li>
+							<li><a class="ico-mini ico-delete one-event__delete" href="<?php echo site_url('admin/exercises/delete/'.$item->hash.'?return=admin/exercises/users');?>" data-text="<?php echo lang('delete_exercidse');?>"></a></li>
+							<li><a class="ico-mini ico-info one-event__detal"></a></li>
 							<li>
 								<?php if(!empty($item->video)):?>
-								<a class="icon-play play-video" data-video="<?php echo $item->video;?>"></a>
+								<a class="ico-mini ico--play play-video" data-video="<?php echo $item->video;?>"></a>
 								<?php endif;?>
 							</li>
 						</ul>

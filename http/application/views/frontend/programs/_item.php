@@ -70,7 +70,7 @@
 				<li
 					id="one-<?php echo $exercise->hash;?>"
 					data-id="<?php echo $exercise->hash;?>"
-					class="exercises-list__item app-right__item"
+					class="exercises-list__item popup-box app-right__item"
 					data-filter="<?php echo (!empty($exercise->tags)) ? implode(',', $exercise->tags) . ',' . $exercise->category : $exercise->category;?>"
 					data-favorite="<?php echo $exercise->favorite;?>"
 					data-video="<?php echo $exercise->video;?>"

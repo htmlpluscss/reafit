@@ -249,10 +249,10 @@ button::-moz-focus-inner {
 	width: 44px;
 	height: 44px;
 	padding: 0;
-	background: url(../images/sprite.svg) #edf4fd -52px -415px;
+	background: url(../images/sprite.svg) #edf4fd -52px -454px;
 }
 .btn--prev {
-	background-position: -22px -415px;
+	background-position: -22px -454px;
 }
 .btn--next:hover,
 .btn--prev:hover {
@@ -760,6 +760,12 @@ sup {
 .ico-mini.ico-edit:hover {
 	background-position: -447px -339px
 }
+.ico-mini.ico--play {
+	background-position: -24px -346px
+}
+.ico-mini.ico--play:hover {
+	background-position: -24px -229px
+}
 .ico-open_programs {
 	background-position: -511px -227px
 }
@@ -815,6 +821,16 @@ sup {
 .ico-mini.ico-down:hover {
 	background-position: -128px -510px
 }
+
+.ico-mini.ico-plus {
+	background-position: -533px -162px;
+	border-radius: 50%;
+	margin: 2px 0 4px 6px;
+}
+.ico-mini.ico-plus:hover {
+	background-color: #4a4a4a;
+}
+
 /* table
 -----------------------------------------------------------------------------*/
 table {
