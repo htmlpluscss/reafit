@@ -355,6 +355,7 @@
 			<div class="tabs__dd tabs__dd--active">
 				<ul class="l-h l-h--height-auto">
 					<?php foreach ($tab->exercises as $exercise_key => $exercise) :?>
+					<?php if($exercise) :?>
 					<li class="exercises-my__item popup-box clr">
 						<span class="exercises-list__name"><?php echo $exercise->name;?>&nbsp;<span class="hide"><?php echo $exercise->name_desc;?></span></span>
 						<span class="exercises-list__img">
@@ -399,6 +400,7 @@
 						</div>
 						<?php endif;?>
 					</li>
+					<?php endif;?>
 					<?php endforeach;?>
 				</ul>
 			</div>
