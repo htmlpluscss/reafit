@@ -253,3 +253,4 @@ $lang['open_category_exercises'] = 'Смотреть все упражнения
 $lang['category_deleted']       = 'Раздел удален';
 $lang['all_categories']         = 'Все';
 $lang['category']               = 'Раздел';
+$lang['categories_list_title']  = 'Список категорий';
