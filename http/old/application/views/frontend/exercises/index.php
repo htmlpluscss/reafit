@@ -1,23 +1,20 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
-		<div class="clr">
-			<div class="pull-left">
-				<a class="btn" href="<?php echo site_url('exercises/add');?>"><?php echo lang('create_exercise');?></a>
-				<a class="btn ml-10" id="btn-create-cat" data-type="create"><?php echo lang('create_category_btn');?></a>
-			</div>
-			<form class="pull-right input-block" action="<?php echo $action;?>" method="GET">
-				<input class="input pull-left input-block__first" name="search" value="<?php echo (!empty($search)) ? $search : '';?>">
-				<?php if(!empty($per_page) && isset($per_page_list[0]) && !empty($per_page_list[0])):?>
-				<input type="hidden" name="items" value="<?php echo $per_page;?>" />
-				<?php endif;?>
-				<label class="btn pull-left input-block__last"><?php echo lang('find');?><input type="submit" class="hide"></label>
-				<?php if(!empty($search)):?>
-				<a class="btn pull-left ml-10 btn--gray btn--reset"><?php echo lang('clear');?></a>
-				<?php endif;?>
-			</form>
+		<div class="pull-left">
+			<a class="btn" href="<?php echo site_url('exercises/add');?>"><?php echo lang('create_exercise');?></a>
+			<a class="btn" id="btn-create-cat" data-type="create"><?php echo lang('create_category_btn');?></a>
 		</div>
+		<form class="pull-right" action="<?php echo $action;?>" method="GET">
+			<input class="input" name="search" value="<?php echo (!empty($search)) ? $search : '';?>">
+			<?php if(!empty($per_page) && isset($per_page_list[0]) && !empty($per_page_list[0])):?>
+			<input type="hidden" name="items" value="<?php echo $per_page;?>" />
+			<?php endif;?>
+			<button type="submit" class="btn align-middle"><?php echo lang('find');?></button>
+			<?php if(!empty($search)):?>
+			<button type="reset" class="btn align-middle btn-search"><?php echo lang('clear');?></button>
+			<?php endif;?>
+		</form>
 		<?php echo $this->load->view('frontend/_pagination', array('pagination'=>$pagination, 'action' => $action), TRUE);?>
 		<table class="table100 table100--list">
-			<?php if($items):?>
 			<thead>
 				<tr>
 					<th class="hide"><?php echo lang('id');?></th>
@@ -31,6 +28,7 @@
 				</tr>
 			</thead>
 			<tbody>
+			<?php if($items):?>
 			<?php foreach ($items as $key => $item) :?>
 				<tr>
 					<td class="hide">1</td>
@@ -77,14 +75,12 @@
 					</td>
 				</tr>
 			<?php endforeach;?>
-			</tbody>
 			<?php else:?>
-			<tbody>
 				<tr>
 					<td colspan="7"><?php echo lang('no_exercises');?></td>
 				</tr>
-			</tbody>
 			<?php endif;?>
+			</tbody>
 		</table>
 
 
