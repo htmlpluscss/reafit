@@ -44,6 +44,9 @@
 							<?php foreach ($categories as $key => $cat) :?>
 								<option value="<?php echo $cat;?>"<?php echo ($cat == $category || $one_cat) ? ' selected="selected"' : '';?>><?php echo $cat;?></option>
 							<?php endforeach;?>
+							<?php if(!in_array($category, $categories)):?>
+								<option value="<?php echo $category;?>" selected="selected"><?php echo $category;?></option>
+							<?php endif;?>
 							<?php endif;?>
 							</select>
 							<a class="icon-help" title="<?php echo lang('program_category_help');?>"></a>
