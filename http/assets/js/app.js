@@ -111,7 +111,7 @@ var start = new Date();
 
 		params[4] === undefined ?
 			template.find('.item-img_name__img').remove(): // это тормозит !!!!!!!!!
-			template.find('.item-img_name__img').attr('src','/images/'+params[4]);
+			template.find('.item-img_name__img').attr('src','/images/'+params[5]); // временно, должно быть "главное"
 
 		if(set){
 			template.addClass('item-img_name--set');
@@ -384,16 +384,10 @@ console.log(formProgramm.serializeArray());
 	});
 	$('.app-add-tab').on('click',function(){
 		var program = formProgramm.data('program');
-		var count = 1;
-// разобраться сount
-		if ($(this).attr('data-count') !== undefined) {
-            count =  parseInt($(this).attr('data-count'));
-            count++;
-        }
 		var dt = navTab.find('.placeholder').removeClass('placeholder').children();
 		if(dt.length==0) return;
 		var dd = $('.tabs__dd--start').clone(true);
-		countTab = parseInt($('.tabs__dt').length + count);
+		countTab = $('.tabs__dt').length + 1;
 		dd.removeClass('tabs__dd--start').addClass('tabs__dd--' + countTab);
 		formProgramm.append(dd);
 		dt.attr('data-tab',countTab);
@@ -418,6 +412,9 @@ console.log(formProgramm.serializeArray());
 			dd.find('.l-h__inner').append('<input type="hidden" name="params[access][]" class="access-tab-' + parseInt(countTab - 8) + '" value="1">');
 			$('.access-tabs').append('<li><label class="checkbox"><input type="checkbox" class="access" value="' + parseInt(countTab - 8) + '" checked="checked"> ' + dt.text() + '<i></i></label></li>');
 		});
+		if(countTab>8){
+			$('.programme-body').removeClass('programme-body--one-tab');
+		}
 		widthTab();
 	});
 
@@ -475,10 +472,13 @@ console.log(formProgramm.serializeArray());
 		var i = f.find('.add-tab-form__name');
 		if($(this).hasClass('add-tab-form__btn__only')) {
 			$('.programme-body').addClass('programme-body--one-tab');
-			$('.add-tab-form__btn__only').remove();
+			// создаем одноименную вкладку программы
+			i.val($('.programme-head__title').text()).trigger('keyup');
 		}
-		if(i.val()=="")
+		if(i.val()=="") {
 			i.focus();
+			return;
+		}
 		else {
 			var ul = $('<ul class="exercises-my">');
 			ul.attr('data-type', 'exercises['+countTab+'][data]');
@@ -487,8 +487,8 @@ console.log(formProgramm.serializeArray());
 
 			$window.trigger('resize');
 			draggable_droppable_sortable();
-			$('.add-tab-form__btn__only').remove();
 		}
+		$('.add-tab-form__btn__only').remove();
 	});
 // создание вкладки на enter
 	$('.add-tab-form__name').on('keyup',function(event){

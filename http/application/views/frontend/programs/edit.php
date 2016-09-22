@@ -1,5 +1,7 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
 
+	<?php $tabsHide = isset($tabs[0]) && $header==$tabs[0]->name && count($tabs)==1 ? true : false; ?>
+
 		<div class="programme-head">
 			<h1 class="programme-head__title"><?php echo $header;?></h1>
 			<a class="ico ico--detal pull-left data-tab-link" data-tab="detal" title="<?php echo lang('program_detal');?>" data-change="0"></a>
@@ -10,7 +12,7 @@
 
 		<div class="app clr">
 
-			<div class="programme-body programme-body--app tabs app-left">
+			<div class="programme-body programme-body--app tabs app-left<?php if ($tabsHide) echo ' programme-body--one-tab'; ?>">
 
 					<?php if(isset($_nav) && !empty($_nav)) echo $_nav; ?>
 

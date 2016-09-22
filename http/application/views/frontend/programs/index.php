@@ -25,10 +25,10 @@
 		<?php echo $this->load->view('frontend/_pagination', array('pagination'=>$pagination, 'action' => $action, 'category_list' => $category_list), TRUE);?>
 		<table class="table100 table100--list">
 			<?php if($items):?>
-			<thead>
+			<thead class="nowrap">
 				<tr>
 					<th class="hide"><?php echo lang('id');?></th>
-					<th class="bt0 bl0">
+					<th class="bt0 bl0" width="200">
 						<?php echo lang('name');?>
 						<a href="#" class="ico-mini ico-down sort-btn<?php echo (isset($sort) && isset($order) && $sort == 'asc' && $order == 'name') ? ' active' : '';?>" data-order="name" data-sort="asc"></a>
 						<a class="ico-mini ico-up sort-btn<?php echo (isset($sort) && isset($order) && $sort == 'desc' && $order == 'name') ? ' active' : '';?>" data-order="name" data-sort="desc"></a>

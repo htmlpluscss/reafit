@@ -130,7 +130,7 @@
 									<span class="input-placeholder__label"><?php echo lang('tab__name_title');?> <sup>*</sup></span>
 								</label>
 								<?php if ($this->router->method == 'add') { ?>
-								<a class="btn btn--gray mr-10 add-tab-form__btn add-tab-form__btn__only hide"><?php echo lang('not_tab');?></a>
+								<a class="btn btn--gray mr-10 add-tab-form__btn add-tab-form__btn__only"><?php echo lang('not_tab');?></a>
 								<?php } ?>
 								<a class="btn add-tab-form__btn"><?php echo lang('add_tab');?></a>
 							</div>

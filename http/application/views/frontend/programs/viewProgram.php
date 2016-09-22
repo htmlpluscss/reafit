@@ -1,5 +1,7 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
 
+	<?php $tabsHide = isset($tabs[0]) && $header==$tabs[0]->name && count($tabs)==1 ? true : false; ?>
+
 		<div class="programme-head">
 			<h1 class="programme-head__title"><?php echo $header;?></h1>
 			<div class="programme-head__icons">
@@ -8,7 +10,7 @@
 			<span class="programme-head__change-time"><?php echo lang('time_change'); // или так сегодня/вчера в 14:54?>: 14 июня 2016</span>
 		</div>
 
-		<div class="programme-body tabs app-left">
+		<div class="programme-body tabs app-left<?php if ($tabsHide) echo ' programme-body--one-tab'; ?>">
 
 				<?php if(isset($_nav) && !empty($_nav)) echo $_nav; ?>
 
@@ -46,6 +48,7 @@
 						<ul>
 							<?php if(!empty($tab->exercises)):?>
 							<?php foreach ($tab->exercises as $exercise_key => $exercise) :?>
+							<?php if($exercise) :?>
 							<li class="exercises-my__item">
 								<div class="programme-body__box clr">
 									<div class="popup-box">
@@ -110,6 +113,7 @@
 									</div>
 								</div>
 							</li>
+							<?php endif;?>
 							<?php endforeach;?>
 							<?php endif;?>
 						</ul>

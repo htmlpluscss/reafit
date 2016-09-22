@@ -1,5 +1,7 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
 
+	<?php $tabsHide = isset($tabs[0]) && $header==$tabs[0]->name && count($tabs)==1 ? true : false; ?>
+
 	<section>
 
 		<div class="programme-head">
@@ -7,7 +9,7 @@
 			<span class="programme-head__change-time"><?php echo lang('time_change'); // или так сегодня/вчера в 14:54?>: 14 июня 2016</span>
 		</div>
 
-		<div id="programme-body" class="programme-body programme-body--print">
+		<div id="programme-body" class="programme-body programme-body--print<?php if ($tabsHide) echo ' programme-body--one-tab'; ?>">
 
 			<?php if(isset($_nav) && !empty($_nav)) echo $_nav; ?>
 
@@ -30,7 +32,7 @@
 					<h2 class="programme-body__h2"><?php echo $tab->name;?></h2>
 
 					<?php foreach ($tab->exercises as $exercise_key => $exercise) : ?>
-
+					<?php if($exercise) :?>
 					<article class="programme-body__item">
 						<h2 class="programme-body__name">
 							<span class="programme-body__name-b"><?php echo $exercise_key + 1; ?>. <?php echo $exercise->name;?></span>
@@ -76,6 +78,7 @@
 						</div>
 					</article>
 
+					<?php endif;?>
 					<?php endforeach;?>
 
 					<a class="ico ico--hidden programme-body--print__group-toggle" title="<?php echo lang('hidden');?>"></a>

@@ -1,6 +1,10 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
 			<?php foreach ($exercises as $key => $exercise): ?>
+			<?php if($exercise):?>
 				<?php
+					if(!$type && $exercise->deleted == '1') {
+						continue;
+					}
 					$_progress = '';
 					if($exercise->progress) {
 						$_progress = array();
@@ -76,4 +80,5 @@
 					<div class="item-img_name"></div>
 				</li>
 				<?php endif;?>
+			<?php endif;?>
 			<?php endforeach ?>

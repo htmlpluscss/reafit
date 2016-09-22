@@ -1,6 +1,10 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
 			<?php foreach ($exercises as $key => $exercise): ?>
+			<?php if($exercise):?>
 				<?php
+					if(!$type && $exercise->deleted == '1') {
+						continue;
+					}
 					$class = (!empty($class)) ? $class : 'exercises-my__item l-h__width popup-box clr';
 					$_progress = '';
 					if($exercise->progress) {
@@ -32,9 +36,9 @@
 				<li class="exercises-my__item l-h__width clr popup-box" data-id="<?php echo $exercise->hash;?>">
 
 					<input type="hidden" name="<?php echo $type;?>[]" value="<?php echo $exercise->hash;?>" class="var__id">
-					<input type="hidden" name="<?php echo $type;?>[quantity][]" value="<?php if (isset($exercise->quantity)) echo $exercise->quantity;?>" class="var__quantity">
-					<input type="hidden" name="<?php echo $type;?>[approaches][]" value="<?php if (isset($exercise->approaches)) echo $exercise->approaches;?>" class="var__approaches">
-					<input type="hidden" name="<?php echo $type;?>[weight][]" value="<?php if (isset($exercise->weight)) echo $exercise->weight;?>" class="var__weight">
+					<input type="hidden" name="<?php echo $type;?>[quantity][]" value="<?php if (isset($exercise->quantity)&&$exercise->quantity!="0") echo $exercise->quantity;?>" class="var__quantity">
+					<input type="hidden" name="<?php echo $type;?>[approaches][]" value="<?php if (isset($exercise->approaches)&&$exercise->approaches!="0") echo $exercise->approaches;?>" class="var__approaches">
+					<input type="hidden" name="<?php echo $type;?>[weight][]" value="<?php if (isset($exercise->weight)&&$exercise->weight!="0") echo $exercise->weight;?>" class="var__weight">
 					<input type="hidden" name="<?php echo $type;?>[comment][]" value="<?php if (isset($exercise->comment)) echo $exercise->comment;?>" class="var__comment">
 
 					<div class="programme-body__box clr">
@@ -84,4 +88,5 @@
 					<div class="item-img_name"></div>
 <?php endif;?>
 				</li>
+			<?php endif;?>
 			<?php endforeach ?>

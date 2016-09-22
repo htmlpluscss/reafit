@@ -591,6 +591,7 @@ li:last-child .tabs__dt {
 }
 
 .app-right__item {
+	cursor: -webkit-grab;
 	cursor: grab;
 	margin: 0 20px 20px 0;
 	float: left;
@@ -718,9 +719,19 @@ li:last-child .tabs__dt {
 }
 
 
-/* view
+/* programme-body--one-tab
 -----------------------------------------------------------------------------*/
-
+.programme-body--one-tab .menu_app {
+	height: 66px;
+}
+.programme-body--one-tab .tabs__nav,
+.programme-body--one-tab .programme-body__h2,
+.programme-body--one-tab .programme-body--print__group-toggle {
+	display: none;
+}
+.programme-body--one-tab .l-h {
+	border-radius: 4px;
+}
 
 
 /* related & progress

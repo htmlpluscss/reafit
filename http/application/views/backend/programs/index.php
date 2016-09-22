@@ -56,7 +56,9 @@
 					<td>
 						<ul class="one-event">
 							<li><a class="ico-mini ico-edit" href="<?php echo site_url('admin/programs/'.$item->hash);?>"></a></li>
+<?php /*
 							<li><a class="ico-mini ico-delete one-event__delete" href="<?php echo site_url('admin/programs/delete/'.$item->hash.'?return=admin/programs');?>" data-text="<?php echo lang('delete_program');?>"></a></li>
+*/;?>
 							<li><a class="ico-mini ico-info one-event__detal"></a></li>
 							<li>
 								<?php if(!empty($item->video)):?>
