@@ -1,6 +1,10 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
 			<?php foreach ($exercises as $key => $exercise): ?>
+			<?php if($exercise):?>
 				<?php
+					if(!$type && $exercise->deleted == '1') {
+						continue;
+					}
 					$class = (!empty($class)) ? $class : 'exercises-my__item popup-box clr';
 					$_progress = '';
 					if($exercise->progress) {
@@ -64,4 +68,5 @@
 					<input type="hidden" name="<?php echo $type;?>[]" value="<?php echo $exercise->hash;?>" />
 					<?php endif;?>
 				</li>
+			<?php endif;?>
 			<?php endforeach ?>

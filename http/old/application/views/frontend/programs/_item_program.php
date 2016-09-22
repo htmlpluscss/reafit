@@ -8,7 +8,9 @@
 						foreach ($program->tabs as $key => $tab) {
 							if($tab->exercises) {
 								foreach ($tab->exercises as $key => $exercise) {
-									$_exercises[] = '#one-'.$exercise->hash;
+									if($exercise) {
+										$_exercises[] = '#one-'.$exercise->hash;
+									}
 								}
 							}
 						}

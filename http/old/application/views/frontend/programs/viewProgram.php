@@ -31,6 +31,7 @@
 				<ul class="l-h">
 					<?php if(!empty($tab->exercises)):?>
 					<?php foreach ($tab->exercises as $exercise_key => $exercise) :?>
+					<?php if($exercise) :?>
 					<li id="one-<?php echo $key.'-'.$exercise_key;?>" class="exercises-my__item popup-box clr" data-video="<?php echo $exercise->video;?>">
 						<span class="exercises-list__name"><?php echo $exercise->name;?>&nbsp;<span class="hide"><?php echo $exercise->name_desc;?></span></span>
 						<span class="exercises-list__img">
@@ -95,6 +96,7 @@
 							<?php endif;?>
 						</div>
 					</li>
+					<?php endif;?>
 					<?php endforeach;?>
 					<?php endif;?>
 				</ul>
