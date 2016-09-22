@@ -128,7 +128,7 @@ class Site extends MY_Controller {
 
 	public function error()
 	{
-
+		$this->output->set_status_header('404'); 
 		$settings = $this->settings_model->getValues(array('home_title', 'home_header', 'home_video', 'home_text', 'home_end_text'));
 
 		$data['header']   = lang('404_title');

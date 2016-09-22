@@ -209,8 +209,8 @@ class Programs extends MY_Controller {
         $data['program_exercises'] = (isset($exercises) && isset($exercises[1]['exercises']) && !empty($exercises[1]['exercises'])) ?  $this->exercises_model->getExercises($exercises[1]['exercises']) : array();
 
         $data['tags']              = $this->tags_model->getTagsAll();
-        $data['exercises']         = $this->findExercises(TRUE);
-        $data['total_exercises']   = count($data['exercises']);
+        $data['exercises']         = $this->findExercises(TRUE, null, null, null, true);
+        $data['total_exercises']   = count($this->findExercises(TRUE, null, null, null));
 
         $data['list_url']          = base_url('admin/programs');
 
@@ -227,7 +227,7 @@ class Programs extends MY_Controller {
     public function edit($hash) {
         $data =  array();
 
-        $old_data = $this->programs_model->getPrograms($hash);
+        $old_data = $this->programs_model->getPrograms($hash, false, true);
         if(!$old_data) {
             show_404();
         }
@@ -320,8 +320,8 @@ class Programs extends MY_Controller {
         $data['image']            = (!empty($old_data->image)) ? site_url('images/'.$old_data->image) : '';
 
         $data['tags']            = $this->tags_model->getTagsAll();
-        $data['exercises']       = $this->findExercises(TRUE, null, null, $old_data->id);
-        $data['total_exercises'] = count($data['exercises']);
+        $data['exercises']       = $this->findExercises(TRUE, null, null, $old_data->id, true);
+        $data['total_exercises'] = count($this->findExercises(TRUE, null, null, $old_data->id));
 
         if($this->user->id == $exercise_user) {
             $data['list_url'] = base_url('admin/programs');
@@ -456,7 +456,7 @@ class Programs extends MY_Controller {
     }
 
 
-    private function findExercises($all = false, $param = null, $tags = null, $exclude = null) {
+    private function findExercises($all = false, $param = null, $tags = null, $exclude = null, $deleted = false) {
 
         if($all) {
             $users = $this->user_model->getAdminId();
@@ -486,7 +486,7 @@ class Programs extends MY_Controller {
             $exclude = null;
         }
 
-        $results = $this->exercises_model->findExercises($users, (int) $this->user->id, $params, $tags, $exclude);
+        $results = $this->exercises_model->findExercises($users, (int) $this->user->id, $params, $tags, $exclude, $deleted);
 
         if($results) {
             return $results;
@@ -501,6 +501,7 @@ class Programs extends MY_Controller {
             $users = $this->user_model->getAdminId();
             if(!$this->user->is_admin) {
                 $users[] = $this->user->id;
+                //$users = null;
             }
         } else {
             $users = array($this->user->id);
