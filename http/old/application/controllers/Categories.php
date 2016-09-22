@@ -21,7 +21,7 @@ class Categories extends MY_Controller {
 
 		$this->load->library('pagination');
 
-		$data['title'] = lang('program_list_title');
+		$data['title'] = lang('categories_list_title');
 
         $search = $this->input->get('search');
         $search = trim($search);
