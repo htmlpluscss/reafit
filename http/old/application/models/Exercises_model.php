@@ -537,10 +537,13 @@ class Exercises_model extends CI_Model {
 
             if($results) {
                 foreach ($results as $key => $item) {
+                    $this->db->reset_query();
                     $this->db->set('order', (int) $key + 1);
+                    $this->db->where('id', $item->id);
                     $this->db->update($this->table);
                 }
             }
+
             $this->db->reset_query();
 
             $this->db->where('user_id', (int) $user);
@@ -562,6 +565,7 @@ class Exercises_model extends CI_Model {
 
             if($results) {
                 foreach ($results as $key => $item) {
+                    $this->db->reset_query();
                     $this->db->set('order', (int) $order + $key + 1);
                     $this->db->where('id', $item->id);
                     $this->db->update($this->table);
