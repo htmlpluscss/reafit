@@ -1,12 +1,12 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
-		<form class="pull-right input-block" action="<?php echo $action;?>" method="GET">
-			<input class="input pull-left input-block__first" name="search" value="<?php echo (!empty($search)) ? $search : '';?>">
+		<form class="pull-right" action="<?php echo $action;?>" method="GET">
+			<input class="input" name="search" value="<?php echo (!empty($search)) ? $search : '';?>">
 			<?php if(!empty($per_page) && isset($per_page_list[0]) && $per_page_list[0] != $per_page):?>
 			<input type="hidden" name="items" value="<?php echo $per_page;?>" />
 			<?php endif;?>
-			<label class="btn pull-left input-block__last"><?php echo lang('find');?><input type="submit" class="hide"></label>
+			<button type="submit" class="btn align-middle"><?php echo lang('find');?></button>
 			<?php if(!empty($search)):?>
-			<a class="btn pull-left ml-10 btn--gray btn--reset"><?php echo lang('clear');?></a>
+			<button type="reset" class="btn align-middle btn-search"><?php echo lang('clear');?></button>
 			<?php endif;?>
 		</form>
 
@@ -25,7 +25,6 @@
 
 		<?php echo $this->load->view('backend/_pagination', array('pagination'=>$pagination, 'action' => $action, 'per_page' => $per_page, 'search'=>$search), TRUE);?>
 		<table class="table100 table100--list">
-			<?php if($items):?>
 			<thead>
 				<tr>
 					<th class="col-hide-1"><?php echo lang('id');?></th>
@@ -42,6 +41,7 @@
 				</tr>
 			</thead>
 			<tbody>
+			<?php if($items):?>
 			<?php foreach ($items as $key => $item) :?>
 				<tr>
 					<td class="align-center"><?php echo $item->id;?></td>
@@ -81,18 +81,16 @@
 						<?php endif;?>
 					</td>
 					<td class="one-event one-event--line">
-						<a class="ico-mini ico-open" href="<?php echo base_url('admin/users/'.$item->url);?>" target="_blank"></a>
+						<a class="icon-folder-open-empty" href="<?php echo base_url('admin/users/'.$item->url);?>" target="_blank"></a>
 					</td>
 				</tr>
 			<?php endforeach;?>
-			</tbody>
 			<?php else:?>
-			<tbody>
 				<tr>
-					<td><?php echo lang('no_users');?></td>
+					<td colspan="11"><?php echo lang('no_users');?></td>
 				</tr>
-			</tbody>
 			<?php endif;?>
+			</tbody>
 		</table>
 
 		<?php echo $this->load->view('backend/_pagination', array('pagination'=>$pagination, 'action' => $action, 'per_page_list' => $per_page_list, 'per_page' => $per_page, 'search'=>$search), TRUE);?>

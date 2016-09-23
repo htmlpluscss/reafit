@@ -22,14 +22,13 @@
 			<label class="checkbox"><input type="checkbox" value="<?php echo $subtag->id;?>">- <?php echo $subtag->tag;?></label>
 			<?php endforeach;?>
 			<?php endif;?>
-			<?php if($colum == 3 && $tag->id == $last->id && !empty($filter_categories)):?>
-		</td>
-		<td>
+			<?php if($colum == 3 && $tag->id == $last->id):?>
 				<h3><?php echo lang('categories');?></h3>
-				<?php if(!empty($filter_categories)):?>
-					<?php foreach ($filter_categories as $c_key => $category) :?>
-						<label class="checkbox"><input type="checkbox" value="<?php echo $category;?>"><?php echo $category;?></label>
-					<?php endforeach;?>
+				<?php $categories = explode("\n", str_replace("\r\n", "\n", $this->settings->categories));?>
+				<?php if(!empty($categories)):?>
+				<?php foreach ($categories as $c_key => $category) :?>
+					<label class="checkbox"><input type="checkbox" value="<?php echo $category;?>"><?php echo $category;?></label>
+				<?php endforeach;?>
 				<?php endif;?>
 			<?php endif;?>
 	<?php if($colum != $tag->colum):?>

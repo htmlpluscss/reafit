@@ -1,10 +1,10 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
-		<article class="page page-login">
+		<article class="page-login">
 			<?php echo form_open('profile'); ?>
 				<h1><?php echo lang('profile_lbl');?></h1>
-				<label><?php echo lang('email');?> <sup>*</sup></label>
+				<label><?php echo lang('email');?> *</label>
 				<input name="mail" class="input" type="email" value="<?php echo (isset($mail) && !empty($mail)) ? $mail : '';?>" required="required">
-				<label><?php echo lang('password');?> <sup>*</sup></label>
+				<label><?php echo lang('password');?> *</label>
 				<input name="pass" class="input" type="password" value="<?php echo (isset($pass) && !empty($pass)) ? $pass : '';?>" required="required">
 				<label><?php echo lang('surname');?></label>
 				<input class="input" name="surname" value="<?php echo (isset($surname) && !empty($surname)) ? $surname : '';?>">
@@ -40,7 +40,7 @@
 				<label class="checkbox"><input type="checkbox" value="<?php echo $category;?>" name="params[categories][]"<?php echo (isset($params->categories) && in_array($category, $params->categories)) ? ' checked="cheked"' : ''; ?>><?php echo $category;?></label>
 				<?php endforeach;?>
 				<?php endif;?>
-				<p class="clr"><label class="btn pull-right"><?php echo lang('_save');?><input class="hide" type="submit"></label></p>
+				<p class="clr"><button class="btn pull-right" type="submit"><?php echo lang('_save');?></button></p>
 
 				<p><?php echo lang('profile_desc');?></p>
 

@@ -1,134 +1,109 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
+		<div class="app-left pull-left tabs app-left--view">
 
-	<?php $tabsHide = isset($tabs[0]) && $header==$tabs[0]->name && count($tabs)==1 ? true : false; ?>
-
-		<div class="programme-head">
-			<h1 class="programme-head__title"><?php echo $header;?></h1>
-			<div class="programme-head__icons">
-				<a class="ico ico--fullscreen app-fullscreen" title="<?php echo lang('fullscreen');?>"></a>
+			<div class="tabs__nav clr">
+					<ul>
+					<?php if(!empty($tabs)):?>
+					<?php foreach ($tabs as $key => $tab) :?>
+					<?php
+						$acces_val = true;
+						if(isset($params->access) && isset($params->access[$key])) {
+							$acces_val = (bool) $params->access[$key];
+						}
+					?>
+					<?php if($acces_val):?>
+						<li><span class="tabs__dt tabs__dt<?php if($key == 0) { echo ' tabs__dt--active';}?>" data-tab="<?php echo $key+1;?>"><?php echo $tab->name;?></span></li>
+					<?php endif;?>
+					<?php endforeach;?>
+					<?php endif;?>
+					</ul>
 			</div>
-			<span class="programme-head__change-time"><?php echo lang('time_change'); // или так сегодня/вчера в 14:54?>: 14 июня 2016</span>
-		</div>
-
-		<div class="programme-body tabs app-left<?php if ($tabsHide) echo ' programme-body--one-tab'; ?>">
-
-				<?php if(isset($_nav) && !empty($_nav)) echo $_nav; ?>
-
-				<div class="tabs__nav clr">
-					<div class="box">
-						<ul>
-						<?php if(!empty($tabs)):?>
-						<?php foreach ($tabs as $key => $tab) :?>
-						<?php
-							$acces_val = true;
-							if(isset($params->access) && isset($params->access[$key])) {
-								$acces_val = (bool) $params->access[$key];
-							}
-						?>
-						<?php if($acces_val):?>
-							<li<?php if($key == 0) echo ' class="tabs__li-first"';?>><span class="tabs__dt tabs__dt<?php if($key == 0) { echo ' tabs__dt--active';}?>" data-tab="<?php echo $key+1;?>"><?php echo $tab->name;?></span></li>
-						<?php endif;?>
-						<?php endforeach;?>
-						<?php endif;?>
-						</ul>
-					</div>
-				</div>
-				<?php if(!empty($tabs)):?>
-				<?php foreach ($tabs as $key => $tab) :?>
-				<?php
-					$acces_val = true;
-					if(isset($params->access) && isset($params->access[$key])) {
-						$acces_val = (bool) $params->access[$key];
-					}
-				?>
-				<?php if($acces_val):?>
-				<div class="tabs__dd tabs__dd--<?php echo $key + 1;?><?php if($key == 0) { echo ' tabs__dd--active';}?>">
-					<div class="l-h">
-					<div class="l-h__inner baron">
-						<ul>
-							<?php if(!empty($tab->exercises)):?>
-							<?php foreach ($tab->exercises as $exercise_key => $exercise) :?>
-							<?php if($exercise) :?>
-							<li class="exercises-my__item">
-								<div class="programme-body__box clr">
-									<div class="popup-box">
-										<div class="popup-hidden programme-body__box-head">
-											<div class="programme-body__box-name">
-												<span class="programme-body__box-title"><?php echo $exercise->name;?></span>
-												<?php echo $exercise->name_desc;?>
-											</div>
-											<div class="programme-body__box-icons">
-												<a class="ico ico--info popup__btn popup__btn--view"></a>
-												<?php if(!empty($exercise->video)):?>
-												<a class="ico ico--play play-video" data-video="<?php echo $exercise->video; ?>"></a>
-												<?php endif;?>
-											</div>
-										</div>
-										<div class="programme-img">
-											<?php if($exercise->image_1):?>
-											<img src="<?php echo site_url('images/'.$exercise->image_1);?>" alt="<?php echo $exercise->name;?>">
-											<?php endif;?>
-											<?php if($exercise->image_2):?>
-											<span class="popup-visible hide">
-												<img src="<?php echo site_url('images/'.$exercise->image_2);?>" alt="<?php echo $exercise->name;?>">
-											</span>
-											<?php endif;?>
-											<?php if($exercise->image_3):?>
-											<img src="<?php echo site_url('images/'.$exercise->image_3);?>" alt="<?php echo $exercise->name;?>">
-											<?php endif;?>
-										</div>
-										<div class="popup-hidden programme-body__detal">
-											<table class="programme-table">
-												<tr>
-													<th class="programme-table__th programme-table__bt0"><?php echo lang('times');?></th>
-													<td class="programme-table__td programme-table__bl0 programme-table__bt0"><?php echo $exercise->quantity;?></td>
-													<td class="programme-table__td programme-table__bt0 programme-table__td--coment" rowspan="3">
-														<div class="programme-table__td--coment-box">
-															<div class="programme-table__td--coment-inner">
-																<div class="programme-table__td--coment-b"><?php echo lang('coment');?></div>
-																<?php echo $exercise->comment;?>
-															</div>
-														</div>
-													</td>
-												</tr>
-												<tr>
-													<th class="programme-table__th programme-table__bg"><?php echo lang('approaches');?></th>
-													<td class="programme-table__td programme-table__bl0 programme-table__bg"><?php echo $exercise->approaches;?></td>
-												</tr>
-												<tr>
-													<th class="programme-table__th"><?php echo lang('weight');?></th>
-													<td class="programme-table__td programme-table__bl0"><?php echo $exercise->weight;?></td>
-												</tr>
-											</table>
-										</div>
-										<div class="popup-visible hide">
-											<div class="programme-description">
-												<p class="programme-body__name">
-													<span class="programme-body__name-b"><?php echo $exercise->name;?></span>
-													<?php echo $exercise->name_desc;?>
-												</p>
-												<?php echo $exercise->description;?>
-											</div>
-										</div>
+			<?php if(!empty($tabs)):?>
+			<?php foreach ($tabs as $key => $tab) :?>
+			<?php
+				$acces_val = true;
+				if(isset($params->access) && isset($params->access[$key])) {
+					$acces_val = (bool) $params->access[$key];
+				}
+			?>
+			<?php if($acces_val):?>
+			<div class="tabs__dd tabs__dd--<?php echo $key + 1;?><?php if($key == 0) { echo ' tabs__dd--active';}?>">
+				<ul class="l-h">
+					<?php if(!empty($tab->exercises)):?>
+					<?php foreach ($tab->exercises as $exercise_key => $exercise) :?>
+					<?php if($exercise) :?>
+					<li id="one-<?php echo $key.'-'.$exercise_key;?>" class="exercises-my__item popup-box clr" data-video="<?php echo $exercise->video;?>">
+						<span class="exercises-list__name"><?php echo $exercise->name;?>&nbsp;<span class="hide"><?php echo $exercise->name_desc;?></span></span>
+						<span class="exercises-list__img">
+							<?php if($exercise->image_1):?>
+							<img src="<?php echo site_url('images/'.$exercise->image_1);?>" alt="<?php echo $exercise->name;?>">
+							<?php endif;?>
+							<?php if($exercise->image_2):?>
+							<img src="<?php echo site_url('images/'.$exercise->image_2);?>" alt="<?php echo $exercise->name;?>">
+							<?php endif;?>
+							<?php if($exercise->image_3):?>
+							<img src="<?php echo site_url('images/'.$exercise->image_3);?>" alt="<?php echo $exercise->name;?>">
+							<?php endif;?>
+						</span>
+						<div class="exercises-list__item-detal clr">
+							<table>
+								<tr>
+									<th><?php echo lang('qty');?><br> <?php echo lang('times');?></th>
+									<th><?php echo lang('qty');?><br> <?php echo lang('approaches');?></th>
+									<th><?php echo lang('weight');?></th>
+								</tr>
+								<tr>
+									<td><span><?php echo $exercise->quantity;?></span></td>
+									<td><span><?php echo $exercise->approaches;?></span></td>
+									<td><span><?php echo $exercise->weight;?></span></td>
+								</tr>
+							</table>
+							<table>
+								<tr>
+									<th><?php echo lang('coment');?></th>
+								</tr>
+								<tr>
+									<td><span><?php echo $exercise->comment;?></span></td>
+								</tr>
+							</table>
+						</div>
+						<div class="hide">
+							<div class="popup-content--add">
+								<div class="exercises-list__item-desc">
+									<div class="exercises-list__item-detal-btn">
+										<a class="btn popup__close"><?php echo lang('close');?></a>
 									</div>
+									<div class="exercises-list__item-detal clr">
+										<?php if($exercise->image_1):?>
+										<img src="<?php echo site_url('images/'.$exercise->image_1);?>" alt="<?php echo $exercise->name;?>">
+										<?php endif;?>
+										<?php if($exercise->image_2):?>
+										<img src="<?php echo site_url('images/'.$exercise->image_2);?>" alt="<?php echo $exercise->name;?>">
+										<?php endif;?>
+										<?php if($exercise->image_3):?>
+										<img src="<?php echo site_url('images/'.$exercise->image_3);?>" alt="<?php echo $exercise->name;?>">
+										<?php endif;?>
+									</div>
+									<h3><?php echo $exercise->name;?></h3>
+									<?php echo $exercise->description;?>
 								</div>
-							</li>
-							<?php endif;?>
-							<?php endforeach;?>
-							<?php endif;?>
-						</ul>
-						<div class="baron__track">
-							<div class="baron__free">
-								<a class="baron__bar"></a>
 							</div>
 						</div>
-					</div>
-					</div>
-				</div>
-				<?php endif;?>
-				<?php endforeach;?>
-				<?php endif;?>
-
+						<div class="exercises-list-btn-block exercises-list-btn-block--one hide not-drop">
+							<a class="icon-info popup__btn exercise" data-popup="add"></a>
+							<?php if(!empty($exercise->video)):?>
+							<a class="icon-play play-video" data-popup="play"></a>
+							<?php endif;?>
+						</div>
+					</li>
+					<?php endif;?>
+					<?php endforeach;?>
+					<?php endif;?>
+				</ul>
+			</div>
+			<?php endif;?>
+			<?php endforeach;?>
+			<?php endif;?>
 		</div>
 
 		<ul class="hide icon-fullscreen">

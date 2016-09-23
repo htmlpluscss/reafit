@@ -19,6 +19,6 @@
 					<p><a class="btn popup--create__btn"><?php echo lang('create');?></a></p>
 				</form>
 			</div>
-			<a class="ico ico--close popup__close"></a>
+			<a class="icon-cancel-outline popup__close"></a>
 		</div>
 	</div>

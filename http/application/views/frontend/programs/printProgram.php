@@ -1,93 +1,80 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
-
-	<?php $tabsHide = isset($tabs[0]) && $header==$tabs[0]->name && count($tabs)==1 ? true : false; ?>
-
-	<section>
-
-		<div class="programme-head">
-			<h1 class="programme-head__title"><?php echo $header;?></h1>
-			<span class="programme-head__change-time"><?php echo lang('time_change'); // или так сегодня/вчера в 14:54?>: 14 июня 2016</span>
-		</div>
-
-		<div id="programme-body" class="programme-body programme-body--print<?php if ($tabsHide) echo ' programme-body--one-tab'; ?>">
-
-			<?php if(isset($_nav) && !empty($_nav)) echo $_nav; ?>
-
+		<div class="app-left pull-left tabs app-left--view">
 			<?php if(!empty($tabs)):?>
-
-			<?php foreach ($tabs as $key => $tab) :
-
-				$visible = false;
-				if( !empty($params->access) ) {
-					if( $params->access[$key] != 1 )
-						$visible = true;
+			<?php foreach ($tabs as $key => $tab) :?>
+			<div class="tabs__nav clr">
+				<ul>
+					<?php
+						$acces_val = true;
+						if(isset($params->access) && isset($params->access[$key])) {
+							$acces_val = (bool) $params->access[$key];
+						}
+					?>
+					<?php if($acces_val):?>
+					<li><span class="tabs__dt tabs__dt--active"><?php echo $tab->name;?></span></li>
+					<?php endif;?>
+				</ul>
+			</div>
+			<?php if(!empty($tab->exercises)):?>
+			<?php
+				$acces_val = true;
+				if(isset($params->access) && isset($params->access[$key])) {
+					$acces_val = (bool) $params->access[$key];
 				}
-
-				if( empty($tab->exercises) || $visible ) continue;
-
-				?>
-
-				<div class="programme-body--print__group">
-
-					<h2 class="programme-body__h2"><?php echo $tab->name;?></h2>
-
-					<?php foreach ($tab->exercises as $exercise_key => $exercise) : ?>
+			?>
+			<?php if($acces_val):?>
+			<div class="tabs__dd tabs__dd--active">
+				<ul class="l-h l-h--height-auto">
+					<?php foreach ($tab->exercises as $exercise_key => $exercise) :?>
 					<?php if($exercise) :?>
-					<article class="programme-body__item">
-						<h2 class="programme-body__name">
-							<span class="programme-body__name-b"><?php echo $exercise_key + 1; ?>. <?php echo $exercise->name;?></span>
-							<?php echo $exercise->name_desc;?>
-						</h2>
-						<div class="programme-body__box clr">
-							<div class="programme-img">
-								<?php if($exercise->image_1):?>
-								<img src="<?php echo site_url('images/'.$exercise->image_1);?>" alt="<?php echo $exercise->name;?>">
-								<?php endif;?>
-								<?php if($exercise->image_2):?>
-								<img src="<?php echo site_url('images/'.$exercise->image_2);?>" alt="<?php echo $exercise->name;?>">
-								<?php endif;?>
-								<?php if($exercise->image_3):?>
-								<img src="<?php echo site_url('images/'.$exercise->image_3);?>" alt="<?php echo $exercise->name;?>">
-								<?php endif;?>
-							</div>
-							<div class="programme-body__detal">
-								<table class="programme-table">
-									<tr>
-										<th class="programme-table__th programme-table__bt0"><?php echo lang('times');?></th>
-										<td class="programme-table__td programme-table__bl0 programme-table__bt0"><?php echo $exercise->quantity;?></td>
-										<td class="programme-table__td programme-table__bt0 programme-table__td--coment" rowspan="3">
-											<div class="programme-table__td--coment-box">
-												<div class="programme-table__td--coment-b"><?php echo lang('coment');?></div>
-												<?php echo $exercise->comment;?>
-											</div>
-										</td>
-									</tr>
-									<tr>
-										<th class="programme-table__th programme-table__bg"><?php echo lang('approaches');?></th>
-										<td class="programme-table__td programme-table__bl0 programme-table__bg"><?php echo $exercise->approaches;?></td>
-									</tr>
-									<tr>
-										<th class="programme-table__th"><?php echo lang('weight');?></th>
-										<td class="programme-table__td programme-table__bl0"><?php echo $exercise->weight;?></td>
-									</tr>
-								</table>
-							</div>
-							<div class="programme-description">
+					<li class="exercises-my__item popup-box clr">
+						<span class="exercises-list__name"><?php echo $exercise->name;?>&nbsp;<span class="hide"><?php echo $exercise->name_desc;?></span></span>
+						<span class="exercises-list__img">
+							<?php if($exercise->image_1):?>
+							<img src="<?php echo site_url('images/'.$exercise->image_1);?>" alt="<?php echo $exercise->name;?>">
+							<?php endif;?>
+							<?php if($exercise->image_2):?>
+							<img src="<?php echo site_url('images/'.$exercise->image_2);?>" alt="<?php echo $exercise->name;?>">
+							<?php endif;?>
+							<?php if($exercise->image_3):?>
+							<img src="<?php echo site_url('images/'.$exercise->image_3);?>" alt="<?php echo $exercise->name;?>">
+							<?php endif;?>
+						</span>
+						<div class="exercises-list__item-detal clr">
+							<table>
+								<tr>
+									<th><?php echo lang('qty');?><br> <?php echo lang('times');?></th>
+									<th><?php echo lang('qty');?><br> <?php echo lang('approaches');?></th>
+									<th><?php echo lang('weight');?></th>
+								</tr>
+								<tr>
+									<td><span><?php echo $exercise->quantity;?></span></td>
+									<td><span><?php echo $exercise->approaches;?></span></td>
+									<td><span><?php echo $exercise->weight;?></span></td>
+								</tr>
+							</table>
+							<table>
+								<tr>
+									<th><?php echo lang('coment');?></th>
+								</tr>
+								<tr>
+									<td><span><?php echo $exercise->comment;?></span></td>
+								</tr>
+							</table>
+						</div>
+						<div class="popup-content--add">
+							<div class="exercises-list__item-desc">
+								<h3><?php echo $exercise->name;?></h3>
 								<?php echo $exercise->description;?>
 							</div>
 						</div>
-					</article>
-
+					</li>
 					<?php endif;?>
 					<?php endforeach;?>
-
-					<a class="ico ico--hidden programme-body--print__group-toggle" title="<?php echo lang('hidden');?>"></a>
-					<a class="ico ico--visible programme-body--print__group-toggle" title="<?php echo lang('visible');?>"></a>
-
-				</div>
+				</ul>
+			</div>
+			<?php endif;?>
+			<?php endif;?>
 			<?php endforeach;?>
 			<?php endif;?>
-
 		</div>
-
-	</section>

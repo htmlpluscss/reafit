@@ -53,8 +53,8 @@ http://htmlpluscss.ru
 			if(input.val()!=""){
 				var tag = input.val();
 				li.text(tag);
-				li.append('<a class="ico-mini ico-delete"></a>');
-				li.append('<input type="hidden" name="tag['+group+'][][new]" value="'+tag+'">');
+				li.append('<a class="icon-trash"></a>');
+				li.append('<input type="hidden" name="tag['+group+'][][new]" value="'+tag+'" />');
 				input.next().prepend(li);
 			}
 			input.remove();

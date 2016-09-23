@@ -1,105 +1,30 @@
+body {
+	overflow: auto;
+	opacity: 1
+}
+.exercises-list__item-detal {
+	margin-top: 20px;
+}
+.popup-content--add {
+	margin-top: 10px;
+}
+.tabs__dt--active {
+	font-weight: 700;
+	font-size: 18px;
+}
+.tabs__dd--active {
+	margin-bottom: 30px;
+}
 .menu_top {
 	display: none;
 }
 
 @media print {
-
 	body {
-		min-width: initial;
-		background: #fff;
+		min-width: inherit;
 	}
-	#header,
-	#footer,
-	.menu_app,
-	.ico,
-	.title_up,
-	.programme-body--print__group-hidden {
-		display: none !important;
+	footer,
+	.menu_app {
+		display: none;
 	}
-	.center {
-		width: auto;
-	}
-	#main {
-		padding: 0;
-	}
-	.programme-head {
-		background: #fff;
-		color: #000;
-	}
-	.programme-head__title {
-		font-weight: 700;
-		float: none;
-		margin: auto;
-		text-align: center;
-	}
-	.programme-body {
-		padding: 0;
-	}
-	.programme-body__item {
-		padding: 0 0 14px 14px;
-	}
-	.programme-body--print__group{
-		border: 0;
-		background: #fff;
-		page-break-inside: avoid
-	}
-	.programme-body--print__group:nth-of-type(1){
-		page-break-inside: initial;
-	}
-	.programme-body__h2 {
-		background: #fff;
-		border: 0;
-		color: #000;
-		font-size: 18px;
-		font-weight: 700;
-		padding: 12px 0;
-	}
-	.programme-body__box {
-		border: 0;
-	}
-	.programme-body__name {
-		color: #000;
-		padding-bottom: 5px;
-	}
-	.programme-img {
-		margin-right: 10px;
-	}
-	.programme-body--print .programme-body__detal {
-		width: 50%;
-	}
-	.programme-description {
-		padding: 10px 10px 0;
-		border-top: 0;
-	}
-	.programme-description p {
-		font-size: 14px;
-		line-height: 18px;
-		margin-bottom: 16px;
-	}
-	.programme-table__th,
-	.programme-table__td {
-		width: 30px;
-		text-align: center;
-		padding: 0 8px;
-		font-size: 10px;
-		border: 1px solid #000
-	}
-	.programme-table__th {
-		width: 100px;
-		text-align: left;
-	}
-	.programme-table__td--coment {
-		text-align: left;
-		font-size: 12px;
-		line-height: 13px;
-		padding: 0;
-		width: 200px;
-	}
-	.programme-body--print .programme-table__td--coment-box {
-		padding: 8px;
-	}
-	.programme-table__bg {
-		background: #fff;
-	}
-
 }

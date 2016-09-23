@@ -23,8 +23,6 @@
 			<?php endforeach;?>
 			<?php endif;?>
 			<?php if($colum == 3 && $tag->id == $last->id && !empty($filter_categories)):?>
-		</td>
-		<td>
 				<h3><?php echo lang('categories');?></h3>
 				<?php if(!empty($filter_categories)):?>
 					<?php foreach ($filter_categories as $c_key => $category) :?>

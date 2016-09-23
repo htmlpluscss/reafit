@@ -2,6 +2,6 @@
 	<div class="popup popup--save show">
 		<div class="popup__box">
 			<div class="popup__body"><?php echo lang('saved');?></div>
-			<a class="ico ico--close popup__close"></a>
+			<a class="icon-cancel-outline popup__close"></a>
 		</div>
 	</div>

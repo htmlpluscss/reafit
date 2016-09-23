@@ -1,12 +1,12 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
-		<form class="pull-right input-block" action="<?php echo $action;?>" method="GET">
-			<input class="input pull-left input-block__first" name="search" value="<?php echo (!empty($search)) ? $search : '';?>">
+		<form class="pull-right" action="<?php echo $action;?>" method="GET">
+			<input class="input" name="search" value="<?php echo (!empty($search)) ? $search : '';?>">
 			<?php if(!empty($per_page) && isset($per_page_list[0]) && !empty($per_page_list[0])):?>
 			<input type="hidden" name="items" value="<?php echo $per_page;?>" />
 			<?php endif;?>
-			<label class="btn pull-left input-block__last"><?php echo lang('find');?><input type="submit" class="hide"></label>
+			<button type="submit" class="btn align-middle"><?php echo lang('find');?></button>
 			<?php if(!empty($search)):?>
-			<a class="btn pull-left ml-10 btn--gray btn--reset"><?php echo lang('clear');?></a>
+			<button type="reset" class="btn align-middle btn-search"><?php echo lang('clear');?></button>
 			<?php endif;?>
 		</form>
 
@@ -18,7 +18,6 @@
 
 		<?php echo $this->load->view('backend/_pagination', array('pagination'=>$pagination, 'action' => $action, 'per_page' => $per_page, 'search'=>$search), TRUE);?>
 		<table class="table100 table100--list">
-			<?php if($items):?>
 			<thead>
 				<tr>
 					<th class="col-hide-1"><?php echo lang('id');?></th>
@@ -29,6 +28,7 @@
 				</tr>
 			</thead>
 			<tbody>
+			<?php if($items):?>
 			<?php foreach ($items as $key => $item) :?>
 				<tr>
 					<td class="align-center"><?php echo $item->id;?></td>
@@ -51,23 +51,21 @@
 					</td>
 					<td>
 						<ul class="one-event">
-							<li><a class="ico-mini ico-edit" href="<?php echo site_url('admin/programs/'.$item->hash);?>"></a></li>
-							<li><a class="ico-mini ico-delete one-event__delete" href="<?php echo site_url('admin/programs/delete/'.$item->hash.'?return=admin/programs/users');?>" data-text="<?php echo lang('delete_program');?>"></a></li>
-							<li><a class="ico-mini ico-info one-event__detal"></a></li>
-							<li><a class="ico-mini ico-link" target="_blank" href="<?php echo site_url($item->hash);?>"></a></li>
+							<li><a class="icon-edit" href="<?php echo site_url('admin/programs/'.$item->hash);?>"></a></li>
+							<li><a class="icon-trash-empty one-event__delete" href="<?php echo site_url('admin/programs/delete/'.$item->hash.'?return=admin/programs/users');?>" data-text="<?php echo lang('delete_program');?>"></a></li>
+							<li><a class="icon-info one-event__detal"></a></li>
+							<li><a class="icon-link" target="_blank" href="<?php echo site_url($item->hash);?>"></a></li>
 						</ul>
 						<?php echo $this->load->view('backend/'.$this->router->class.'/_item_detail_program', array('exercise'=>$item), TRUE);?>
 					</td>
 				</tr>
 			<?php endforeach;?>
-			</tbody>
 			<?php else:?>
-			<tbody>
 				<tr>
-					<td><?php echo lang('no_programs');?></td>
+					<td colspan="5"><?php echo lang('no_programs');?></td>
 				</tr>
-			</tbody>
 			<?php endif;?>
+			</tbody>
 		</table>
 
 		<?php echo $this->load->view('backend/_pagination', array('pagination'=>$pagination, 'action' => $action, 'per_page_list' => $per_page_list, 'per_page' => $per_page, 'search'=>$search), TRUE);?>

@@ -1,6 +1,6 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
 	<?php if(!$this->user):?>
-		<article class="page">
+		<article>
 			<?php if(!empty($header)):?>
 			<h1><?php echo $header;?></h1>
 			<?php endif;?>
@@ -18,84 +18,57 @@
 			<?php endif;?>
 		</article>
 	<?php else:?>
-		<article class="page users-stat">
+		<article class="users-stat">
 			<?php if(!empty($header)):?>
-			<h1><?php //echo $header;?></h1>
+			<h1><?php echo $header;?></h1>
 			<?php endif;?>
 
-			<table>
-				<tr>
-					<td>
-						<?php if(!empty($last_programs)):?>
-						<h3><?php echo lang('last_10_programs');?>:</h3>
-						<ul>
-							<?php foreach ($last_programs as $key => $program) :?>
-							<li>
-								<a href="<?php echo base_url('programs/'.$program->hash);?>"><?php echo $program->name;?></a>
-							</li>
-							<?php endforeach;?>
-						</ul>
-						<?php endif;?>
-					</td>
-					<td>
-						<?php if(!empty($last_exercises) && false):?>
-						<h3><?php echo lang('last_10_exercises');?>:</h3>
-						<ul>
-							<?php foreach ($last_exercises as $key => $exercise) :?>
-							<li>
-								<a href="<?php echo base_url('exercises/'.$exercise->hash);?>"><?php echo $exercise->name;?></a>
-							</li>
-							<?php endforeach;?>
-						</ul>
-						<?php endif;?>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<a class="users-stat__screenshot" href="<?php echo site_url('programs/add');?>">
-							<span class="users-stat__screenshot-text"><?php echo lang('main_add_prog');?></span>
-							<img src="assets/images/add-app.png" width="460" alt="">
-						</a>
-						<?php if($add_prog):?>
-						<?php echo $add_prog;?>
-						<?php endif;?>
-					</td>
-					<td>
-						<a class="users-stat__screenshot" href="<?php echo site_url('programs');?>">
-							<span class="users-stat__screenshot-text"><?php echo lang('main_open_prog');?></span>
-							<img src="assets/images/edit-app.png" width="460" alt="">
-						</a>
-						<?php if($open_prog):?>
-						<?php echo $open_prog;?>
-						<?php endif;?>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<a class="users-stat__screenshot" href="<?php echo site_url('exercises/add');?>">
-							<span class="users-stat__screenshot-text"><?php echo lang('main_add_app');?></span>
-							<img src="assets/images/add-item.png" width="460" alt="">
-						</a>
-						<?php if($add_app):?>
-						<?php echo $add_app;?>
-						<?php endif;?>
-					</td>
-					<td>
-						<a class="users-stat__screenshot" href="<?php echo site_url('exercises');?>">
-							<span class="users-stat__screenshot-text"><?php echo lang('main_open_app');?></span>
-							<img src="assets/images/edit-item.png" width="460" alt="">
-						</a>
-						<?php if($open_app):?>
-						<?php echo $open_app;?>
-						<?php endif;?>
-					</td>
-				</tr>
-			</table>
-
 			<ul>
-				<li><?php echo lang('total_users_programs');?>: <a style="padding-left:5px" href="<?php echo site_url('programs');?>"><?php echo $users_programs;?></a></li>
-				<li><?php echo lang('total_users_exercises');?>: <?php echo 0//$users_exercises;?></li>
+				<li><?php echo lang('total_users_programs');?>: <?php echo $users_programs;?></li>
+				<li><?php echo lang('total_users_exercises');?>: <?php echo $users_exercises;?></li>
 			</ul>
+
+			<span><?php echo lang('last_10_programs');?>:</span>
+			<?php if(!empty($last_programs)):?>
+			<ul>
+				<?php foreach ($last_programs as $key => $program) :?>
+				<li>
+					<a href="<?php echo base_url('programs/'.$program->hash);?>"><?php echo $program->name;?></a>
+				</li>
+				<?php endforeach;?>
+			</ul>
+			<?php endif;?>
+
+			<span><?php echo lang('last_10_exercises');?>:</span>
+			<?php if(!empty($last_exercises)):?>
+			<ul>
+				<?php foreach ($last_exercises as $key => $exercise) :?>
+				<li>
+					<a href="<?php echo base_url('exercises/'.$exercise->hash);?>"><?php echo $exercise->name;?></a>
+				</li>
+				<?php endforeach;?>
+			</ul>
+			<?php endif;?>
+
+			<h2><a href="<?php echo site_url('programs/add');?>"><?php echo lang('main_add_prog');?> <span class="icon-right-big"></span></a></h2>
+			<?php if($add_prog):?>
+			<?php echo $add_prog;?>
+			<?php endif;?>
+
+			<h2><a href="<?php echo site_url('programs');?>"><?php echo lang('main_open_prog');?> <span class="icon-right-big"></span></a></h2>
+			<?php if($open_prog):?>
+			<?php echo $open_prog;?>
+			<?php endif;?>
+
+			<h2><a href="<?php echo site_url('exercises/add');?>"><?php echo lang('main_add_app');?> <span class="icon-right-big"></span></a></h2>
+			<?php if($add_app):?>
+			<?php echo $add_app;?>
+			<?php endif;?>
+
+			<h2><a href="<?php echo site_url('exercises');?>"><?php echo lang('main_open_app');?> <span class="icon-right-big"></span></a></h2>
+			<?php if($open_app):?>
+			<?php echo $open_app;?>
+			<?php endif;?>
 
 		</article>
 	<?php endif;?>
