@@ -1,0 +1,35 @@
+header, main, footer {
+	max-width:95%;
+}
+.col-hide .checkbox{
+	margin-right: 12px;
+	padding-left: 20px;
+}
+
+.list-tags,
+.add-one-form {
+	width: 500px;
+	margin: auto;
+}
+.add-one-form .input{
+	display: block;
+	width: 100%;
+}
+.list-tags h3,
+.add-one-form h3{
+	margin-top: 20px;
+}
+.add-one-form label,
+.list-tags label{
+	display: block;
+}
+
+.sort-remove__placeholder {
+	height: 22px;
+	background: #ccc
+}
+
+.table100--list__item {
+	text-align: center;
+	width: 50px;
+}
