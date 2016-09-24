@@ -272,3 +272,4 @@ $lang['msg_send_email']         = 'Вы не заполнили поле E-mail,
 $lang['add_set_in_program']     = 'Добавить набор упражнений в программу';
 $lang['time_change']            = 'изменено';
 $lang['not_tab']                = 'Без вкладок';
+$lang['categories_list_title']  = 'Список категорий';

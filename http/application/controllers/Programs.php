@@ -213,7 +213,7 @@ class Programs extends MY_Controller {
             redirect(base_url('admin/programs/'.$hash));
         }
 
-        $old_data = $this->programs_model->getPrograms($hash);
+        $old_data = $this->programs_model->getPrograms($hash, false, true);
         if(!$old_data) {
             show_404();
         }
@@ -435,7 +435,7 @@ class Programs extends MY_Controller {
         if(!empty($hash)) {
             $pdf = null;
 
-            $old_data = $this->programs_model->getPrograms($hash);
+            $old_data = $this->programs_model->getPrograms($hash, false, true);
             $data = array();
 
             $data['title']             = $old_data->name;
@@ -489,7 +489,7 @@ class Programs extends MY_Controller {
     public function viewProgram($hash) {
         $data =  array();
 
-        $old_data = $this->programs_model->getPrograms($hash);
+        $old_data = $this->programs_model->getPrograms($hash, false, true);
         if(!$old_data) {
             show_404();
         }
@@ -515,7 +515,7 @@ class Programs extends MY_Controller {
     public function printProgram($hash) {
         $data =  array();
 
-        $old_data = $this->programs_model->getPrograms($hash);
+        $old_data = $this->programs_model->getPrograms($hash, false, true);
         if(!$old_data) {
             show_404();
         }

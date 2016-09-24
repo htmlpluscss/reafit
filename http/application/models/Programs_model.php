@@ -91,7 +91,7 @@ class Programs_model extends CI_Model {
         }
     }
 
-    public function getPrograms($id, $deleted = false) {
+    public function getPrograms($id, $deleted = false, $deleted_exercises = false) {
         if($id) {
             if(is_array($id)) {
                 $this->db->select('a.*');
@@ -135,7 +135,7 @@ class Programs_model extends CI_Model {
                 $query = $this->db->get($this->table.' AS a', 0, 1);
                 $result = $query->row();
                 if($result) {
-                    $result->tabs  = $this->getTabs($result->id);
+                    $result->tabs  = $this->getTabs($result->id, false, $deleted_exercises);
                     return $result;
                 } else {
                     return false;
@@ -217,6 +217,7 @@ class Programs_model extends CI_Model {
     public function setTabs($program_id, $user_id, $data) {
         if($program_id && $user_id && $data) {
             $tab_list = $this->getTabsArray($program_id);
+
             foreach ($data as $key => $tab_data) {
                 $type = preg_match('#^[0-9a-f]{32}$#', $key);
                 if($type) {
@@ -296,7 +297,7 @@ class Programs_model extends CI_Model {
         }
     }
 
-    public function getTabs($program_id, $users = false) {
+    public function getTabs($program_id, $users = false, $deleted_exercises = false) {
         if($program_id) {
             $results = array();
             $this->db->select('id');
@@ -309,7 +310,7 @@ class Programs_model extends CI_Model {
             if($result) {
 
                 foreach ($result as $key => $value) {
-                    $result[$key]->exercises = $this->getTabExercises($program_id, $value->id, $users);
+                    $result[$key]->exercises = $this->getTabExercises($program_id, $value->id, $users, $deleted_exercises);
                 }
                 return $result;
             } else {
@@ -342,7 +343,7 @@ class Programs_model extends CI_Model {
         }
     }
 
-    public function getTabExercises($program_id, $tab_id, $users = false) {
+    public function getTabExercises($program_id, $tab_id, $users = false, $deleted_exercises = false) {
         if($program_id && $tab_id) {
             $results = array();
             $this->db->select('*');
@@ -362,9 +363,9 @@ class Programs_model extends CI_Model {
                             'comment'     => $value->comment
                         );
                     if($users) {
-                        $results[] = $this->exercises_model->getExercises($value->exercise_id, $users, false, $additional);
+                        $results[] = $this->exercises_model->getExercises($value->exercise_id, $users, $deleted_exercises, $additional);
                     } else {
-                        $results[] = $this->exercises_model->getExercises($value->exercise_id, false, false, $additional);
+                        $results[] = $this->exercises_model->getExercises($value->exercise_id, false, $deleted_exercises, $additional);
                     }
                 }
                 return $results;
@@ -383,14 +384,26 @@ class Programs_model extends CI_Model {
             $delete_data = array();
 
             $order = 0;
+            $exclude_relation_id = array();
 
             $all_data = $this->getTabExercisesArray($program_id, $tab_id);
+
             foreach ($data as $key => $hash) {
                 if(!is_array($hash)){
                     $exercise_id = $this->exercises_model->getExerciseByHash($hash);
-                    if(is_array($all_data) && in_array($exercise_id, $all_data) && $exercise_id) {
+                    $__exclude_id = $this->getProgramsExercisesRelationID($program_id, $exercise_id, $tab_id, $exclude_relation_id);
+                    if($__exclude_id) {
+                        $__exclude_id = reset($__exclude_id);
+                        $__exclude_id = (int) $__exclude_id->id;
+                    } else {
+                        $__exclude_id = false;
+                    }
+                    
+                    if(is_array($all_data) && in_array($exercise_id, $all_data) && $exercise_id && $__exclude_id) {
                         $order++;
-                        $update_data[] = array(
+                        if($__exclude_id) {
+                            $update_data[] = array(
+                                'id'          => $__exclude_id,
                                 'program_id'  => (int) $program_id,
                                 'tab_id'      => (int) $tab_id,
                                 'exercise_id' => (int) $exercise_id,
@@ -400,6 +413,20 @@ class Programs_model extends CI_Model {
                                 'weight'      => (float) $data['weight'][$key],
                                 'comment'     => $data['comment'][$key]
                             );
+                            $exclude_relation_id[] = $__exclude_id;
+                        } else {
+                            $update_data[] = array(
+                                'program_id'  => (int) $program_id,
+                                'tab_id'      => (int) $tab_id,
+                                'exercise_id' => (int) $exercise_id,
+                                'order'       => $order,
+                                'quantity'    => (int) $data['quantity'][$key],
+                                'approaches'  => (int) $data['approaches'][$key],
+                                'weight'      => (float) $data['weight'][$key],
+                                'comment'     => $data['comment'][$key]
+                            );
+                        }
+                        
                         if(($_key = array_search($exercise_id, $all_data)) !== false) {
                             unset($all_data[$_key]);
                         }
@@ -420,6 +447,7 @@ class Programs_model extends CI_Model {
                     }
                 }
             }
+
             if(!empty($all_data)) {
                 foreach ($all_data as $key => $exercise_id) {
                     $this->db->reset_query();
@@ -427,6 +455,9 @@ class Programs_model extends CI_Model {
                         $this->db->where('program_id', (int) $program_id);
                         $this->db->where('tab_id', (int) $tab_id);
                         $this->db->where('exercise_id', (int) $exercise_id);
+                        if(!empty($exclude_relation_id)) {
+                            $this->db->where_not_in('id', $exclude_relation_id);
+                        }
                         $this->db->delete($this->exercise_links_table);
                     }
                 }
@@ -438,9 +469,17 @@ class Programs_model extends CI_Model {
                     $this->db->set('approaches', $value['approaches']);
                     $this->db->set('weight', $value['weight']);
                     $this->db->set('comment', $value['comment']);
-                    $this->db->where('program_id', (int) $value['program_id']);
-                    $this->db->where('tab_id', (int) $value['tab_id']);
-                    $this->db->where('exercise_id', (int) $value['exercise_id']);
+                    if(isset($value['id']) && !empty($value['id'])) {
+                        $this->db->where('id', $value['id']);
+                    } else {
+                        $this->db->where(
+                            array(
+                                'program_id' => $value['program_id'],
+                                'tab_id' => $value['tab_id'],
+                                'exercise_id' => $value['exercise_id']
+                            )
+                        );
+                    }
                     $this->db->update($this->exercise_links_table);
                 }
             }
@@ -460,7 +499,7 @@ class Programs_model extends CI_Model {
     }
 
     public function findPrograms($users, $user = null, $params = array(), $tags = array(), $exclude = null, $deleted = false, $exclude_category = false) {
-        if($users) {
+        //if($users) {
             $this->db->select('e.*');
             $this->db->select('e.id AS id');
             $this->db->select('e.id AS tabs');
@@ -469,8 +508,10 @@ class Programs_model extends CI_Model {
             if(!$deleted) {
                 $this->db->where('e.deleted', 0);
             }
-            $this->db->where_in('e.user_id', $users);
-            $this->db->join($this->users_table.' AS u', 'user_id = u.id', 'left');
+            if(!empty($users)) {
+                $this->db->where_in('e.user_id', $users);
+                $this->db->join($this->users_table.' AS u', 'user_id = u.id', 'left');
+            }
             if(!empty($user)) {
                 $this->db->select('f.user_id AS favorite');
                 $this->db->join($this->favorite_table.' AS f', 'f.program_id = e.id AND f.user_id = '.(int)$user, 'left');
@@ -494,7 +535,7 @@ class Programs_model extends CI_Model {
             }
             if(!empty($params)) {
                 $first = true;
-                $keys = array('name', 'description');
+                $keys = array('name', 'description', 'hash');
                 foreach ($params as $key => $param) {
                     if(in_array($key, $keys)) {
                         if($first) {
@@ -529,9 +570,9 @@ class Programs_model extends CI_Model {
             } else {
                 return false;
             }
-        } else {
+        /*} else {
             return false;
-        }
+        }*/
     }
 
     public function getLastNum($user, $deleted = false) {
@@ -571,6 +612,7 @@ class Programs_model extends CI_Model {
 
             if($results) {
                 foreach ($results as $key => $item) {
+                    $this->db->reset_query();
                     $this->db->set('order', (int) $key + 1);
                     $this->db->where('id', $item->id);
                     $this->db->update($this->table);
@@ -597,6 +639,7 @@ class Programs_model extends CI_Model {
 
             if($results) {
                 foreach ($results as $key => $item) {
+                    $this->db->reset_query();
                     $this->db->set('order', (int) $order + $key + 1);
                     $this->db->where('id', $item->id);
                     $this->db->update($this->table);
@@ -668,7 +711,7 @@ class Programs_model extends CI_Model {
             }
             if(!empty($params)) {
                 $first = true;
-                $keys = array('name', 'description');
+                $keys = array('name', 'description', 'hash');
                 $this->db->group_start();
                 foreach ($params as $key => $param) {
                     if(in_array($key, $keys)) {
@@ -769,7 +812,7 @@ class Programs_model extends CI_Model {
 
             if(!empty($params)) {
                 $first = true;
-                $keys = array('name', 'description');
+                $keys = array('name', 'description', 'hash');
                 $this->db->group_start();
                 foreach ($params as $key => $param) {
                     if(in_array($key, $keys)) {
@@ -1077,4 +1120,17 @@ class Programs_model extends CI_Model {
         }
     }
 
+    public function getProgramsExercisesRelationID($program_id, $exercise_id, $tab_id, $exclude_id = array()) {
+
+        $this->db->where(array(
+                'program_id' => $program_id,
+                'exercise_id' => $exercise_id,
+                'tab_id' => $tab_id
+            )
+        );
+        if(is_array($exclude_id) && !empty($exclude_id)) {
+            $this->db->where_not_in('id', $exclude_id);
+        }
+        return $this->db->get($this->exercise_links_table)->result();
+    }
 }

@@ -263,39 +263,65 @@ class Exercises_model extends CI_Model {
 
             $order_data = $data;
 
+            $__exclude_id = array();
+            $insert_data = array();
+            $update_data = array();
+            $delete_data = array();
+
             if($query->num_rows() != 0) {
                 $_exist = array();
                 $_result = $query->result();
-                foreach ($_result as $key => $related) {
-                    if(!in_array($related->{$type.'_id'}, $data)) {
-                        $this->db->where('id', $related->id);
-                        $this->db->delete($this->{$type . '_links_table'});
-                    } else {
-                        $_exist[] = $related->{$type.'_id'};
-                    }
-                }
-                $insert_data = array();
+
                 foreach ($data as $key => $related) {
-                   if(!in_array($related, $_exist)) {
+                    $__item_id = $this->getExercisesRelationID($type, $exercise_id, (int) $related, $__exclude_id);
+                    if($__item_id) {
+                        $__item_id = reset($__item_id);
+                        $__item_id = (int) $__item_id->id;
+
+                        $__exclude_id[] = $__item_id;
+                        $update_data[] = array(
+                            'id'    => $__item_id,
+                            'order' => (int) $key + 1
+                        );
+                        foreach ($_result as $_key => $item) {
+                            if($item->id == $__item_id) {
+                                unset($_result[$_key]);
+                            }
+                        }
+                    } else {
+                        $__item_id = false;
                         $insert_data[] = array(
                             'exercise_id' => $exercise_id,
                             $type.'_id'   => (int) $related,
                             'order'       => (int) $key + 1
                         );
-                   }
+                    }
+
+                }
+
+                if(!empty($_result)) {
+                    foreach ($_result as $key => $_item) {
+                        $delete_data[] = $_item->id;
+                    }
+                }
+
+                if(!empty($delete_data)) {
+                    foreach ($delete_data as $key => $item) {
+                        $this->db->where('id', $item);
+                        $this->db->delete($this->{$type . '_links_table'});
+                    }
+                }
+
+                if(!empty($update_data)) {
+                    foreach ($update_data as $key => $value) {
+                        $this->db->set('order', (int) $value['order']);
+                        $this->db->where('id', $value['id']);
+                        $this->db->update($this->{$type . '_links_table'});
+                    }
                 }
 
                 if(!empty($insert_data)) {
-                    $result = $this->db->insert_batch($this->{$type . '_links_table'}, $insert_data);
-                    if($result) {
-                        $this->setRelationsOrder($exercise_id, $order_data, $type);
-                        return true;
-                    } else {
-                        return false;
-                    }
-                } else {
-                    $this->setRelationsOrder($exercise_id, $order_data, $type);
-                    return false;
+                    $this->db->insert_batch($this->{$type . '_links_table'}, $insert_data);
                 }
 
             } else {
@@ -431,7 +457,7 @@ class Exercises_model extends CI_Model {
             }
             if(!empty($params)) {
                 $first = true;
-                $keys = array('name', 'name_desc', 'description');
+                $keys = array('name', 'name_desc', 'description', 'hash');
                 foreach ($params as $key => $param) {
                     if(in_array($key, $keys)) {
                         if($first) {
@@ -511,10 +537,13 @@ class Exercises_model extends CI_Model {
 
             if($results) {
                 foreach ($results as $key => $item) {
+                    $this->db->reset_query();
                     $this->db->set('order', (int) $key + 1);
+                    $this->db->where('id', $item->id);
                     $this->db->update($this->table);
                 }
             }
+
             $this->db->reset_query();
 
             $this->db->where('user_id', (int) $user);
@@ -536,6 +565,7 @@ class Exercises_model extends CI_Model {
 
             if($results) {
                 foreach ($results as $key => $item) {
+                    $this->db->reset_query();
                     $this->db->set('order', (int) $order + $key + 1);
                     $this->db->where('id', $item->id);
                     $this->db->update($this->table);
@@ -649,7 +679,7 @@ class Exercises_model extends CI_Model {
 
             if(!empty($params)) {
                 $first = true;
-                $keys = array('name', 'name_desc', 'description');
+                $keys = array('name', 'name_desc', 'description', 'hash');
                 $this->db->group_start();
                 foreach ($params as $key => $param) {
                     if(in_array($key, $keys)) {
@@ -722,7 +752,7 @@ class Exercises_model extends CI_Model {
 
             if(!empty($params)) {
                 $first = true;
-                $keys = array('name', 'name_desc', 'description');
+                $keys = array('name', 'name_desc', 'description', 'hash');
                 $this->db->group_start();
                 foreach ($params as $key => $param) {
                     if(in_array($key, $keys)) {
@@ -802,7 +832,7 @@ class Exercises_model extends CI_Model {
         if(!empty($params)) {
             $first = true;
             $user_search = array('surname', 'name', 'middle_name');
-            $keys = array('name', 'name_desc', 'description');
+            $keys = array('name', 'name_desc', 'description', 'hash');
             $this->db->group_start();
             foreach ($params as $key => $param) {
                 if(in_array($key, $keys)) {
@@ -881,7 +911,7 @@ class Exercises_model extends CI_Model {
             if($this->db->affected_rows() > 0) {
                 $total = $this->getLastNum($user_id);
                 $this->changeOrderDeleted($user_id);
-                $this->unsetExerciseData($id);
+                // $this->unsetExerciseData($id);
                 return true;
             } else {
                 return false;
@@ -1059,4 +1089,26 @@ class Exercises_model extends CI_Model {
         }
     }
 
+
+    public function getExercisesRelationID($type = 'related', $exercise_id, $item_id, $exclude_id = array(), $order = false) {
+
+        if($order) {
+            $this->db->where(array(
+                    $type . '_id' => $item_id,
+                    'exercise_id' => $exercise_id,
+                    'order'       => $order
+                )
+            );
+        } else {
+            $this->db->where(array(
+                    $type . '_id' => $item_id,
+                    'exercise_id' => $exercise_id
+                )
+            );
+        }
+        if(is_array($exclude_id) && !empty($exclude_id)) {
+            $this->db->where_not_in('id', $exclude_id);
+        }
+        return $this->db->get($this->{$type . '_links_table'})->result();
+    }
 }

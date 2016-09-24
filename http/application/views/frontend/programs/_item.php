@@ -1,6 +1,10 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
 			<?php foreach ($exercises as $key => $exercise): ?>
+			<?php if($exercise):?>
 				<?php
+					if(!$type && $exercise->deleted == '1') {
+						continue;
+					}
 					$class = (!empty($class)) ? $class : 'exercises-my__item l-h__width popup-box clr';
 					$_progress = '';
 					if($exercise->progress) {
@@ -84,4 +88,5 @@
 					<div class="item-img_name"></div>
 <?php endif;?>
 				</li>
+			<?php endif;?>
 			<?php endforeach ?>

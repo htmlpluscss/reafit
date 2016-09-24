@@ -48,6 +48,7 @@
 						<ul>
 							<?php if(!empty($tab->exercises)):?>
 							<?php foreach ($tab->exercises as $exercise_key => $exercise) :?>
+							<?php if($exercise) :?>
 							<li class="exercises-my__item">
 								<div class="programme-body__box clr">
 									<div class="popup-box">
@@ -112,6 +113,7 @@
 									</div>
 								</div>
 							</li>
+							<?php endif;?>
 							<?php endforeach;?>
 							<?php endif;?>
 						</ul>

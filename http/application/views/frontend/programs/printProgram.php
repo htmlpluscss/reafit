@@ -32,7 +32,7 @@
 					<h2 class="programme-body__h2"><?php echo $tab->name;?></h2>
 
 					<?php foreach ($tab->exercises as $exercise_key => $exercise) : ?>
-
+					<?php if($exercise) :?>
 					<article class="programme-body__item">
 						<h2 class="programme-body__name">
 							<span class="programme-body__name-b"><?php echo $exercise_key + 1; ?>. <?php echo $exercise->name;?></span>
@@ -78,6 +78,7 @@
 						</div>
 					</article>
 
+					<?php endif;?>
 					<?php endforeach;?>
 
 					<a class="ico ico--hidden programme-body--print__group-toggle" title="<?php echo lang('hidden');?>"></a>

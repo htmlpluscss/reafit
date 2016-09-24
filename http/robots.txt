@@ -6,5 +6,5 @@ Allow: /registration
 Allow: /feedback
 Allow: /recovery
 
-Host: reafit-pro.ru
-Sitemap: https://reafit-pro.ru/sitemap.xml
+Host: reafit.ru
+Sitemap: http://reafit.ru/sitemap.xml

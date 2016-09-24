@@ -25,7 +25,7 @@
 		<?php echo $this->load->view('frontend/_pagination', array('pagination'=>$pagination, 'action' => $action, 'category_list' => $category_list), TRUE);?>
 		<table class="table100 table100--list">
 			<?php if($items):?>
-			<thead>
+			<thead class="nowrap">
 				<tr>
 					<th class="hide"><?php echo lang('id');?></th>
 					<th class="bt0 bl0" width="200">

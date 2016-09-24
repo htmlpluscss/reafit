@@ -1,12 +1,4 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
-
-<?php /*landing */
-
-if(empty($this->user)&&$_SERVER['REQUEST_URI']=='/') {
-	include($_SERVER['CONTEXT_DOCUMENT_ROOT'] . '/home/index.php');
-	exit();
-}
-?>
 <!DOCTYPE html>
 <html>
 <head>

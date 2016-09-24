@@ -12,10 +12,6 @@ RewriteRule ^images/logo.png$ /assets/images/logo.png [R=301,L]
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_URI} !=/server-status
-RewriteCond %{REQUEST_URI} !=/server-info
-RewriteCond %{REQUEST_URI} !=/munin/
-RewriteCond %{REQUEST_URI} !=/munin
 RewriteRule ^(.*)$ index.php?/$1 [L]
 
 <IfModule deflate_module>
