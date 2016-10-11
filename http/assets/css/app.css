@@ -123,6 +123,23 @@
 	background: #fff;
 }
 
+.programme-body__box .programme-img:after {
+	position: absolute;
+	top: 0;
+	left: 0;
+	border-right: 1px solid #dddce1;
+	border-bottom: 1px solid #dddce1;
+	border-radius: 4px 0;
+	color: #a4a4a4;
+	font-size: 11px;
+	line-height: 16px;
+	padding: 0 5px;
+	background: #fff;
+	content: counter(headings, decimal);
+}
+.programme-body--print .programme-img:after {
+ 	display: none;
+}
 
 .programme-body__detal {
 	width: 450px;
@@ -457,6 +474,21 @@ li:last-child .tabs__dt {
 }
 .l-h__inner > .exercises-my{
 	min-height: 100%;
+	counter-reset: headings 0;
+}
+.exercises-my__placeholder {
+	position: absolute;
+	top: 50%;
+	left: 0;
+	right: 0;
+	text-transform: uppercase;
+	margin-top: -30px;
+	color: #dddce1;
+	text-align: center;
+	font-size: 24px;
+	line-height: 30px;
+	font-weight: 700;
+	cursor: default;
 }
 .app-left .baron__track {
 	bottom: 20px;
@@ -464,9 +496,11 @@ li:last-child .tabs__dt {
 	top: 20px;
 }
 .exercises-my__item {
-//	cursor: grab;
+	cursor: -webkit-grab;
+	cursor: grab;
 	width: 902px;
 	margin-bottom: 18px;
+	counter-increment: headings 1;
 }
 .ui-draggable-dragging .item-img_name,
 .ui-sortable-helper .programme-body__box {
@@ -575,7 +609,7 @@ li:last-child .tabs__dt {
 	background-position: -391px -293px
 }
 .tab-exercises-list--active {
-	background-color: #7fb0ea;
+	background-color: #a4a4a4;
 }
 
 
@@ -797,7 +831,7 @@ li:last-child .tabs__dt {
 	color: #4a90e2;
 	padding-left: 8px;
 }
-/* 
+/*
 .popup--save .popup__box {
 	width: 200px;
 	font-size: 20px;

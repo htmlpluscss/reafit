@@ -123,7 +123,7 @@
 				<div class="tabs__dd<?php if(empty($tabs)){ echo ' tabs__dd--active';}?> tabs__dd--start">
 					<div class="l-h">
 						<div class="l-h__inner baron">
-							<div class="l-h__width add-tab-form">
+							<div class="l-h__width add-tab-form" data-placeholder="<?php echo lang('placeholder_add_exercises_in_tab');?>">
 								<div class="programme-body__h3"><?php echo lang('add_tab_title');?></div>
 								<label class="input-placeholder mb-14 w260">
 									<input class="input add-tab-form__name" maxlength="40">

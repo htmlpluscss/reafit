@@ -273,3 +273,4 @@ $lang['add_set_in_program']     = 'Добавить набор упражнен�
 $lang['time_change']            = 'изменено';
 $lang['not_tab']                = 'Без вкладок';
 $lang['categories_list_title']  = 'Список категорий';
+$lang['placeholder_add_exercises_in_tab'] = 'Добавьте сюда упражнение';

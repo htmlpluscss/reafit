@@ -482,6 +482,7 @@ console.log(formProgramm.serializeArray());
 		else {
 			var ul = $('<ul class="exercises-my">');
 			ul.attr('data-type', 'exercises['+countTab+'][data]');
+			ul.html('<li class="exercises-my__placeholder not-drop">'+f.data('placeholder')+'</li>');
 			f.after(ul);
 			f.remove();
 
@@ -723,6 +724,8 @@ console.log(formProgramm.serializeArray());
 			formProgrammChange = true;
 
 		}
+
+		leftScroller.children('ul').find('.exercises-my__placeholder').remove();
 
 		if(index === undefined){
 			leftScroller.children('ul').append(template);
