@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'reafit',
-	'password' => 'NJ7!Qh_NuB3jnK2_HBt',
-	'database' => 'reafit',
+	'hostname' => 'mysql96.1gb.ru',
+	'username' => 'gb_reafit_pro',
+	'password' => '4ebe36z4ftyu',
+	'database' => 'gb_reafit_pro',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
